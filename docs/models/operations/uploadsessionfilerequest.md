@@ -1,0 +1,9 @@
+# UploadSessionFileRequest
+
+
+## Fields
+
+| Field                                                                                              | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `ID`                                                                                               | *string*                                                                                           | :heavy_check_mark:                                                                                 | Session ID                                                                                         |
+| `RequestBody`                                                                                      | [operations.UploadSessionFileRequestBody](../../models/operations/uploadsessionfilerequestbody.md) | :heavy_check_mark:                                                                                 | N/A                                                                                                |

@@ -1,0 +1,14 @@
+# SSECompleteEventData
+
+
+## Fields
+
+| Field                                                                     | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `Content`                                                                 | **string*                                                                 | :heavy_minus_sign:                                                        | Final response content                                                    |
+| `Done`                                                                    | *bool*                                                                    | :heavy_check_mark:                                                        | Indicates message processing completion                                   |
+| `MessageID`                                                               | **string*                                                                 | :heavy_minus_sign:                                                        | Completed message identifier                                              |
+| `ParentToolCallID`                                                        | **string*                                                                 | :heavy_minus_sign:                                                        | ID of the parent tool call that spawned this subagent (for nested events) |
+| `Reasoning`                                                               | **string*                                                                 | :heavy_minus_sign:                                                        | Optional reasoning content                                                |
+| `ReasoningDuration`                                                       | **int64*                                                                  | :heavy_minus_sign:                                                        | Duration of reasoning process in milliseconds                             |
+| `Type`                                                                    | *string*                                                                  | :heavy_check_mark:                                                        | Completion type                                                           |

@@ -1,0 +1,12 @@
+# SSEToolExecutionStartEventData
+
+
+## Fields
+
+| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `ParentToolCallID`                                                                   | **string*                                                                            | :heavy_minus_sign:                                                                   | ID of the parent tool call that spawned this subagent (for nested events)            |
+| `Progress`                                                                           | *string*                                                                             | :heavy_check_mark:                                                                   | Execution progress description                                                       |
+| `ToolCallID`                                                                         | *string*                                                                             | :heavy_check_mark:                                                                   | Tool call identifier                                                                 |
+| `ToolName`                                                                           | [components.ToolName](../../models/components/toolname.md)                           | :heavy_check_mark:                                                                   | Tool name - either a core tool or MCP tool following {serverName}_{toolName} pattern |
+| `Type`                                                                               | *string*                                                                             | :heavy_check_mark:                                                                   | Tool execution start event type                                                      |

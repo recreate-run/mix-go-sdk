@@ -1,0 +1,10 @@
+# GetAuthStatusProviders
+
+
+## Fields
+
+| Field                                                                                     | Type                                                                                      | Required                                                                                  | Description                                                                               |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `AuthMethod`                                                                              | [*operations.GetAuthStatusAuthMethod](../../models/operations/getauthstatusauthmethod.md) | :heavy_minus_sign:                                                                        | Authentication method (oauth, api_key, none)                                              |
+| `Authenticated`                                                                           | **bool*                                                                                   | :heavy_minus_sign:                                                                        | Whether provider is authenticated                                                         |
+| `DisplayName`                                                                             | **string*                                                                                 | :heavy_minus_sign:                                                                        | User-friendly provider name                                                               |

@@ -1,0 +1,9 @@
+# UpdateSessionCallbacksRequest
+
+
+## Fields
+
+| Field                                                                                                        | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `ID`                                                                                                         | *string*                                                                                                     | :heavy_check_mark:                                                                                           | Session ID to update                                                                                         |
+| `RequestBody`                                                                                                | [operations.UpdateSessionCallbacksRequestBody](../../models/operations/updatesessioncallbacksrequestbody.md) | :heavy_check_mark:                                                                                           | N/A                                                                                                          |

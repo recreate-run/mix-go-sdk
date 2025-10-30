@@ -1,0 +1,11 @@
+# ListLLMToolsTool
+
+
+## Fields
+
+| Field                                                           | Type                                                            | Required                                                        | Description                                                     | Example                                                         |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `Description`                                                   | **string*                                                       | :heavy_minus_sign:                                              | Tool description                                                | Execute bash commands in a persistent shell session             |
+| `Name`                                                          | **string*                                                       | :heavy_minus_sign:                                              | Tool name                                                       | Bash                                                            |
+| `Parameters`                                                    | [*operations.Parameters](../../models/operations/parameters.md) | :heavy_minus_sign:                                              | Tool parameter schema                                           |                                                                 |
+| `Required`                                                      | []*string*                                                      | :heavy_minus_sign:                                              | Required parameters                                             |                                                                 |

@@ -1,0 +1,9 @@
+# GrantPermissionResponse
+
+
+## Fields
+
+| Field                                                                                             | Type                                                                                              | Required                                                                                          | Description                                                                                       |
+| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `HTTPMeta`                                                                                        | [components.HTTPMetadata](../../models/components/httpmetadata.md)                                | :heavy_check_mark:                                                                                | N/A                                                                                               |
+| `Object`                                                                                          | [*operations.GrantPermissionResponseBody](../../models/operations/grantpermissionresponsebody.md) | :heavy_minus_sign:                                                                                | Permission grant status                                                                           |

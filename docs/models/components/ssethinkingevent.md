@@ -1,0 +1,13 @@
+# SSEThinkingEvent
+
+Base SSE event with standard fields
+
+
+## Fields
+
+| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          | Example                                                                              |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `Event`                                                                              | [components.SSEThinkingEventEvent](../../models/components/ssethinkingeventevent.md) | :heavy_check_mark:                                                                   | Event type identifier                                                                |                                                                                      |
+| `ID`                                                                                 | *string*                                                                             | :heavy_check_mark:                                                                   | Unique sequential event identifier for ordering and reconnection                     | 1234567890                                                                           |
+| `Retry`                                                                              | **int64*                                                                             | :heavy_minus_sign:                                                                   | Client retry interval in milliseconds                                                | 30000                                                                                |
+| `Data`                                                                               | [components.SSEThinkingEventData](../../models/components/ssethinkingeventdata.md)   | :heavy_check_mark:                                                                   | N/A                                                                                  |                                                                                      |

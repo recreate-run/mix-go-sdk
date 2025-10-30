@@ -1,0 +1,9 @@
+# GetToolCredentialsStatusResponse
+
+
+## Fields
+
+| Field                                                                                                               | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         |
+| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `HTTPMeta`                                                                                                          | [components.HTTPMetadata](../../models/components/httpmetadata.md)                                                  | :heavy_check_mark:                                                                                                  | N/A                                                                                                                 |
+| `Object`                                                                                                            | [*operations.GetToolCredentialsStatusResponseBody](../../models/operations/gettoolcredentialsstatusresponsebody.md) | :heavy_minus_sign:                                                                                                  | Tool credentials status                                                                                             |

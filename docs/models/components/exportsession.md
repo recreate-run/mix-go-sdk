@@ -1,0 +1,20 @@
+# ExportSession
+
+Comprehensive session export with all messages, tool calls, and metadata
+
+
+## Fields
+
+| Field                                                                  | Type                                                                   | Required                                                               | Description                                                            |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `AssistantMessageCount`                                                | **int64*                                                               | :heavy_minus_sign:                                                     | Number of assistant messages                                           |
+| `CompletionTokens`                                                     | **int64*                                                               | :heavy_minus_sign:                                                     | Total completion tokens used                                           |
+| `Cost`                                                                 | **float64*                                                             | :heavy_minus_sign:                                                     | Total cost of session                                                  |
+| `CreatedAt`                                                            | [*time.Time](https://pkg.go.dev/time#Time)                             | :heavy_minus_sign:                                                     | Session creation timestamp                                             |
+| `ID`                                                                   | *string*                                                               | :heavy_check_mark:                                                     | Session identifier                                                     |
+| `Messages`                                                             | [][components.ExportMessage](../../models/components/exportmessage.md) | :heavy_check_mark:                                                     | Complete list of messages with full details                            |
+| `PromptTokens`                                                         | **int64*                                                               | :heavy_minus_sign:                                                     | Total prompt tokens used                                               |
+| `Title`                                                                | *string*                                                               | :heavy_check_mark:                                                     | Session title                                                          |
+| `ToolCallCount`                                                        | **int64*                                                               | :heavy_minus_sign:                                                     | Total number of tool calls                                             |
+| `UpdatedAt`                                                            | [*time.Time](https://pkg.go.dev/time#Time)                             | :heavy_minus_sign:                                                     | Session last update timestamp                                          |
+| `UserMessageCount`                                                     | **int64*                                                               | :heavy_minus_sign:                                                     | Number of user messages                                                |

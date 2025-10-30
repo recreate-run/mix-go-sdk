@@ -1,0 +1,11 @@
+# ListMcpServersResponseBody
+
+
+## Fields
+
+| Field                                                                            | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `Connected`                                                                      | *bool*                                                                           | :heavy_check_mark:                                                               | Whether the MCP server is currently connected                                    |
+| `Name`                                                                           | *string*                                                                         | :heavy_check_mark:                                                               | MCP server name                                                                  |
+| `Status`                                                                         | *string*                                                                         | :heavy_check_mark:                                                               | Server connection status (e.g., 'connected', 'failed', 'disconnected')           |
+| `Tools`                                                                          | [][operations.ListMcpServersTool](../../models/operations/listmcpserverstool.md) | :heavy_minus_sign:                                                               | List of tools provided by this MCP server (null if server is not connected)      |

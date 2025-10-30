@@ -1,0 +1,721 @@
+lockVersion: 2.0.0
+id: 83c3ea8a-9961-49ac-90eb-b920cf864159
+management:
+  docChecksum: fa2d5c187c9c6ca85857e8ab5826a7c1
+  docVersion: 1.0.0
+  speakeasyVersion: 1.639.0
+  generationVersion: 2.730.0
+  releaseVersion: 0.0.1
+  configChecksum: 82f2e79051d5a9dd781bcb61ca6a6b8e
+features:
+  go:
+    additionalDependencies: 0.1.0
+    constsAndDefaults: 0.1.12
+    core: 3.12.0
+    defaultEnabledRetries: 0.2.0
+    devContainers: 2.90.0
+    downloadStreams: 0.1.2
+    envVarSecurityUsage: 0.3.2
+    flattening: 2.81.1
+    globalSecurityCallbacks: 0.1.0
+    globalServerURLs: 2.82.3
+    intellisenseMarkdownSupport: 0.1.0
+    nullables: 0.2.1
+    responseFormat: 0.1.2
+    retries: 2.84.2
+    sdkHooks: 0.2.0
+    serverEvents: 0.1.2
+    unions: 2.87.0
+    uploadStreams: 0.1.0
+generatedFiles:
+  - .devcontainer/README.md
+  - .devcontainer/devcontainer.json
+  - .devcontainer/setup.sh
+  - .gitattributes
+  - /models/apierrors/errorresponse.go
+  - /models/components/backendmessage.go
+  - /models/components/callback.go
+  - /models/components/callbackresultdata.go
+  - /models/components/coretoolname.go
+  - /models/components/exportmessage.go
+  - /models/components/exportsession.go
+  - /models/components/exporttoolcall.go
+  - /models/components/fileinfo.go
+  - /models/components/httpmetadata.go
+  - /models/components/resterror.go
+  - /models/components/sessiondata.go
+  - /models/components/sseeventstream.go
+  - /models/components/toolcalldata.go
+  - /models/components/toolname.go
+  - /models/operations/cancelsessionprocessing.go
+  - /models/operations/createsession.go
+  - /models/operations/deletecredentials.go
+  - /models/operations/deletesession.go
+  - /models/operations/deletesessionfile.go
+  - /models/operations/denypermission.go
+  - /models/operations/exportsession.go
+  - /models/operations/forksession.go
+  - /models/operations/getauthstatus.go
+  - /models/operations/getavailableproviders.go
+  - /models/operations/getcommand.go
+  - /models/operations/getmessagehistory.go
+  - /models/operations/getoauthhealth.go
+  - /models/operations/getpreferences.go
+  - /models/operations/getsession.go
+  - /models/operations/getsessionfile.go
+  - /models/operations/getsessionmessages.go
+  - /models/operations/getsysteminfo.go
+  - /models/operations/gettoolcredentialsstatus.go
+  - /models/operations/gettoolsstatus.go
+  - /models/operations/grantpermission.go
+  - /models/operations/handleoauthcallback.go
+  - /models/operations/healthcheck.go
+  - /models/operations/listcommands.go
+  - /models/operations/listllmtools.go
+  - /models/operations/listmcpservers.go
+  - /models/operations/listsessionfiles.go
+  - /models/operations/listsessions.go
+  - /models/operations/refreshoauthtokens.go
+  - /models/operations/resetpreferences.go
+  - /models/operations/rewindsession.go
+  - /models/operations/sendmessage.go
+  - /models/operations/startoauthflow.go
+  - /models/operations/storeapikey.go
+  - /models/operations/streamevents.go
+  - /models/operations/updatepreferences.go
+  - /models/operations/updatesessioncallbacks.go
+  - /models/operations/uploadsessionfile.go
+  - /models/operations/validatepreferredprovider.go
+  - USAGE.md
+  - authentication.go
+  - docs/models/apierrors/errorresponse.md
+  - docs/models/components/backendmessage.md
+  - docs/models/components/callback.md
+  - docs/models/components/callbackresultdata.md
+  - docs/models/components/callbackresultdatacallbacktype.md
+  - docs/models/components/callbacktype.md
+  - docs/models/components/coretoolname.md
+  - docs/models/components/exportmessage.md
+  - docs/models/components/exportsession.md
+  - docs/models/components/exporttoolcall.md
+  - docs/models/components/fileinfo.md
+  - docs/models/components/httpmetadata.md
+  - docs/models/components/inputjson.md
+  - docs/models/components/params.md
+  - docs/models/components/resterror.md
+  - docs/models/components/resterrortype.md
+  - docs/models/components/sessiondata.md
+  - docs/models/components/sessiontype.md
+  - docs/models/components/ssecompleteevent.md
+  - docs/models/components/ssecompleteeventdata.md
+  - docs/models/components/ssecompleteeventevent.md
+  - docs/models/components/sseconnectedevent.md
+  - docs/models/components/sseconnectedeventdata.md
+  - docs/models/components/sseconnectedeventevent.md
+  - docs/models/components/ssecontentevent.md
+  - docs/models/components/ssecontenteventdata.md
+  - docs/models/components/ssecontenteventevent.md
+  - docs/models/components/sseerrorevent.md
+  - docs/models/components/sseerroreventdata.md
+  - docs/models/components/sseerroreventevent.md
+  - docs/models/components/sseeventstream.md
+  - docs/models/components/sseheartbeatevent.md
+  - docs/models/components/sseheartbeateventdata.md
+  - docs/models/components/sseheartbeateventevent.md
+  - docs/models/components/ssepermissionevent.md
+  - docs/models/components/ssepermissioneventdata.md
+  - docs/models/components/ssepermissioneventevent.md
+  - docs/models/components/ssesessioncreatedevent.md
+  - docs/models/components/ssesessioncreatedeventdata.md
+  - docs/models/components/ssesessioncreatedeventevent.md
+  - docs/models/components/ssesessiondeletedevent.md
+  - docs/models/components/ssesessiondeletedeventdata.md
+  - docs/models/components/ssesessiondeletedeventevent.md
+  - docs/models/components/ssethinkingevent.md
+  - docs/models/components/ssethinkingeventdata.md
+  - docs/models/components/ssethinkingeventevent.md
+  - docs/models/components/ssetoolevent.md
+  - docs/models/components/ssetooleventdata.md
+  - docs/models/components/ssetooleventevent.md
+  - docs/models/components/ssetoolexecutioncompleteevent.md
+  - docs/models/components/ssetoolexecutioncompleteeventdata.md
+  - docs/models/components/ssetoolexecutioncompleteeventevent.md
+  - docs/models/components/ssetoolexecutionstartevent.md
+  - docs/models/components/ssetoolexecutionstarteventdata.md
+  - docs/models/components/ssetoolexecutionstarteventevent.md
+  - docs/models/components/ssetoolparameterdeltaevent.md
+  - docs/models/components/ssetoolparameterdeltaeventdata.md
+  - docs/models/components/ssetoolparameterdeltaeventevent.md
+  - docs/models/components/sseusermessagecreatedevent.md
+  - docs/models/components/sseusermessagecreatedeventdata.md
+  - docs/models/components/sseusermessagecreatedeventevent.md
+  - docs/models/components/subagenttype.md
+  - docs/models/components/toolcalldata.md
+  - docs/models/components/toolname.md
+  - docs/models/operations/availableproviders.md
+  - docs/models/operations/cancelsessionprocessingrequest.md
+  - docs/models/operations/cancelsessionprocessingresponse.md
+  - docs/models/operations/cancelsessionprocessingresponsebody.md
+  - docs/models/operations/createsessionrequest.md
+  - docs/models/operations/createsessionresponse.md
+  - docs/models/operations/deletecredentialsrequest.md
+  - docs/models/operations/deletecredentialsresponse.md
+  - docs/models/operations/deletecredentialsresponsebody.md
+  - docs/models/operations/deletesessionfilerequest.md
+  - docs/models/operations/deletesessionfileresponse.md
+  - docs/models/operations/deletesessionrequest.md
+  - docs/models/operations/deletesessionresponse.md
+  - docs/models/operations/denypermissionrequest.md
+  - docs/models/operations/denypermissionresponse.md
+  - docs/models/operations/denypermissionresponsebody.md
+  - docs/models/operations/exportsessionrequest.md
+  - docs/models/operations/exportsessionresponse.md
+  - docs/models/operations/file.md
+  - docs/models/operations/forksessionrequest.md
+  - docs/models/operations/forksessionrequestbody.md
+  - docs/models/operations/forksessionresponse.md
+  - docs/models/operations/getauthstatusauthmethod.md
+  - docs/models/operations/getauthstatusproviders.md
+  - docs/models/operations/getauthstatusresponse.md
+  - docs/models/operations/getauthstatusresponsebody.md
+  - docs/models/operations/getavailableprovidersresponse.md
+  - docs/models/operations/getavailableprovidersresponsebody.md
+  - docs/models/operations/getcommandrequest.md
+  - docs/models/operations/getcommandresponse.md
+  - docs/models/operations/getcommandresponsebody.md
+  - docs/models/operations/getmessagehistoryrequest.md
+  - docs/models/operations/getmessagehistoryresponse.md
+  - docs/models/operations/getoauthhealthproviders.md
+  - docs/models/operations/getoauthhealthresponse.md
+  - docs/models/operations/getoauthhealthresponsebody.md
+  - docs/models/operations/getpreferencesresponse.md
+  - docs/models/operations/getpreferencesresponsebody.md
+  - docs/models/operations/getsessionfilerequest.md
+  - docs/models/operations/getsessionfileresponse.md
+  - docs/models/operations/getsessionmessagesrequest.md
+  - docs/models/operations/getsessionmessagesresponse.md
+  - docs/models/operations/getsessionrequest.md
+  - docs/models/operations/getsessionresponse.md
+  - docs/models/operations/getsysteminforesponse.md
+  - docs/models/operations/getsysteminforesponsebody.md
+  - docs/models/operations/gettoolcredentialsstatuscategories.md
+  - docs/models/operations/gettoolcredentialsstatusresponse.md
+  - docs/models/operations/gettoolcredentialsstatusresponsebody.md
+  - docs/models/operations/gettoolcredentialsstatustool.md
+  - docs/models/operations/gettoolsstatuscategories.md
+  - docs/models/operations/gettoolsstatusresponse.md
+  - docs/models/operations/gettoolsstatusresponsebody.md
+  - docs/models/operations/gettoolsstatustool.md
+  - docs/models/operations/grantpermissionrequest.md
+  - docs/models/operations/grantpermissionresponse.md
+  - docs/models/operations/grantpermissionresponsebody.md
+  - docs/models/operations/handleoauthcallbackrequest.md
+  - docs/models/operations/handleoauthcallbackresponse.md
+  - docs/models/operations/handleoauthcallbackresponsebody.md
+  - docs/models/operations/healthcheckresponse.md
+  - docs/models/operations/healthcheckresponsebody.md
+  - docs/models/operations/listcommandsresponse.md
+  - docs/models/operations/listcommandsresponsebody.md
+  - docs/models/operations/listllmtoolsresponse.md
+  - docs/models/operations/listllmtoolsresponsebody.md
+  - docs/models/operations/listllmtoolstool.md
+  - docs/models/operations/listmcpserversresponse.md
+  - docs/models/operations/listmcpserversresponsebody.md
+  - docs/models/operations/listmcpserverstool.md
+  - docs/models/operations/listsessionfilesrequest.md
+  - docs/models/operations/listsessionfilesresponse.md
+  - docs/models/operations/listsessionsrequest.md
+  - docs/models/operations/listsessionsresponse.md
+  - docs/models/operations/option.md
+  - docs/models/operations/parameters.md
+  - docs/models/operations/preferences.md
+  - docs/models/operations/promptmode.md
+  - docs/models/operations/provider.md
+  - docs/models/operations/providersstatus.md
+  - docs/models/operations/refreshoauthtokensresponse.md
+  - docs/models/operations/refreshoauthtokensresponsebody.md
+  - docs/models/operations/resetpreferencesresponse.md
+  - docs/models/operations/resetpreferencesresponsebody.md
+  - docs/models/operations/rewindsessionrequest.md
+  - docs/models/operations/rewindsessionrequestbody.md
+  - docs/models/operations/rewindsessionresponse.md
+  - docs/models/operations/sendmessagerequest.md
+  - docs/models/operations/sendmessagerequestbody.md
+  - docs/models/operations/sendmessageresponse.md
+  - docs/models/operations/sendmessageresponsebody.md
+  - docs/models/operations/sessiontype.md
+  - docs/models/operations/startoauthflowrequest.md
+  - docs/models/operations/startoauthflowresponse.md
+  - docs/models/operations/startoauthflowresponsebody.md
+  - docs/models/operations/status.md
+  - docs/models/operations/storeapikeyrequest.md
+  - docs/models/operations/storeapikeyresponse.md
+  - docs/models/operations/storeapikeyresponsebody.md
+  - docs/models/operations/streameventsrequest.md
+  - docs/models/operations/streameventsresponse.md
+  - docs/models/operations/thinkinglevel.md
+  - docs/models/operations/updatepreferencesrequest.md
+  - docs/models/operations/updatepreferencesresponse.md
+  - docs/models/operations/updatepreferencesresponsebody.md
+  - docs/models/operations/updatesessioncallbacksrequest.md
+  - docs/models/operations/updatesessioncallbacksrequestbody.md
+  - docs/models/operations/updatesessioncallbacksresponse.md
+  - docs/models/operations/uploadsessionfilerequest.md
+  - docs/models/operations/uploadsessionfilerequestbody.md
+  - docs/models/operations/uploadsessionfileresponse.md
+  - docs/models/operations/validatepreferredproviderauthmethod.md
+  - docs/models/operations/validatepreferredproviderresponse.md
+  - docs/models/operations/validatepreferredproviderresponsebody.md
+  - docs/sdks/authentication/README.md
+  - docs/sdks/files/README.md
+  - docs/sdks/health/README.md
+  - docs/sdks/internal/README.md
+  - docs/sdks/messages/README.md
+  - docs/sdks/permissions/README.md
+  - docs/sdks/preferences/README.md
+  - docs/sdks/sessions/README.md
+  - docs/sdks/streaming/README.md
+  - docs/sdks/system/README.md
+  - docs/sdks/tools/README.md
+  - files.go
+  - go.mod
+  - health.go
+  - internal.go
+  - internal/config/sdkconfiguration.go
+  - internal/hooks/hooks.go
+  - internal/utils/contenttype.go
+  - internal/utils/env.go
+  - internal/utils/form.go
+  - internal/utils/headers.go
+  - internal/utils/json.go
+  - internal/utils/pathparams.go
+  - internal/utils/queryparams.go
+  - internal/utils/requestbody.go
+  - internal/utils/retries.go
+  - internal/utils/security.go
+  - internal/utils/utils.go
+  - messages.go
+  - mix.go
+  - models/apierrors/apierror.go
+  - models/operations/options.go
+  - optionalnullable/optionalnullable.go
+  - optionalnullable/optionalnullable_test.go
+  - permissions.go
+  - preferences.go
+  - retry/config.go
+  - sessions.go
+  - streaming.go
+  - system.go
+  - tools.go
+  - types/bigint.go
+  - types/date.go
+  - types/datetime.go
+  - types/pointers.go
+  - types/stream/stream.go
+examples:
+  storeApiKey:
+    speakeasy-default-store-api-key:
+      requestBody:
+        application/json: {"api_key": "<value>", "provider": "brave"}
+      responses:
+        "200":
+          application/json: {}
+        "400":
+          application/json: {"error": {"code": 266487, "message": "<value>", "type": "not_found"}}
+        "500":
+          application/json: {"error": {"code": 266487, "message": "<value>", "type": "not_found"}}
+  handleOAuthCallback:
+    speakeasy-default-handle-O-auth-callback:
+      requestBody:
+        application/json: {"code": "<value>", "provider": "<value>", "state": "Arizona"}
+      responses:
+        "200":
+          application/json: {}
+        "400":
+          application/json: {"error": {"code": 930404, "message": "<value>", "type": "internal_error"}}
+        "500":
+          application/json: {"error": {"code": 930404, "message": "<value>", "type": "internal_error"}}
+  startOAuthFlow:
+    speakeasy-default-start-O-auth-flow:
+      parameters:
+        path:
+          provider: "<value>"
+      responses:
+        "200":
+          application/json: {}
+        "400":
+          application/json: {"error": {"code": 879433, "message": "<value>", "type": "validation_error"}}
+        "500":
+          application/json: {"error": {"code": 879433, "message": "<value>", "type": "validation_error"}}
+  getAuthStatus:
+    speakeasy-default-get-auth-status:
+      responses:
+        "200":
+          application/json: {}
+        "500":
+          application/json: {"error": {"code": 430191, "message": "<value>", "type": "validation_error"}}
+  validatePreferredProvider:
+    speakeasy-default-validate-preferred-provider:
+      responses:
+        "200":
+          application/json: {}
+        "500":
+          application/json: {"error": {"code": 605554, "message": "<value>", "type": "internal_error"}}
+  deleteCredentials:
+    speakeasy-default-delete-credentials:
+      parameters:
+        path:
+          provider: "<value>"
+      responses:
+        "200":
+          application/json: {}
+        "400":
+          application/json: {"error": {"code": 839078, "message": "<value>", "type": "bad_request"}}
+        "500":
+          application/json: {"error": {"code": 839078, "message": "<value>", "type": "bad_request"}}
+  getOAuthHealth:
+    speakeasy-default-get-O-auth-health:
+      responses:
+        "200":
+          application/json: {"providers": {"key": {"expires_in": "2h30m15s", "provider": "<value>", "status": "expired"}}, "status": "healthy", "timestamp": "2024-10-11T14:02:57.011Z"}
+        "500":
+          application/json: {"error": {"code": 52281, "message": "<value>", "type": "internal_error"}}
+  refreshOAuthTokens:
+    speakeasy-default-refresh-O-auth-tokens:
+      responses:
+        "200":
+          application/json: {"message": "Token refresh triggered successfully", "status": "success"}
+        "500":
+          application/json: {"error": {"code": 726372, "message": "<value>", "type": "bad_request"}}
+  listCommands:
+    speakeasy-default-list-commands:
+      responses:
+        "200":
+          application/json: [{}]
+        "401":
+          application/json: {"error": {"code": 838798, "message": "<value>", "type": "unauthorized"}}
+        "500":
+          application/json: {"error": {"code": 838798, "message": "<value>", "type": "unauthorized"}}
+  getCommand:
+    speakeasy-default-get-command:
+      parameters:
+        path:
+          name: "<value>"
+      responses:
+        "200":
+          application/json: {}
+        "404":
+          application/json: {"error": {"code": 467416, "message": "<value>", "type": "bad_request"}}
+  listMcpServers:
+    speakeasy-default-list-mcp-servers:
+      responses:
+        "200":
+          application/json: [{"connected": true, "name": "<value>", "status": "<value>"}]
+        "401":
+          application/json: {"error": {"code": 291310, "message": "<value>", "type": "internal_error"}}
+        "500":
+          application/json: {"error": {"code": 291310, "message": "<value>", "type": "internal_error"}}
+  getSystemInfo:
+    speakeasy-default-get-system-info:
+      responses:
+        "200":
+          application/json: {"storageBasePath": "<value>"}
+        "500":
+          application/json: {"error": {"code": 39436, "message": "<value>", "type": "internal_error"}}
+  healthCheck:
+    speakeasy-default-health-check:
+      responses:
+        "200":
+          application/json: {}
+        "500":
+          application/json: {"error": {"code": 981446, "message": "<value>", "type": "not_found"}}
+  getMessageHistory:
+    speakeasy-default-get-message-history:
+      parameters:
+        query:
+          limit: 50
+          offset: 0
+      responses:
+        "200":
+          application/json: [{"id": "<id>", "role": "<value>", "sessionId": "<id>", "toolCalls": [{"finished": true, "id": "<id>", "input": "<value>", "name": "brave_search", "type": "<value>"}], "userInput": "<value>"}]
+        "401":
+          application/json: {"error": {"code": 37164, "message": "<value>", "type": "validation_error"}}
+        "500":
+          application/json: {"error": {"code": 37164, "message": "<value>", "type": "validation_error"}}
+  cancelSessionProcessing:
+    speakeasy-default-cancel-session-processing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {}
+        "404":
+          application/json: {"error": {"code": 83449, "message": "<value>", "type": "internal_error"}}
+  getSessionMessages:
+    speakeasy-default-get-session-messages:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: [{"id": "<id>", "role": "<value>", "sessionId": "<id>", "toolCalls": [{"finished": true, "id": "<id>", "input": "<value>", "name": "brave_search", "type": "<value>"}], "userInput": "<value>"}]
+        "404":
+          application/json: {"error": {"code": 355518, "message": "<value>", "type": "bad_request"}}
+  sendMessage:
+    speakeasy-default-send-message:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {"plan_mode": false, "text": "<value>", "thinking_level": "medium"}
+      responses:
+        "202":
+          application/json: {"sessionId": "<id>", "status": "processing"}
+        "400":
+          application/json: {"error": {"code": 271065, "message": "<value>", "type": "unauthorized"}}
+  denyPermission:
+    speakeasy-default-deny-permission:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {}
+        "401":
+          application/json: {"error": {"code": 185141, "message": "<value>", "type": "unauthorized"}}
+        "500":
+          application/json: {"error": {"code": 185141, "message": "<value>", "type": "unauthorized"}}
+  grantPermission:
+    speakeasy-default-grant-permission:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {}
+        "401":
+          application/json: {"error": {"code": 96400, "message": "<value>", "type": "internal_error"}}
+        "500":
+          application/json: {"error": {"code": 96400, "message": "<value>", "type": "internal_error"}}
+  getPreferences:
+    speakeasy-default-get-preferences:
+      responses:
+        "200":
+          application/json: {"available_providers": {"key": {}}}
+        "500":
+          application/json: {"error": {"code": 25779, "message": "<value>", "type": "not_found"}}
+  updatePreferences:
+    speakeasy-default-update-preferences:
+      requestBody:
+        application/json: {}
+      responses:
+        "200":
+          application/json: {}
+        "400":
+          application/json: {"error": {"code": 990914, "message": "<value>", "type": "validation_error"}}
+        "500":
+          application/json: {"error": {"code": 990914, "message": "<value>", "type": "validation_error"}}
+  getAvailableProviders:
+    speakeasy-default-get-available-providers:
+      responses:
+        "200":
+          application/json: {"key": {}}
+        "500":
+          application/json: {"error": {"code": 769766, "message": "<value>", "type": "internal_error"}}
+  resetPreferences:
+    speakeasy-default-reset-preferences:
+      responses:
+        "200":
+          application/json: {}
+        "500":
+          application/json: {"error": {"code": 941390, "message": "<value>", "type": "unauthorized"}}
+  listSessions:
+    speakeasy-default-list-sessions:
+      parameters:
+        query:
+          includeSubagents: false
+      responses:
+        "200":
+          application/json: [{"assistantMessageCount": 103950, "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "sub_agent"}], "completionTokens": 734682, "cost": 6985.62, "createdAt": "2023-09-25T21:22:18.303Z", "id": "<id>", "promptTokens": 717181, "sessionType": "main", "title": "<value>", "toolCallCount": 306652, "userMessageCount": 14450}]
+        "401":
+          application/json: {"error": {"code": 417693, "message": "<value>", "type": "unauthorized"}}
+        "500":
+          application/json: {"error": {"code": 417693, "message": "<value>", "type": "unauthorized"}}
+  createSession:
+    invalid_prompt_mode:
+      requestBody:
+        application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
+      responses:
+        "400":
+          application/json: {"error": {"code": 400, "message": "promptMode must be 'default', 'append', or 'replace'", "type": "validation_error"}}
+    invalid_session_type:
+      requestBody:
+        application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
+      responses:
+        "400":
+          application/json: {"error": {"code": 400, "message": "API can only create main sessions. Use /fork endpoint for forked sessions. Subagent sessions are created automatically.", "type": "validation_error"}}
+    missing_title:
+      requestBody:
+        application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
+      responses:
+        "400":
+          application/json: {"error": {"code": 400, "message": "title is required", "type": "validation_error"}}
+    prompt_size_exceeded_append:
+      requestBody:
+        application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
+      responses:
+        "400":
+          application/json: {"error": {"code": 400, "message": "Custom prompt size (75KB) exceeds append mode limit of 50KB", "type": "validation_error"}}
+    prompt_size_exceeded_replace:
+      requestBody:
+        application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
+      responses:
+        "400":
+          application/json: {"error": {"code": 400, "message": "Custom prompt size (150KB) exceeds replace mode limit of 100KB", "type": "validation_error"}}
+    subagent_type_not_allowed:
+      requestBody:
+        application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
+      responses:
+        "400":
+          application/json: {"error": {"code": 400, "message": "subagentType cannot be set for API-created sessions. Subagent sessions are created programmatically by the task delegation system.", "type": "validation_error"}}
+  deleteSession:
+    speakeasy-default-delete-session:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "404":
+          application/json: {"error": {"code": 56778, "message": "<value>", "type": "validation_error"}}
+  getSession:
+    speakeasy-default-get-session:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {"assistantMessageCount": 387834, "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "sub_agent"}], "completionTokens": 58853, "cost": 6747.54, "createdAt": "2023-12-03T01:35:57.270Z", "id": "<id>", "promptTokens": 945765, "sessionType": "subagent", "title": "<value>", "toolCallCount": 125836, "userMessageCount": 941442}
+        "404":
+          application/json: {"error": {"code": 281492, "message": "<value>", "type": "internal_error"}}
+  updateSessionCallbacks:
+    speakeasy-default-update-session-callbacks:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {"callbacks": []}
+      responses:
+        "200":
+          application/json: {"assistantMessageCount": 331297, "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "bash_script"}], "completionTokens": 732683, "cost": 8068.84, "createdAt": "2023-06-04T19:02:08.923Z", "id": "<id>", "promptTokens": 460281, "sessionType": "main", "title": "<value>", "toolCallCount": 805406, "userMessageCount": 971135}
+        "400":
+          application/json: {"error": {"code": 585695, "message": "<value>", "type": "bad_request"}}
+  exportSession:
+    speakeasy-default-export-session:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "<id>", "messages": [], "title": "<value>"}
+        "404":
+          application/json: {"error": {"code": 657092, "message": "<value>", "type": "validation_error"}}
+        "500":
+          application/json: {"error": {"code": 657092, "message": "<value>", "type": "validation_error"}}
+  forkSession:
+    speakeasy-default-fork-session:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {"messageIndex": 385832}
+      responses:
+        "201":
+          application/json: {"assistantMessageCount": 551389, "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "sub_agent"}], "completionTokens": 883347, "cost": 7701.17, "createdAt": "2025-09-19T04:06:39.531Z", "id": "<id>", "promptTokens": 239157, "sessionType": "forked", "title": "<value>", "toolCallCount": 860599, "userMessageCount": 637774}
+        "400":
+          application/json: {"error": {"code": 951681, "message": "<value>", "type": "internal_error"}}
+  rewindSession:
+    speakeasy-default-rewind-session:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {"cleanupMedia": true, "messageId": "<id>"}
+      responses:
+        "200":
+          application/json: {"assistantMessageCount": 676019, "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "bash_script"}], "completionTokens": 190372, "cost": 5568.73, "createdAt": "2024-07-07T16:52:12.280Z", "id": "<id>", "promptTokens": 938253, "sessionType": "forked", "title": "<value>", "toolCallCount": 877894, "userMessageCount": 158292}
+        "400":
+          application/json: {"error": {"code": 235968, "message": "<value>", "type": "unauthorized"}}
+  listSessionFiles:
+    speakeasy-default-list-session-files:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: [{"isDir": false, "modified": 765133, "name": "<value>", "size": 287523, "url": "https://glorious-euphonium.info"}]
+        "404":
+          application/json: {"error": {"code": 650370, "message": "<value>", "type": "bad_request"}}
+  uploadSessionFile:
+    speakeasy-default-upload-session-file:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        multipart/form-data: {"file": "x-file: example.file"}
+      responses:
+        "201":
+          application/json: {"isDir": false, "modified": 467218, "name": "<value>", "size": 793494, "url": "https://hospitable-crocodile.name"}
+        "400":
+          application/json: {"error": {"code": 959051, "message": "<value>", "type": "validation_error"}}
+  deleteSessionFile:
+    speakeasy-default-delete-session-file:
+      parameters:
+        path:
+          id: "<id>"
+          filename: "example.file"
+      responses:
+        "400":
+          application/json: {"error": {"code": 565254, "message": "<value>", "type": "internal_error"}}
+  getSessionFile:
+    speakeasy-default-get-session-file:
+      parameters:
+        path:
+          id: "<id>"
+          filename: "example.file"
+      responses:
+        "200":
+          '*/*': "x-file: example.file"
+        "400":
+          application/json: {"error": {"code": 958191, "message": "<value>", "type": "internal_error"}}
+  listLLMTools:
+    speakeasy-default-list-LLM-tools:
+      responses:
+        "200":
+          application/json: {"tools": [{"description": "Execute bash commands in a persistent shell session", "name": "Bash"}]}
+        "500":
+          application/json: {"error": {"code": 57152, "message": "<value>", "type": "unauthorized"}}
+  getToolCredentialsStatus:
+    speakeasy-default-get-tool-credentials-status:
+      responses:
+        "200":
+          application/json: {"categories": {"key": {"description": "Search the web for real-time information", "display_name": "Web Search", "icon": "\U0001F50D", "tools": [{"api_key_format": "BSA...", "api_key_required": true, "authenticated": true, "description": "Privacy-focused web search with real-time results", "display_name": "Brave Search", "provider": "brave"}]}}}
+        "500":
+          application/json: {"error": {"code": 725163, "message": "<value>", "type": "validation_error"}}
+  getToolsStatus:
+    speakeasy-default-get-tools-status:
+      responses:
+        "200":
+          application/json: {}
+        "500":
+          application/json: {"error": {"code": 561833, "message": "<value>", "type": "validation_error"}}
+  streamEvents:
+    speakeasy-default-stream-events:
+      parameters:
+        query:
+          sessionId: "<id>"
+      responses:
+        "404":
+          application/json: {"error": {"code": 67605, "message": "<value>", "type": "validation_error"}}
+        "500":
+          application/json: {"error": {"code": 67605, "message": "<value>", "type": "validation_error"}}
+examplesVersion: 1.0.2

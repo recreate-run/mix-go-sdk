@@ -1,0 +1,19 @@
+workflowVersion: 1.0.0
+speakeasyVersion: latest
+sources:
+    Mix REST API:
+        inputs:
+            - location: ../mix/mix_sdk/openapi.json
+        output: .speakeasy/out.openapi.yaml
+        registry:
+            location: registry.speakeasyapi.dev/recreate/mix/mix-rest-api
+targets:
+    mix:
+        target: go
+        source: Mix REST API
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/recreate/mix/mix-rest-api-go-code-samples
+            labelOverride:
+                fixedValue: Go (SDK)
+            blocking: false

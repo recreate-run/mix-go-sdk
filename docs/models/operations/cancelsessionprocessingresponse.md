@@ -1,0 +1,9 @@
+# CancelSessionProcessingResponse
+
+
+## Fields
+
+| Field                                                                                                             | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
+| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `HTTPMeta`                                                                                                        | [components.HTTPMetadata](../../models/components/httpmetadata.md)                                                | :heavy_check_mark:                                                                                                | N/A                                                                                                               |
+| `Object`                                                                                                          | [*operations.CancelSessionProcessingResponseBody](../../models/operations/cancelsessionprocessingresponsebody.md) | :heavy_minus_sign:                                                                                                | Cancellation status                                                                                               |

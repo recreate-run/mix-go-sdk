@@ -1,0 +1,13 @@
+# SSEErrorEventData
+
+
+## Fields
+
+| Field                                                                     | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `Attempt`                                                                 | **int64*                                                                  | :heavy_minus_sign:                                                        | Current retry attempt number                                              |
+| `Error`                                                                   | *string*                                                                  | :heavy_check_mark:                                                        | Error message description                                                 |
+| `MaxAttempts`                                                             | **int64*                                                                  | :heavy_minus_sign:                                                        | Maximum number of retry attempts                                          |
+| `ParentToolCallID`                                                        | **string*                                                                 | :heavy_minus_sign:                                                        | ID of the parent tool call that spawned this subagent (for nested events) |
+| `RetryAfter`                                                              | **int64*                                                                  | :heavy_minus_sign:                                                        | Milliseconds to wait before retry                                         |
+| `Type`                                                                    | **string*                                                                 | :heavy_minus_sign:                                                        | Error type classification                                                 |

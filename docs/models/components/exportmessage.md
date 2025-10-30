@@ -1,0 +1,19 @@
+# ExportMessage
+
+Complete message information for export
+
+
+## Fields
+
+| Field                                                                    | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `Content`                                                                | *string*                                                                 | :heavy_check_mark:                                                       | Message content                                                          |
+| `CreatedAt`                                                              | [time.Time](https://pkg.go.dev/time#Time)                                | :heavy_check_mark:                                                       | Message creation timestamp                                               |
+| `FinishReason`                                                           | **string*                                                                | :heavy_minus_sign:                                                       | Completion finish reason (optional)                                      |
+| `ID`                                                                     | *string*                                                                 | :heavy_check_mark:                                                       | Message identifier                                                       |
+| `Model`                                                                  | **string*                                                                | :heavy_minus_sign:                                                       | Model used for this message (optional)                                   |
+| `Reasoning`                                                              | **string*                                                                | :heavy_minus_sign:                                                       | Reasoning content (optional)                                             |
+| `ReasoningDuration`                                                      | **int64*                                                                 | :heavy_minus_sign:                                                       | Reasoning duration in milliseconds (optional)                            |
+| `Role`                                                                   | *string*                                                                 | :heavy_check_mark:                                                       | Message role (user, assistant, tool)                                     |
+| `ToolCalls`                                                              | [][components.ExportToolCall](../../models/components/exporttoolcall.md) | :heavy_minus_sign:                                                       | Tool calls with complete information                                     |
+| `UpdatedAt`                                                              | [time.Time](https://pkg.go.dev/time#Time)                                | :heavy_check_mark:                                                       | Message update timestamp                                                 |

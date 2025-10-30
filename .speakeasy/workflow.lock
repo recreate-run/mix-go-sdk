@@ -1,0 +1,37 @@
+speakeasyVersion: 1.639.0
+sources:
+    Mix REST API:
+        sourceNamespace: mix-rest-api
+        sourceRevisionDigest: sha256:1dfe4e0a6883a48d95a59f3f4407f722ea6b6f7ba771f8404e815c59c0867e4d
+        sourceBlobDigest: sha256:f65b76c2f15816ddfbcd95569600fd95f328fe3e1aac262f83c297b2e9ae9a6e
+        tags:
+            - latest
+            - 1.0.0
+targets:
+    mix:
+        source: Mix REST API
+        sourceNamespace: mix-rest-api
+        sourceRevisionDigest: sha256:1dfe4e0a6883a48d95a59f3f4407f722ea6b6f7ba771f8404e815c59c0867e4d
+        sourceBlobDigest: sha256:f65b76c2f15816ddfbcd95569600fd95f328fe3e1aac262f83c297b2e9ae9a6e
+        codeSamplesNamespace: mix-rest-api-go-code-samples
+        codeSamplesRevisionDigest: sha256:990890ead42a0eb3a2c85589ef67066c3dccd197393c2e424adf512ef2d7c658
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        Mix REST API:
+            inputs:
+                - location: ../mix/mix_sdk/openapi.json
+            output: .speakeasy/out.openapi.yaml
+            registry:
+                location: registry.speakeasyapi.dev/recreate/mix/mix-rest-api
+    targets:
+        mix:
+            target: go
+            source: Mix REST API
+            codeSamples:
+                registry:
+                    location: registry.speakeasyapi.dev/recreate/mix/mix-rest-api-go-code-samples
+                labelOverride:
+                    fixedValue: Go (SDK)
+                blocking: false
