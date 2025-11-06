@@ -22,7 +22,7 @@ const (
 	CoreToolNameSearch          CoreToolName = "Search"
 	CoreToolNameTodoWrite       CoreToolName = "TodoWrite"
 	CoreToolNameExitPlanMode    CoreToolName = "ExitPlanMode"
-	CoreToolNameShowMedia       CoreToolName = "ShowMedia"
+	CoreToolNameShow            CoreToolName = "Show"
 	CoreToolNameTask            CoreToolName = "Task"
 )
 
@@ -57,7 +57,7 @@ func (e *CoreToolName) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "ExitPlanMode":
 		fallthrough
-	case "ShowMedia":
+	case "Show":
 		fallthrough
 	case "Task":
 		*e = CoreToolName(v)

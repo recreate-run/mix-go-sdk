@@ -56,7 +56,7 @@ type Callback struct {
 	SubAgentPrompt *string `json:"subAgentPrompt,omitempty"`
 	// Type of sub-agent to spawn (default: 'general-purpose')
 	SubAgentType *string `default:"general-purpose" json:"subAgentType"`
-	// Tool to attach callback to (e.g., 'show_media', 'bash', '*' for all tools)
+	// Tool to attach callback to (e.g., 'show', 'bash', '*' for all tools)
 	ToolName string `json:"toolName"`
 	// Callback type: 'bash_script' for shell commands, 'sub_agent' for spawning sub-agents, 'send_message' for injecting messages
 	Type CallbackType `json:"type"`

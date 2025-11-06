@@ -18,5 +18,5 @@ Core built-in tool names
 | `CoreToolNameSearch`          | Search                        |
 | `CoreToolNameTodoWrite`       | TodoWrite                     |
 | `CoreToolNameExitPlanMode`    | ExitPlanMode                  |
-| `CoreToolNameShowMedia`       | ShowMedia                     |
+| `CoreToolNameShow`            | Show                          |
 | `CoreToolNameTask`            | Task                          |

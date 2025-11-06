@@ -1804,7 +1804,7 @@ components:
           description: "Type of sub-agent to spawn (default: 'general-purpose')"
           type: "string"
         "toolName":
-          description: "Tool to attach callback to (e.g., 'show_media', 'bash', '*' for all tools)"
+          description: "Tool to attach callback to (e.g., 'show', 'bash', '*' for all tools)"
           example: "*"
           type: "string"
         "type":
@@ -1881,7 +1881,7 @@ components:
         - "Search"
         - "TodoWrite"
         - "ExitPlanMode"
-        - "ShowMedia"
+        - "Show"
         - "Task"
       type: "string"
     "ErrorResponse":

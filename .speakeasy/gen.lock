@@ -1,17 +1,17 @@
 lockVersion: 2.0.0
 id: 83c3ea8a-9961-49ac-90eb-b920cf864159
 management:
-  docChecksum: 34f2f96294ab9c1cbee143e326abc756
+  docChecksum: 6c0ddee3aa034db417b024d706cd3417
   docVersion: 1.0.0
-  speakeasyVersion: 1.649.0
-  generationVersion: 2.739.1
-  releaseVersion: 0.1.0
-  configChecksum: 4878eaa9ba5f40c28c2bbb7a35cf226a
+  speakeasyVersion: 1.650.0
+  generationVersion: 2.743.2
+  releaseVersion: 0.1.1
+  configChecksum: 482426b3f762906f3543b456a76271e4
 features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.13.0
+    core: 3.13.1
     defaultEnabledRetries: 0.2.0
     devContainers: 2.90.0
     downloadStreams: 0.1.2
