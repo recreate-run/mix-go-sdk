@@ -1,24 +1,24 @@
 lockVersion: 2.0.0
 id: 83c3ea8a-9961-49ac-90eb-b920cf864159
 management:
-  docChecksum: fa2d5c187c9c6ca85857e8ab5826a7c1
+  docChecksum: 34f2f96294ab9c1cbee143e326abc756
   docVersion: 1.0.0
-  speakeasyVersion: 1.639.0
-  generationVersion: 2.730.0
-  releaseVersion: 0.0.1
-  configChecksum: 82f2e79051d5a9dd781bcb61ca6a6b8e
+  speakeasyVersion: 1.649.0
+  generationVersion: 2.739.1
+  releaseVersion: 0.1.0
+  configChecksum: 4878eaa9ba5f40c28c2bbb7a35cf226a
 features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.12.0
+    core: 3.13.0
     defaultEnabledRetries: 0.2.0
     devContainers: 2.90.0
     downloadStreams: 0.1.2
     envVarSecurityUsage: 0.3.2
     flattening: 2.81.1
     globalSecurityCallbacks: 0.1.0
-    globalServerURLs: 2.82.3
+    globalServerURLs: 2.83.0
     intellisenseMarkdownSupport: 0.1.0
     nullables: 0.2.1
     responseFormat: 0.1.2
@@ -134,18 +134,21 @@ generatedFiles:
   - docs/models/components/ssethinkingevent.md
   - docs/models/components/ssethinkingeventdata.md
   - docs/models/components/ssethinkingeventevent.md
-  - docs/models/components/ssetoolevent.md
-  - docs/models/components/ssetooleventdata.md
-  - docs/models/components/ssetooleventevent.md
   - docs/models/components/ssetoolexecutioncompleteevent.md
   - docs/models/components/ssetoolexecutioncompleteeventdata.md
   - docs/models/components/ssetoolexecutioncompleteeventevent.md
   - docs/models/components/ssetoolexecutionstartevent.md
   - docs/models/components/ssetoolexecutionstarteventdata.md
   - docs/models/components/ssetoolexecutionstarteventevent.md
-  - docs/models/components/ssetoolparameterdeltaevent.md
-  - docs/models/components/ssetoolparameterdeltaeventdata.md
-  - docs/models/components/ssetoolparameterdeltaeventevent.md
+  - docs/models/components/ssetooluseparameterdeltaevent.md
+  - docs/models/components/ssetooluseparameterdeltaeventdata.md
+  - docs/models/components/ssetooluseparameterdeltaeventevent.md
+  - docs/models/components/ssetooluseparameterstreamingcompleteevent.md
+  - docs/models/components/ssetooluseparameterstreamingcompleteeventdata.md
+  - docs/models/components/ssetooluseparameterstreamingcompleteeventevent.md
+  - docs/models/components/ssetoolusestartevent.md
+  - docs/models/components/ssetoolusestarteventdata.md
+  - docs/models/components/ssetoolusestarteventevent.md
   - docs/models/components/sseusermessagecreatedevent.md
   - docs/models/components/sseusermessagecreatedeventdata.md
   - docs/models/components/sseusermessagecreatedeventevent.md

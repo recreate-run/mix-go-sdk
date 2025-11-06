@@ -714,9 +714,51 @@ func errorLoggingHook(ctx hooks.HookContext, resp *http.Response, err error) (*h
 
 **Note:** Hooks are primarily used internally by the SDK for request/response processing. Public hook APIs for custom implementations may be added in future versions.
 
+## SSE Event Types
+
+The streaming API emits various Server-Sent Events during message processing. Each event represents a different stage in the AI's response generation.
+
+| Event Type | Description | When Emitted | Common Use Case |
+| :--------- | :---------- | :----------- | :-------------- |
+| `SSEEventStreamTypeConnected` | Connection established | Stream initialization | Confirm stream is ready |
+| `SSEEventStreamTypeUserMessageCreated` | User message created | After message submission | Confirm message received |
+| `SSEEventStreamTypeThinking` | AI thinking/reasoning | Before response generation | Show "thinking" indicator |
+| `SSEEventStreamTypeContent` | Content generation | During response streaming | Display streaming text response |
+| `SSEEventStreamTypeToolUseStart` | Tool use started | AI declares tool to use | Show tool being called |
+| `SSEEventStreamTypeToolUseParameterDelta` | Tool parameters streaming | Parameters being streamed | Display partial parameters |
+| `SSEEventStreamTypeToolUseParameterStreamingComplete` | Tool parameters complete | All parameters received | Prepare for execution |
+| `SSEEventStreamTypeToolExecutionStart` | Tool execution started | Tool begins running | Display execution progress |
+| `SSEEventStreamTypeToolExecutionComplete` | Tool execution finished | Tool completes/fails | Show tool results or errors |
+| `SSEEventStreamTypePermission` | Permission request | Action requires approval | Prompt user for permission |
+| `SSEEventStreamTypeComplete` | Processing complete | Response finished | End of stream, cleanup |
+| `SSEEventStreamTypeError` | Error occurred | Processing failure | Display error message |
+| `SSEEventStreamTypeHeartbeat` | Keep-alive signal | Periodic during stream | Maintain connection |
+| `SSEEventStreamTypeSessionCreated` | Session created | New session initialized | Notify of new session |
+| `SSEEventStreamTypeSessionDeleted` | Session deleted | Session removed | Notify of deletion |
+
+### Event Processing Pattern
+
+Events should be processed in a loop using the `SSEEventStream` API:
+
+```go
+for stream.SSEEventStream.Next() {
+    event := stream.SSEEventStream.Value()
+
+    switch event.Type {
+    case components.SSEEventStreamTypeContent:
+        // Handle streaming content
+    case components.SSEEventStreamTypeComplete:
+        // End processing
+        return
+    case components.SSEEventStreamTypeError:
+        // Handle errors
+    }
+}
+```
+
 ## Tool Input/Output Types
 
-Documentation of input/output schemas for all built-in Mix tools. These tools are invoked by the AI during message processing and appear in `SSEToolEvent` streams.
+Documentation of input/output schemas for all built-in Mix tools. These tools are invoked by the AI during message processing and appear in SSE tool event streams (`SSEToolUseStartEvent`, `SSEToolUseParameterDeltaEvent`, `SSEToolUseParameterStreamingCompleteEvent`).
 
 ### Bash
 
@@ -1396,7 +1438,7 @@ func main() {
 
 ---
 
-**Version:** 0.0.1
+**Version:** 0.1.0
 **Last Updated:** 2025
 
 **Note:** This SDK is a REST API client for the Mix application. Event schemas and hook implementations are subject to change as the API evolves.

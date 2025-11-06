@@ -2095,8 +2095,9 @@ components:
             - "complete"
             - "thinking"
             - "content"
-            - "tool"
-            - "tool_parameter_delta"
+            - "tool_use_start"
+            - "tool_use_parameter_streaming_complete"
+            - "tool_use_parameter_delta"
             - "tool_execution_start"
             - "tool_execution_complete"
             - "permission"
@@ -2233,10 +2234,11 @@ components:
           "session_created": "#/components/schemas/SSESessionCreatedEvent"
           "session_deleted": "#/components/schemas/SSESessionDeletedEvent"
           "thinking": "#/components/schemas/SSEThinkingEvent"
-          "tool": "#/components/schemas/SSEToolEvent"
           "tool_execution_complete": "#/components/schemas/SSEToolExecutionCompleteEvent"
           "tool_execution_start": "#/components/schemas/SSEToolExecutionStartEvent"
-          "tool_parameter_delta": "#/components/schemas/SSEToolParameterDeltaEvent"
+          "tool_use_parameter_delta": "#/components/schemas/SSEToolUseParameterDeltaEvent"
+          "tool_use_parameter_streaming_complete": "#/components/schemas/SSEToolUseParameterStreamingCompleteEvent"
+          "tool_use_start": "#/components/schemas/SSEToolUseStartEvent"
           "user_message_created": "#/components/schemas/SSEUserMessageCreatedEvent"
         propertyName: "event"
       oneOf:
@@ -2246,8 +2248,9 @@ components:
         - {"$ref": "#/components/schemas/SSECompleteEvent"}
         - {"$ref": "#/components/schemas/SSEThinkingEvent"}
         - {"$ref": "#/components/schemas/SSEContentEvent"}
-        - {"$ref": "#/components/schemas/SSEToolEvent"}
-        - {"$ref": "#/components/schemas/SSEToolParameterDeltaEvent"}
+        - {"$ref": "#/components/schemas/SSEToolUseStartEvent"}
+        - {"$ref": "#/components/schemas/SSEToolUseParameterStreamingCompleteEvent"}
+        - {"$ref": "#/components/schemas/SSEToolUseParameterDeltaEvent"}
         - {"$ref": "#/components/schemas/SSEToolExecutionStartEvent"}
         - {"$ref": "#/components/schemas/SSEToolExecutionCompleteEvent"}
         - {"$ref": "#/components/schemas/SSEPermissionEvent"}
@@ -2387,41 +2390,6 @@ components:
           required:
             - "data"
           type: "object"
-    "SSEToolEvent":
-      allOf:
-        - {"$ref": "#/components/schemas/SSEBaseEvent"}
-        - properties:
-            "data":
-              properties:
-                "assistantMessageId":
-                  description: "ID of the assistant message this tool belongs to"
-                  type: "string"
-                "id":
-                  description: "Tool execution identifier"
-                  type: "string"
-                "input":
-                  description: "Tool input parameters"
-                  type: "string"
-                "name": {"$ref": "#/components/schemas/ToolName", "description": "Tool name being executed"}
-                "parentToolCallId":
-                  description: "ID of the parent tool call that spawned this subagent (for nested events)"
-                  type: "string"
-                "status":
-                  description: "Tool execution status"
-                  type: "string"
-                "type":
-                  description: "Tool event type"
-                  type: "string"
-              required:
-                - "type"
-                - "name"
-                - "input"
-                - "id"
-                - "status"
-              type: "object"
-          required:
-            - "data"
-          type: "object"
     "SSEToolExecutionCompleteEvent":
       allOf:
         - {"$ref": "#/components/schemas/SSEBaseEvent"}
@@ -2482,7 +2450,7 @@ components:
           required:
             - "data"
           type: "object"
-    "SSEToolParameterDeltaEvent":
+    "SSEToolUseParameterDeltaEvent":
       allOf:
         - {"$ref": "#/components/schemas/SSEBaseEvent"}
         - properties:
@@ -2501,12 +2469,70 @@ components:
                   description: "Tool call identifier for correlation"
                   type: "string"
                 "type":
-                  description: "Tool parameter delta event type"
+                  description: "Tool use parameter delta event type"
                   type: "string"
               required:
                 - "type"
                 - "toolCallId"
                 - "input"
+              type: "object"
+          required:
+            - "data"
+          type: "object"
+    "SSEToolUseParameterStreamingCompleteEvent":
+      allOf:
+        - {"$ref": "#/components/schemas/SSEBaseEvent"}
+        - properties:
+            "data":
+              properties:
+                "assistantMessageId":
+                  description: "ID of the assistant message this tool belongs to"
+                  type: "string"
+                "id":
+                  description: "Tool call identifier"
+                  type: "string"
+                "input":
+                  description: "Complete JSON-encoded tool input parameters"
+                  type: "string"
+                "name": {"$ref": "#/components/schemas/ToolName", "description": "Tool name being executed"}
+                "parentToolCallId":
+                  description: "ID of the parent tool call that spawned this subagent (for nested events)"
+                  type: "string"
+                "type":
+                  description: "Tool use parameter streaming complete event type"
+                  type: "string"
+              required:
+                - "type"
+                - "name"
+                - "input"
+                - "id"
+              type: "object"
+          required:
+            - "data"
+          type: "object"
+    "SSEToolUseStartEvent":
+      allOf:
+        - {"$ref": "#/components/schemas/SSEBaseEvent"}
+        - properties:
+            "data":
+              properties:
+                "assistantMessageId":
+                  description: "ID of the assistant message this tool belongs to"
+                  type: "string"
+                "id":
+                  description: "Tool call identifier"
+                  type: "string"
+                "name": {"$ref": "#/components/schemas/ToolName", "description": "Tool name declared for execution"}
+                "parentToolCallId":
+                  description: "ID of the parent tool call that spawned this subagent (for nested events)"
+                  type: "string"
+                "type":
+                  description: "Tool use start event type"
+                  type: "string"
+              required:
+                - "type"
+                - "name"
+                - "id"
               type: "object"
           required:
             - "data"

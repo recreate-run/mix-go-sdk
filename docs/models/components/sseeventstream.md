@@ -59,12 +59,6 @@ sseEventStream := components.CreateSSEEventStreamSessionDeleted(components.SSESe
 sseEventStream := components.CreateSSEEventStreamThinking(components.SSEThinkingEvent{/* values here */})
 ```
 
-### SSEToolEvent
-
-```go
-sseEventStream := components.CreateSSEEventStreamTool(components.SSEToolEvent{/* values here */})
-```
-
 ### SSEToolExecutionCompleteEvent
 
 ```go
@@ -77,10 +71,22 @@ sseEventStream := components.CreateSSEEventStreamToolExecutionComplete(component
 sseEventStream := components.CreateSSEEventStreamToolExecutionStart(components.SSEToolExecutionStartEvent{/* values here */})
 ```
 
-### SSEToolParameterDeltaEvent
+### SSEToolUseParameterDeltaEvent
 
 ```go
-sseEventStream := components.CreateSSEEventStreamToolParameterDelta(components.SSEToolParameterDeltaEvent{/* values here */})
+sseEventStream := components.CreateSSEEventStreamToolUseParameterDelta(components.SSEToolUseParameterDeltaEvent{/* values here */})
+```
+
+### SSEToolUseParameterStreamingCompleteEvent
+
+```go
+sseEventStream := components.CreateSSEEventStreamToolUseParameterStreamingComplete(components.SSEToolUseParameterStreamingCompleteEvent{/* values here */})
+```
+
+### SSEToolUseStartEvent
+
+```go
+sseEventStream := components.CreateSSEEventStreamToolUseStart(components.SSEToolUseStartEvent{/* values here */})
 ```
 
 ### SSEUserMessageCreatedEvent

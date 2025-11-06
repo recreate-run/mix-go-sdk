@@ -1,0 +1,12 @@
+# SSEToolUseStartEventData
+
+
+## Fields
+
+| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `AssistantMessageID`                                                                 | **string*                                                                            | :heavy_minus_sign:                                                                   | ID of the assistant message this tool belongs to                                     |
+| `ID`                                                                                 | *string*                                                                             | :heavy_check_mark:                                                                   | Tool call identifier                                                                 |
+| `Name`                                                                               | [components.ToolName](../../models/components/toolname.md)                           | :heavy_check_mark:                                                                   | Tool name - either a core tool or MCP tool following {serverName}_{toolName} pattern |
+| `ParentToolCallID`                                                                   | **string*                                                                            | :heavy_minus_sign:                                                                   | ID of the parent tool call that spawned this subagent (for nested events)            |
+| `Type`                                                                               | *string*                                                                             | :heavy_check_mark:                                                                   | Tool use start event type                                                            |

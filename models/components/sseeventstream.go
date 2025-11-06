@@ -13,20 +13,21 @@ import (
 type SSESessionDeletedEventEvent string
 
 const (
-	SSESessionDeletedEventEventConnected             SSESessionDeletedEventEvent = "connected"
-	SSESessionDeletedEventEventHeartbeat             SSESessionDeletedEventEvent = "heartbeat"
-	SSESessionDeletedEventEventError                 SSESessionDeletedEventEvent = "error"
-	SSESessionDeletedEventEventComplete              SSESessionDeletedEventEvent = "complete"
-	SSESessionDeletedEventEventThinking              SSESessionDeletedEventEvent = "thinking"
-	SSESessionDeletedEventEventContent               SSESessionDeletedEventEvent = "content"
-	SSESessionDeletedEventEventTool                  SSESessionDeletedEventEvent = "tool"
-	SSESessionDeletedEventEventToolParameterDelta    SSESessionDeletedEventEvent = "tool_parameter_delta"
-	SSESessionDeletedEventEventToolExecutionStart    SSESessionDeletedEventEvent = "tool_execution_start"
-	SSESessionDeletedEventEventToolExecutionComplete SSESessionDeletedEventEvent = "tool_execution_complete"
-	SSESessionDeletedEventEventPermission            SSESessionDeletedEventEvent = "permission"
-	SSESessionDeletedEventEventUserMessageCreated    SSESessionDeletedEventEvent = "user_message_created"
-	SSESessionDeletedEventEventSessionCreated        SSESessionDeletedEventEvent = "session_created"
-	SSESessionDeletedEventEventSessionDeleted        SSESessionDeletedEventEvent = "session_deleted"
+	SSESessionDeletedEventEventConnected                         SSESessionDeletedEventEvent = "connected"
+	SSESessionDeletedEventEventHeartbeat                         SSESessionDeletedEventEvent = "heartbeat"
+	SSESessionDeletedEventEventError                             SSESessionDeletedEventEvent = "error"
+	SSESessionDeletedEventEventComplete                          SSESessionDeletedEventEvent = "complete"
+	SSESessionDeletedEventEventThinking                          SSESessionDeletedEventEvent = "thinking"
+	SSESessionDeletedEventEventContent                           SSESessionDeletedEventEvent = "content"
+	SSESessionDeletedEventEventToolUseStart                      SSESessionDeletedEventEvent = "tool_use_start"
+	SSESessionDeletedEventEventToolUseParameterStreamingComplete SSESessionDeletedEventEvent = "tool_use_parameter_streaming_complete"
+	SSESessionDeletedEventEventToolUseParameterDelta             SSESessionDeletedEventEvent = "tool_use_parameter_delta"
+	SSESessionDeletedEventEventToolExecutionStart                SSESessionDeletedEventEvent = "tool_execution_start"
+	SSESessionDeletedEventEventToolExecutionComplete             SSESessionDeletedEventEvent = "tool_execution_complete"
+	SSESessionDeletedEventEventPermission                        SSESessionDeletedEventEvent = "permission"
+	SSESessionDeletedEventEventUserMessageCreated                SSESessionDeletedEventEvent = "user_message_created"
+	SSESessionDeletedEventEventSessionCreated                    SSESessionDeletedEventEvent = "session_created"
+	SSESessionDeletedEventEventSessionDeleted                    SSESessionDeletedEventEvent = "session_deleted"
 )
 
 func (e SSESessionDeletedEventEvent) ToPointer() *SSESessionDeletedEventEvent {
@@ -50,9 +51,11 @@ func (e *SSESessionDeletedEventEvent) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "content":
 		fallthrough
-	case "tool":
+	case "tool_use_start":
 		fallthrough
-	case "tool_parameter_delta":
+	case "tool_use_parameter_streaming_complete":
+		fallthrough
+	case "tool_use_parameter_delta":
 		fallthrough
 	case "tool_execution_start":
 		fallthrough
@@ -158,20 +161,21 @@ func (s *SSESessionDeletedEvent) GetData() SSESessionDeletedEventData {
 type SSESessionCreatedEventEvent string
 
 const (
-	SSESessionCreatedEventEventConnected             SSESessionCreatedEventEvent = "connected"
-	SSESessionCreatedEventEventHeartbeat             SSESessionCreatedEventEvent = "heartbeat"
-	SSESessionCreatedEventEventError                 SSESessionCreatedEventEvent = "error"
-	SSESessionCreatedEventEventComplete              SSESessionCreatedEventEvent = "complete"
-	SSESessionCreatedEventEventThinking              SSESessionCreatedEventEvent = "thinking"
-	SSESessionCreatedEventEventContent               SSESessionCreatedEventEvent = "content"
-	SSESessionCreatedEventEventTool                  SSESessionCreatedEventEvent = "tool"
-	SSESessionCreatedEventEventToolParameterDelta    SSESessionCreatedEventEvent = "tool_parameter_delta"
-	SSESessionCreatedEventEventToolExecutionStart    SSESessionCreatedEventEvent = "tool_execution_start"
-	SSESessionCreatedEventEventToolExecutionComplete SSESessionCreatedEventEvent = "tool_execution_complete"
-	SSESessionCreatedEventEventPermission            SSESessionCreatedEventEvent = "permission"
-	SSESessionCreatedEventEventUserMessageCreated    SSESessionCreatedEventEvent = "user_message_created"
-	SSESessionCreatedEventEventSessionCreated        SSESessionCreatedEventEvent = "session_created"
-	SSESessionCreatedEventEventSessionDeleted        SSESessionCreatedEventEvent = "session_deleted"
+	SSESessionCreatedEventEventConnected                         SSESessionCreatedEventEvent = "connected"
+	SSESessionCreatedEventEventHeartbeat                         SSESessionCreatedEventEvent = "heartbeat"
+	SSESessionCreatedEventEventError                             SSESessionCreatedEventEvent = "error"
+	SSESessionCreatedEventEventComplete                          SSESessionCreatedEventEvent = "complete"
+	SSESessionCreatedEventEventThinking                          SSESessionCreatedEventEvent = "thinking"
+	SSESessionCreatedEventEventContent                           SSESessionCreatedEventEvent = "content"
+	SSESessionCreatedEventEventToolUseStart                      SSESessionCreatedEventEvent = "tool_use_start"
+	SSESessionCreatedEventEventToolUseParameterStreamingComplete SSESessionCreatedEventEvent = "tool_use_parameter_streaming_complete"
+	SSESessionCreatedEventEventToolUseParameterDelta             SSESessionCreatedEventEvent = "tool_use_parameter_delta"
+	SSESessionCreatedEventEventToolExecutionStart                SSESessionCreatedEventEvent = "tool_execution_start"
+	SSESessionCreatedEventEventToolExecutionComplete             SSESessionCreatedEventEvent = "tool_execution_complete"
+	SSESessionCreatedEventEventPermission                        SSESessionCreatedEventEvent = "permission"
+	SSESessionCreatedEventEventUserMessageCreated                SSESessionCreatedEventEvent = "user_message_created"
+	SSESessionCreatedEventEventSessionCreated                    SSESessionCreatedEventEvent = "session_created"
+	SSESessionCreatedEventEventSessionDeleted                    SSESessionCreatedEventEvent = "session_deleted"
 )
 
 func (e SSESessionCreatedEventEvent) ToPointer() *SSESessionCreatedEventEvent {
@@ -195,9 +199,11 @@ func (e *SSESessionCreatedEventEvent) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "content":
 		fallthrough
-	case "tool":
+	case "tool_use_start":
 		fallthrough
-	case "tool_parameter_delta":
+	case "tool_use_parameter_streaming_complete":
+		fallthrough
+	case "tool_use_parameter_delta":
 		fallthrough
 	case "tool_execution_start":
 		fallthrough
@@ -321,20 +327,21 @@ func (s *SSESessionCreatedEvent) GetData() SSESessionCreatedEventData {
 type SSEUserMessageCreatedEventEvent string
 
 const (
-	SSEUserMessageCreatedEventEventConnected             SSEUserMessageCreatedEventEvent = "connected"
-	SSEUserMessageCreatedEventEventHeartbeat             SSEUserMessageCreatedEventEvent = "heartbeat"
-	SSEUserMessageCreatedEventEventError                 SSEUserMessageCreatedEventEvent = "error"
-	SSEUserMessageCreatedEventEventComplete              SSEUserMessageCreatedEventEvent = "complete"
-	SSEUserMessageCreatedEventEventThinking              SSEUserMessageCreatedEventEvent = "thinking"
-	SSEUserMessageCreatedEventEventContent               SSEUserMessageCreatedEventEvent = "content"
-	SSEUserMessageCreatedEventEventTool                  SSEUserMessageCreatedEventEvent = "tool"
-	SSEUserMessageCreatedEventEventToolParameterDelta    SSEUserMessageCreatedEventEvent = "tool_parameter_delta"
-	SSEUserMessageCreatedEventEventToolExecutionStart    SSEUserMessageCreatedEventEvent = "tool_execution_start"
-	SSEUserMessageCreatedEventEventToolExecutionComplete SSEUserMessageCreatedEventEvent = "tool_execution_complete"
-	SSEUserMessageCreatedEventEventPermission            SSEUserMessageCreatedEventEvent = "permission"
-	SSEUserMessageCreatedEventEventUserMessageCreated    SSEUserMessageCreatedEventEvent = "user_message_created"
-	SSEUserMessageCreatedEventEventSessionCreated        SSEUserMessageCreatedEventEvent = "session_created"
-	SSEUserMessageCreatedEventEventSessionDeleted        SSEUserMessageCreatedEventEvent = "session_deleted"
+	SSEUserMessageCreatedEventEventConnected                         SSEUserMessageCreatedEventEvent = "connected"
+	SSEUserMessageCreatedEventEventHeartbeat                         SSEUserMessageCreatedEventEvent = "heartbeat"
+	SSEUserMessageCreatedEventEventError                             SSEUserMessageCreatedEventEvent = "error"
+	SSEUserMessageCreatedEventEventComplete                          SSEUserMessageCreatedEventEvent = "complete"
+	SSEUserMessageCreatedEventEventThinking                          SSEUserMessageCreatedEventEvent = "thinking"
+	SSEUserMessageCreatedEventEventContent                           SSEUserMessageCreatedEventEvent = "content"
+	SSEUserMessageCreatedEventEventToolUseStart                      SSEUserMessageCreatedEventEvent = "tool_use_start"
+	SSEUserMessageCreatedEventEventToolUseParameterStreamingComplete SSEUserMessageCreatedEventEvent = "tool_use_parameter_streaming_complete"
+	SSEUserMessageCreatedEventEventToolUseParameterDelta             SSEUserMessageCreatedEventEvent = "tool_use_parameter_delta"
+	SSEUserMessageCreatedEventEventToolExecutionStart                SSEUserMessageCreatedEventEvent = "tool_execution_start"
+	SSEUserMessageCreatedEventEventToolExecutionComplete             SSEUserMessageCreatedEventEvent = "tool_execution_complete"
+	SSEUserMessageCreatedEventEventPermission                        SSEUserMessageCreatedEventEvent = "permission"
+	SSEUserMessageCreatedEventEventUserMessageCreated                SSEUserMessageCreatedEventEvent = "user_message_created"
+	SSEUserMessageCreatedEventEventSessionCreated                    SSEUserMessageCreatedEventEvent = "session_created"
+	SSEUserMessageCreatedEventEventSessionDeleted                    SSEUserMessageCreatedEventEvent = "session_deleted"
 )
 
 func (e SSEUserMessageCreatedEventEvent) ToPointer() *SSEUserMessageCreatedEventEvent {
@@ -358,9 +365,11 @@ func (e *SSEUserMessageCreatedEventEvent) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "content":
 		fallthrough
-	case "tool":
+	case "tool_use_start":
 		fallthrough
-	case "tool_parameter_delta":
+	case "tool_use_parameter_streaming_complete":
+		fallthrough
+	case "tool_use_parameter_delta":
 		fallthrough
 	case "tool_execution_start":
 		fallthrough
@@ -484,20 +493,21 @@ func (s *SSEUserMessageCreatedEvent) GetData() SSEUserMessageCreatedEventData {
 type SSEPermissionEventEvent string
 
 const (
-	SSEPermissionEventEventConnected             SSEPermissionEventEvent = "connected"
-	SSEPermissionEventEventHeartbeat             SSEPermissionEventEvent = "heartbeat"
-	SSEPermissionEventEventError                 SSEPermissionEventEvent = "error"
-	SSEPermissionEventEventComplete              SSEPermissionEventEvent = "complete"
-	SSEPermissionEventEventThinking              SSEPermissionEventEvent = "thinking"
-	SSEPermissionEventEventContent               SSEPermissionEventEvent = "content"
-	SSEPermissionEventEventTool                  SSEPermissionEventEvent = "tool"
-	SSEPermissionEventEventToolParameterDelta    SSEPermissionEventEvent = "tool_parameter_delta"
-	SSEPermissionEventEventToolExecutionStart    SSEPermissionEventEvent = "tool_execution_start"
-	SSEPermissionEventEventToolExecutionComplete SSEPermissionEventEvent = "tool_execution_complete"
-	SSEPermissionEventEventPermission            SSEPermissionEventEvent = "permission"
-	SSEPermissionEventEventUserMessageCreated    SSEPermissionEventEvent = "user_message_created"
-	SSEPermissionEventEventSessionCreated        SSEPermissionEventEvent = "session_created"
-	SSEPermissionEventEventSessionDeleted        SSEPermissionEventEvent = "session_deleted"
+	SSEPermissionEventEventConnected                         SSEPermissionEventEvent = "connected"
+	SSEPermissionEventEventHeartbeat                         SSEPermissionEventEvent = "heartbeat"
+	SSEPermissionEventEventError                             SSEPermissionEventEvent = "error"
+	SSEPermissionEventEventComplete                          SSEPermissionEventEvent = "complete"
+	SSEPermissionEventEventThinking                          SSEPermissionEventEvent = "thinking"
+	SSEPermissionEventEventContent                           SSEPermissionEventEvent = "content"
+	SSEPermissionEventEventToolUseStart                      SSEPermissionEventEvent = "tool_use_start"
+	SSEPermissionEventEventToolUseParameterStreamingComplete SSEPermissionEventEvent = "tool_use_parameter_streaming_complete"
+	SSEPermissionEventEventToolUseParameterDelta             SSEPermissionEventEvent = "tool_use_parameter_delta"
+	SSEPermissionEventEventToolExecutionStart                SSEPermissionEventEvent = "tool_execution_start"
+	SSEPermissionEventEventToolExecutionComplete             SSEPermissionEventEvent = "tool_execution_complete"
+	SSEPermissionEventEventPermission                        SSEPermissionEventEvent = "permission"
+	SSEPermissionEventEventUserMessageCreated                SSEPermissionEventEvent = "user_message_created"
+	SSEPermissionEventEventSessionCreated                    SSEPermissionEventEvent = "session_created"
+	SSEPermissionEventEventSessionDeleted                    SSEPermissionEventEvent = "session_deleted"
 )
 
 func (e SSEPermissionEventEvent) ToPointer() *SSEPermissionEventEvent {
@@ -521,9 +531,11 @@ func (e *SSEPermissionEventEvent) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "content":
 		fallthrough
-	case "tool":
+	case "tool_use_start":
 		fallthrough
-	case "tool_parameter_delta":
+	case "tool_use_parameter_streaming_complete":
+		fallthrough
+	case "tool_use_parameter_delta":
 		fallthrough
 	case "tool_execution_start":
 		fallthrough
@@ -707,20 +719,21 @@ func (s *SSEPermissionEvent) GetData() SSEPermissionEventData {
 type SSEToolExecutionCompleteEventEvent string
 
 const (
-	SSEToolExecutionCompleteEventEventConnected             SSEToolExecutionCompleteEventEvent = "connected"
-	SSEToolExecutionCompleteEventEventHeartbeat             SSEToolExecutionCompleteEventEvent = "heartbeat"
-	SSEToolExecutionCompleteEventEventError                 SSEToolExecutionCompleteEventEvent = "error"
-	SSEToolExecutionCompleteEventEventComplete              SSEToolExecutionCompleteEventEvent = "complete"
-	SSEToolExecutionCompleteEventEventThinking              SSEToolExecutionCompleteEventEvent = "thinking"
-	SSEToolExecutionCompleteEventEventContent               SSEToolExecutionCompleteEventEvent = "content"
-	SSEToolExecutionCompleteEventEventTool                  SSEToolExecutionCompleteEventEvent = "tool"
-	SSEToolExecutionCompleteEventEventToolParameterDelta    SSEToolExecutionCompleteEventEvent = "tool_parameter_delta"
-	SSEToolExecutionCompleteEventEventToolExecutionStart    SSEToolExecutionCompleteEventEvent = "tool_execution_start"
-	SSEToolExecutionCompleteEventEventToolExecutionComplete SSEToolExecutionCompleteEventEvent = "tool_execution_complete"
-	SSEToolExecutionCompleteEventEventPermission            SSEToolExecutionCompleteEventEvent = "permission"
-	SSEToolExecutionCompleteEventEventUserMessageCreated    SSEToolExecutionCompleteEventEvent = "user_message_created"
-	SSEToolExecutionCompleteEventEventSessionCreated        SSEToolExecutionCompleteEventEvent = "session_created"
-	SSEToolExecutionCompleteEventEventSessionDeleted        SSEToolExecutionCompleteEventEvent = "session_deleted"
+	SSEToolExecutionCompleteEventEventConnected                         SSEToolExecutionCompleteEventEvent = "connected"
+	SSEToolExecutionCompleteEventEventHeartbeat                         SSEToolExecutionCompleteEventEvent = "heartbeat"
+	SSEToolExecutionCompleteEventEventError                             SSEToolExecutionCompleteEventEvent = "error"
+	SSEToolExecutionCompleteEventEventComplete                          SSEToolExecutionCompleteEventEvent = "complete"
+	SSEToolExecutionCompleteEventEventThinking                          SSEToolExecutionCompleteEventEvent = "thinking"
+	SSEToolExecutionCompleteEventEventContent                           SSEToolExecutionCompleteEventEvent = "content"
+	SSEToolExecutionCompleteEventEventToolUseStart                      SSEToolExecutionCompleteEventEvent = "tool_use_start"
+	SSEToolExecutionCompleteEventEventToolUseParameterStreamingComplete SSEToolExecutionCompleteEventEvent = "tool_use_parameter_streaming_complete"
+	SSEToolExecutionCompleteEventEventToolUseParameterDelta             SSEToolExecutionCompleteEventEvent = "tool_use_parameter_delta"
+	SSEToolExecutionCompleteEventEventToolExecutionStart                SSEToolExecutionCompleteEventEvent = "tool_execution_start"
+	SSEToolExecutionCompleteEventEventToolExecutionComplete             SSEToolExecutionCompleteEventEvent = "tool_execution_complete"
+	SSEToolExecutionCompleteEventEventPermission                        SSEToolExecutionCompleteEventEvent = "permission"
+	SSEToolExecutionCompleteEventEventUserMessageCreated                SSEToolExecutionCompleteEventEvent = "user_message_created"
+	SSEToolExecutionCompleteEventEventSessionCreated                    SSEToolExecutionCompleteEventEvent = "session_created"
+	SSEToolExecutionCompleteEventEventSessionDeleted                    SSEToolExecutionCompleteEventEvent = "session_deleted"
 )
 
 func (e SSEToolExecutionCompleteEventEvent) ToPointer() *SSEToolExecutionCompleteEventEvent {
@@ -744,9 +757,11 @@ func (e *SSEToolExecutionCompleteEventEvent) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "content":
 		fallthrough
-	case "tool":
+	case "tool_use_start":
 		fallthrough
-	case "tool_parameter_delta":
+	case "tool_use_parameter_streaming_complete":
+		fallthrough
+	case "tool_use_parameter_delta":
 		fallthrough
 	case "tool_execution_start":
 		fallthrough
@@ -888,20 +903,21 @@ func (s *SSEToolExecutionCompleteEvent) GetData() SSEToolExecutionCompleteEventD
 type SSEToolExecutionStartEventEvent string
 
 const (
-	SSEToolExecutionStartEventEventConnected             SSEToolExecutionStartEventEvent = "connected"
-	SSEToolExecutionStartEventEventHeartbeat             SSEToolExecutionStartEventEvent = "heartbeat"
-	SSEToolExecutionStartEventEventError                 SSEToolExecutionStartEventEvent = "error"
-	SSEToolExecutionStartEventEventComplete              SSEToolExecutionStartEventEvent = "complete"
-	SSEToolExecutionStartEventEventThinking              SSEToolExecutionStartEventEvent = "thinking"
-	SSEToolExecutionStartEventEventContent               SSEToolExecutionStartEventEvent = "content"
-	SSEToolExecutionStartEventEventTool                  SSEToolExecutionStartEventEvent = "tool"
-	SSEToolExecutionStartEventEventToolParameterDelta    SSEToolExecutionStartEventEvent = "tool_parameter_delta"
-	SSEToolExecutionStartEventEventToolExecutionStart    SSEToolExecutionStartEventEvent = "tool_execution_start"
-	SSEToolExecutionStartEventEventToolExecutionComplete SSEToolExecutionStartEventEvent = "tool_execution_complete"
-	SSEToolExecutionStartEventEventPermission            SSEToolExecutionStartEventEvent = "permission"
-	SSEToolExecutionStartEventEventUserMessageCreated    SSEToolExecutionStartEventEvent = "user_message_created"
-	SSEToolExecutionStartEventEventSessionCreated        SSEToolExecutionStartEventEvent = "session_created"
-	SSEToolExecutionStartEventEventSessionDeleted        SSEToolExecutionStartEventEvent = "session_deleted"
+	SSEToolExecutionStartEventEventConnected                         SSEToolExecutionStartEventEvent = "connected"
+	SSEToolExecutionStartEventEventHeartbeat                         SSEToolExecutionStartEventEvent = "heartbeat"
+	SSEToolExecutionStartEventEventError                             SSEToolExecutionStartEventEvent = "error"
+	SSEToolExecutionStartEventEventComplete                          SSEToolExecutionStartEventEvent = "complete"
+	SSEToolExecutionStartEventEventThinking                          SSEToolExecutionStartEventEvent = "thinking"
+	SSEToolExecutionStartEventEventContent                           SSEToolExecutionStartEventEvent = "content"
+	SSEToolExecutionStartEventEventToolUseStart                      SSEToolExecutionStartEventEvent = "tool_use_start"
+	SSEToolExecutionStartEventEventToolUseParameterStreamingComplete SSEToolExecutionStartEventEvent = "tool_use_parameter_streaming_complete"
+	SSEToolExecutionStartEventEventToolUseParameterDelta             SSEToolExecutionStartEventEvent = "tool_use_parameter_delta"
+	SSEToolExecutionStartEventEventToolExecutionStart                SSEToolExecutionStartEventEvent = "tool_execution_start"
+	SSEToolExecutionStartEventEventToolExecutionComplete             SSEToolExecutionStartEventEvent = "tool_execution_complete"
+	SSEToolExecutionStartEventEventPermission                        SSEToolExecutionStartEventEvent = "permission"
+	SSEToolExecutionStartEventEventUserMessageCreated                SSEToolExecutionStartEventEvent = "user_message_created"
+	SSEToolExecutionStartEventEventSessionCreated                    SSEToolExecutionStartEventEvent = "session_created"
+	SSEToolExecutionStartEventEventSessionDeleted                    SSEToolExecutionStartEventEvent = "session_deleted"
 )
 
 func (e SSEToolExecutionStartEventEvent) ToPointer() *SSEToolExecutionStartEventEvent {
@@ -925,9 +941,11 @@ func (e *SSEToolExecutionStartEventEvent) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "content":
 		fallthrough
-	case "tool":
+	case "tool_use_start":
 		fallthrough
-	case "tool_parameter_delta":
+	case "tool_use_parameter_streaming_complete":
+		fallthrough
+	case "tool_use_parameter_delta":
 		fallthrough
 	case "tool_execution_start":
 		fallthrough
@@ -1056,30 +1074,31 @@ func (s *SSEToolExecutionStartEvent) GetData() SSEToolExecutionStartEventData {
 	return s.Data
 }
 
-// SSEToolParameterDeltaEventEvent - Event type identifier
-type SSEToolParameterDeltaEventEvent string
+// SSEToolUseParameterDeltaEventEvent - Event type identifier
+type SSEToolUseParameterDeltaEventEvent string
 
 const (
-	SSEToolParameterDeltaEventEventConnected             SSEToolParameterDeltaEventEvent = "connected"
-	SSEToolParameterDeltaEventEventHeartbeat             SSEToolParameterDeltaEventEvent = "heartbeat"
-	SSEToolParameterDeltaEventEventError                 SSEToolParameterDeltaEventEvent = "error"
-	SSEToolParameterDeltaEventEventComplete              SSEToolParameterDeltaEventEvent = "complete"
-	SSEToolParameterDeltaEventEventThinking              SSEToolParameterDeltaEventEvent = "thinking"
-	SSEToolParameterDeltaEventEventContent               SSEToolParameterDeltaEventEvent = "content"
-	SSEToolParameterDeltaEventEventTool                  SSEToolParameterDeltaEventEvent = "tool"
-	SSEToolParameterDeltaEventEventToolParameterDelta    SSEToolParameterDeltaEventEvent = "tool_parameter_delta"
-	SSEToolParameterDeltaEventEventToolExecutionStart    SSEToolParameterDeltaEventEvent = "tool_execution_start"
-	SSEToolParameterDeltaEventEventToolExecutionComplete SSEToolParameterDeltaEventEvent = "tool_execution_complete"
-	SSEToolParameterDeltaEventEventPermission            SSEToolParameterDeltaEventEvent = "permission"
-	SSEToolParameterDeltaEventEventUserMessageCreated    SSEToolParameterDeltaEventEvent = "user_message_created"
-	SSEToolParameterDeltaEventEventSessionCreated        SSEToolParameterDeltaEventEvent = "session_created"
-	SSEToolParameterDeltaEventEventSessionDeleted        SSEToolParameterDeltaEventEvent = "session_deleted"
+	SSEToolUseParameterDeltaEventEventConnected                         SSEToolUseParameterDeltaEventEvent = "connected"
+	SSEToolUseParameterDeltaEventEventHeartbeat                         SSEToolUseParameterDeltaEventEvent = "heartbeat"
+	SSEToolUseParameterDeltaEventEventError                             SSEToolUseParameterDeltaEventEvent = "error"
+	SSEToolUseParameterDeltaEventEventComplete                          SSEToolUseParameterDeltaEventEvent = "complete"
+	SSEToolUseParameterDeltaEventEventThinking                          SSEToolUseParameterDeltaEventEvent = "thinking"
+	SSEToolUseParameterDeltaEventEventContent                           SSEToolUseParameterDeltaEventEvent = "content"
+	SSEToolUseParameterDeltaEventEventToolUseStart                      SSEToolUseParameterDeltaEventEvent = "tool_use_start"
+	SSEToolUseParameterDeltaEventEventToolUseParameterStreamingComplete SSEToolUseParameterDeltaEventEvent = "tool_use_parameter_streaming_complete"
+	SSEToolUseParameterDeltaEventEventToolUseParameterDelta             SSEToolUseParameterDeltaEventEvent = "tool_use_parameter_delta"
+	SSEToolUseParameterDeltaEventEventToolExecutionStart                SSEToolUseParameterDeltaEventEvent = "tool_execution_start"
+	SSEToolUseParameterDeltaEventEventToolExecutionComplete             SSEToolUseParameterDeltaEventEvent = "tool_execution_complete"
+	SSEToolUseParameterDeltaEventEventPermission                        SSEToolUseParameterDeltaEventEvent = "permission"
+	SSEToolUseParameterDeltaEventEventUserMessageCreated                SSEToolUseParameterDeltaEventEvent = "user_message_created"
+	SSEToolUseParameterDeltaEventEventSessionCreated                    SSEToolUseParameterDeltaEventEvent = "session_created"
+	SSEToolUseParameterDeltaEventEventSessionDeleted                    SSEToolUseParameterDeltaEventEvent = "session_deleted"
 )
 
-func (e SSEToolParameterDeltaEventEvent) ToPointer() *SSEToolParameterDeltaEventEvent {
+func (e SSEToolUseParameterDeltaEventEvent) ToPointer() *SSEToolUseParameterDeltaEventEvent {
 	return &e
 }
-func (e *SSEToolParameterDeltaEventEvent) UnmarshalJSON(data []byte) error {
+func (e *SSEToolUseParameterDeltaEventEvent) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -1097,9 +1116,11 @@ func (e *SSEToolParameterDeltaEventEvent) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "content":
 		fallthrough
-	case "tool":
+	case "tool_use_start":
 		fallthrough
-	case "tool_parameter_delta":
+	case "tool_use_parameter_streaming_complete":
+		fallthrough
+	case "tool_use_parameter_delta":
 		fallthrough
 	case "tool_execution_start":
 		fallthrough
@@ -1112,14 +1133,14 @@ func (e *SSEToolParameterDeltaEventEvent) UnmarshalJSON(data []byte) error {
 	case "session_created":
 		fallthrough
 	case "session_deleted":
-		*e = SSEToolParameterDeltaEventEvent(v)
+		*e = SSEToolUseParameterDeltaEventEvent(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for SSEToolParameterDeltaEventEvent: %v", v)
+		return fmt.Errorf("invalid value for SSEToolUseParameterDeltaEventEvent: %v", v)
 	}
 }
 
-type SSEToolParameterDeltaEventData struct {
+type SSEToolUseParameterDeltaEventData struct {
 	// ID of the assistant message this tool parameter delta belongs to
 	AssistantMessageID *string `json:"assistantMessageId,omitempty"`
 	// Partial JSON parameter delta - may not be parseable until complete
@@ -1128,130 +1149,131 @@ type SSEToolParameterDeltaEventData struct {
 	ParentToolCallID *string `json:"parentToolCallId,omitempty"`
 	// Tool call identifier for correlation
 	ToolCallID string `json:"toolCallId"`
-	// Tool parameter delta event type
+	// Tool use parameter delta event type
 	Type string `json:"type"`
 }
 
-func (s SSEToolParameterDeltaEventData) MarshalJSON() ([]byte, error) {
+func (s SSEToolUseParameterDeltaEventData) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(s, "", false)
 }
 
-func (s *SSEToolParameterDeltaEventData) UnmarshalJSON(data []byte) error {
+func (s *SSEToolUseParameterDeltaEventData) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"input", "toolCallId", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (s *SSEToolParameterDeltaEventData) GetAssistantMessageID() *string {
+func (s *SSEToolUseParameterDeltaEventData) GetAssistantMessageID() *string {
 	if s == nil {
 		return nil
 	}
 	return s.AssistantMessageID
 }
 
-func (s *SSEToolParameterDeltaEventData) GetInput() string {
+func (s *SSEToolUseParameterDeltaEventData) GetInput() string {
 	if s == nil {
 		return ""
 	}
 	return s.Input
 }
 
-func (s *SSEToolParameterDeltaEventData) GetParentToolCallID() *string {
+func (s *SSEToolUseParameterDeltaEventData) GetParentToolCallID() *string {
 	if s == nil {
 		return nil
 	}
 	return s.ParentToolCallID
 }
 
-func (s *SSEToolParameterDeltaEventData) GetToolCallID() string {
+func (s *SSEToolUseParameterDeltaEventData) GetToolCallID() string {
 	if s == nil {
 		return ""
 	}
 	return s.ToolCallID
 }
 
-func (s *SSEToolParameterDeltaEventData) GetType() string {
+func (s *SSEToolUseParameterDeltaEventData) GetType() string {
 	if s == nil {
 		return ""
 	}
 	return s.Type
 }
 
-// SSEToolParameterDeltaEvent - Base SSE event with standard fields
-type SSEToolParameterDeltaEvent struct {
+// SSEToolUseParameterDeltaEvent - Base SSE event with standard fields
+type SSEToolUseParameterDeltaEvent struct {
 	// Event type identifier
-	Event SSEToolParameterDeltaEventEvent `json:"event"`
+	Event SSEToolUseParameterDeltaEventEvent `json:"event"`
 	// Unique sequential event identifier for ordering and reconnection
 	ID string `json:"id"`
 	// Client retry interval in milliseconds
-	Retry *int64                         `json:"retry,omitempty"`
-	Data  SSEToolParameterDeltaEventData `json:"data"`
+	Retry *int64                            `json:"retry,omitempty"`
+	Data  SSEToolUseParameterDeltaEventData `json:"data"`
 }
 
-func (s SSEToolParameterDeltaEvent) MarshalJSON() ([]byte, error) {
+func (s SSEToolUseParameterDeltaEvent) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(s, "", false)
 }
 
-func (s *SSEToolParameterDeltaEvent) UnmarshalJSON(data []byte) error {
+func (s *SSEToolUseParameterDeltaEvent) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"event", "id", "data"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (s *SSEToolParameterDeltaEvent) GetEvent() SSEToolParameterDeltaEventEvent {
+func (s *SSEToolUseParameterDeltaEvent) GetEvent() SSEToolUseParameterDeltaEventEvent {
 	if s == nil {
-		return SSEToolParameterDeltaEventEvent("")
+		return SSEToolUseParameterDeltaEventEvent("")
 	}
 	return s.Event
 }
 
-func (s *SSEToolParameterDeltaEvent) GetID() string {
+func (s *SSEToolUseParameterDeltaEvent) GetID() string {
 	if s == nil {
 		return ""
 	}
 	return s.ID
 }
 
-func (s *SSEToolParameterDeltaEvent) GetRetry() *int64 {
+func (s *SSEToolUseParameterDeltaEvent) GetRetry() *int64 {
 	if s == nil {
 		return nil
 	}
 	return s.Retry
 }
 
-func (s *SSEToolParameterDeltaEvent) GetData() SSEToolParameterDeltaEventData {
+func (s *SSEToolUseParameterDeltaEvent) GetData() SSEToolUseParameterDeltaEventData {
 	if s == nil {
-		return SSEToolParameterDeltaEventData{}
+		return SSEToolUseParameterDeltaEventData{}
 	}
 	return s.Data
 }
 
-// SSEToolEventEvent - Event type identifier
-type SSEToolEventEvent string
+// SSEToolUseParameterStreamingCompleteEventEvent - Event type identifier
+type SSEToolUseParameterStreamingCompleteEventEvent string
 
 const (
-	SSEToolEventEventConnected             SSEToolEventEvent = "connected"
-	SSEToolEventEventHeartbeat             SSEToolEventEvent = "heartbeat"
-	SSEToolEventEventError                 SSEToolEventEvent = "error"
-	SSEToolEventEventComplete              SSEToolEventEvent = "complete"
-	SSEToolEventEventThinking              SSEToolEventEvent = "thinking"
-	SSEToolEventEventContent               SSEToolEventEvent = "content"
-	SSEToolEventEventTool                  SSEToolEventEvent = "tool"
-	SSEToolEventEventToolParameterDelta    SSEToolEventEvent = "tool_parameter_delta"
-	SSEToolEventEventToolExecutionStart    SSEToolEventEvent = "tool_execution_start"
-	SSEToolEventEventToolExecutionComplete SSEToolEventEvent = "tool_execution_complete"
-	SSEToolEventEventPermission            SSEToolEventEvent = "permission"
-	SSEToolEventEventUserMessageCreated    SSEToolEventEvent = "user_message_created"
-	SSEToolEventEventSessionCreated        SSEToolEventEvent = "session_created"
-	SSEToolEventEventSessionDeleted        SSEToolEventEvent = "session_deleted"
+	SSEToolUseParameterStreamingCompleteEventEventConnected                         SSEToolUseParameterStreamingCompleteEventEvent = "connected"
+	SSEToolUseParameterStreamingCompleteEventEventHeartbeat                         SSEToolUseParameterStreamingCompleteEventEvent = "heartbeat"
+	SSEToolUseParameterStreamingCompleteEventEventError                             SSEToolUseParameterStreamingCompleteEventEvent = "error"
+	SSEToolUseParameterStreamingCompleteEventEventComplete                          SSEToolUseParameterStreamingCompleteEventEvent = "complete"
+	SSEToolUseParameterStreamingCompleteEventEventThinking                          SSEToolUseParameterStreamingCompleteEventEvent = "thinking"
+	SSEToolUseParameterStreamingCompleteEventEventContent                           SSEToolUseParameterStreamingCompleteEventEvent = "content"
+	SSEToolUseParameterStreamingCompleteEventEventToolUseStart                      SSEToolUseParameterStreamingCompleteEventEvent = "tool_use_start"
+	SSEToolUseParameterStreamingCompleteEventEventToolUseParameterStreamingComplete SSEToolUseParameterStreamingCompleteEventEvent = "tool_use_parameter_streaming_complete"
+	SSEToolUseParameterStreamingCompleteEventEventToolUseParameterDelta             SSEToolUseParameterStreamingCompleteEventEvent = "tool_use_parameter_delta"
+	SSEToolUseParameterStreamingCompleteEventEventToolExecutionStart                SSEToolUseParameterStreamingCompleteEventEvent = "tool_execution_start"
+	SSEToolUseParameterStreamingCompleteEventEventToolExecutionComplete             SSEToolUseParameterStreamingCompleteEventEvent = "tool_execution_complete"
+	SSEToolUseParameterStreamingCompleteEventEventPermission                        SSEToolUseParameterStreamingCompleteEventEvent = "permission"
+	SSEToolUseParameterStreamingCompleteEventEventUserMessageCreated                SSEToolUseParameterStreamingCompleteEventEvent = "user_message_created"
+	SSEToolUseParameterStreamingCompleteEventEventSessionCreated                    SSEToolUseParameterStreamingCompleteEventEvent = "session_created"
+	SSEToolUseParameterStreamingCompleteEventEventSessionDeleted                    SSEToolUseParameterStreamingCompleteEventEvent = "session_deleted"
 )
 
-func (e SSEToolEventEvent) ToPointer() *SSEToolEventEvent {
+func (e SSEToolUseParameterStreamingCompleteEventEvent) ToPointer() *SSEToolUseParameterStreamingCompleteEventEvent {
 	return &e
 }
-func (e *SSEToolEventEvent) UnmarshalJSON(data []byte) error {
+func (e *SSEToolUseParameterStreamingCompleteEventEvent) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -1269,9 +1291,11 @@ func (e *SSEToolEventEvent) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "content":
 		fallthrough
-	case "tool":
+	case "tool_use_start":
 		fallthrough
-	case "tool_parameter_delta":
+	case "tool_use_parameter_streaming_complete":
+		fallthrough
+	case "tool_use_parameter_delta":
 		fallthrough
 	case "tool_execution_start":
 		fallthrough
@@ -1284,136 +1308,302 @@ func (e *SSEToolEventEvent) UnmarshalJSON(data []byte) error {
 	case "session_created":
 		fallthrough
 	case "session_deleted":
-		*e = SSEToolEventEvent(v)
+		*e = SSEToolUseParameterStreamingCompleteEventEvent(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for SSEToolEventEvent: %v", v)
+		return fmt.Errorf("invalid value for SSEToolUseParameterStreamingCompleteEventEvent: %v", v)
 	}
 }
 
-type SSEToolEventData struct {
+type SSEToolUseParameterStreamingCompleteEventData struct {
 	// ID of the assistant message this tool belongs to
 	AssistantMessageID *string `json:"assistantMessageId,omitempty"`
-	// Tool execution identifier
+	// Tool call identifier
 	ID string `json:"id"`
-	// Tool input parameters
+	// Complete JSON-encoded tool input parameters
 	Input string `json:"input"`
 	// Tool name - either a core tool or MCP tool following {serverName}_{toolName} pattern
 	Name ToolName `json:"name"`
 	// ID of the parent tool call that spawned this subagent (for nested events)
 	ParentToolCallID *string `json:"parentToolCallId,omitempty"`
-	// Tool execution status
-	Status string `json:"status"`
-	// Tool event type
+	// Tool use parameter streaming complete event type
 	Type string `json:"type"`
 }
 
-func (s SSEToolEventData) MarshalJSON() ([]byte, error) {
+func (s SSEToolUseParameterStreamingCompleteEventData) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(s, "", false)
 }
 
-func (s *SSEToolEventData) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"id", "input", "name", "status", "type"}); err != nil {
+func (s *SSEToolUseParameterStreamingCompleteEventData) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"id", "input", "name", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (s *SSEToolEventData) GetAssistantMessageID() *string {
+func (s *SSEToolUseParameterStreamingCompleteEventData) GetAssistantMessageID() *string {
 	if s == nil {
 		return nil
 	}
 	return s.AssistantMessageID
 }
 
-func (s *SSEToolEventData) GetID() string {
+func (s *SSEToolUseParameterStreamingCompleteEventData) GetID() string {
 	if s == nil {
 		return ""
 	}
 	return s.ID
 }
 
-func (s *SSEToolEventData) GetInput() string {
+func (s *SSEToolUseParameterStreamingCompleteEventData) GetInput() string {
 	if s == nil {
 		return ""
 	}
 	return s.Input
 }
 
-func (s *SSEToolEventData) GetName() ToolName {
+func (s *SSEToolUseParameterStreamingCompleteEventData) GetName() ToolName {
 	if s == nil {
 		return ToolName{}
 	}
 	return s.Name
 }
 
-func (s *SSEToolEventData) GetParentToolCallID() *string {
+func (s *SSEToolUseParameterStreamingCompleteEventData) GetParentToolCallID() *string {
 	if s == nil {
 		return nil
 	}
 	return s.ParentToolCallID
 }
 
-func (s *SSEToolEventData) GetStatus() string {
-	if s == nil {
-		return ""
-	}
-	return s.Status
-}
-
-func (s *SSEToolEventData) GetType() string {
+func (s *SSEToolUseParameterStreamingCompleteEventData) GetType() string {
 	if s == nil {
 		return ""
 	}
 	return s.Type
 }
 
-// SSEToolEvent - Base SSE event with standard fields
-type SSEToolEvent struct {
+// SSEToolUseParameterStreamingCompleteEvent - Base SSE event with standard fields
+type SSEToolUseParameterStreamingCompleteEvent struct {
 	// Event type identifier
-	Event SSEToolEventEvent `json:"event"`
+	Event SSEToolUseParameterStreamingCompleteEventEvent `json:"event"`
 	// Unique sequential event identifier for ordering and reconnection
 	ID string `json:"id"`
 	// Client retry interval in milliseconds
-	Retry *int64           `json:"retry,omitempty"`
-	Data  SSEToolEventData `json:"data"`
+	Retry *int64                                        `json:"retry,omitempty"`
+	Data  SSEToolUseParameterStreamingCompleteEventData `json:"data"`
 }
 
-func (s SSEToolEvent) MarshalJSON() ([]byte, error) {
+func (s SSEToolUseParameterStreamingCompleteEvent) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(s, "", false)
 }
 
-func (s *SSEToolEvent) UnmarshalJSON(data []byte) error {
+func (s *SSEToolUseParameterStreamingCompleteEvent) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"event", "id", "data"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (s *SSEToolEvent) GetEvent() SSEToolEventEvent {
+func (s *SSEToolUseParameterStreamingCompleteEvent) GetEvent() SSEToolUseParameterStreamingCompleteEventEvent {
 	if s == nil {
-		return SSEToolEventEvent("")
+		return SSEToolUseParameterStreamingCompleteEventEvent("")
 	}
 	return s.Event
 }
 
-func (s *SSEToolEvent) GetID() string {
+func (s *SSEToolUseParameterStreamingCompleteEvent) GetID() string {
 	if s == nil {
 		return ""
 	}
 	return s.ID
 }
 
-func (s *SSEToolEvent) GetRetry() *int64 {
+func (s *SSEToolUseParameterStreamingCompleteEvent) GetRetry() *int64 {
 	if s == nil {
 		return nil
 	}
 	return s.Retry
 }
 
-func (s *SSEToolEvent) GetData() SSEToolEventData {
+func (s *SSEToolUseParameterStreamingCompleteEvent) GetData() SSEToolUseParameterStreamingCompleteEventData {
 	if s == nil {
-		return SSEToolEventData{}
+		return SSEToolUseParameterStreamingCompleteEventData{}
+	}
+	return s.Data
+}
+
+// SSEToolUseStartEventEvent - Event type identifier
+type SSEToolUseStartEventEvent string
+
+const (
+	SSEToolUseStartEventEventConnected                         SSEToolUseStartEventEvent = "connected"
+	SSEToolUseStartEventEventHeartbeat                         SSEToolUseStartEventEvent = "heartbeat"
+	SSEToolUseStartEventEventError                             SSEToolUseStartEventEvent = "error"
+	SSEToolUseStartEventEventComplete                          SSEToolUseStartEventEvent = "complete"
+	SSEToolUseStartEventEventThinking                          SSEToolUseStartEventEvent = "thinking"
+	SSEToolUseStartEventEventContent                           SSEToolUseStartEventEvent = "content"
+	SSEToolUseStartEventEventToolUseStart                      SSEToolUseStartEventEvent = "tool_use_start"
+	SSEToolUseStartEventEventToolUseParameterStreamingComplete SSEToolUseStartEventEvent = "tool_use_parameter_streaming_complete"
+	SSEToolUseStartEventEventToolUseParameterDelta             SSEToolUseStartEventEvent = "tool_use_parameter_delta"
+	SSEToolUseStartEventEventToolExecutionStart                SSEToolUseStartEventEvent = "tool_execution_start"
+	SSEToolUseStartEventEventToolExecutionComplete             SSEToolUseStartEventEvent = "tool_execution_complete"
+	SSEToolUseStartEventEventPermission                        SSEToolUseStartEventEvent = "permission"
+	SSEToolUseStartEventEventUserMessageCreated                SSEToolUseStartEventEvent = "user_message_created"
+	SSEToolUseStartEventEventSessionCreated                    SSEToolUseStartEventEvent = "session_created"
+	SSEToolUseStartEventEventSessionDeleted                    SSEToolUseStartEventEvent = "session_deleted"
+)
+
+func (e SSEToolUseStartEventEvent) ToPointer() *SSEToolUseStartEventEvent {
+	return &e
+}
+func (e *SSEToolUseStartEventEvent) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "connected":
+		fallthrough
+	case "heartbeat":
+		fallthrough
+	case "error":
+		fallthrough
+	case "complete":
+		fallthrough
+	case "thinking":
+		fallthrough
+	case "content":
+		fallthrough
+	case "tool_use_start":
+		fallthrough
+	case "tool_use_parameter_streaming_complete":
+		fallthrough
+	case "tool_use_parameter_delta":
+		fallthrough
+	case "tool_execution_start":
+		fallthrough
+	case "tool_execution_complete":
+		fallthrough
+	case "permission":
+		fallthrough
+	case "user_message_created":
+		fallthrough
+	case "session_created":
+		fallthrough
+	case "session_deleted":
+		*e = SSEToolUseStartEventEvent(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for SSEToolUseStartEventEvent: %v", v)
+	}
+}
+
+type SSEToolUseStartEventData struct {
+	// ID of the assistant message this tool belongs to
+	AssistantMessageID *string `json:"assistantMessageId,omitempty"`
+	// Tool call identifier
+	ID string `json:"id"`
+	// Tool name - either a core tool or MCP tool following {serverName}_{toolName} pattern
+	Name ToolName `json:"name"`
+	// ID of the parent tool call that spawned this subagent (for nested events)
+	ParentToolCallID *string `json:"parentToolCallId,omitempty"`
+	// Tool use start event type
+	Type string `json:"type"`
+}
+
+func (s SSEToolUseStartEventData) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SSEToolUseStartEventData) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"id", "name", "type"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *SSEToolUseStartEventData) GetAssistantMessageID() *string {
+	if s == nil {
+		return nil
+	}
+	return s.AssistantMessageID
+}
+
+func (s *SSEToolUseStartEventData) GetID() string {
+	if s == nil {
+		return ""
+	}
+	return s.ID
+}
+
+func (s *SSEToolUseStartEventData) GetName() ToolName {
+	if s == nil {
+		return ToolName{}
+	}
+	return s.Name
+}
+
+func (s *SSEToolUseStartEventData) GetParentToolCallID() *string {
+	if s == nil {
+		return nil
+	}
+	return s.ParentToolCallID
+}
+
+func (s *SSEToolUseStartEventData) GetType() string {
+	if s == nil {
+		return ""
+	}
+	return s.Type
+}
+
+// SSEToolUseStartEvent - Base SSE event with standard fields
+type SSEToolUseStartEvent struct {
+	// Event type identifier
+	Event SSEToolUseStartEventEvent `json:"event"`
+	// Unique sequential event identifier for ordering and reconnection
+	ID string `json:"id"`
+	// Client retry interval in milliseconds
+	Retry *int64                   `json:"retry,omitempty"`
+	Data  SSEToolUseStartEventData `json:"data"`
+}
+
+func (s SSEToolUseStartEvent) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SSEToolUseStartEvent) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"event", "id", "data"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *SSEToolUseStartEvent) GetEvent() SSEToolUseStartEventEvent {
+	if s == nil {
+		return SSEToolUseStartEventEvent("")
+	}
+	return s.Event
+}
+
+func (s *SSEToolUseStartEvent) GetID() string {
+	if s == nil {
+		return ""
+	}
+	return s.ID
+}
+
+func (s *SSEToolUseStartEvent) GetRetry() *int64 {
+	if s == nil {
+		return nil
+	}
+	return s.Retry
+}
+
+func (s *SSEToolUseStartEvent) GetData() SSEToolUseStartEventData {
+	if s == nil {
+		return SSEToolUseStartEventData{}
 	}
 	return s.Data
 }
@@ -1422,20 +1612,21 @@ func (s *SSEToolEvent) GetData() SSEToolEventData {
 type SSEContentEventEvent string
 
 const (
-	SSEContentEventEventConnected             SSEContentEventEvent = "connected"
-	SSEContentEventEventHeartbeat             SSEContentEventEvent = "heartbeat"
-	SSEContentEventEventError                 SSEContentEventEvent = "error"
-	SSEContentEventEventComplete              SSEContentEventEvent = "complete"
-	SSEContentEventEventThinking              SSEContentEventEvent = "thinking"
-	SSEContentEventEventContent               SSEContentEventEvent = "content"
-	SSEContentEventEventTool                  SSEContentEventEvent = "tool"
-	SSEContentEventEventToolParameterDelta    SSEContentEventEvent = "tool_parameter_delta"
-	SSEContentEventEventToolExecutionStart    SSEContentEventEvent = "tool_execution_start"
-	SSEContentEventEventToolExecutionComplete SSEContentEventEvent = "tool_execution_complete"
-	SSEContentEventEventPermission            SSEContentEventEvent = "permission"
-	SSEContentEventEventUserMessageCreated    SSEContentEventEvent = "user_message_created"
-	SSEContentEventEventSessionCreated        SSEContentEventEvent = "session_created"
-	SSEContentEventEventSessionDeleted        SSEContentEventEvent = "session_deleted"
+	SSEContentEventEventConnected                         SSEContentEventEvent = "connected"
+	SSEContentEventEventHeartbeat                         SSEContentEventEvent = "heartbeat"
+	SSEContentEventEventError                             SSEContentEventEvent = "error"
+	SSEContentEventEventComplete                          SSEContentEventEvent = "complete"
+	SSEContentEventEventThinking                          SSEContentEventEvent = "thinking"
+	SSEContentEventEventContent                           SSEContentEventEvent = "content"
+	SSEContentEventEventToolUseStart                      SSEContentEventEvent = "tool_use_start"
+	SSEContentEventEventToolUseParameterStreamingComplete SSEContentEventEvent = "tool_use_parameter_streaming_complete"
+	SSEContentEventEventToolUseParameterDelta             SSEContentEventEvent = "tool_use_parameter_delta"
+	SSEContentEventEventToolExecutionStart                SSEContentEventEvent = "tool_execution_start"
+	SSEContentEventEventToolExecutionComplete             SSEContentEventEvent = "tool_execution_complete"
+	SSEContentEventEventPermission                        SSEContentEventEvent = "permission"
+	SSEContentEventEventUserMessageCreated                SSEContentEventEvent = "user_message_created"
+	SSEContentEventEventSessionCreated                    SSEContentEventEvent = "session_created"
+	SSEContentEventEventSessionDeleted                    SSEContentEventEvent = "session_deleted"
 )
 
 func (e SSEContentEventEvent) ToPointer() *SSEContentEventEvent {
@@ -1459,9 +1650,11 @@ func (e *SSEContentEventEvent) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "content":
 		fallthrough
-	case "tool":
+	case "tool_use_start":
 		fallthrough
-	case "tool_parameter_delta":
+	case "tool_use_parameter_streaming_complete":
+		fallthrough
+	case "tool_use_parameter_delta":
 		fallthrough
 	case "tool_execution_start":
 		fallthrough
@@ -1585,20 +1778,21 @@ func (s *SSEContentEvent) GetData() SSEContentEventData {
 type SSEThinkingEventEvent string
 
 const (
-	SSEThinkingEventEventConnected             SSEThinkingEventEvent = "connected"
-	SSEThinkingEventEventHeartbeat             SSEThinkingEventEvent = "heartbeat"
-	SSEThinkingEventEventError                 SSEThinkingEventEvent = "error"
-	SSEThinkingEventEventComplete              SSEThinkingEventEvent = "complete"
-	SSEThinkingEventEventThinking              SSEThinkingEventEvent = "thinking"
-	SSEThinkingEventEventContent               SSEThinkingEventEvent = "content"
-	SSEThinkingEventEventTool                  SSEThinkingEventEvent = "tool"
-	SSEThinkingEventEventToolParameterDelta    SSEThinkingEventEvent = "tool_parameter_delta"
-	SSEThinkingEventEventToolExecutionStart    SSEThinkingEventEvent = "tool_execution_start"
-	SSEThinkingEventEventToolExecutionComplete SSEThinkingEventEvent = "tool_execution_complete"
-	SSEThinkingEventEventPermission            SSEThinkingEventEvent = "permission"
-	SSEThinkingEventEventUserMessageCreated    SSEThinkingEventEvent = "user_message_created"
-	SSEThinkingEventEventSessionCreated        SSEThinkingEventEvent = "session_created"
-	SSEThinkingEventEventSessionDeleted        SSEThinkingEventEvent = "session_deleted"
+	SSEThinkingEventEventConnected                         SSEThinkingEventEvent = "connected"
+	SSEThinkingEventEventHeartbeat                         SSEThinkingEventEvent = "heartbeat"
+	SSEThinkingEventEventError                             SSEThinkingEventEvent = "error"
+	SSEThinkingEventEventComplete                          SSEThinkingEventEvent = "complete"
+	SSEThinkingEventEventThinking                          SSEThinkingEventEvent = "thinking"
+	SSEThinkingEventEventContent                           SSEThinkingEventEvent = "content"
+	SSEThinkingEventEventToolUseStart                      SSEThinkingEventEvent = "tool_use_start"
+	SSEThinkingEventEventToolUseParameterStreamingComplete SSEThinkingEventEvent = "tool_use_parameter_streaming_complete"
+	SSEThinkingEventEventToolUseParameterDelta             SSEThinkingEventEvent = "tool_use_parameter_delta"
+	SSEThinkingEventEventToolExecutionStart                SSEThinkingEventEvent = "tool_execution_start"
+	SSEThinkingEventEventToolExecutionComplete             SSEThinkingEventEvent = "tool_execution_complete"
+	SSEThinkingEventEventPermission                        SSEThinkingEventEvent = "permission"
+	SSEThinkingEventEventUserMessageCreated                SSEThinkingEventEvent = "user_message_created"
+	SSEThinkingEventEventSessionCreated                    SSEThinkingEventEvent = "session_created"
+	SSEThinkingEventEventSessionDeleted                    SSEThinkingEventEvent = "session_deleted"
 )
 
 func (e SSEThinkingEventEvent) ToPointer() *SSEThinkingEventEvent {
@@ -1622,9 +1816,11 @@ func (e *SSEThinkingEventEvent) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "content":
 		fallthrough
-	case "tool":
+	case "tool_use_start":
 		fallthrough
-	case "tool_parameter_delta":
+	case "tool_use_parameter_streaming_complete":
+		fallthrough
+	case "tool_use_parameter_delta":
 		fallthrough
 	case "tool_execution_start":
 		fallthrough
@@ -1748,20 +1944,21 @@ func (s *SSEThinkingEvent) GetData() SSEThinkingEventData {
 type SSECompleteEventEvent string
 
 const (
-	SSECompleteEventEventConnected             SSECompleteEventEvent = "connected"
-	SSECompleteEventEventHeartbeat             SSECompleteEventEvent = "heartbeat"
-	SSECompleteEventEventError                 SSECompleteEventEvent = "error"
-	SSECompleteEventEventComplete              SSECompleteEventEvent = "complete"
-	SSECompleteEventEventThinking              SSECompleteEventEvent = "thinking"
-	SSECompleteEventEventContent               SSECompleteEventEvent = "content"
-	SSECompleteEventEventTool                  SSECompleteEventEvent = "tool"
-	SSECompleteEventEventToolParameterDelta    SSECompleteEventEvent = "tool_parameter_delta"
-	SSECompleteEventEventToolExecutionStart    SSECompleteEventEvent = "tool_execution_start"
-	SSECompleteEventEventToolExecutionComplete SSECompleteEventEvent = "tool_execution_complete"
-	SSECompleteEventEventPermission            SSECompleteEventEvent = "permission"
-	SSECompleteEventEventUserMessageCreated    SSECompleteEventEvent = "user_message_created"
-	SSECompleteEventEventSessionCreated        SSECompleteEventEvent = "session_created"
-	SSECompleteEventEventSessionDeleted        SSECompleteEventEvent = "session_deleted"
+	SSECompleteEventEventConnected                         SSECompleteEventEvent = "connected"
+	SSECompleteEventEventHeartbeat                         SSECompleteEventEvent = "heartbeat"
+	SSECompleteEventEventError                             SSECompleteEventEvent = "error"
+	SSECompleteEventEventComplete                          SSECompleteEventEvent = "complete"
+	SSECompleteEventEventThinking                          SSECompleteEventEvent = "thinking"
+	SSECompleteEventEventContent                           SSECompleteEventEvent = "content"
+	SSECompleteEventEventToolUseStart                      SSECompleteEventEvent = "tool_use_start"
+	SSECompleteEventEventToolUseParameterStreamingComplete SSECompleteEventEvent = "tool_use_parameter_streaming_complete"
+	SSECompleteEventEventToolUseParameterDelta             SSECompleteEventEvent = "tool_use_parameter_delta"
+	SSECompleteEventEventToolExecutionStart                SSECompleteEventEvent = "tool_execution_start"
+	SSECompleteEventEventToolExecutionComplete             SSECompleteEventEvent = "tool_execution_complete"
+	SSECompleteEventEventPermission                        SSECompleteEventEvent = "permission"
+	SSECompleteEventEventUserMessageCreated                SSECompleteEventEvent = "user_message_created"
+	SSECompleteEventEventSessionCreated                    SSECompleteEventEvent = "session_created"
+	SSECompleteEventEventSessionDeleted                    SSECompleteEventEvent = "session_deleted"
 )
 
 func (e SSECompleteEventEvent) ToPointer() *SSECompleteEventEvent {
@@ -1785,9 +1982,11 @@ func (e *SSECompleteEventEvent) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "content":
 		fallthrough
-	case "tool":
+	case "tool_use_start":
 		fallthrough
-	case "tool_parameter_delta":
+	case "tool_use_parameter_streaming_complete":
+		fallthrough
+	case "tool_use_parameter_delta":
 		fallthrough
 	case "tool_execution_start":
 		fallthrough
@@ -1938,20 +2137,21 @@ func (s *SSECompleteEvent) GetData() SSECompleteEventData {
 type SSEErrorEventEvent string
 
 const (
-	SSEErrorEventEventConnected             SSEErrorEventEvent = "connected"
-	SSEErrorEventEventHeartbeat             SSEErrorEventEvent = "heartbeat"
-	SSEErrorEventEventError                 SSEErrorEventEvent = "error"
-	SSEErrorEventEventComplete              SSEErrorEventEvent = "complete"
-	SSEErrorEventEventThinking              SSEErrorEventEvent = "thinking"
-	SSEErrorEventEventContent               SSEErrorEventEvent = "content"
-	SSEErrorEventEventTool                  SSEErrorEventEvent = "tool"
-	SSEErrorEventEventToolParameterDelta    SSEErrorEventEvent = "tool_parameter_delta"
-	SSEErrorEventEventToolExecutionStart    SSEErrorEventEvent = "tool_execution_start"
-	SSEErrorEventEventToolExecutionComplete SSEErrorEventEvent = "tool_execution_complete"
-	SSEErrorEventEventPermission            SSEErrorEventEvent = "permission"
-	SSEErrorEventEventUserMessageCreated    SSEErrorEventEvent = "user_message_created"
-	SSEErrorEventEventSessionCreated        SSEErrorEventEvent = "session_created"
-	SSEErrorEventEventSessionDeleted        SSEErrorEventEvent = "session_deleted"
+	SSEErrorEventEventConnected                         SSEErrorEventEvent = "connected"
+	SSEErrorEventEventHeartbeat                         SSEErrorEventEvent = "heartbeat"
+	SSEErrorEventEventError                             SSEErrorEventEvent = "error"
+	SSEErrorEventEventComplete                          SSEErrorEventEvent = "complete"
+	SSEErrorEventEventThinking                          SSEErrorEventEvent = "thinking"
+	SSEErrorEventEventContent                           SSEErrorEventEvent = "content"
+	SSEErrorEventEventToolUseStart                      SSEErrorEventEvent = "tool_use_start"
+	SSEErrorEventEventToolUseParameterStreamingComplete SSEErrorEventEvent = "tool_use_parameter_streaming_complete"
+	SSEErrorEventEventToolUseParameterDelta             SSEErrorEventEvent = "tool_use_parameter_delta"
+	SSEErrorEventEventToolExecutionStart                SSEErrorEventEvent = "tool_execution_start"
+	SSEErrorEventEventToolExecutionComplete             SSEErrorEventEvent = "tool_execution_complete"
+	SSEErrorEventEventPermission                        SSEErrorEventEvent = "permission"
+	SSEErrorEventEventUserMessageCreated                SSEErrorEventEvent = "user_message_created"
+	SSEErrorEventEventSessionCreated                    SSEErrorEventEvent = "session_created"
+	SSEErrorEventEventSessionDeleted                    SSEErrorEventEvent = "session_deleted"
 )
 
 func (e SSEErrorEventEvent) ToPointer() *SSEErrorEventEvent {
@@ -1975,9 +2175,11 @@ func (e *SSEErrorEventEvent) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "content":
 		fallthrough
-	case "tool":
+	case "tool_use_start":
 		fallthrough
-	case "tool_parameter_delta":
+	case "tool_use_parameter_streaming_complete":
+		fallthrough
+	case "tool_use_parameter_delta":
 		fallthrough
 	case "tool_execution_start":
 		fallthrough
@@ -2119,20 +2321,21 @@ func (s *SSEErrorEvent) GetData() SSEErrorEventData {
 type SSEHeartbeatEventEvent string
 
 const (
-	SSEHeartbeatEventEventConnected             SSEHeartbeatEventEvent = "connected"
-	SSEHeartbeatEventEventHeartbeat             SSEHeartbeatEventEvent = "heartbeat"
-	SSEHeartbeatEventEventError                 SSEHeartbeatEventEvent = "error"
-	SSEHeartbeatEventEventComplete              SSEHeartbeatEventEvent = "complete"
-	SSEHeartbeatEventEventThinking              SSEHeartbeatEventEvent = "thinking"
-	SSEHeartbeatEventEventContent               SSEHeartbeatEventEvent = "content"
-	SSEHeartbeatEventEventTool                  SSEHeartbeatEventEvent = "tool"
-	SSEHeartbeatEventEventToolParameterDelta    SSEHeartbeatEventEvent = "tool_parameter_delta"
-	SSEHeartbeatEventEventToolExecutionStart    SSEHeartbeatEventEvent = "tool_execution_start"
-	SSEHeartbeatEventEventToolExecutionComplete SSEHeartbeatEventEvent = "tool_execution_complete"
-	SSEHeartbeatEventEventPermission            SSEHeartbeatEventEvent = "permission"
-	SSEHeartbeatEventEventUserMessageCreated    SSEHeartbeatEventEvent = "user_message_created"
-	SSEHeartbeatEventEventSessionCreated        SSEHeartbeatEventEvent = "session_created"
-	SSEHeartbeatEventEventSessionDeleted        SSEHeartbeatEventEvent = "session_deleted"
+	SSEHeartbeatEventEventConnected                         SSEHeartbeatEventEvent = "connected"
+	SSEHeartbeatEventEventHeartbeat                         SSEHeartbeatEventEvent = "heartbeat"
+	SSEHeartbeatEventEventError                             SSEHeartbeatEventEvent = "error"
+	SSEHeartbeatEventEventComplete                          SSEHeartbeatEventEvent = "complete"
+	SSEHeartbeatEventEventThinking                          SSEHeartbeatEventEvent = "thinking"
+	SSEHeartbeatEventEventContent                           SSEHeartbeatEventEvent = "content"
+	SSEHeartbeatEventEventToolUseStart                      SSEHeartbeatEventEvent = "tool_use_start"
+	SSEHeartbeatEventEventToolUseParameterStreamingComplete SSEHeartbeatEventEvent = "tool_use_parameter_streaming_complete"
+	SSEHeartbeatEventEventToolUseParameterDelta             SSEHeartbeatEventEvent = "tool_use_parameter_delta"
+	SSEHeartbeatEventEventToolExecutionStart                SSEHeartbeatEventEvent = "tool_execution_start"
+	SSEHeartbeatEventEventToolExecutionComplete             SSEHeartbeatEventEvent = "tool_execution_complete"
+	SSEHeartbeatEventEventPermission                        SSEHeartbeatEventEvent = "permission"
+	SSEHeartbeatEventEventUserMessageCreated                SSEHeartbeatEventEvent = "user_message_created"
+	SSEHeartbeatEventEventSessionCreated                    SSEHeartbeatEventEvent = "session_created"
+	SSEHeartbeatEventEventSessionDeleted                    SSEHeartbeatEventEvent = "session_deleted"
 )
 
 func (e SSEHeartbeatEventEvent) ToPointer() *SSEHeartbeatEventEvent {
@@ -2156,9 +2359,11 @@ func (e *SSEHeartbeatEventEvent) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "content":
 		fallthrough
-	case "tool":
+	case "tool_use_start":
 		fallthrough
-	case "tool_parameter_delta":
+	case "tool_use_parameter_streaming_complete":
+		fallthrough
+	case "tool_use_parameter_delta":
 		fallthrough
 	case "tool_execution_start":
 		fallthrough
@@ -2255,20 +2460,21 @@ func (s *SSEHeartbeatEvent) GetData() SSEHeartbeatEventData {
 type SSEConnectedEventEvent string
 
 const (
-	SSEConnectedEventEventConnected             SSEConnectedEventEvent = "connected"
-	SSEConnectedEventEventHeartbeat             SSEConnectedEventEvent = "heartbeat"
-	SSEConnectedEventEventError                 SSEConnectedEventEvent = "error"
-	SSEConnectedEventEventComplete              SSEConnectedEventEvent = "complete"
-	SSEConnectedEventEventThinking              SSEConnectedEventEvent = "thinking"
-	SSEConnectedEventEventContent               SSEConnectedEventEvent = "content"
-	SSEConnectedEventEventTool                  SSEConnectedEventEvent = "tool"
-	SSEConnectedEventEventToolParameterDelta    SSEConnectedEventEvent = "tool_parameter_delta"
-	SSEConnectedEventEventToolExecutionStart    SSEConnectedEventEvent = "tool_execution_start"
-	SSEConnectedEventEventToolExecutionComplete SSEConnectedEventEvent = "tool_execution_complete"
-	SSEConnectedEventEventPermission            SSEConnectedEventEvent = "permission"
-	SSEConnectedEventEventUserMessageCreated    SSEConnectedEventEvent = "user_message_created"
-	SSEConnectedEventEventSessionCreated        SSEConnectedEventEvent = "session_created"
-	SSEConnectedEventEventSessionDeleted        SSEConnectedEventEvent = "session_deleted"
+	SSEConnectedEventEventConnected                         SSEConnectedEventEvent = "connected"
+	SSEConnectedEventEventHeartbeat                         SSEConnectedEventEvent = "heartbeat"
+	SSEConnectedEventEventError                             SSEConnectedEventEvent = "error"
+	SSEConnectedEventEventComplete                          SSEConnectedEventEvent = "complete"
+	SSEConnectedEventEventThinking                          SSEConnectedEventEvent = "thinking"
+	SSEConnectedEventEventContent                           SSEConnectedEventEvent = "content"
+	SSEConnectedEventEventToolUseStart                      SSEConnectedEventEvent = "tool_use_start"
+	SSEConnectedEventEventToolUseParameterStreamingComplete SSEConnectedEventEvent = "tool_use_parameter_streaming_complete"
+	SSEConnectedEventEventToolUseParameterDelta             SSEConnectedEventEvent = "tool_use_parameter_delta"
+	SSEConnectedEventEventToolExecutionStart                SSEConnectedEventEvent = "tool_execution_start"
+	SSEConnectedEventEventToolExecutionComplete             SSEConnectedEventEvent = "tool_execution_complete"
+	SSEConnectedEventEventPermission                        SSEConnectedEventEvent = "permission"
+	SSEConnectedEventEventUserMessageCreated                SSEConnectedEventEvent = "user_message_created"
+	SSEConnectedEventEventSessionCreated                    SSEConnectedEventEvent = "session_created"
+	SSEConnectedEventEventSessionDeleted                    SSEConnectedEventEvent = "session_deleted"
 )
 
 func (e SSEConnectedEventEvent) ToPointer() *SSEConnectedEventEvent {
@@ -2292,9 +2498,11 @@ func (e *SSEConnectedEventEvent) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "content":
 		fallthrough
-	case "tool":
+	case "tool_use_start":
 		fallthrough
-	case "tool_parameter_delta":
+	case "tool_use_parameter_streaming_complete":
+		fallthrough
+	case "tool_use_parameter_delta":
 		fallthrough
 	case "tool_execution_start":
 		fallthrough
@@ -2390,38 +2598,40 @@ func (s *SSEConnectedEvent) GetData() SSEConnectedEventData {
 type SSEEventStreamType string
 
 const (
-	SSEEventStreamTypeComplete              SSEEventStreamType = "complete"
-	SSEEventStreamTypeConnected             SSEEventStreamType = "connected"
-	SSEEventStreamTypeContent               SSEEventStreamType = "content"
-	SSEEventStreamTypeError                 SSEEventStreamType = "error"
-	SSEEventStreamTypeHeartbeat             SSEEventStreamType = "heartbeat"
-	SSEEventStreamTypePermission            SSEEventStreamType = "permission"
-	SSEEventStreamTypeSessionCreated        SSEEventStreamType = "session_created"
-	SSEEventStreamTypeSessionDeleted        SSEEventStreamType = "session_deleted"
-	SSEEventStreamTypeThinking              SSEEventStreamType = "thinking"
-	SSEEventStreamTypeTool                  SSEEventStreamType = "tool"
-	SSEEventStreamTypeToolExecutionComplete SSEEventStreamType = "tool_execution_complete"
-	SSEEventStreamTypeToolExecutionStart    SSEEventStreamType = "tool_execution_start"
-	SSEEventStreamTypeToolParameterDelta    SSEEventStreamType = "tool_parameter_delta"
-	SSEEventStreamTypeUserMessageCreated    SSEEventStreamType = "user_message_created"
+	SSEEventStreamTypeComplete                          SSEEventStreamType = "complete"
+	SSEEventStreamTypeConnected                         SSEEventStreamType = "connected"
+	SSEEventStreamTypeContent                           SSEEventStreamType = "content"
+	SSEEventStreamTypeError                             SSEEventStreamType = "error"
+	SSEEventStreamTypeHeartbeat                         SSEEventStreamType = "heartbeat"
+	SSEEventStreamTypePermission                        SSEEventStreamType = "permission"
+	SSEEventStreamTypeSessionCreated                    SSEEventStreamType = "session_created"
+	SSEEventStreamTypeSessionDeleted                    SSEEventStreamType = "session_deleted"
+	SSEEventStreamTypeThinking                          SSEEventStreamType = "thinking"
+	SSEEventStreamTypeToolExecutionComplete             SSEEventStreamType = "tool_execution_complete"
+	SSEEventStreamTypeToolExecutionStart                SSEEventStreamType = "tool_execution_start"
+	SSEEventStreamTypeToolUseParameterDelta             SSEEventStreamType = "tool_use_parameter_delta"
+	SSEEventStreamTypeToolUseParameterStreamingComplete SSEEventStreamType = "tool_use_parameter_streaming_complete"
+	SSEEventStreamTypeToolUseStart                      SSEEventStreamType = "tool_use_start"
+	SSEEventStreamTypeUserMessageCreated                SSEEventStreamType = "user_message_created"
 )
 
 // SSEEventStream - Server-Sent Event stream with discriminated event types
 type SSEEventStream struct {
-	SSEConnectedEvent             *SSEConnectedEvent             `queryParam:"inline,name=SSEEventStream"`
-	SSEHeartbeatEvent             *SSEHeartbeatEvent             `queryParam:"inline,name=SSEEventStream"`
-	SSEErrorEvent                 *SSEErrorEvent                 `queryParam:"inline,name=SSEEventStream"`
-	SSECompleteEvent              *SSECompleteEvent              `queryParam:"inline,name=SSEEventStream"`
-	SSEThinkingEvent              *SSEThinkingEvent              `queryParam:"inline,name=SSEEventStream"`
-	SSEContentEvent               *SSEContentEvent               `queryParam:"inline,name=SSEEventStream"`
-	SSEToolEvent                  *SSEToolEvent                  `queryParam:"inline,name=SSEEventStream"`
-	SSEToolParameterDeltaEvent    *SSEToolParameterDeltaEvent    `queryParam:"inline,name=SSEEventStream"`
-	SSEToolExecutionStartEvent    *SSEToolExecutionStartEvent    `queryParam:"inline,name=SSEEventStream"`
-	SSEToolExecutionCompleteEvent *SSEToolExecutionCompleteEvent `queryParam:"inline,name=SSEEventStream"`
-	SSEPermissionEvent            *SSEPermissionEvent            `queryParam:"inline,name=SSEEventStream"`
-	SSEUserMessageCreatedEvent    *SSEUserMessageCreatedEvent    `queryParam:"inline,name=SSEEventStream"`
-	SSESessionCreatedEvent        *SSESessionCreatedEvent        `queryParam:"inline,name=SSEEventStream"`
-	SSESessionDeletedEvent        *SSESessionDeletedEvent        `queryParam:"inline,name=SSEEventStream"`
+	SSEConnectedEvent                         *SSEConnectedEvent                         `queryParam:"inline,name=SSEEventStream"`
+	SSEHeartbeatEvent                         *SSEHeartbeatEvent                         `queryParam:"inline,name=SSEEventStream"`
+	SSEErrorEvent                             *SSEErrorEvent                             `queryParam:"inline,name=SSEEventStream"`
+	SSECompleteEvent                          *SSECompleteEvent                          `queryParam:"inline,name=SSEEventStream"`
+	SSEThinkingEvent                          *SSEThinkingEvent                          `queryParam:"inline,name=SSEEventStream"`
+	SSEContentEvent                           *SSEContentEvent                           `queryParam:"inline,name=SSEEventStream"`
+	SSEToolUseStartEvent                      *SSEToolUseStartEvent                      `queryParam:"inline,name=SSEEventStream"`
+	SSEToolUseParameterStreamingCompleteEvent *SSEToolUseParameterStreamingCompleteEvent `queryParam:"inline,name=SSEEventStream"`
+	SSEToolUseParameterDeltaEvent             *SSEToolUseParameterDeltaEvent             `queryParam:"inline,name=SSEEventStream"`
+	SSEToolExecutionStartEvent                *SSEToolExecutionStartEvent                `queryParam:"inline,name=SSEEventStream"`
+	SSEToolExecutionCompleteEvent             *SSEToolExecutionCompleteEvent             `queryParam:"inline,name=SSEEventStream"`
+	SSEPermissionEvent                        *SSEPermissionEvent                        `queryParam:"inline,name=SSEEventStream"`
+	SSEUserMessageCreatedEvent                *SSEUserMessageCreatedEvent                `queryParam:"inline,name=SSEEventStream"`
+	SSESessionCreatedEvent                    *SSESessionCreatedEvent                    `queryParam:"inline,name=SSEEventStream"`
+	SSESessionDeletedEvent                    *SSESessionDeletedEvent                    `queryParam:"inline,name=SSEEventStream"`
 
 	Type SSEEventStreamType
 }
@@ -2534,18 +2744,6 @@ func CreateSSEEventStreamThinking(thinking SSEThinkingEvent) SSEEventStream {
 	}
 }
 
-func CreateSSEEventStreamTool(tool SSEToolEvent) SSEEventStream {
-	typ := SSEEventStreamTypeTool
-
-	typStr := SSEToolEventEvent(typ)
-	tool.Event = typStr
-
-	return SSEEventStream{
-		SSEToolEvent: &tool,
-		Type:         typ,
-	}
-}
-
 func CreateSSEEventStreamToolExecutionComplete(toolExecutionComplete SSEToolExecutionCompleteEvent) SSEEventStream {
 	typ := SSEEventStreamTypeToolExecutionComplete
 
@@ -2570,15 +2768,39 @@ func CreateSSEEventStreamToolExecutionStart(toolExecutionStart SSEToolExecutionS
 	}
 }
 
-func CreateSSEEventStreamToolParameterDelta(toolParameterDelta SSEToolParameterDeltaEvent) SSEEventStream {
-	typ := SSEEventStreamTypeToolParameterDelta
+func CreateSSEEventStreamToolUseParameterDelta(toolUseParameterDelta SSEToolUseParameterDeltaEvent) SSEEventStream {
+	typ := SSEEventStreamTypeToolUseParameterDelta
 
-	typStr := SSEToolParameterDeltaEventEvent(typ)
-	toolParameterDelta.Event = typStr
+	typStr := SSEToolUseParameterDeltaEventEvent(typ)
+	toolUseParameterDelta.Event = typStr
 
 	return SSEEventStream{
-		SSEToolParameterDeltaEvent: &toolParameterDelta,
-		Type:                       typ,
+		SSEToolUseParameterDeltaEvent: &toolUseParameterDelta,
+		Type:                          typ,
+	}
+}
+
+func CreateSSEEventStreamToolUseParameterStreamingComplete(toolUseParameterStreamingComplete SSEToolUseParameterStreamingCompleteEvent) SSEEventStream {
+	typ := SSEEventStreamTypeToolUseParameterStreamingComplete
+
+	typStr := SSEToolUseParameterStreamingCompleteEventEvent(typ)
+	toolUseParameterStreamingComplete.Event = typStr
+
+	return SSEEventStream{
+		SSEToolUseParameterStreamingCompleteEvent: &toolUseParameterStreamingComplete,
+		Type: typ,
+	}
+}
+
+func CreateSSEEventStreamToolUseStart(toolUseStart SSEToolUseStartEvent) SSEEventStream {
+	typ := SSEEventStreamTypeToolUseStart
+
+	typStr := SSEToolUseStartEventEvent(typ)
+	toolUseStart.Event = typStr
+
+	return SSEEventStream{
+		SSEToolUseStartEvent: &toolUseStart,
+		Type:                 typ,
 	}
 }
 
@@ -2687,15 +2909,6 @@ func (u *SSEEventStream) UnmarshalJSON(data []byte) error {
 		u.SSEThinkingEvent = sseThinkingEvent
 		u.Type = SSEEventStreamTypeThinking
 		return nil
-	case "tool":
-		sseToolEvent := new(SSEToolEvent)
-		if err := utils.UnmarshalJSON(data, &sseToolEvent, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Event == tool) type SSEToolEvent within SSEEventStream: %w", string(data), err)
-		}
-
-		u.SSEToolEvent = sseToolEvent
-		u.Type = SSEEventStreamTypeTool
-		return nil
 	case "tool_execution_complete":
 		sseToolExecutionCompleteEvent := new(SSEToolExecutionCompleteEvent)
 		if err := utils.UnmarshalJSON(data, &sseToolExecutionCompleteEvent, "", true, nil); err != nil {
@@ -2714,14 +2927,32 @@ func (u *SSEEventStream) UnmarshalJSON(data []byte) error {
 		u.SSEToolExecutionStartEvent = sseToolExecutionStartEvent
 		u.Type = SSEEventStreamTypeToolExecutionStart
 		return nil
-	case "tool_parameter_delta":
-		sseToolParameterDeltaEvent := new(SSEToolParameterDeltaEvent)
-		if err := utils.UnmarshalJSON(data, &sseToolParameterDeltaEvent, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Event == tool_parameter_delta) type SSEToolParameterDeltaEvent within SSEEventStream: %w", string(data), err)
+	case "tool_use_parameter_delta":
+		sseToolUseParameterDeltaEvent := new(SSEToolUseParameterDeltaEvent)
+		if err := utils.UnmarshalJSON(data, &sseToolUseParameterDeltaEvent, "", true, nil); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Event == tool_use_parameter_delta) type SSEToolUseParameterDeltaEvent within SSEEventStream: %w", string(data), err)
 		}
 
-		u.SSEToolParameterDeltaEvent = sseToolParameterDeltaEvent
-		u.Type = SSEEventStreamTypeToolParameterDelta
+		u.SSEToolUseParameterDeltaEvent = sseToolUseParameterDeltaEvent
+		u.Type = SSEEventStreamTypeToolUseParameterDelta
+		return nil
+	case "tool_use_parameter_streaming_complete":
+		sseToolUseParameterStreamingCompleteEvent := new(SSEToolUseParameterStreamingCompleteEvent)
+		if err := utils.UnmarshalJSON(data, &sseToolUseParameterStreamingCompleteEvent, "", true, nil); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Event == tool_use_parameter_streaming_complete) type SSEToolUseParameterStreamingCompleteEvent within SSEEventStream: %w", string(data), err)
+		}
+
+		u.SSEToolUseParameterStreamingCompleteEvent = sseToolUseParameterStreamingCompleteEvent
+		u.Type = SSEEventStreamTypeToolUseParameterStreamingComplete
+		return nil
+	case "tool_use_start":
+		sseToolUseStartEvent := new(SSEToolUseStartEvent)
+		if err := utils.UnmarshalJSON(data, &sseToolUseStartEvent, "", true, nil); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Event == tool_use_start) type SSEToolUseStartEvent within SSEEventStream: %w", string(data), err)
+		}
+
+		u.SSEToolUseStartEvent = sseToolUseStartEvent
+		u.Type = SSEEventStreamTypeToolUseStart
 		return nil
 	case "user_message_created":
 		sseUserMessageCreatedEvent := new(SSEUserMessageCreatedEvent)
@@ -2762,12 +2993,16 @@ func (u SSEEventStream) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.SSEContentEvent, "", true)
 	}
 
-	if u.SSEToolEvent != nil {
-		return utils.MarshalJSON(u.SSEToolEvent, "", true)
+	if u.SSEToolUseStartEvent != nil {
+		return utils.MarshalJSON(u.SSEToolUseStartEvent, "", true)
 	}
 
-	if u.SSEToolParameterDeltaEvent != nil {
-		return utils.MarshalJSON(u.SSEToolParameterDeltaEvent, "", true)
+	if u.SSEToolUseParameterStreamingCompleteEvent != nil {
+		return utils.MarshalJSON(u.SSEToolUseParameterStreamingCompleteEvent, "", true)
+	}
+
+	if u.SSEToolUseParameterDeltaEvent != nil {
+		return utils.MarshalJSON(u.SSEToolUseParameterDeltaEvent, "", true)
 	}
 
 	if u.SSEToolExecutionStartEvent != nil {
@@ -2817,13 +3052,15 @@ func (o SSEEventStream) GetEventEncoding(event string) (string, error) {
 		return "application/json", nil
 	case "thinking":
 		return "application/json", nil
-	case "tool":
-		return "application/json", nil
 	case "tool_execution_complete":
 		return "application/json", nil
 	case "tool_execution_start":
 		return "application/json", nil
-	case "tool_parameter_delta":
+	case "tool_use_parameter_delta":
+		return "application/json", nil
+	case "tool_use_parameter_streaming_complete":
+		return "application/json", nil
+	case "tool_use_start":
 		return "application/json", nil
 	case "user_message_created":
 		return "application/json", nil
