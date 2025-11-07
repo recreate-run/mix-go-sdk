@@ -66,6 +66,7 @@ The Mix Go SDK provides different patterns for interacting with the Mix applicat
 * Stateless operations
 
 **Example:**
+
 ```go
 // Create session, send message, poll for results later
 client.Sessions.CreateSession(ctx, request)
@@ -86,6 +87,7 @@ messages, _ := client.Messages.GetSessionMessages(ctx, sessionID)
 * **Low-latency requirements** - Immediate notification of state changes
 
 **Example:**
+
 ```go
 // Start stream, send message, process events in real-time
 go func() {
@@ -101,8 +103,9 @@ client.Messages.SendMessage(ctx, sessionID, message)
 ### Hybrid Approach
 
 Most production applications use both:
-- **REST API** for session lifecycle and data retrieval
-- **Streaming API** for real-time message processing
+
+* **REST API** for session lifecycle and data retrieval
+* **Streaming API** for real-time message processing
 
 ```go
 // Create session (REST)
@@ -435,10 +438,11 @@ type Option interface {
 ```
 
 Available options:
-- `operations.WithRetries(retry.Config)` - Override retry configuration
-- `operations.WithTimeout(time.Duration)` - Set custom timeout
-- `operations.WithServerURL(string)` - Override server URL
-- `operations.WithHeaders(map[string]string)` - Add custom headers
+
+* `operations.WithRetries(retry.Config)` - Override retry configuration
+* `operations.WithTimeout(time.Duration)` - Set custom timeout
+* `operations.WithServerURL(string)` - Override server URL
+* `operations.WithHeaders(map[string]string)` - Add custom headers
 
 ## Message Types
 
@@ -460,6 +464,7 @@ type BackendMessage struct {
 ```
 
 **Usage Example:**
+
 ```go
 messages, _ := client.Messages.GetSessionMessages(ctx, sessionID)
 for _, msg := range messages.BackendMessages {
@@ -490,6 +495,7 @@ type ExportMessage struct {
 ```
 
 **Usage Example:**
+
 ```go
 export, _ := client.Sessions.ExportSession(ctx, sessionID)
 for _, msg := range export.ExportSession.Messages {
@@ -520,9 +526,10 @@ type ErrorResponse struct {
 ```
 
 **Fields:**
-- `HTTPMeta` - HTTP response metadata (status code, headers)
-- `Message` - Human-readable error message
-- `Code` - Optional application-specific error code
+
+* `HTTPMeta` - HTTP response metadata (status code, headers)
+* `Message` - Human-readable error message
+* `Code` - Optional application-specific error code
 
 ### `APIError`
 
@@ -538,10 +545,11 @@ type APIError struct {
 ```
 
 **Fields:**
-- `Message` - Error description
-- `StatusCode` - HTTP status code (4xx, 5xx)
-- `Body` - Raw response body
-- `Response` - Complete HTTP response object
+
+* `Message` - Error description
+* `StatusCode` - HTTP status code (4xx, 5xx)
+* `Body` - Raw response body
+* `Response` - Complete HTTP response object
 
 ### Error Handling Example
 
@@ -598,6 +606,7 @@ Hooks execute at three stages:
 ### Execution Order
 
 For every API call:
+
 ```
 BeforeRequest → HTTP Request → AfterSuccess/AfterError
 ```
@@ -785,9 +794,10 @@ Documentation of input/output schemas for all built-in Mix tools. These tools ar
 ```
 
 **Constants:**
-- Default timeout: 60,000ms (1 minute)
-- Max timeout: 600,000ms (10 minutes)
-- Max output length: 30,000 characters (truncates if exceeded)
+
+* Default timeout: 60,000ms (1 minute)
+* Max timeout: 600,000ms (10 minutes)
+* Max output length: 30,000 characters (truncates if exceeded)
 
 ### Edit
 
@@ -816,9 +826,10 @@ Documentation of input/output schemas for all built-in Mix tools. These tools ar
 ```
 
 **Special Behaviors:**
-- If `old_string` is empty: Creates new file with `new_string` content
-- If `new_string` is empty: Deletes `old_string` from file
-- Requires file to be read first before editing
+
+* If `old_string` is empty: Creates new file with `new_string` content
+* If `new_string` is empty: Deletes `old_string` from file
+* Requires file to be read first before editing
 
 ### Write
 
@@ -868,8 +879,9 @@ Documentation of input/output schemas for all built-in Mix tools. These tools ar
 ```
 
 **Constants:**
-- Default read limit: 2000 lines
-- Max line length: 2000 characters (truncates with "...")
+
+* Default read limit: 2000 lines
+* Max line length: 2000 characters (truncates with "...")
 
 ### Grep
 
@@ -946,7 +958,8 @@ Documentation of input/output schemas for all built-in Mix tools. These tools ar
 ```
 
 **Constants:**
-- Result limit: 100 files
+
+* Result limit: 100 files
 
 ### ReadMedia
 
@@ -979,33 +992,34 @@ Documentation of input/output schemas for all built-in Mix tools. These tools ar
 ```
 
 **Supported Formats:**
-- Images: .jpg, .jpeg, .png, .gif, .webp, .bmp
-- Audio: .mp3, .wav, .m4a, .aac, .ogg, .flac
-- Video: .mp4, .avi, .mov, .wmv, .flv, .webm, .mkv
-- PDF: .pdf
+
+* Images: .jpg, .jpeg, .png, .gif, .webp, .bmp
+* Audio: .mp3, .wav, .m4a, .aac, .ogg, .flac
+* Video: .mp4, .avi, .mov, .wmv, .flv, .webm, .mkv
+* PDF: .pdf
 
 **Special Behaviors:**
-- Requires Gemini API key configuration
-- Auto-truncates videos to first 10 minutes if no interval specified
-- Auto-truncates PDFs to first 10 pages if no range specified
-- Supports YouTube URLs for video analysis
 
-### ShowMedia
+* Requires Gemini API key configuration
+* Auto-truncates videos to first 10 minutes if no interval specified
+* Auto-truncates PDFs to first 10 pages if no range specified
+* Supports YouTube URLs for video analysis
 
-**Tool name:** `ShowMedia`
+### Show
+
+**Tool name:** `Show`
 
 **Input:**
 
 ```go
 {
     "outputs": []struct{
-        "path": string | nil,       // HTTP/HTTPS URL (not required for gsap_animation)
-        "type": string,             // "image", "video", "audio", "gsap_animation", "pdf", or "csv"
-        "title": string,            // Title/name for the output
-        "description": string | nil,// Optional description
-        "config": map[string]any | nil, // Configuration for gsap_animation (must include url)
-        "startTime": int | nil,     // Start time in seconds for video/audio (min: 0)
-        "duration": int | nil,      // Duration in seconds for video/audio (min: 1)
+        "type": string,             // "image", "video", "audio", "pdf", "csv", "markdown", "json", or "status"
+        "path": string | nil,       // HTTP/HTTPS URL (for image/video/audio/pdf/csv). Not used for markdown, json, or status.
+        "data": string | nil,       // Inline content string (for markdown/json/status types). For json, this should be a JSON string. For status, this is the status message.
+        "title": string,            // Display title for the content (required for all types)
+        "startTime": int | nil,     // Start time in seconds for video/audio segments (min: 0)
+        "duration": int | nil,      // Duration in seconds for video/audio segments (min: 1)
     },
 }
 ```
@@ -1018,9 +1032,18 @@ Documentation of input/output schemas for all built-in Mix tools. These tools ar
 }
 ```
 
+**Content Types:**
+
+* **Files** (image, video, audio, pdf, csv): Require HTTP/HTTPS URLs in `path` and `title`
+* **Inline content** (markdown, json, status): Use `data` field for content string and `title`
+
 **Special Behaviors:**
-- Requires HTTP/HTTPS URLs for all types except gsap_animation
-- gsap_animation requires config.url field
+
+* All types require `title` field
+* Status type uses `data` field for the status message
+* Markdown type passes content directly in `data` field
+* JSON type requires valid JSON string in `data` field and validates it
+* All file-based types require valid HTTP/HTTPS URLs
 
 ### WebFetch
 
@@ -1049,15 +1072,17 @@ Documentation of input/output schemas for all built-in Mix tools. These tools ar
 ```
 
 **Constants:**
-- Max content size: 5MB
-- Cache TTL: 15 minutes
-- Cache size: 100 entries
-- Timeout: 30 seconds
+
+* Max content size: 5MB
+* Cache TTL: 15 minutes
+* Cache size: 100 entries
+* Timeout: 30 seconds
 
 **Special Behaviors:**
-- Auto-upgrades HTTP to HTTPS
-- Only supports HTTPS URLs
-- Converts HTML to markdown
+
+* Auto-upgrades HTTP to HTTPS
+* Only supports HTTPS URLs
+* Converts HTML to markdown
 
 ### Search
 
@@ -1122,11 +1147,13 @@ Documentation of input/output schemas for all built-in Mix tools. These tools ar
 ```
 
 **Constants:**
-- Max search results: 3
-- Timeout: 30 seconds
+
+* Max search results: 3
+* Timeout: 30 seconds
 
 **Special Behaviors:**
-- Requires Brave Search API key configuration
+
+* Requires Brave Search API key configuration
 
 ### TodoWrite
 
@@ -1154,8 +1181,9 @@ Documentation of input/output schemas for all built-in Mix tools. These tools ar
 ```
 
 **Storage:**
-- Location: `{data_directory}/todos/todos.json`
-- Format: JSON array of todo objects
+
+* Location: `{data_directory}/todos/todos.json`
+* Format: JSON array of todo objects
 
 ### ExitPlanMode
 
@@ -1177,38 +1205,17 @@ Documentation of input/output schemas for all built-in Mix tools. These tools ar
 }
 ```
 
-### python_execution
-
-**Tool name:** `python_execution`
-
-**Input:**
-
-```go
-{
-    "code": string,                 // Python code to execute
-}
-```
-
-**Output:**
-
-```go
-{
-    "type": "code_execution_result",
-    "stdout": string,               // Standard output
-    "stderr": string,               // Standard error
-    "return_code": int,             // Exit code
-}
-```
-
 **Constants:**
-- Default timeout: 30,000ms (30 seconds)
-- Max timeout: 120,000ms (2 minutes)
-- Max output length: 30,000 characters
+
+* Default timeout: 30,000ms (30 seconds)
+* Max timeout: 120,000ms (2 minutes)
+* Max output length: 30,000 characters
 
 **Special Behaviors:**
-- Rejects code containing: `subprocess`, `os`, `exec()`, `eval()`, `__import__`
-- Runs with `--with numpy --with pandas`
-- Executes in isolated sandboxed environment using `uv run --isolated`
+
+* Rejects code containing: `subprocess`, `os`, `exec()`, `eval()`, `__import__`
+* Runs with `--with numpy --with pandas`
+* Executes in isolated sandboxed environment using `uv run --isolated`
 
 ## Example Usage
 
@@ -1431,10 +1438,10 @@ func main() {
 
 ## See Also
 
-- [Go SDK Examples](../examples/) - Comprehensive examples directory
-- [API Models](../models/) - Data structures and types
-- [Operations](../models/operations/) - Request and response types
-- [Components](../models/components/) - Shared component types
+* [Go SDK Examples](../examples/) - Comprehensive examples directory
+* [API Models](../models/) - Data structures and types
+* [Operations](../models/operations/) - Request and response types
+* [Components](../models/components/) - Shared component types
 
 ---
 
