@@ -28,7 +28,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.Tools.ListLLMTools(ctx)
     if err != nil {
@@ -77,7 +79,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.Tools.GetToolCredentialsStatus(ctx)
     if err != nil {
@@ -126,7 +130,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.Tools.GetToolsStatus(ctx)
     if err != nil {

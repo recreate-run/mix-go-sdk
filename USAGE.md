@@ -12,7 +12,9 @@ import (
 func main() {
 	ctx := context.Background()
 
-	s := mix.New()
+	s := mix.New(
+		"https://api.example.com",
+	)
 
 	res, err := s.Authentication.StoreAPIKey(ctx, operations.StoreAPIKeyRequest{
 		APIKey:   "<value>",

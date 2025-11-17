@@ -2,23 +2,15 @@
 
 package mix
 
-// Generated from OpenAPI doc version 1.0.0 and generator version 2.743.2
+// Generated from OpenAPI doc version 1.0.0 and generator version 2.755.6
 
 import (
-	"fmt"
 	"github.com/recreate-run/mix-go-sdk/internal/config"
 	"github.com/recreate-run/mix-go-sdk/internal/hooks"
-	"github.com/recreate-run/mix-go-sdk/internal/utils"
 	"github.com/recreate-run/mix-go-sdk/retry"
 	"net/http"
 	"time"
 )
-
-// ServerList contains the list of servers available to the SDK
-var ServerList = []string{
-	// Development server
-	"http://localhost:8088",
-}
 
 // HTTPClient provides an interface for supplying the SDK with a custom HTTP client
 type HTTPClient interface {
@@ -67,35 +59,6 @@ type Mix struct {
 
 type SDKOption func(*Mix)
 
-// WithServerURL allows the overriding of the default server URL
-func WithServerURL(serverURL string) SDKOption {
-	return func(sdk *Mix) {
-		sdk.sdkConfiguration.ServerURL = serverURL
-	}
-}
-
-// WithTemplatedServerURL allows the overriding of the default server URL with a templated URL populated with the provided parameters
-func WithTemplatedServerURL(serverURL string, params map[string]string) SDKOption {
-	return func(sdk *Mix) {
-		if params != nil {
-			serverURL = utils.ReplaceParameters(serverURL, params)
-		}
-
-		sdk.sdkConfiguration.ServerURL = serverURL
-	}
-}
-
-// WithServerIndex allows the overriding of the default server by index
-func WithServerIndex(serverIndex int) SDKOption {
-	return func(sdk *Mix) {
-		if serverIndex < 0 || serverIndex >= len(ServerList) {
-			panic(fmt.Errorf("server index %d out of range", serverIndex))
-		}
-
-		sdk.sdkConfiguration.ServerIndex = serverIndex
-	}
-}
-
 // WithClient allows the overriding of the default HTTP client used by the SDK
 func WithClient(client HTTPClient) SDKOption {
 	return func(sdk *Mix) {
@@ -116,13 +79,12 @@ func WithTimeout(timeout time.Duration) SDKOption {
 	}
 }
 
-// New creates a new instance of the SDK with the provided options
-func New(opts ...SDKOption) *Mix {
+// New creates a new instance of the SDK with the provided serverURL and options
+func New(serverURL string, opts ...SDKOption) *Mix {
 	sdk := &Mix{
-		SDKVersion: "0.1.1",
+		SDKVersion: "0.1.2",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 0.1.1 2.743.2 1.0.0 github.com/recreate-run/mix-go-sdk",
-			ServerList: ServerList,
+			UserAgent: "speakeasy-sdk/go 0.1.2 2.755.6 1.0.0 github.com/recreate-run/mix-go-sdk",
 		},
 		hooks: hooks.New(),
 	}
@@ -134,6 +96,8 @@ func New(opts ...SDKOption) *Mix {
 	if sdk.sdkConfiguration.Client == nil {
 		sdk.sdkConfiguration.Client = &http.Client{Timeout: 60 * time.Second}
 	}
+
+	sdk.sdkConfiguration.ServerURL = serverURL
 
 	sdk.sdkConfiguration = sdk.hooks.SDKInit(sdk.sdkConfiguration)
 

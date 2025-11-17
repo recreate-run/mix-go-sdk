@@ -11,13 +11,11 @@ import (
 
 // SessionType - Session type:
 // - 'main': Root-level user interactions
-// - 'forked': User-created conversation branches
 // - 'subagent': Delegated task workers
 type SessionType string
 
 const (
 	SessionTypeMain     SessionType = "main"
-	SessionTypeForked   SessionType = "forked"
 	SessionTypeSubagent SessionType = "subagent"
 )
 
@@ -31,8 +29,6 @@ func (e *SessionType) UnmarshalJSON(data []byte) error {
 	}
 	switch v {
 	case "main":
-		fallthrough
-	case "forked":
 		fallthrough
 	case "subagent":
 		*e = SessionType(v)
@@ -81,7 +77,7 @@ type SessionData struct {
 	FirstUserMessage *string `json:"firstUserMessage,omitempty"`
 	// Unique session identifier
 	ID string `json:"id"`
-	// Parent session ID for forked and subagent sessions (null for main sessions)
+	// Parent session ID for subagent sessions (null for main sessions)
 	ParentSessionID *string `json:"parentSessionId,omitempty"`
 	// ID of the tool call that spawned this subagent session (null for non-subagent sessions)
 	ParentToolCallID *string `json:"parentToolCallId,omitempty"`
@@ -89,7 +85,6 @@ type SessionData struct {
 	PromptTokens int64 `json:"promptTokens"`
 	// Session type:
 	// - 'main': Root-level user interactions
-	// - 'forked': User-created conversation branches
 	// - 'subagent': Delegated task workers
 	SessionType SessionType `json:"sessionType"`
 	// Subagent specialization type (only present for subagent sessions)

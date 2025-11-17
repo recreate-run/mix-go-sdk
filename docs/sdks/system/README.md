@@ -30,7 +30,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.System.ListCommands(ctx)
     if err != nil {
@@ -80,7 +82,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.System.GetCommand(ctx, "<value>")
     if err != nil {
@@ -130,7 +134,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.System.ListMcpServers(ctx)
     if err != nil {
@@ -180,7 +186,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.System.GetSystemInfo(ctx)
     if err != nil {
@@ -229,7 +237,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.System.HealthCheck(ctx)
     if err != nil {

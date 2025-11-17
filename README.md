@@ -34,7 +34,6 @@ Mix REST API: REST API for the Mix application - session management, messaging, 
   * [Server-sent event streaming](#server-sent-event-streaming)
   * [Retries](#retries)
   * [Error Handling](#error-handling)
-  * [Server Selection](#server-selection)
   * [Custom HTTP Client](#custom-http-client)
 * [Development](#development)
   * [Maturity](#maturity)
@@ -69,7 +68,9 @@ import (
 func main() {
 	ctx := context.Background()
 
-	s := mix.New()
+	s := mix.New(
+		"https://api.example.com",
+	)
 
 	res, err := s.Authentication.StoreAPIKey(ctx, operations.StoreAPIKeyRequest{
 		APIKey:   "<value>",
@@ -145,7 +146,6 @@ func main() {
 * [GetSession](docs/sdks/sessions/README.md#getsession) - Get a specific session
 * [UpdateSessionCallbacks](docs/sdks/sessions/README.md#updatesessioncallbacks) - Update session callbacks
 * [ExportSession](docs/sdks/sessions/README.md#exportsession) - Export session transcript
-* [ForkSession](docs/sdks/sessions/README.md#forksession) - Fork a session
 * [RewindSession](docs/sdks/sessions/README.md#rewindsession) - Rewind a session
 
 ### [Streaming](docs/sdks/streaming/README.md)
@@ -190,7 +190,9 @@ import (
 func main() {
 	ctx := context.Background()
 
-	s := mix.New()
+	s := mix.New(
+		"https://api.example.com",
+	)
 
 	res, err := s.Streaming.StreamEvents(ctx, "<id>", nil)
 	if err != nil {
@@ -233,7 +235,9 @@ import (
 func main() {
 	ctx := context.Background()
 
-	s := mix.New()
+	s := mix.New(
+		"https://api.example.com",
+	)
 
 	res, err := s.Authentication.StoreAPIKey(ctx, operations.StoreAPIKeyRequest{
 		APIKey:   "<value>",
@@ -275,6 +279,7 @@ func main() {
 	ctx := context.Background()
 
 	s := mix.New(
+		"https://api.example.com",
 		mix.WithRetryConfig(
 			retry.Config{
 				Strategy: "backoff",
@@ -335,7 +340,9 @@ import (
 func main() {
 	ctx := context.Background()
 
-	s := mix.New()
+	s := mix.New(
+		"https://api.example.com",
+	)
 
 	res, err := s.Authentication.StoreAPIKey(ctx, operations.StoreAPIKeyRequest{
 		APIKey:   "<value>",
@@ -365,44 +372,6 @@ func main() {
 
 ```
 <!-- End Error Handling [errors] -->
-
-<!-- Start Server Selection [server] -->
-## Server Selection
-
-### Override Server URL Per-Client
-
-The default server can be overridden globally using the `WithServerURL(serverURL string)` option when initializing the SDK client instance. For example:
-```go
-package main
-
-import (
-	"context"
-	mix "github.com/recreate-run/mix-go-sdk"
-	"github.com/recreate-run/mix-go-sdk/models/operations"
-	"log"
-)
-
-func main() {
-	ctx := context.Background()
-
-	s := mix.New(
-		mix.WithServerURL("http://localhost:8088"),
-	)
-
-	res, err := s.Authentication.StoreAPIKey(ctx, operations.StoreAPIKeyRequest{
-		APIKey:   "<value>",
-		Provider: operations.ProviderBrave,
-	})
-	if err != nil {
-		log.Fatal(err)
-	}
-	if res.Object != nil {
-		// handle response
-	}
-}
-
-```
-<!-- End Server Selection [server] -->
 
 <!-- Start Custom HTTP Client [http-client] -->
 ## Custom HTTP Client

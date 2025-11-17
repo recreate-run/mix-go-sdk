@@ -34,7 +34,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.Authentication.StoreAPIKey(ctx, operations.StoreAPIKeyRequest{
         APIKey: "<value>",
@@ -89,7 +91,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.Authentication.HandleOAuthCallback(ctx, operations.HandleOAuthCallbackRequest{
         Code: "<value>",
@@ -144,7 +148,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.Authentication.StartOAuthFlow(ctx, "<value>")
     if err != nil {
@@ -195,7 +201,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.Authentication.GetAuthStatus(ctx)
     if err != nil {
@@ -244,7 +252,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.Authentication.ValidatePreferredProvider(ctx)
     if err != nil {
@@ -293,7 +303,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.Authentication.DeleteCredentials(ctx, "<value>")
     if err != nil {
@@ -344,7 +356,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.Authentication.GetOAuthHealth(ctx)
     if err != nil {
@@ -393,7 +407,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.Authentication.RefreshOAuthTokens(ctx)
     if err != nil {

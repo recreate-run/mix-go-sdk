@@ -1,17 +1,17 @@
 lockVersion: 2.0.0
 id: 83c3ea8a-9961-49ac-90eb-b920cf864159
 management:
-  docChecksum: 6c0ddee3aa034db417b024d706cd3417
+  docChecksum: 26c3a6c12a36a9249470881f6d05ca25
   docVersion: 1.0.0
-  speakeasyVersion: 1.650.0
-  generationVersion: 2.743.2
-  releaseVersion: 0.1.1
-  configChecksum: 482426b3f762906f3543b456a76271e4
+  speakeasyVersion: 1.658.1
+  generationVersion: 2.755.6
+  releaseVersion: 0.1.2
+  configChecksum: 5afaa48881d55b59d6d3c4d1bf792536
 features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.13.1
+    core: 3.13.2
     defaultEnabledRetries: 0.2.0
     devContainers: 2.90.0
     downloadStreams: 0.1.2
@@ -25,7 +25,7 @@ features:
     retries: 2.84.2
     sdkHooks: 0.2.0
     serverEvents: 0.1.2
-    unions: 2.87.0
+    unions: 2.87.1
     uploadStreams: 0.1.0
 generatedFiles:
   - .devcontainer/README.md
@@ -54,7 +54,6 @@ generatedFiles:
   - /models/operations/deletesessionfile.go
   - /models/operations/denypermission.go
   - /models/operations/exportsession.go
-  - /models/operations/forksession.go
   - /models/operations/getauthstatus.go
   - /models/operations/getavailableproviders.go
   - /models/operations/getcommand.go
@@ -174,9 +173,6 @@ generatedFiles:
   - docs/models/operations/exportsessionrequest.md
   - docs/models/operations/exportsessionresponse.md
   - docs/models/operations/file.md
-  - docs/models/operations/forksessionrequest.md
-  - docs/models/operations/forksessionrequestbody.md
-  - docs/models/operations/forksessionresponse.md
   - docs/models/operations/getauthstatusauthmethod.md
   - docs/models/operations/getauthstatusproviders.md
   - docs/models/operations/getauthstatusresponse.md
@@ -557,7 +553,7 @@ examples:
         application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
       responses:
         "400":
-          application/json: {"error": {"code": 400, "message": "API can only create main sessions. Use /fork endpoint for forked sessions. Subagent sessions are created automatically.", "type": "validation_error"}}
+          application/json: {"error": {"code": 400, "message": "API can only create main sessions. Subagent sessions are created automatically.", "type": "validation_error"}}
     missing_title:
       requestBody:
         application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
@@ -645,7 +641,7 @@ examples:
         application/json: {"cleanupMedia": true, "messageId": "<id>"}
       responses:
         "200":
-          application/json: {"assistantMessageCount": 676019, "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "bash_script"}], "completionTokens": 190372, "cost": 5568.73, "createdAt": "2024-07-07T16:52:12.280Z", "id": "<id>", "promptTokens": 938253, "sessionType": "forked", "title": "<value>", "toolCallCount": 877894, "userMessageCount": 158292}
+          application/json: {"assistantMessageCount": 676019, "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "bash_script"}], "completionTokens": 190372, "cost": 5568.73, "createdAt": "2024-07-07T16:52:12.280Z", "id": "<id>", "promptTokens": 938253, "sessionType": "subagent", "title": "<value>", "toolCallCount": 877894, "userMessageCount": 158292}
         "400":
           application/json: {"error": {"code": 235968, "message": "<value>", "type": "unauthorized"}}
   listSessionFiles:

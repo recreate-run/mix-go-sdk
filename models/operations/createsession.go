@@ -42,7 +42,7 @@ func (e *PromptMode) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// SessionType - Session type. API can only create 'main' sessions. Forked sessions are created via /fork endpoint. Subagent sessions are created automatically by the task delegation system.
+// SessionType - Session type. API can only create 'main' sessions. Subagent sessions are created automatically by the task delegation system.
 type SessionType string
 
 const (
@@ -76,7 +76,7 @@ type CreateSessionRequest struct {
 	// - 'append': Append customSystemPrompt to base system prompt (50KB limit)
 	// - 'replace': Replace base system prompt with customSystemPrompt (100KB limit)
 	PromptMode *PromptMode `default:"default" json:"promptMode"`
-	// Session type. API can only create 'main' sessions. Forked sessions are created via /fork endpoint. Subagent sessions are created automatically by the task delegation system.
+	// Session type. API can only create 'main' sessions. Subagent sessions are created automatically by the task delegation system.
 	SessionType *SessionType `default:"main" json:"sessionType"`
 	// Subagent type - must not be set for API-created sessions. This field is reserved for programmatic subagent creation.
 	SubagentType *string `json:"subagentType,omitempty"`

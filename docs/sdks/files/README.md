@@ -29,7 +29,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.Files.ListSessionFiles(ctx, "<id>")
     if err != nil {
@@ -81,7 +83,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     example, fileErr := os.Open("example.file")
     if fileErr != nil {
@@ -142,7 +146,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.Files.DeleteSessionFile(ctx, "<id>", "example.file")
     if err != nil {
@@ -193,7 +199,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.Files.GetSessionFile(ctx, "<id>", "example.file", nil, nil)
     if err != nil {

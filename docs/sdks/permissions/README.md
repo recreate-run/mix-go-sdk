@@ -27,7 +27,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.Permissions.DenyPermission(ctx, "<id>")
     if err != nil {
@@ -78,7 +80,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.Permissions.GrantPermission(ctx, "<id>")
     if err != nil {

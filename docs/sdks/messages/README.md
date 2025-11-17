@@ -29,7 +29,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.Messages.GetMessageHistory(ctx, mix.Pointer[int64](50), mix.Pointer[int64](0))
     if err != nil {
@@ -81,7 +83,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.Messages.CancelSessionProcessing(ctx, "<id>")
     if err != nil {
@@ -131,7 +135,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.Messages.GetSessionMessages(ctx, "<id>")
     if err != nil {
@@ -183,7 +189,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.Messages.SendMessage(ctx, "<id>", operations.SendMessageRequestBody{
         Text: "<value>",

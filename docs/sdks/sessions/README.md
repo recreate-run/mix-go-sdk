@@ -11,7 +11,6 @@
 * [GetSession](#getsession) - Get a specific session
 * [UpdateSessionCallbacks](#updatesessioncallbacks) - Update session callbacks
 * [ExportSession](#exportsession) - Export session transcript
-* [ForkSession](#forksession) - Fork a session
 * [RewindSession](#rewindsession) - Rewind a session
 
 ## ListSessions
@@ -33,7 +32,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.Sessions.ListSessions(ctx, mix.Pointer(false))
     if err != nil {
@@ -86,7 +87,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.Sessions.CreateSession(ctx, operations.CreateSessionRequest{
         Callbacks: []components.Callback{
@@ -149,7 +152,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.Sessions.DeleteSession(ctx, "<id>")
     if err != nil {
@@ -199,7 +204,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.Sessions.GetSession(ctx, "<id>")
     if err != nil {
@@ -251,7 +258,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.Sessions.UpdateSessionCallbacks(ctx, "<id>", operations.UpdateSessionCallbacksRequestBody{
         Callbacks: []components.Callback{},
@@ -304,7 +313,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.Sessions.ExportSession(ctx, "<id>")
     if err != nil {
@@ -336,60 +347,6 @@ func main() {
 | apierrors.ErrorResponse | 500                     | application/json        |
 | apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
-## ForkSession
-
-Create a new session based on an existing session, copying messages up to a specified index
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="forkSession" method="post" path="/api/sessions/{id}/fork" -->
-```go
-package main
-
-import(
-	"context"
-	mix "github.com/recreate-run/mix-go-sdk"
-	"github.com/recreate-run/mix-go-sdk/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := mix.New()
-
-    res, err := s.Sessions.ForkSession(ctx, "<id>", operations.ForkSessionRequestBody{
-        MessageIndex: 385832,
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.SessionData != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `id`                                                                                   | *string*                                                                               | :heavy_check_mark:                                                                     | Source session ID to fork from                                                         |
-| `requestBody`                                                                          | [operations.ForkSessionRequestBody](../../models/operations/forksessionrequestbody.md) | :heavy_check_mark:                                                                     | N/A                                                                                    |
-| `opts`                                                                                 | [][operations.Option](../../models/operations/option.md)                               | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
-
-### Response
-
-**[*operations.ForkSessionResponse](../../models/operations/forksessionresponse.md), error**
-
-### Errors
-
-| Error Type              | Status Code             | Content Type            |
-| ----------------------- | ----------------------- | ----------------------- |
-| apierrors.ErrorResponse | 400, 404                | application/json        |
-| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
-
 ## RewindSession
 
 Delete messages after a specified message in the current session, optionally cleaning up media files created after that point
@@ -410,7 +367,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.Sessions.RewindSession(ctx, "<id>", operations.RewindSessionRequestBody{
         MessageID: "<id>",

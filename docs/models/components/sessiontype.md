@@ -2,7 +2,6 @@
 
 Session type:
 - 'main': Root-level user interactions
-- 'forked': User-created conversation branches
 - 'subagent': Delegated task workers
 
 
@@ -11,5 +10,4 @@ Session type:
 | Name                  | Value                 |
 | --------------------- | --------------------- |
 | `SessionTypeMain`     | main                  |
-| `SessionTypeForked`   | forked                |
 | `SessionTypeSubagent` | subagent              |

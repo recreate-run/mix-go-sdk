@@ -26,7 +26,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.Streaming.StreamEvents(ctx, "<id>", nil)
     if err != nil {

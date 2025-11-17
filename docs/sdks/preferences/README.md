@@ -29,7 +29,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.Preferences.GetPreferences(ctx)
     if err != nil {
@@ -79,7 +81,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.Preferences.UpdatePreferences(ctx, operations.UpdatePreferencesRequest{})
     if err != nil {
@@ -130,7 +134,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.Preferences.GetAvailableProviders(ctx)
     if err != nil {
@@ -179,7 +185,9 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := mix.New()
+    s := mix.New(
+        "https://api.example.com",
+    )
 
     res, err := s.Preferences.ResetPreferences(ctx)
     if err != nil {
