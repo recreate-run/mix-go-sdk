@@ -28,7 +28,8 @@ func main() {
 
     // Create a session
     session, _ := client.Sessions.CreateSession(ctx, operations.CreateSessionRequest{
-        Title: "My First Session",
+        Title:       "My First Session",
+        BrowserMode: operations.BrowserModeElectronEmbeddedBrowser,
     })
 
     fmt.Printf("Created session: %s\n", session.SessionData.ID)
@@ -334,7 +335,9 @@ type SessionData struct {
     SessionType           string          // "main" or "subagent"
     CreatedAt             time.Time
     AssistantMessageCount int64
+    BrowserMode           BrowserMode     // Browser automation mode
     Callbacks             []Callback
+    CdpURL                *string         // CDP WebSocket URL (remote-cdp-websocket only)
     CompletionTokens      int64
     Cost                  float64
     FirstUserMessage      *string
@@ -428,6 +431,20 @@ type FileInfo struct {
     Size     int64  // File size in bytes
     URL      string // Static URL to access the file
 }
+```
+
+#### `BrowserMode`
+
+Browser automation mode enum.
+
+```go
+type BrowserMode string
+
+const (
+    BrowserModeElectronEmbeddedBrowser  // Electron with embedded Chromium
+    BrowserModeLocalBrowserService      // Local GoRod-based browser
+    BrowserModeRemoteCdpWebsocket       // Remote CDP via WebSocket
+)
 ```
 
 #### `Callback`
@@ -1344,7 +1361,8 @@ func main() {
 
     // Create session
     createResp, err := client.Sessions.CreateSession(ctx, operations.CreateSessionRequest{
-        Title: "Example Session",
+        Title:       "Example Session",
+        BrowserMode: operations.BrowserModeElectronEmbeddedBrowser,
     })
     if err != nil {
         log.Fatalf("Failed to create session: %v", err)
@@ -1403,7 +1421,8 @@ func main() {
 
     // Create session
     createResp, _ := client.Sessions.CreateSession(ctx, operations.CreateSessionRequest{
-        Title: "Streaming Example",
+        Title:       "Streaming Example",
+        BrowserMode: operations.BrowserModeElectronEmbeddedBrowser,
     })
     sessionID := createResp.SessionData.ID
     defer client.Sessions.DeleteSession(ctx, sessionID)
@@ -1486,7 +1505,8 @@ func main() {
 
     // Create session
     createResp, _ := client.Sessions.CreateSession(ctx, operations.CreateSessionRequest{
-        Title: "File Example",
+        Title:       "File Example",
+        BrowserMode: operations.BrowserModeElectronEmbeddedBrowser,
     })
     sessionID := createResp.SessionData.ID
     defer client.Sessions.DeleteSession(ctx, sessionID)
@@ -1543,7 +1563,7 @@ func main() {
 
 ---
 
-**Version:** 0.2.0
+**Version:** 0.2.1
 **Last Updated:** 2025
 
 **Note:** This SDK is a REST API client for the Mix application. Event schemas and hook implementations are subject to change as the API evolves.

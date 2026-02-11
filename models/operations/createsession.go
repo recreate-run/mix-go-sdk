@@ -9,6 +9,39 @@ import (
 	"github.com/recreate-run/mix-go-sdk/models/components"
 )
 
+// BrowserMode - Browser automation mode (required):
+// - 'electron-embedded-browser': Electron app with embedded Chromium browser
+// - 'local-browser-service': Local browser-service (GoRod-based)
+// - 'remote-cdp-websocket': Remote CDP WebSocket URL (cloud browser providers)
+type BrowserMode string
+
+const (
+	BrowserModeElectronEmbeddedBrowser BrowserMode = "electron-embedded-browser"
+	BrowserModeLocalBrowserService     BrowserMode = "local-browser-service"
+	BrowserModeRemoteCdpWebsocket      BrowserMode = "remote-cdp-websocket"
+)
+
+func (e BrowserMode) ToPointer() *BrowserMode {
+	return &e
+}
+func (e *BrowserMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "electron-embedded-browser":
+		fallthrough
+	case "local-browser-service":
+		fallthrough
+	case "remote-cdp-websocket":
+		*e = BrowserMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for BrowserMode: %v", v)
+	}
+}
+
 // PromptMode - Custom prompt handling mode:
 // - 'default': Use base system prompt only (customSystemPrompt ignored)
 // - 'append': Append customSystemPrompt to base system prompt (50KB limit)
@@ -67,8 +100,15 @@ func (e *SessionType) UnmarshalJSON(data []byte) error {
 }
 
 type CreateSessionRequest struct {
+	// Browser automation mode (required):
+	// - 'electron-embedded-browser': Electron app with embedded Chromium browser
+	// - 'local-browser-service': Local browser-service (GoRod-based)
+	// - 'remote-cdp-websocket': Remote CDP WebSocket URL (cloud browser providers)
+	BrowserMode BrowserMode `json:"browserMode"`
 	// Session-level callbacks that execute after tool completion. Environment variables available: CALLBACK_TOOL_RESULT, CALLBACK_TOOL_NAME, CALLBACK_TOOL_ID, CALLBACK_SESSION_ID
 	Callbacks []components.Callback `json:"callbacks,omitempty"`
+	// CDP WebSocket URL for remote browser connections. Required when browserMode is 'remote-cdp-websocket'. Must start with 'ws://' or 'wss://'.
+	CdpURL *string `json:"cdpUrl,omitempty"`
 	// Custom system prompt content. Size limits apply based on promptMode: 100KB (102,400 bytes) for replace mode, 50KB (51,200 bytes) for append mode. Ignored in default mode. Supports environment variable substitution with $<variable> syntax.
 	CustomSystemPrompt *string `json:"customSystemPrompt,omitempty"`
 	// Custom prompt handling mode:
@@ -95,11 +135,25 @@ func (c *CreateSessionRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+func (c *CreateSessionRequest) GetBrowserMode() BrowserMode {
+	if c == nil {
+		return BrowserMode("")
+	}
+	return c.BrowserMode
+}
+
 func (c *CreateSessionRequest) GetCallbacks() []components.Callback {
 	if c == nil {
 		return nil
 	}
 	return c.Callbacks
+}
+
+func (c *CreateSessionRequest) GetCdpURL() *string {
+	if c == nil {
+		return nil
+	}
+	return c.CdpURL
 }
 
 func (c *CreateSessionRequest) GetCustomSystemPrompt() *string {

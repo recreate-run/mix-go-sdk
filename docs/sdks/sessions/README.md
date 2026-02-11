@@ -78,8 +78,8 @@ package main
 import(
 	"context"
 	mix "github.com/recreate-run/mix-go-sdk"
-	"github.com/recreate-run/mix-go-sdk/models/components"
 	"github.com/recreate-run/mix-go-sdk/models/operations"
+	"github.com/recreate-run/mix-go-sdk/models/components"
 	"log"
 )
 
@@ -91,6 +91,7 @@ func main() {
     )
 
     res, err := s.Sessions.CreateSession(ctx, operations.CreateSessionRequest{
+        BrowserMode: operations.BrowserModeLocalBrowserService,
         Callbacks: []components.Callback{
             components.Callback{
                 MessageContent: mix.Pointer("Please review the changes and run tests"),
@@ -99,6 +100,7 @@ func main() {
                 Type: components.CallbackTypeSendMessage,
             },
         },
+        CdpURL: mix.Pointer("wss://connect.browserbase.com/v1/sessions/abc123"),
         CustomSystemPrompt: mix.Pointer("You are a helpful assistant specialized in $<domain>. Always be concise and accurate."),
         PromptMode: operations.PromptModeAppend.ToPointer(),
         SubagentType: mix.Pointer(""),
@@ -121,8 +123,8 @@ package main
 import(
 	"context"
 	mix "github.com/recreate-run/mix-go-sdk"
-	"github.com/recreate-run/mix-go-sdk/models/components"
 	"github.com/recreate-run/mix-go-sdk/models/operations"
+	"github.com/recreate-run/mix-go-sdk/models/components"
 	"log"
 )
 
@@ -134,6 +136,7 @@ func main() {
     )
 
     res, err := s.Sessions.CreateSession(ctx, operations.CreateSessionRequest{
+        BrowserMode: operations.BrowserModeLocalBrowserService,
         Callbacks: []components.Callback{
             components.Callback{
                 MessageContent: mix.Pointer("Please review the changes and run tests"),
@@ -142,6 +145,7 @@ func main() {
                 Type: components.CallbackTypeSendMessage,
             },
         },
+        CdpURL: mix.Pointer("wss://connect.browserbase.com/v1/sessions/abc123"),
         CustomSystemPrompt: mix.Pointer("You are a helpful assistant specialized in $<domain>. Always be concise and accurate."),
         PromptMode: operations.PromptModeAppend.ToPointer(),
         SubagentType: mix.Pointer(""),
@@ -164,8 +168,8 @@ package main
 import(
 	"context"
 	mix "github.com/recreate-run/mix-go-sdk"
-	"github.com/recreate-run/mix-go-sdk/models/components"
 	"github.com/recreate-run/mix-go-sdk/models/operations"
+	"github.com/recreate-run/mix-go-sdk/models/components"
 	"log"
 )
 
@@ -177,6 +181,7 @@ func main() {
     )
 
     res, err := s.Sessions.CreateSession(ctx, operations.CreateSessionRequest{
+        BrowserMode: operations.BrowserModeLocalBrowserService,
         Callbacks: []components.Callback{
             components.Callback{
                 MessageContent: mix.Pointer("Please review the changes and run tests"),
@@ -185,6 +190,7 @@ func main() {
                 Type: components.CallbackTypeSendMessage,
             },
         },
+        CdpURL: mix.Pointer("wss://connect.browserbase.com/v1/sessions/abc123"),
         CustomSystemPrompt: mix.Pointer("You are a helpful assistant specialized in $<domain>. Always be concise and accurate."),
         PromptMode: operations.PromptModeAppend.ToPointer(),
         SubagentType: mix.Pointer(""),
@@ -207,8 +213,8 @@ package main
 import(
 	"context"
 	mix "github.com/recreate-run/mix-go-sdk"
-	"github.com/recreate-run/mix-go-sdk/models/components"
 	"github.com/recreate-run/mix-go-sdk/models/operations"
+	"github.com/recreate-run/mix-go-sdk/models/components"
 	"log"
 )
 
@@ -220,6 +226,7 @@ func main() {
     )
 
     res, err := s.Sessions.CreateSession(ctx, operations.CreateSessionRequest{
+        BrowserMode: operations.BrowserModeLocalBrowserService,
         Callbacks: []components.Callback{
             components.Callback{
                 MessageContent: mix.Pointer("Please review the changes and run tests"),
@@ -228,6 +235,7 @@ func main() {
                 Type: components.CallbackTypeSendMessage,
             },
         },
+        CdpURL: mix.Pointer("wss://connect.browserbase.com/v1/sessions/abc123"),
         CustomSystemPrompt: mix.Pointer("You are a helpful assistant specialized in $<domain>. Always be concise and accurate."),
         PromptMode: operations.PromptModeAppend.ToPointer(),
         SubagentType: mix.Pointer(""),
@@ -250,8 +258,8 @@ package main
 import(
 	"context"
 	mix "github.com/recreate-run/mix-go-sdk"
-	"github.com/recreate-run/mix-go-sdk/models/components"
 	"github.com/recreate-run/mix-go-sdk/models/operations"
+	"github.com/recreate-run/mix-go-sdk/models/components"
 	"log"
 )
 
@@ -263,6 +271,7 @@ func main() {
     )
 
     res, err := s.Sessions.CreateSession(ctx, operations.CreateSessionRequest{
+        BrowserMode: operations.BrowserModeLocalBrowserService,
         Callbacks: []components.Callback{
             components.Callback{
                 MessageContent: mix.Pointer("Please review the changes and run tests"),
@@ -271,6 +280,7 @@ func main() {
                 Type: components.CallbackTypeSendMessage,
             },
         },
+        CdpURL: mix.Pointer("wss://connect.browserbase.com/v1/sessions/abc123"),
         CustomSystemPrompt: mix.Pointer("You are a helpful assistant specialized in $<domain>. Always be concise and accurate."),
         PromptMode: operations.PromptModeAppend.ToPointer(),
         SubagentType: mix.Pointer(""),
@@ -293,8 +303,8 @@ package main
 import(
 	"context"
 	mix "github.com/recreate-run/mix-go-sdk"
-	"github.com/recreate-run/mix-go-sdk/models/components"
 	"github.com/recreate-run/mix-go-sdk/models/operations"
+	"github.com/recreate-run/mix-go-sdk/models/components"
 	"log"
 )
 
@@ -306,6 +316,7 @@ func main() {
     )
 
     res, err := s.Sessions.CreateSession(ctx, operations.CreateSessionRequest{
+        BrowserMode: operations.BrowserModeLocalBrowserService,
         Callbacks: []components.Callback{
             components.Callback{
                 MessageContent: mix.Pointer("Please review the changes and run tests"),
@@ -314,6 +325,7 @@ func main() {
                 Type: components.CallbackTypeSendMessage,
             },
         },
+        CdpURL: mix.Pointer("wss://connect.browserbase.com/v1/sessions/abc123"),
         CustomSystemPrompt: mix.Pointer("You are a helpful assistant specialized in $<domain>. Always be concise and accurate."),
         PromptMode: operations.PromptModeAppend.ToPointer(),
         SubagentType: mix.Pointer(""),

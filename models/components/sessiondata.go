@@ -9,6 +9,39 @@ import (
 	"time"
 )
 
+// BrowserMode - Browser automation mode:
+// - 'electron-embedded-browser': Electron app with embedded Chromium browser
+// - 'local-browser-service': Local browser-service (GoRod-based)
+// - 'remote-cdp-websocket': Remote CDP WebSocket URL (cloud browser providers)
+type BrowserMode string
+
+const (
+	BrowserModeElectronEmbeddedBrowser BrowserMode = "electron-embedded-browser"
+	BrowserModeLocalBrowserService     BrowserMode = "local-browser-service"
+	BrowserModeRemoteCdpWebsocket      BrowserMode = "remote-cdp-websocket"
+)
+
+func (e BrowserMode) ToPointer() *BrowserMode {
+	return &e
+}
+func (e *BrowserMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "electron-embedded-browser":
+		fallthrough
+	case "local-browser-service":
+		fallthrough
+	case "remote-cdp-websocket":
+		*e = BrowserMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for BrowserMode: %v", v)
+	}
+}
+
 // SessionType - Session type:
 // - 'main': Root-level user interactions
 // - 'subagent': Delegated task workers
@@ -65,8 +98,15 @@ func (e *SubagentType) UnmarshalJSON(data []byte) error {
 type SessionData struct {
 	// Number of assistant messages in session
 	AssistantMessageCount int64 `json:"assistantMessageCount"`
+	// Browser automation mode:
+	// - 'electron-embedded-browser': Electron app with embedded Chromium browser
+	// - 'local-browser-service': Local browser-service (GoRod-based)
+	// - 'remote-cdp-websocket': Remote CDP WebSocket URL (cloud browser providers)
+	BrowserMode BrowserMode `json:"browserMode"`
 	// Session-level callback configurations (optional)
 	Callbacks []Callback `json:"callbacks,omitempty"`
+	// CDP WebSocket URL for remote browser connections (only present when browserMode is 'remote-cdp-websocket')
+	CdpURL *string `json:"cdpUrl,omitempty"`
 	// Total completion tokens used
 	CompletionTokens int64 `json:"completionTokens"`
 	// Total cost of session (for subagent sessions, costs are also accumulated in parent session)
@@ -115,11 +155,25 @@ func (s *SessionData) GetAssistantMessageCount() int64 {
 	return s.AssistantMessageCount
 }
 
+func (s *SessionData) GetBrowserMode() BrowserMode {
+	if s == nil {
+		return BrowserMode("")
+	}
+	return s.BrowserMode
+}
+
 func (s *SessionData) GetCallbacks() []Callback {
 	if s == nil {
 		return nil
 	}
 	return s.Callbacks
+}
+
+func (s *SessionData) GetCdpURL() *string {
+	if s == nil {
+		return nil
+	}
+	return s.CdpURL
 }
 
 func (s *SessionData) GetCompletionTokens() int64 {

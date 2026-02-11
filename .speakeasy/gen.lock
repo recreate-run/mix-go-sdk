@@ -1,16 +1,16 @@
 lockVersion: 2.0.0
 id: 83c3ea8a-9961-49ac-90eb-b920cf864159
 management:
-  docChecksum: dc4859c5a78853fdeed395888b4bd439
+  docChecksum: e0b8cee410967141bfce196eb84c13d4
   docVersion: 1.0.0
   speakeasyVersion: 1.709.4
   generationVersion: 2.816.0
-  releaseVersion: 0.2.0
-  configChecksum: 13b580c26f60963f5f589ddf91d162f3
+  releaseVersion: 0.2.1
+  configChecksum: 5b56e3fb5243047ffc0f8ef2bc2830fa
 persistentEdits:
-  generation_id: c67124e1-f59a-45db-a54d-5aa1bca560ce
-  pristine_commit_hash: a07c7de45d3ccdcb39c81fbbe88e2b5011f16e53
-  pristine_tree_hash: 4e30714a1652bfbb91fd438f9e5c8d890dd9384f
+  generation_id: 5f3f4f22-851c-4afc-9e4f-1a4971da6762
+  pristine_commit_hash: 7d5df33bf1d16fb15c7fc0383ccdbd5df8b672a2
+  pristine_tree_hash: 930333d7a5bf5118efb91ca69250e2015ea58838
 features:
   go:
     additionalDependencies: 0.1.0
@@ -64,6 +64,10 @@ trackedFiles:
     id: 6d85d9f26f0b
     last_write_checksum: sha1:eefa3d482718785b60ae1c21554e30cd82f867df
     pristine_git_object: c39a7e67ace1cf58c932b9f52e3a50aed4ced3db
+  docs/models/components/browsermode.md:
+    id: 89e7fe6c81dd
+    last_write_checksum: sha1:e837e15b9a194a32c316513856f600f98caac19c
+    pristine_git_object: 817621d32691680b1882bcb7a745b9d162f8b15d
   docs/models/components/callback.md:
     id: 8138ef55aeeb
     last_write_checksum: sha1:68f5114102c35306fe03f43a95fda52f12bf6979
@@ -130,8 +134,8 @@ trackedFiles:
     pristine_git_object: 372e89a9d5c0ea4bcff37ff1279e316c434af499
   docs/models/components/sessiondata.md:
     id: 99ea4957788a
-    last_write_checksum: sha1:df2812253712a633f6acf9b0db55e512be622691
-    pristine_git_object: 2ef49fc7cab1376e4ff6efb4dd7b0d6d7b25cf17
+    last_write_checksum: sha1:acbb263aef3ca0cdfbe7e85f60083de31aedae04
+    pristine_git_object: bd64db06d9bcb1a90a7327ef35ae601652e4ffcd
   docs/models/components/sessiontype.md:
     id: 54dfdf8e3f05
     last_write_checksum: sha1:8d752391501ad99d6d5db087b637b214ee4736af
@@ -348,6 +352,10 @@ trackedFiles:
     id: 9fc9a1a95d48
     last_write_checksum: sha1:303d9e4725eacd5c784069994d3828ffe1988a55
     pristine_git_object: 7df28bf38ce8b3f686ed82b87cd954f1d4e7ff3f
+  docs/models/operations/browsermode.md:
+    id: 2e117f946cc8
+    last_write_checksum: sha1:5c6d1fc24ded80b11c3ed0b20224ab1941e77ae0
+    pristine_git_object: b7754882dc4b618b07688ee9fb0ff29bc63e2e1f
   docs/models/operations/cancelsessionprocessingrequest.md:
     id: a077c0bca943
     last_write_checksum: sha1:2f4f803b60bdf69abc75a2a38c79c5c64a7c1dd3
@@ -362,8 +370,8 @@ trackedFiles:
     pristine_git_object: b3e83db2f2b2b35b7903a4099c14faa50a7ec028
   docs/models/operations/createsessionrequest.md:
     id: d181ed65111e
-    last_write_checksum: sha1:6394f7098dc5731abbe51f74d93664a6d8417173
-    pristine_git_object: ccfa9b134a8f4f5838aa0ed309791246e8d5b0a2
+    last_write_checksum: sha1:df96e0b7d6a80f3c028ab44a40b81352eed42f4c
+    pristine_git_object: afc6db0c8a137833bd9f52063969a268b72c4cdf
   docs/models/operations/createsessionresponse.md:
     id: 95acaf2225aa
     last_write_checksum: sha1:6991885ba5ff01d696f38c18d4f4d5ff20f40735
@@ -838,8 +846,8 @@ trackedFiles:
     pristine_git_object: 41b7f3238eb6bee94acbc498fdedbbbc166cb9ba
   docs/sdks/sessions/README.md:
     id: 57ad62844f79
-    last_write_checksum: sha1:6da83bba72af36747d74033ab6b020b43027d243
-    pristine_git_object: 12fddf7a4be40adc45dbbd9f6652643dc737f7da
+    last_write_checksum: sha1:c9c8f067a523b6344a1b44b06d13496711b4db1a
+    pristine_git_object: 0db8349c63556cd59c1c8429462d7f9bf044e24d
   docs/sdks/streaming/README.md:
     id: de52a04909eb
     last_write_checksum: sha1:fa0d5fb76827cb9ab785c4b31d97f63a3776b908
@@ -934,8 +942,8 @@ trackedFiles:
     pristine_git_object: d5c5859493a528647ee952dd2cd891aa10ea0b78
   mix.go:
     id: 4f6be3790652
-    last_write_checksum: sha1:6e1fabbf5fa4a27033f2f0488fcb721fbe9b41a2
-    pristine_git_object: 25767c50a871c8d54ac52a850ce5c8b86433d1fd
+    last_write_checksum: sha1:a71de9ec9b29d4eec51733614322b44973edd81a
+    pristine_git_object: 5269986edcebb0b6d223d88e9888bd7d6ec7ec76
   models/apierrors/apierror.go:
     id: 4cecf27a5a54
     last_write_checksum: sha1:e699d3325ea82ea2b0d29656396210f0513c3391
@@ -986,8 +994,8 @@ trackedFiles:
     pristine_git_object: 3ea2c67484b0a3877a315813bd45b2212ae1c5ba
   models/components/sessiondata.go:
     id: 3bd5c25990bf
-    last_write_checksum: sha1:5046d084cc01f8630bd2268a3f95b98729ad8abc
-    pristine_git_object: 5bb34d5398cbfd52a1c01f77023f7fd20107740d
+    last_write_checksum: sha1:3937537a37ccff0d771b4cbf01ef4ac2e71535cc
+    pristine_git_object: 43a10f31f75d535f5e8911507ae62527f79a6f9c
   models/components/sseeventstream.go:
     id: 578f9b20226d
     last_write_checksum: sha1:cbcdea73a4d1ddc01a8ecefb20a2866f4438d751
@@ -1006,8 +1014,8 @@ trackedFiles:
     pristine_git_object: 404885f49747a47748c4a2aec3fbe29b2e2d9e8c
   models/operations/createsession.go:
     id: 7eb53a474a96
-    last_write_checksum: sha1:96d8a8f475066b0b454c742f68d97da4a19860eb
-    pristine_git_object: ba65cdd9489851d77edb059b0d5e9880007f9124
+    last_write_checksum: sha1:00405ca0e28d0f70bdbc28da796906dc3a94733b
+    pristine_git_object: 20ca6a33e46af0f155ec4bc6ec44a45f5891baa6
   models/operations/deletecredentials.go:
     id: afd66209aaf8
     last_write_checksum: sha1:20c41f5b3d6978c1a616d61b4fb19775912c030b
@@ -1445,7 +1453,7 @@ examples:
           includeSubagents: false
       responses:
         "200":
-          application/json: [{"assistantMessageCount": 103950, "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "sub_agent"}], "completionTokens": 734682, "cost": 6985.62, "createdAt": "2023-09-25T21:22:18.303Z", "id": "<id>", "promptTokens": 717181, "sessionType": "main", "title": "<value>", "toolCallCount": 306652, "userMessageCount": 14450}]
+          application/json: [{"assistantMessageCount": 103950, "browserMode": "electron-embedded-browser", "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "sub_agent"}], "completionTokens": 734682, "cost": 6985.62, "createdAt": "2023-09-25T21:22:18.303Z", "id": "<id>", "promptTokens": 717181, "sessionType": "main", "title": "<value>", "toolCallCount": 306652, "userMessageCount": 14450}]
         "401":
           application/json: {"error": {"code": 417693, "message": "<value>", "type": "unauthorized"}}
         "500":
@@ -1453,46 +1461,46 @@ examples:
   createSession:
     invalid_prompt_mode:
       requestBody:
-        application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
+        application/json: {"browserMode": "local-browser-service", "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "cdpUrl": "wss://connect.browserbase.com/v1/sessions/abc123", "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
       responses:
         "400":
           application/json: {"error": {"code": 400, "message": "promptMode must be 'default', 'append', or 'replace'", "type": "validation_error"}}
     invalid_session_type:
       requestBody:
-        application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
+        application/json: {"browserMode": "local-browser-service", "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "cdpUrl": "wss://connect.browserbase.com/v1/sessions/abc123", "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
       responses:
         "400":
           application/json: {"error": {"code": 400, "message": "API can only create main sessions. Subagent sessions are created automatically.", "type": "validation_error"}}
     missing_title:
       requestBody:
-        application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
+        application/json: {"browserMode": "local-browser-service", "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "cdpUrl": "wss://connect.browserbase.com/v1/sessions/abc123", "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
       responses:
         "400":
           application/json: {"error": {"code": 400, "message": "title is required", "type": "validation_error"}}
     prompt_size_exceeded_append:
       requestBody:
-        application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
+        application/json: {"browserMode": "local-browser-service", "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "cdpUrl": "wss://connect.browserbase.com/v1/sessions/abc123", "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
       responses:
         "400":
           application/json: {"error": {"code": 400, "message": "Custom prompt size (75KB) exceeds append mode limit of 50KB", "type": "validation_error"}}
     prompt_size_exceeded_replace:
       requestBody:
-        application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
+        application/json: {"browserMode": "local-browser-service", "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "cdpUrl": "wss://connect.browserbase.com/v1/sessions/abc123", "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
       responses:
         "400":
           application/json: {"error": {"code": 400, "message": "Custom prompt size (150KB) exceeds replace mode limit of 100KB", "type": "validation_error"}}
     subagent_type_not_allowed:
       requestBody:
-        application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
+        application/json: {"browserMode": "local-browser-service", "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "cdpUrl": "wss://connect.browserbase.com/v1/sessions/abc123", "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
       responses:
         "400":
           application/json: {"error": {"code": 400, "message": "subagentType cannot be set for API-created sessions. Subagent sessions are created programmatically by the task delegation system.", "type": "validation_error"}}
     speakeasy-default-create-session:
       requestBody:
-        application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
+        application/json: {"browserMode": "local-browser-service", "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "cdpUrl": "wss://connect.browserbase.com/v1/sessions/abc123", "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
       responses:
         "201":
-          application/json: {"assistantMessageCount": 880027, "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "sub_agent"}], "completionTokens": 871041, "cost": 4039.26, "createdAt": "2025-05-29T10:33:59.281Z", "id": "<id>", "promptTokens": 70138, "sessionType": "subagent", "title": "<value>", "toolCallCount": 481369, "userMessageCount": 925418}
+          application/json: {"assistantMessageCount": 880027, "browserMode": "remote-cdp-websocket", "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "sub_agent"}], "cdpUrl": "wss://connect.browserbase.com/v1/sessions/abc123", "completionTokens": 871041, "cost": 4039.26, "createdAt": "2025-05-29T10:33:59.281Z", "id": "<id>", "promptTokens": 70138, "sessionType": "subagent", "title": "<value>", "toolCallCount": 481369, "userMessageCount": 925418}
         "400":
           application/json: {"error": {"code": 404850, "message": "<value>", "type": "not_found"}}
   deleteSession:
@@ -1510,7 +1518,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/json: {"assistantMessageCount": 387834, "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "sub_agent"}], "completionTokens": 58853, "cost": 6747.54, "createdAt": "2023-12-03T01:35:57.270Z", "id": "<id>", "promptTokens": 945765, "sessionType": "subagent", "title": "<value>", "toolCallCount": 125836, "userMessageCount": 941442}
+          application/json: {"assistantMessageCount": 387834, "browserMode": "local-browser-service", "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "sub_agent"}], "cdpUrl": "wss://connect.browserbase.com/v1/sessions/abc123", "completionTokens": 58853, "cost": 6747.54, "createdAt": "2023-12-03T01:35:57.270Z", "id": "<id>", "promptTokens": 945765, "sessionType": "subagent", "title": "<value>", "toolCallCount": 125836, "userMessageCount": 941442}
         "404":
           application/json: {"error": {"code": 281492, "message": "<value>", "type": "internal_error"}}
   updateSessionCallbacks:
@@ -1522,7 +1530,7 @@ examples:
         application/json: {"callbacks": []}
       responses:
         "200":
-          application/json: {"assistantMessageCount": 331297, "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "bash_script"}], "completionTokens": 732683, "cost": 8068.84, "createdAt": "2023-06-04T19:02:08.923Z", "id": "<id>", "promptTokens": 460281, "sessionType": "main", "title": "<value>", "toolCallCount": 805406, "userMessageCount": 971135}
+          application/json: {"assistantMessageCount": 331297, "browserMode": "electron-embedded-browser", "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "bash_script"}], "cdpUrl": "wss://connect.browserbase.com/v1/sessions/abc123", "completionTokens": 732683, "cost": 8068.84, "createdAt": "2023-06-04T19:02:08.923Z", "id": "<id>", "promptTokens": 460281, "sessionType": "main", "title": "<value>", "toolCallCount": 805406, "userMessageCount": 971135}
         "400":
           application/json: {"error": {"code": 585695, "message": "<value>", "type": "bad_request"}}
   exportSession:
@@ -1558,7 +1566,7 @@ examples:
         application/json: {"cleanupMedia": true, "messageId": "<id>"}
       responses:
         "200":
-          application/json: {"assistantMessageCount": 676019, "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "bash_script"}], "completionTokens": 190372, "cost": 5568.73, "createdAt": "2024-07-07T16:52:12.280Z", "id": "<id>", "promptTokens": 938253, "sessionType": "subagent", "title": "<value>", "toolCallCount": 877894, "userMessageCount": 158292}
+          application/json: {"assistantMessageCount": 676019, "browserMode": "remote-cdp-websocket", "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "bash_script"}], "cdpUrl": "wss://connect.browserbase.com/v1/sessions/abc123", "completionTokens": 190372, "cost": 5568.73, "createdAt": "2024-07-07T16:52:12.280Z", "id": "<id>", "promptTokens": 938253, "sessionType": "subagent", "title": "<value>", "toolCallCount": 877894, "userMessageCount": 158292}
         "400":
           application/json: {"error": {"code": 235968, "message": "<value>", "type": "unauthorized"}}
   listSessionFiles:
