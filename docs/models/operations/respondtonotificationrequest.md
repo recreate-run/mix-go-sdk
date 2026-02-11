@@ -1,0 +1,9 @@
+# RespondToNotificationRequest
+
+
+## Fields
+
+| Field                                                                                                      | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `ID`                                                                                                       | *string*                                                                                                   | :heavy_check_mark:                                                                                         | Notification ID                                                                                            |
+| `RequestBody`                                                                                              | [operations.RespondToNotificationRequestBody](../../models/operations/respondtonotificationrequestbody.md) | :heavy_check_mark:                                                                                         | N/A                                                                                                        |

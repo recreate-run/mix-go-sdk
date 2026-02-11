@@ -19,7 +19,7 @@ func (r RewindSessionRequestBody) MarshalJSON() ([]byte, error) {
 }
 
 func (r *RewindSessionRequestBody) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"messageId"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
 		return err
 	}
 	return nil

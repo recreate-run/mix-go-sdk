@@ -67,7 +67,7 @@ func (c Callback) MarshalJSON() ([]byte, error) {
 }
 
 func (c *Callback) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"toolName", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
 		return err
 	}
 	return nil

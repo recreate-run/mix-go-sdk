@@ -3,21 +3,32 @@ info:
   title: "Mix REST API"
   description: "REST API for the Mix application - session management, messaging, and system operations"
   version: "1.0.0"
-x-speakeasy-retries: {"backoff": {"exponent": 1.5, "initialInterval": 500, "maxElapsedTime": 600000, "maxInterval": 60000}, "retryConnectionErrors": true, "statusCodes": ["5XX", "408", "429"], "strategy": "backoff"}
+x-speakeasy-retries:
+  backoff:
+    exponent: 1.5
+    initialInterval: 500
+    maxElapsedTime: 600000
+    maxInterval: 60000
+  retryConnectionErrors: true
+  statusCodes:
+    - "5XX"
+    - "408"
+    - "429"
+  strategy: "backoff"
 paths:
-  "/api/auth/api-key":
+  /api/auth/api-key:
     post:
       description: "Store API key for direct authentication with a specific provider"
       operationId: "storeApiKey"
       requestBody:
         content:
-          "application/json":
+          application/json:
             schema:
               properties:
-                "api_key":
+                api_key:
                   description: "API key for authentication"
                   type: "string"
-                "provider":
+                provider:
                   description: "Provider name (anthropic, openai, openrouter, gemini, brave)"
                   enum:
                     - "anthropic"
@@ -34,49 +45,51 @@ paths:
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
                 properties:
-                  "message":
+                  message:
                     description: "Success message"
                     type: "string"
-                  "provider":
+                  provider:
                     description: "Provider name"
                     type: "string"
-                  "status":
+                  status:
                     description: "Operation status (success)"
                     type: "string"
                 type: "object"
           description: "API key stored status"
         "400":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Invalid request data or API key format"
         "500":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Internal server error"
       summary: "Store API key"
       tags:
         - "Authentication"
-  "/api/auth/oauth-callback":
+  /api/auth/oauth-callback:
     post:
       description: "Process OAuth callback and exchange code for access token"
       operationId: "handleOAuthCallback"
       requestBody:
         content:
-          "application/json":
+          application/json:
             schema:
               properties:
-                "code":
+                code:
                   description: "Authorization code from OAuth provider"
                   type: "string"
-                "provider":
+                provider:
                   description: "Provider name (anthropic)"
                   type: "string"
-                "state":
+                state:
                   description: "OAuth state for verification"
                   type: "string"
               required:
@@ -88,37 +101,39 @@ paths:
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
                 properties:
-                  "expires_in":
+                  expires_in:
                     description: "Seconds until token expiration"
                     type: "integer"
-                  "message":
+                  message:
                     description: "Status message"
                     type: "string"
-                  "provider":
+                  provider:
                     description: "Provider name"
                     type: "string"
-                  "status":
+                  status:
                     description: "Operation status"
                     type: "string"
                 type: "object"
           description: "OAuth completion status"
         "400":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Invalid request parameters"
         "500":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Internal server error"
       summary: "Handle OAuth callback"
       tags:
         - "Authentication"
-  "/api/auth/oauth/{provider}":
+  /api/auth/oauth/{provider}:
     post:
       description: "Initiate OAuth authentication flow for a specific provider"
       operationId: "startOAuthFlow"
@@ -132,57 +147,59 @@ paths:
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
                 properties:
-                  "auth_url":
+                  auth_url:
                     description: "OAuth authorization URL to redirect to"
                     type: "string"
-                  "message":
+                  message:
                     description: "Instructions for completing OAuth flow"
                     type: "string"
-                  "state":
+                  state:
                     description: "OAuth state token for verification"
                     type: "string"
                 type: "object"
           description: "OAuth authorization information"
         "400":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Invalid provider or OAuth not supported"
         "500":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Internal server error"
       summary: "Start OAuth authentication"
       tags:
         - "Authentication"
-  "/api/auth/status":
+  /api/auth/status:
     get:
       description: "Get authentication status for all supported providers"
       operationId: "getAuthStatus"
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
                 properties:
-                  "providers":
+                  providers:
                     additionalProperties:
                       properties:
-                        "auth_method":
+                        auth_method:
                           description: "Authentication method (oauth, api_key, none)"
                           enum:
                             - "oauth"
                             - "api_key"
                             - "none"
                           type: "string"
-                        "authenticated":
+                        authenticated:
                           description: "Whether provider is authenticated"
                           type: "boolean"
-                        "display_name":
+                        display_name:
                           description: "User-friendly provider name"
                           type: "string"
                       type: "object"
@@ -192,49 +209,51 @@ paths:
           description: "Authentication status for all providers"
         "500":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Internal server error"
       summary: "Get authentication status"
       tags:
         - "Authentication"
-  "/api/auth/validate":
+  /api/auth/validate:
     get:
       description: "Check if the user's preferred provider is authenticated"
       operationId: "validatePreferredProvider"
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
                 properties:
-                  "auth_method":
+                  auth_method:
                     description: "Authentication method used"
                     enum:
                       - "oauth"
                       - "api_key"
                       - "none"
                     type: "string"
-                  "message":
+                  message:
                     description: "Status message"
                     type: "string"
-                  "provider":
+                  provider:
                     description: "Preferred provider name"
                     type: "string"
-                  "valid":
+                  valid:
                     description: "Whether preferred provider is authenticated"
                     type: "boolean"
                 type: "object"
           description: "Preferred provider validation status"
         "500":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Internal server error"
       summary: "Validate preferred provider"
       tags:
         - "Authentication"
-  "/api/auth/{provider}":
+  /api/auth/{provider}:
     delete:
       description: "Delete stored API key and/or OAuth credentials for a provider"
       operationId: "deleteCredentials"
@@ -248,48 +267,50 @@ paths:
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
                 properties:
-                  "message":
+                  message:
                     description: "Status message"
                     type: "string"
-                  "provider":
+                  provider:
                     description: "Provider name"
                     type: "string"
-                  "status":
+                  status:
                     description: "Operation status"
                     type: "string"
                 type: "object"
           description: "Credentials deletion status"
         "400":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Invalid provider"
         "500":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Internal server error"
       summary: "Delete provider credentials"
       tags:
         - "Authentication"
-  "/api/commands":
+  /api/commands:
     get:
       description: "Retrieve list of all available commands"
       operationId: "listCommands"
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
                 items:
                   properties:
-                    "description":
+                    description:
                       description: "Command description"
                       type: "string"
-                    "name":
+                    name:
                       description: "Command name"
                       type: "string"
                   type: "object"
@@ -297,18 +318,20 @@ paths:
           description: "List of commands"
         "401":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Unauthorized - authentication required"
         "500":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Internal server error"
       summary: "List available commands"
       tags:
         - "System"
-  "/api/commands/{name}":
+  /api/commands/{name}:
     get:
       description: "Retrieve details about a specific command"
       operationId: "getCommand"
@@ -322,56 +345,57 @@ paths:
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
                 properties:
-                  "description":
+                  description:
                     description: "Command description"
                     type: "string"
-                  "name":
+                  name:
                     description: "Command name"
                     type: "string"
-                  "usage":
+                  usage:
                     description: "Command usage instructions"
                     type: "string"
                 type: "object"
           description: "Command details"
         "404":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Command not found"
       summary: "Get specific command"
       tags:
         - "System"
-  "/api/mcp":
+  /api/mcp:
     get:
       description: "Retrieve list of available Model Context Protocol (MCP) servers"
       operationId: "listMcpServers"
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
                 items:
                   properties:
-                    "connected":
+                    connected:
                       description: "Whether the MCP server is currently connected"
                       type: "boolean"
-                    "name":
+                    name:
                       description: "MCP server name"
                       type: "string"
-                    "status":
+                    status:
                       description: "Server connection status (e.g., 'connected', 'failed', 'disconnected')"
                       type: "string"
-                    "tools":
+                    tools:
                       description: "List of tools provided by this MCP server (null if server is not connected)"
                       items:
                         properties:
-                          "description":
+                          description:
                             description: "Tool description"
                             type: "string"
-                          "name":
+                          name:
                             description: "Tool name"
                             type: "string"
                         required:
@@ -389,18 +413,20 @@ paths:
           description: "List of MCP servers"
         "401":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Unauthorized - authentication required"
         "500":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Internal server error"
       summary: "List MCP servers"
       tags:
         - "System"
-  "/api/messages/history":
+  /api/messages/history:
     get:
       description: "Retrieve message history across all sessions with optional pagination"
       operationId: "getMessageHistory"
@@ -423,25 +449,82 @@ paths:
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
-                items: {"$ref": "#/components/schemas/BackendMessage"}
+                items:
+                  $ref: "#/components/schemas/BackendMessage"
                 type: "array"
           description: "Message history"
         "401":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Unauthorized - authentication required"
         "500":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Internal server error"
       summary: "Get global message history"
       tags:
         - "Messages"
-  "/api/permissions/{id}/deny":
+  /api/notifications/{id}/respond:
+    post:
+      description: "Send user's response to a notification request"
+      operationId: "respondToNotification"
+      parameters:
+        - description: "Notification ID"
+          in: "path"
+          name: "id"
+          required: true
+          schema:
+            type: "string"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                type:
+                  description: "Response type"
+                  enum:
+                    - "acknowledge"
+                    - "text"
+                    - "choice"
+                  type: "string"
+                value:
+                  description: "User's text input or selected choice (optional for acknowledge type)"
+                  type: "string"
+              required:
+                - "type"
+              type: "object"
+        required: true
+      responses:
+        "204":
+          description: "Notification response accepted"
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Unauthorized - authentication required"
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Notification not found or already responded"
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Internal server error"
+      summary: "Respond to notification"
+      tags:
+        - "Notifications"
+  /api/permissions/{id}/deny:
     post:
       description: "Deny a specific permission"
       operationId: "denyPermission"
@@ -455,33 +538,36 @@ paths:
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
                 properties:
-                  "denied":
+                  denied:
                     description: "Whether permission was denied"
                     type: "boolean"
                 type: "object"
           description: "Permission deny status"
         "401":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Unauthorized - authentication required"
         "404":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Permission not found"
         "500":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Internal server error"
       summary: "Deny permission"
       tags:
         - "Permissions"
-  "/api/permissions/{id}/grant":
+  /api/permissions/{id}/grant:
     post:
       description: "Grant a specific permission"
       operationId: "grantPermission"
@@ -495,49 +581,52 @@ paths:
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
                 properties:
-                  "granted":
+                  granted:
                     description: "Whether permission was granted"
                     type: "boolean"
                 type: "object"
           description: "Permission grant status"
         "401":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Unauthorized - authentication required"
         "404":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Permission not found"
         "500":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Internal server error"
       summary: "Grant permission"
       tags:
         - "Permissions"
-  "/api/preferences":
+  /api/preferences:
     get:
       description: "Retrieve current user preferences including model and provider settings"
       operationId: "getPreferences"
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
                 properties:
-                  "available_providers":
+                  available_providers:
                     additionalProperties:
                       properties:
-                        "display_name":
+                        display_name:
                           description: "User-friendly provider name"
                           type: "string"
-                        "models":
+                        models:
                           description: "Available models from this provider"
                           items:
                             type: "string"
@@ -545,35 +634,35 @@ paths:
                       type: "object"
                     description: "Map of available AI providers and their models"
                     type: "object"
-                  "preferences":
+                  preferences:
                     description: "User preferences (null if no preferences exist)"
                     nullable: true
                     properties:
-                      "created_at":
+                      created_at:
                         description: "Unix timestamp when preferences were created"
                         type: "integer"
-                      "main_agent_max_tokens":
+                      main_agent_max_tokens:
                         description: "Maximum tokens for main agent responses"
                         type: "integer"
-                      "main_agent_model":
+                      main_agent_model:
                         description: "Main agent model ID"
                         type: "string"
-                      "main_agent_reasoning_effort":
+                      main_agent_reasoning_effort:
                         description: "Reasoning effort setting for main agent"
                         type: "string"
-                      "preferred_provider":
+                      preferred_provider:
                         description: "Preferred AI provider (anthropic, openai, openrouter)"
                         type: "string"
-                      "sub_agent_max_tokens":
+                      sub_agent_max_tokens:
                         description: "Maximum tokens for sub agent responses"
                         type: "integer"
-                      "sub_agent_model":
+                      sub_agent_model:
                         description: "Sub agent model ID"
                         type: "string"
-                      "sub_agent_reasoning_effort":
+                      sub_agent_reasoning_effort:
                         description: "Reasoning effort setting for sub agent"
                         type: "string"
-                      "updated_at":
+                      updated_at:
                         description: "Unix timestamp of last update"
                         type: "integer"
                     type: "object"
@@ -583,8 +672,9 @@ paths:
           description: "User preferences and available providers"
         "500":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Internal server error"
       summary: "Get user preferences"
       tags:
@@ -594,28 +684,28 @@ paths:
       operationId: "updatePreferences"
       requestBody:
         content:
-          "application/json":
+          application/json:
             schema:
               properties:
-                "main_agent_max_tokens":
+                main_agent_max_tokens:
                   description: "Maximum tokens for main agent responses"
                   type: "integer"
-                "main_agent_model":
+                main_agent_model:
                   description: "Main agent model ID"
                   type: "string"
-                "main_agent_reasoning_effort":
+                main_agent_reasoning_effort:
                   description: "Reasoning effort setting for main agent"
                   type: "string"
-                "preferred_provider":
+                preferred_provider:
                   description: "Preferred AI provider (anthropic, openai, openrouter)"
                   type: "string"
-                "sub_agent_max_tokens":
+                sub_agent_max_tokens:
                   description: "Maximum tokens for sub agent responses"
                   type: "integer"
-                "sub_agent_model":
+                sub_agent_model:
                   description: "Sub agent model ID"
                   type: "string"
-                "sub_agent_reasoning_effort":
+                sub_agent_reasoning_effort:
                   description: "Reasoning effort setting for sub agent"
                   type: "string"
               type: "object"
@@ -623,66 +713,68 @@ paths:
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
                 properties:
-                  "created_at":
+                  created_at:
                     description: "Creation timestamp"
                     type: "integer"
-                  "main_agent_max_tokens":
+                  main_agent_max_tokens:
                     description: "Maximum tokens for main agent"
                     type: "integer"
-                  "main_agent_model":
+                  main_agent_model:
                     description: "Main agent model ID"
                     type: "string"
-                  "main_agent_reasoning_effort":
+                  main_agent_reasoning_effort:
                     description: "Reasoning effort for main agent"
                     type: "string"
-                  "preferred_provider":
+                  preferred_provider:
                     description: "Preferred AI provider"
                     type: "string"
-                  "sub_agent_max_tokens":
+                  sub_agent_max_tokens:
                     description: "Maximum tokens for sub agent"
                     type: "integer"
-                  "sub_agent_model":
+                  sub_agent_model:
                     description: "Sub agent model ID"
                     type: "string"
-                  "sub_agent_reasoning_effort":
+                  sub_agent_reasoning_effort:
                     description: "Reasoning effort for sub agent"
                     type: "string"
-                  "updated_at":
+                  updated_at:
                     description: "Last update timestamp"
                     type: "integer"
                 type: "object"
           description: "Updated preferences"
         "400":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Invalid request parameters"
         "500":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Internal server error"
       summary: "Update user preferences"
       tags:
         - "Preferences"
-  "/api/preferences/providers":
+  /api/preferences/providers:
     get:
       description: "Retrieve list of available AI providers and their supported models"
       operationId: "getAvailableProviders"
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
                 additionalProperties:
                   properties:
-                    "display_name":
+                    display_name:
                       description: "Provider display name"
                       type: "string"
-                    "models":
+                    models:
                       description: "Available models for this provider"
                       items:
                         type: "string"
@@ -693,60 +785,62 @@ paths:
           description: "Available providers"
         "500":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Internal server error"
       summary: "Get available providers"
       tags:
         - "Preferences"
-  "/api/preferences/reset":
+  /api/preferences/reset:
     post:
       description: "Reset user preferences to default values"
       operationId: "resetPreferences"
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
                 properties:
-                  "created_at":
+                  created_at:
                     description: "Creation timestamp"
                     type: "integer"
-                  "main_agent_max_tokens":
+                  main_agent_max_tokens:
                     description: "Reset main agent max tokens"
                     type: "integer"
-                  "main_agent_model":
+                  main_agent_model:
                     description: "Reset main agent model"
                     type: "string"
-                  "main_agent_reasoning_effort":
+                  main_agent_reasoning_effort:
                     description: "Reset main agent reasoning effort"
                     type: "string"
-                  "preferred_provider":
+                  preferred_provider:
                     description: "Reset preferred provider"
                     type: "string"
-                  "sub_agent_max_tokens":
+                  sub_agent_max_tokens:
                     description: "Reset sub agent max tokens"
                     type: "integer"
-                  "sub_agent_model":
+                  sub_agent_model:
                     description: "Reset sub agent model"
                     type: "string"
-                  "sub_agent_reasoning_effort":
+                  sub_agent_reasoning_effort:
                     description: "Reset sub agent reasoning effort"
                     type: "string"
-                  "updated_at":
+                  updated_at:
                     description: "Reset timestamp"
                     type: "integer"
                 type: "object"
           description: "Reset preferences"
         "500":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Internal server error"
       summary: "Reset preferences"
       tags:
         - "Preferences"
-  "/api/sessions":
+  /api/sessions:
     get:
       description: "Retrieve a list of all available sessions with their metadata"
       operationId: "listSessions"
@@ -761,20 +855,23 @@ paths:
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
-                items: {"$ref": "#/components/schemas/SessionData"}
+                items:
+                  $ref: "#/components/schemas/SessionData"
                 type: "array"
           description: "List of sessions"
         "401":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Unauthorized - authentication required"
         "500":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Internal server error"
       summary: "List all sessions"
       tags:
@@ -784,19 +881,20 @@ paths:
       operationId: "createSession"
       requestBody:
         content:
-          "application/json":
+          application/json:
             schema:
               properties:
-                "callbacks":
+                callbacks:
                   description: "Session-level callbacks that execute after tool completion. Environment variables available: CALLBACK_TOOL_RESULT, CALLBACK_TOOL_NAME, CALLBACK_TOOL_ID, CALLBACK_SESSION_ID"
-                  items: {"$ref": "#/components/schemas/Callback"}
+                  items:
+                    $ref: "#/components/schemas/Callback"
                   type: "array"
-                "customSystemPrompt":
+                customSystemPrompt:
                   description: "Custom system prompt content. Size limits apply based on promptMode: 100KB (102,400 bytes) for replace mode, 50KB (51,200 bytes) for append mode. Ignored in default mode. Supports environment variable substitution with $<variable> syntax."
                   example: "You are a helpful assistant specialized in $<domain>. Always be concise and accurate."
                   maxLength: 102400
                   type: "string"
-                "promptMode":
+                promptMode:
                   default: "default"
                   description: "Custom prompt handling mode:\n- 'default': Use base system prompt only (customSystemPrompt ignored)\n- 'append': Append customSystemPrompt to base system prompt (50KB limit)\n- 'replace': Replace base system prompt with customSystemPrompt (100KB limit)"
                   enum:
@@ -805,18 +903,18 @@ paths:
                     - "replace"
                   example: "append"
                   type: "string"
-                "sessionType":
+                sessionType:
                   default: "main"
                   description: "Session type. API can only create 'main' sessions. Subagent sessions are created automatically by the task delegation system."
                   enum:
                     - "main"
                   example: "main"
                   type: "string"
-                "subagentType":
+                subagentType:
                   description: "Subagent type - must not be set for API-created sessions. This field is reserved for programmatic subagent creation."
                   example: ""
                   type: "string"
-                "title":
+                title:
                   description: "Title for the session"
                   type: "string"
               required:
@@ -826,37 +924,63 @@ paths:
       responses:
         "201":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/SessionData"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SessionData"
           description: "Created session"
         "400":
           content:
-            "application/json":
+            application/json:
               examples:
-                "invalid_prompt_mode":
+                invalid_prompt_mode:
                   summary: "Invalid prompt mode"
-                  value: {"error": {"code": 400, "message": "promptMode must be 'default', 'append', or 'replace'", "type": "validation_error"}}
-                "invalid_session_type":
+                  value:
+                    error:
+                      code: 400
+                      message: "promptMode must be 'default', 'append', or 'replace'"
+                      type: "validation_error"
+                invalid_session_type:
                   summary: "Invalid session type"
-                  value: {"error": {"code": 400, "message": "API can only create main sessions. Subagent sessions are created automatically.", "type": "validation_error"}}
-                "missing_title":
+                  value:
+                    error:
+                      code: 400
+                      message: "API can only create main sessions. Subagent sessions are created automatically."
+                      type: "validation_error"
+                missing_title:
                   summary: "Missing required title"
-                  value: {"error": {"code": 400, "message": "title is required", "type": "validation_error"}}
-                "prompt_size_exceeded_append":
+                  value:
+                    error:
+                      code: 400
+                      message: "title is required"
+                      type: "validation_error"
+                prompt_size_exceeded_append:
                   summary: "Custom prompt size exceeds append mode limit"
-                  value: {"error": {"code": 400, "message": "Custom prompt size (75KB) exceeds append mode limit of 50KB", "type": "validation_error"}}
-                "prompt_size_exceeded_replace":
+                  value:
+                    error:
+                      code: 400
+                      message: "Custom prompt size (75KB) exceeds append mode limit of 50KB"
+                      type: "validation_error"
+                prompt_size_exceeded_replace:
                   summary: "Custom prompt size exceeds replace mode limit"
-                  value: {"error": {"code": 400, "message": "Custom prompt size (150KB) exceeds replace mode limit of 100KB", "type": "validation_error"}}
-                "subagent_type_not_allowed":
+                  value:
+                    error:
+                      code: 400
+                      message: "Custom prompt size (150KB) exceeds replace mode limit of 100KB"
+                      type: "validation_error"
+                subagent_type_not_allowed:
                   summary: "Subagent type not allowed for API-created sessions"
-                  value: {"error": {"code": 400, "message": "subagentType cannot be set for API-created sessions. Subagent sessions are created programmatically by the task delegation system.", "type": "validation_error"}}
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+                  value:
+                    error:
+                      code: 400
+                      message: "subagentType cannot be set for API-created sessions. Subagent sessions are created programmatically by the task delegation system."
+                      type: "validation_error"
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Invalid request data"
       summary: "Create a new session"
       tags:
         - "Sessions"
-  "/api/sessions/{id}":
+  /api/sessions/{id}:
     delete:
       description: "Permanently delete a session and all its data"
       operationId: "deleteSession"
@@ -872,8 +996,9 @@ paths:
           description: "Session deleted successfully"
         "404":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Session not found"
       summary: "Delete a session"
       tags:
@@ -891,18 +1016,20 @@ paths:
       responses:
         "200":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/SessionData"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SessionData"
           description: "Session details"
         "404":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Session not found"
       summary: "Get a specific session"
       tags:
         - "Sessions"
-  "/api/sessions/{id}/callbacks":
+  /api/sessions/{id}/callbacks:
     patch:
       description: "Update the callback configurations for a session. Callbacks execute automatically after tool completion. Pass an empty array to clear all callbacks."
       operationId: "updateSessionCallbacks"
@@ -915,12 +1042,13 @@ paths:
             type: "string"
       requestBody:
         content:
-          "application/json":
+          application/json:
             schema:
               properties:
-                "callbacks":
+                callbacks:
                   description: "Session-level callbacks that execute after tool completion. Environment variables available: CALLBACK_TOOL_RESULT, CALLBACK_TOOL_NAME, CALLBACK_TOOL_ID, CALLBACK_SESSION_ID"
-                  items: {"$ref": "#/components/schemas/Callback"}
+                  items:
+                    $ref: "#/components/schemas/Callback"
                   type: "array"
               required:
                 - "callbacks"
@@ -929,23 +1057,26 @@ paths:
       responses:
         "200":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/SessionData"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SessionData"
           description: "Session callbacks updated successfully"
         "400":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Invalid request - validation error in callbacks array"
         "404":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Session not found"
       summary: "Update session callbacks"
       tags:
         - "Sessions"
-  "/api/sessions/{id}/cancel":
+  /api/sessions/{id}/cancel:
     post:
       description: "Cancel any ongoing agent processing in the specified session"
       operationId: "cancelSessionProcessing"
@@ -959,23 +1090,24 @@ paths:
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
                 properties:
-                  "cancelled":
+                  cancelled:
                     description: "Whether cancellation was successful"
                     type: "boolean"
                 type: "object"
           description: "Cancellation status"
         "404":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Session not found"
       summary: "Cancel agent processing"
       tags:
         - "Messages"
-  "/api/sessions/{id}/export":
+  /api/sessions/{id}/export:
     get:
       description: "Export complete session transcript with all messages, tool calls, reasoning, and metadata as JSON"
       operationId: "exportSession"
@@ -989,30 +1121,32 @@ paths:
       responses:
         "200":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ExportSession"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExportSession"
           description: "Session transcript exported successfully"
           headers:
-            "Content-Disposition":
+            Content-Disposition:
               description: "Suggests filename for download"
               schema:
                 example: "attachment; filename=session_abc123_transcript.json"
                 type: "string"
-              example: "attachment; filename=session_abc123_transcript.json"
         "404":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Session not found"
         "500":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Internal server error"
       summary: "Export session transcript"
       tags:
         - "Sessions"
-  "/api/sessions/{id}/files":
+  /api/sessions/{id}/files:
     get:
       description: "List all files in session storage directory"
       operationId: "listSessionFiles"
@@ -1026,20 +1160,22 @@ paths:
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
-                items: {"$ref": "#/components/schemas/FileInfo"}
+                items:
+                  $ref: "#/components/schemas/FileInfo"
                 type: "array"
           description: "List of files in session"
         "404":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Session not found"
       summary: "List session files"
       tags:
         - "Files"
-  "/api/sessions/{id}/files/upload":
+  /api/sessions/{id}/files/upload:
     post:
       description: "Upload a file to session-specific storage directory"
       operationId: "uploadSessionFile"
@@ -1052,10 +1188,10 @@ paths:
             type: "string"
       requestBody:
         content:
-          "multipart/form-data":
+          multipart/form-data:
             schema:
               properties:
-                "file":
+                file:
                   description: "File to upload"
                   format: "binary"
                   type: "string"
@@ -1066,28 +1202,32 @@ paths:
       responses:
         "201":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/FileInfo"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FileInfo"
           description: "File uploaded successfully"
         "400":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Invalid file or session ID"
         "404":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Session not found"
         "413":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "File too large (max 32MB)"
       summary: "Upload file to session"
       tags:
         - "Files"
-  "/api/sessions/{id}/files/{filename}":
+  /api/sessions/{id}/files/{filename}:
     delete:
       description: "Delete a specific file from session storage. Only files are supported - directories cannot be deleted."
       operationId: "deleteSessionFile"
@@ -1109,13 +1249,15 @@ paths:
           description: "File deleted successfully"
         "400":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Bad request - attempted to delete a directory"
         "404":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Session or file not found"
       summary: "Delete session file"
       tags:
@@ -1152,7 +1294,7 @@ paths:
       responses:
         "200":
           content:
-            "*/*":
+            '*/*':
               schema:
                 description: "File content with appropriate MIME type"
                 format: "binary"
@@ -1160,18 +1302,20 @@ paths:
           description: "File content"
         "400":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Invalid filename or thumbnail parameters"
         "404":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Session or file not found"
       summary: "Get session file"
       tags:
         - "Files"
-  "/api/sessions/{id}/messages":
+  /api/sessions/{id}/messages:
     get:
       description: "Retrieve all messages from a specific session"
       operationId: "getSessionMessages"
@@ -1185,15 +1329,17 @@ paths:
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
-                items: {"$ref": "#/components/schemas/BackendMessage"}
+                items:
+                  $ref: "#/components/schemas/BackendMessage"
                 type: "array"
           description: "List of session messages"
         "404":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Session not found"
       summary: "List session messages"
       tags:
@@ -1210,17 +1356,17 @@ paths:
             type: "string"
       requestBody:
         content:
-          "application/json":
+          application/json:
             schema:
               properties:
-                "plan_mode":
+                plan_mode:
                   default: false
                   description: "Whether the message is in planning mode"
                   type: "boolean"
-                "text":
+                text:
                   description: "The text content of the message"
                   type: "string"
-                "thinking_level":
+                thinking_level:
                   description: "Thinking level: off (disabled), basic (4k tokens), medium (10k tokens), maximum (32k tokens). If not provided, determined by keywords in message."
                   enum:
                     - "off"
@@ -1237,13 +1383,13 @@ paths:
       responses:
         "202":
           content:
-            "application/json":
+            application/json:
               schema:
                 properties:
-                  "sessionId":
+                  sessionId:
                     description: "Session ID for the processing task"
                     type: "string"
-                  "status":
+                  status:
                     description: "Processing status"
                     example: "processing"
                     type: "string"
@@ -1254,18 +1400,20 @@ paths:
           description: "Message accepted for processing. Agent runs asynchronously and streams results via SSE."
         "400":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Invalid message data"
         "404":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Session not found"
       summary: "Send a message to session (async)"
       tags:
         - "Messages"
-  "/api/sessions/{id}/rewind":
+  /api/sessions/{id}/rewind:
     post:
       description: "Delete messages after a specified message in the current session, optionally cleaning up media files created after that point"
       operationId: "rewindSession"
@@ -1278,14 +1426,14 @@ paths:
             type: "string"
       requestBody:
         content:
-          "application/json":
+          application/json:
             schema:
               properties:
-                "cleanupMedia":
+                cleanupMedia:
                   default: true
                   description: "Whether to clean up media files created after the rewind point (based on file timestamp)"
                   type: "boolean"
-                "messageId":
+                messageId:
                   description: "ID of the last message to keep. All messages after this message will be deleted."
                   type: "string"
               required:
@@ -1295,33 +1443,36 @@ paths:
       responses:
         "200":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/SessionData"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SessionData"
           description: "Session rewound successfully"
         "400":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Invalid request - messageId is required"
         "404":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Session or message not found"
       summary: "Rewind a session"
       tags:
         - "Sessions"
-  "/api/system/info":
+  /api/system/info:
     get:
       description: "Retrieve system information including storage configuration"
       operationId: "getSystemInfo"
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
                 properties:
-                  "storageBasePath":
+                  storageBasePath:
                     description: "Absolute path to the storage base directory"
                     type: "string"
                 required:
@@ -1330,37 +1481,38 @@ paths:
           description: "System information"
         "500":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Internal server error"
       summary: "Get system information"
       tags:
         - "System"
-  "/api/tools":
+  /api/tools:
     get:
       description: "Returns the list of all LLM tools that Claude can invoke. The list is dynamically extracted from the actual tools registered in CoderAgentTools() (agent/tools.go), ensuring it always reflects the current tool availability. Typical tools include: Bash, Edit, Read, Write, Grep, Glob, WebFetch, WebSearch, ReadMedia, TodoWrite, ExitPlanMode, and Task. This endpoint is useful for creating tool callbacks or understanding available agent capabilities."
       operationId: "listLLMTools"
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
                 properties:
-                  "tools":
+                  tools:
                     items:
                       properties:
-                        "description":
+                        description:
                           description: "Tool description"
                           example: "Execute bash commands in a persistent shell session"
                           type: "string"
-                        "name":
+                        name:
                           description: "Tool name"
                           example: "Bash"
                           type: "string"
-                        "parameters":
+                        parameters:
                           description: "Tool parameter schema"
                           type: "object"
-                        "required":
+                        required:
                           description: "Required parameters"
                           items:
                             type: "string"
@@ -1371,62 +1523,63 @@ paths:
           description: "List of LLM tools"
         "500":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Internal server error"
       summary: "List LLM tools"
       tags:
         - "Tools"
-  "/api/tools/credentials-status":
+  /api/tools/credentials-status:
     get:
       description: "Returns authentication/credential status for external tool integrations (Brave Search, Gemini Vision, etc.). This endpoint checks if API keys are configured for tools that require external service credentials."
       operationId: "getToolCredentialsStatus"
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
                 properties:
-                  "categories":
+                  categories:
                     additionalProperties:
                       properties:
-                        "description":
+                        description:
                           description: "Category description"
                           example: "Search the web for real-time information"
                           type: "string"
-                        "display_name":
+                        display_name:
                           description: "Category display name"
                           example: "Web Search"
                           type: "string"
-                        "icon":
+                        icon:
                           description: "Category icon"
                           example: "\U0001F50D"
                           type: "string"
-                        "tools":
+                        tools:
                           description: "Tools in this category"
                           items:
                             properties:
-                              "api_key_format":
+                              api_key_format:
                                 description: "Expected API key format"
                                 example: "BSA..."
                                 type: "string"
-                              "api_key_required":
+                              api_key_required:
                                 description: "Whether an API key is required"
                                 example: true
                                 type: "boolean"
-                              "authenticated":
+                              authenticated:
                                 description: "Whether the tool has valid credentials"
                                 example: true
                                 type: "boolean"
-                              "description":
+                              description:
                                 description: "Tool description"
                                 example: "Privacy-focused web search with real-time results"
                                 type: "string"
-                              "display_name":
+                              display_name:
                                 description: "Tool display name"
                                 example: "Brave Search"
                                 type: "string"
-                              "provider":
+                              provider:
                                 description: "Provider identifier"
                                 example: "brave"
                                 type: "string"
@@ -1439,45 +1592,46 @@ paths:
           description: "Tool credentials status"
         "500":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Internal server error"
       summary: "Get tool credentials status"
       tags:
         - "Tools"
-  "/api/tools/status":
+  /api/tools/status:
     get:
       description: "Get status and authentication information for all available tools and categories"
       operationId: "getToolsStatus"
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
                 properties:
-                  "categories":
+                  categories:
                     additionalProperties:
                       properties:
-                        "display_name":
+                        display_name:
                           description: "User-friendly category name"
                           type: "string"
-                        "tools":
+                        tools:
                           description: "Available tools in this category"
                           items:
                             properties:
-                              "api_key_required":
+                              api_key_required:
                                 description: "Whether tool requires API key authentication"
                                 type: "boolean"
-                              "authenticated":
+                              authenticated:
                                 description: "Whether tool is authenticated and ready to use"
                                 type: "boolean"
-                              "description":
+                              description:
                                 description: "Tool description"
                                 type: "string"
-                              "display_name":
+                              display_name:
                                 description: "User-friendly tool name"
                                 type: "string"
-                              "provider":
+                              provider:
                                 description: "Tool provider name"
                                 type: "string"
                             type: "object"
@@ -1489,73 +1643,75 @@ paths:
           description: "Tools status and authentication information"
         "500":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Internal server error"
       summary: "Get tools status"
       tags:
         - "Tools"
-  "/health":
+  /health:
     get:
       description: "Check server health and status"
       operationId: "healthCheck"
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
                 properties:
-                  "status":
+                  status:
                     description: "Health status"
                     type: "string"
-                  "timestamp":
+                  timestamp:
                     description: "Current timestamp"
                     type: "string"
-                  "version":
+                  version:
                     description: "Application version"
                     type: "string"
                 type: "object"
           description: "Health information"
         "500":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Internal server error"
       summary: "Health check"
       tags:
         - "System"
-  "/health/auth":
+  /health/auth:
     get:
       description: "Get health status of all OAuth credentials. Background service refreshes tokens 35 minutes before expiry. API calls mark tokens expired 5 minutes before expiry. Health statuses: 'healthy' (tokens valid, >5min remaining), 'degraded' (some tokens within 5min of expiry but refreshable), 'unhealthy' (tokens expired without refresh capability)"
       operationId: "getOAuthHealth"
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
                 properties:
-                  "providers":
+                  providers:
                     additionalProperties:
                       properties:
-                        "error":
+                        error:
                           description: "Error message if status is 'error'"
                           type: "string"
-                        "expires_at":
+                        expires_at:
                           description: "Token expiration time"
                           format: "date-time"
                           type: "string"
-                        "expires_in":
+                        expires_in:
                           description: "Human-readable time until expiration"
                           example: "2h30m15s"
                           type: "string"
-                        "last_refresh":
+                        last_refresh:
                           description: "Last time token was refreshed"
                           format: "date-time"
                           type: "string"
-                        "provider":
+                        provider:
                           description: "Provider name"
                           type: "string"
-                        "status":
+                        status:
                           description: "Token status"
                           enum:
                             - "active"
@@ -1570,7 +1726,7 @@ paths:
                       type: "object"
                     description: "Map of provider OAuth health status"
                     type: "object"
-                  "status":
+                  status:
                     description: "Overall health status"
                     enum:
                       - "healthy"
@@ -1578,7 +1734,7 @@ paths:
                       - "unhealthy"
                     example: "healthy"
                     type: "string"
-                  "timestamp":
+                  timestamp:
                     description: "Health check timestamp"
                     format: "date-time"
                     type: "string"
@@ -1590,28 +1746,29 @@ paths:
           description: "OAuth health status"
         "500":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Health check service not available or internal error"
       summary: "Get OAuth authentication health"
       tags:
         - "Health"
         - "Authentication"
-  "/internal/auth/refresh-tokens":
+  /internal/auth/refresh-tokens:
     post:
       description: "Manually trigger OAuth token refresh for all expired tokens. Normally tokens are refreshed automatically by the background service every 30 minutes."
       operationId: "refreshOAuthTokens"
       responses:
         "200":
           content:
-            "application/json":
+            application/json:
               schema:
                 properties:
-                  "message":
+                  message:
                     description: "Status message"
                     example: "Token refresh triggered successfully"
                     type: "string"
-                  "status":
+                  status:
                     description: "Operation status"
                     example: "success"
                     type: "string"
@@ -1619,14 +1776,15 @@ paths:
           description: "Token refresh triggered"
         "500":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Token refresh service not available or internal error"
       summary: "Manually refresh OAuth tokens"
       tags:
         - "Authentication"
         - "Internal"
-  "/stream":
+  /stream:
     get:
       description: "Establishes a persistent SSE connection for receiving real-time updates during message processing. Connection remains open for multiple messages and includes proper reconnection support with Last-Event-ID header."
       operationId: "streamEvents"
@@ -1646,73 +1804,75 @@ paths:
       responses:
         "200":
           content:
-            "text/event-stream":
-              schema: {"$ref": "#/components/schemas/SSEEventStream"}
+            text/event-stream:
+              schema:
+                $ref: "#/components/schemas/SSEEventStream"
           description: "SSE event stream"
           headers:
-            "Cache-Control":
+            Cache-Control:
               description: "Prevents caching of the event stream"
               schema:
                 example: "no-cache"
                 type: "string"
-              example: "no-cache"
-            "Connection":
+            Connection:
               description: "Keep connection alive for streaming"
               schema:
                 example: "keep-alive"
                 type: "string"
-              example: "keep-alive"
-            "Content-Type":
+            Content-Type:
               description: "Server-sent events MIME type"
               schema:
                 example: "text/event-stream"
                 type: "string"
-              example: "text/event-stream"
         "404":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Session not found"
         "500":
           content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ErrorResponse"}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
           description: "Internal server error"
       summary: "Server-Sent Events stream for real-time updates"
       tags:
         - "Streaming"
 components:
   schemas:
-    "BackendMessage":
+    BackendMessage:
       description: "Backend message structure representing a complete message exchange"
       properties:
-        "assistantResponse":
+        assistantResponse:
           description: "Assistant's response message (optional)"
           type: "string"
-        "callbackResults":
+        callbackResults:
           description: "Callback execution results (optional)"
-          items: {"$ref": "#/components/schemas/CallbackResultData"}
+          items:
+            $ref: "#/components/schemas/CallbackResultData"
           type: "array"
-        "id":
+        id:
           description: "Unique message identifier"
           type: "string"
-        "reasoning":
+        reasoning:
           description: "Reasoning process (optional)"
           type: "string"
-        "reasoningDuration":
+        reasoningDuration:
           description: "Reasoning duration in milliseconds (optional)"
           type: "integer"
-        "role":
+        role:
           description: "Message role (user, assistant, tool)"
           type: "string"
-        "sessionId":
+        sessionId:
           description: "Session identifier"
           type: "string"
-        "toolCalls":
+        toolCalls:
           description: "Tool calls made during message processing"
-          items: {"$ref": "#/components/schemas/ToolCallData"}
+          items:
+            $ref: "#/components/schemas/ToolCallData"
           type: "array"
-        "userInput":
+        userInput:
           description: "User's input message"
           type: "string"
       required:
@@ -1721,44 +1881,44 @@ components:
         - "role"
         - "userInput"
       type: "object"
-    "Callback":
+    Callback:
       description: "Session-level callback configuration that executes after tool completion"
       properties:
-        "bashCommand":
+        bashCommand:
           description: "Bash command to execute (required for bash_script type). Has access to environment variables."
           type: "string"
-        "bashTimeout":
+        bashTimeout:
           default: 120000
           description: "Timeout in milliseconds for bash execution (default: 120000)"
           type: "integer"
-        "excludeFromContext":
+        excludeFromContext:
           default: false
           description: "Exclude callback results from agent context. Only applies to bash_script and sub_agent types. Not allowed for send_message."
           type: "boolean"
-        "includeFullHistory":
+        includeFullHistory:
           default: false
           description: "Include full conversation history in sub-agent context (not yet implemented)"
           type: "boolean"
-        "messageContent":
+        messageContent:
           description: "Message content to inject into the conversation (required for send_message type). Will be sent as a User message."
           example: "Please review the changes and run tests"
           type: "string"
-        "name":
+        name:
           description: "Human-readable name for this callback (optional, defaults to 'Callback #XXXX')"
           example: "Log Output"
           type: "string"
-        "subAgentPrompt":
+        subAgentPrompt:
           description: "Prompt for the sub-agent (required for sub_agent type). Tool execution context is automatically appended."
           type: "string"
-        "subAgentType":
+        subAgentType:
           default: "general-purpose"
           description: "Type of sub-agent to spawn (default: 'general-purpose')"
           type: "string"
-        "toolName":
+        toolName:
           description: "Tool to attach callback to (e.g., 'show', 'bash', '*' for all tools)"
           example: "*"
           type: "string"
-        "type":
+        type:
           description: "Callback type: 'bash_script' for shell commands, 'sub_agent' for spawning sub-agents, 'send_message' for injecting messages"
           enum:
             - "bash_script"
@@ -1769,47 +1929,47 @@ components:
         - "toolName"
         - "type"
       type: "object"
-    "CallbackResultData":
+    CallbackResultData:
       description: "Callback execution result information"
       properties:
-        "callback_name":
+        callback_name:
           description: "Human-readable name of the callback (optional)"
           type: "string"
-        "callback_type":
+        callback_type:
           description: "Type of callback executed"
           enum:
             - "bash_script"
             - "sub_agent"
             - "send_message"
           type: "string"
-        "error":
+        error:
           description: "Error message if callback failed (optional)"
           type: "string"
-        "exclude_from_context":
+        exclude_from_context:
           description: "Whether this callback result is excluded from agent context (optional)"
           type: "boolean"
-        "exit_code":
+        exit_code:
           description: "Exit code from bash callback (optional)"
           type: "integer"
-        "stderr":
+        stderr:
           description: "Standard error from bash callback (optional)"
           type: "string"
-        "stdout":
+        stdout:
           description: "Standard output from bash callback (optional)"
           type: "string"
-        "subagent_id":
+        subagent_id:
           description: "ID of spawned sub-agent session (optional)"
           type: "string"
-        "subagent_result":
+        subagent_result:
           description: "Result from sub-agent execution (optional)"
           type: "string"
-        "success":
+        success:
           description: "Whether callback executed successfully"
           type: "boolean"
-        "tool_call_id":
+        tool_call_id:
           description: "ID of the tool call that triggered this callback"
           type: "string"
-        "tool_name":
+        tool_name:
           description: "Name of the tool that triggered callback"
           type: "string"
       required:
@@ -1818,7 +1978,7 @@ components:
         - "callback_type"
         - "success"
       type: "object"
-    "CoreToolName":
+    CoreToolName:
       description: "Core built-in tool names"
       enum:
         - "Bash"
@@ -1828,52 +1988,53 @@ components:
         - "Grep"
         - "Write"
         - "Edit"
-        - "python_execution"
         - "Search"
         - "TodoWrite"
         - "ExitPlanMode"
         - "Show"
         - "Task"
       type: "string"
-    "ErrorResponse":
+    ErrorResponse:
       properties:
-        "error": {"$ref": "#/components/schemas/RESTError"}
+        error:
+          $ref: "#/components/schemas/RESTError"
       required:
         - "error"
       type: "object"
-    "ExportMessage":
+    ExportMessage:
       description: "Complete message information for export"
       properties:
-        "content":
+        content:
           description: "Message content"
           type: "string"
-        "createdAt":
+        createdAt:
           description: "Message creation timestamp"
           format: "date-time"
           type: "string"
-        "finishReason":
+        finishReason:
           description: "Completion finish reason (optional)"
           type: "string"
-        "id":
+        id:
           description: "Message identifier"
           type: "string"
-        "model":
+        model:
           description: "Model used for this message (optional)"
           type: "string"
-        "reasoning":
+        reasoning:
           description: "Reasoning content (optional)"
           type: "string"
-        "reasoningDuration":
+        reasoningDuration:
           description: "Reasoning duration in milliseconds (optional)"
           type: "integer"
-        "role":
+        role:
           description: "Message role (user, assistant, tool)"
           type: "string"
-        "toolCalls":
+        toolCalls:
           description: "Tool calls with complete information"
-          items: {"$ref": "#/components/schemas/ExportToolCall"}
+          items:
+            $ref: "#/components/schemas/ExportToolCall"
           type: "array"
-        "updatedAt":
+        updatedAt:
           description: "Message update timestamp"
           format: "date-time"
           type: "string"
@@ -1884,44 +2045,45 @@ components:
         - "createdAt"
         - "updatedAt"
       type: "object"
-    "ExportSession":
+    ExportSession:
       description: "Comprehensive session export with all messages, tool calls, and metadata"
       properties:
-        "assistantMessageCount":
+        assistantMessageCount:
           description: "Number of assistant messages"
           type: "integer"
-        "completionTokens":
+        completionTokens:
           description: "Total completion tokens used"
           type: "integer"
-        "cost":
+        cost:
           description: "Total cost of session"
           format: "double"
           type: "number"
-        "createdAt":
+        createdAt:
           description: "Session creation timestamp"
           format: "date-time"
           type: "string"
-        "id":
+        id:
           description: "Session identifier"
           type: "string"
-        "messages":
+        messages:
           description: "Complete list of messages with full details"
-          items: {"$ref": "#/components/schemas/ExportMessage"}
+          items:
+            $ref: "#/components/schemas/ExportMessage"
           type: "array"
-        "promptTokens":
+        promptTokens:
           description: "Total prompt tokens used"
           type: "integer"
-        "title":
+        title:
           description: "Session title"
           type: "string"
-        "toolCallCount":
+        toolCallCount:
           description: "Total number of tool calls"
           type: "integer"
-        "updatedAt":
+        updatedAt:
           description: "Session last update timestamp"
           format: "date-time"
           type: "string"
-        "userMessageCount":
+        userMessageCount:
           description: "Number of user messages"
           type: "integer"
       required:
@@ -1929,34 +2091,34 @@ components:
         - "title"
         - "messages"
       type: "object"
-    "ExportToolCall":
+    ExportToolCall:
       description: "Complete tool call information for export"
       properties:
-        "finished":
+        finished:
           description: "Whether tool execution finished"
           type: "boolean"
-        "id":
+        id:
           description: "Tool call identifier"
           type: "string"
-        "input":
+        input:
           description: "Tool input as JSON string"
           type: "string"
-        "inputJson":
+        inputJson:
           description: "Parsed tool input (optional)"
           type: "object"
-        "isError":
+        isError:
           description: "Whether execution resulted in error (optional)"
           type: "boolean"
-        "metadata":
+        metadata:
           description: "Additional tool metadata (optional)"
           type: "string"
-        "name":
+        name:
           description: "Tool name"
           type: "string"
-        "result":
+        result:
           description: "Tool execution result (optional)"
           type: "string"
-        "type":
+        type:
           description: "Tool type"
           type: "string"
       required:
@@ -1966,23 +2128,23 @@ components:
         - "type"
         - "finished"
       type: "object"
-    "FileInfo":
+    FileInfo:
       properties:
-        "isDir":
+        isDir:
           description: "Whether this is a directory"
           type: "boolean"
-        "modified":
+        modified:
           description: "Last modified timestamp (Unix time)"
           format: "int64"
           type: "integer"
-        "name":
+        name:
           description: "File name"
           type: "string"
-        "size":
+        size:
           description: "File size in bytes"
           format: "int64"
           type: "integer"
-        "url":
+        url:
           description: "Static URL to access the file"
           type: "string"
       required:
@@ -1992,35 +2154,35 @@ components:
         - "isDir"
         - "url"
       type: "object"
-    "MessageData":
+    MessageData:
       description: "Message data structure for user input"
       properties:
-        "plan_mode":
+        plan_mode:
           default: false
           description: "Whether the message is in planning mode"
           type: "boolean"
-        "text":
+        text:
           description: "The text content of the message"
           type: "string"
       required:
         - "text"
       type: "object"
-    "MessageRole":
+    MessageRole:
       description: "Message role"
       enum:
         - "user"
         - "assistant"
         - "tool"
       type: "string"
-    "RESTError":
+    RESTError:
       properties:
-        "code":
+        code:
           description: "HTTP status code"
           type: "integer"
-        "message":
+        message:
           description: "Error message"
           type: "string"
-        "type":
+        type:
           description: "Error type"
           enum:
             - "bad_request"
@@ -2034,10 +2196,10 @@ components:
         - "message"
         - "type"
       type: "object"
-    "SSEBaseEvent":
+    SSEBaseEvent:
       description: "Base SSE event with standard fields"
       properties:
-        "event":
+        event:
           description: "Event type identifier"
           enum:
             - "connected"
@@ -2056,11 +2218,11 @@ components:
             - "session_created"
             - "session_deleted"
           type: "string"
-        "id":
+        id:
           description: "Unique sequential event identifier for ordering and reconnection"
           example: "1234567890"
           type: "string"
-        "retry":
+        retry:
           description: "Client retry interval in milliseconds"
           example: 30000
           type: "integer"
@@ -2068,31 +2230,31 @@ components:
         - "id"
         - "event"
       type: "object"
-    "SSECompleteEvent":
+    SSECompleteEvent:
       allOf:
-        - {"$ref": "#/components/schemas/SSEBaseEvent"}
+        - $ref: "#/components/schemas/SSEBaseEvent"
         - properties:
-            "data":
+            data:
               properties:
-                "content":
+                content:
                   description: "Final response content"
                   type: "string"
-                "done":
+                done:
                   description: "Indicates message processing completion"
                   type: "boolean"
-                "messageId":
+                messageId:
                   description: "Completed message identifier"
                   type: "string"
-                "parentToolCallId":
+                parentToolCallId:
                   description: "ID of the parent tool call that spawned this subagent (for nested events)"
                   type: "string"
-                "reasoning":
+                reasoning:
                   description: "Optional reasoning content"
                   type: "string"
-                "reasoningDuration":
+                reasoningDuration:
                   description: "Duration of reasoning process in milliseconds"
                   type: "integer"
-                "type":
+                type:
                   description: "Completion type"
                   type: "string"
               required:
@@ -2102,13 +2264,13 @@ components:
           required:
             - "data"
           type: "object"
-    "SSEConnectedEvent":
+    SSEConnectedEvent:
       allOf:
-        - {"$ref": "#/components/schemas/SSEBaseEvent"}
+        - $ref: "#/components/schemas/SSEBaseEvent"
         - properties:
-            "data":
+            data:
               properties:
-                "sessionId":
+                sessionId:
                   description: "Session identifier for the connected stream"
                   type: "string"
               required:
@@ -2117,22 +2279,22 @@ components:
           required:
             - "data"
           type: "object"
-    "SSEContentEvent":
+    SSEContentEvent:
       allOf:
-        - {"$ref": "#/components/schemas/SSEBaseEvent"}
+        - $ref: "#/components/schemas/SSEBaseEvent"
         - properties:
-            "data":
+            data:
               properties:
-                "assistantMessageId":
+                assistantMessageId:
                   description: "ID of the assistant message this content belongs to"
                   type: "string"
-                "content":
+                content:
                   description: "Streaming content delta"
                   type: "string"
-                "parentToolCallId":
+                parentToolCallId:
                   description: "ID of the parent tool call that spawned this subagent (for nested events)"
                   type: "string"
-                "type":
+                type:
                   description: "Content event type"
                   type: "string"
               required:
@@ -2142,28 +2304,28 @@ components:
           required:
             - "data"
           type: "object"
-    "SSEErrorEvent":
+    SSEErrorEvent:
       allOf:
-        - {"$ref": "#/components/schemas/SSEBaseEvent"}
+        - $ref: "#/components/schemas/SSEBaseEvent"
         - properties:
-            "data":
+            data:
               properties:
-                "attempt":
+                attempt:
                   description: "Current retry attempt number"
                   type: "integer"
-                "error":
+                error:
                   description: "Error message description"
                   type: "string"
-                "maxAttempts":
+                maxAttempts:
                   description: "Maximum number of retry attempts"
                   type: "integer"
-                "parentToolCallId":
+                parentToolCallId:
                   description: "ID of the parent tool call that spawned this subagent (for nested events)"
                   type: "string"
-                "retryAfter":
+                retryAfter:
                   description: "Milliseconds to wait before retry"
                   type: "integer"
-                "type":
+                type:
                   description: "Error type classification"
                   type: "string"
               required:
@@ -2172,50 +2334,52 @@ components:
           required:
             - "data"
           type: "object"
-    "SSEEventStream":
+    SSEEventStream:
       description: "Server-Sent Event stream with discriminated event types"
       discriminator:
         mapping:
-          "complete": "#/components/schemas/SSECompleteEvent"
-          "connected": "#/components/schemas/SSEConnectedEvent"
-          "content": "#/components/schemas/SSEContentEvent"
-          "error": "#/components/schemas/SSEErrorEvent"
-          "heartbeat": "#/components/schemas/SSEHeartbeatEvent"
-          "permission": "#/components/schemas/SSEPermissionEvent"
-          "session_created": "#/components/schemas/SSESessionCreatedEvent"
-          "session_deleted": "#/components/schemas/SSESessionDeletedEvent"
-          "thinking": "#/components/schemas/SSEThinkingEvent"
-          "tool_execution_complete": "#/components/schemas/SSEToolExecutionCompleteEvent"
-          "tool_execution_start": "#/components/schemas/SSEToolExecutionStartEvent"
-          "tool_use_parameter_delta": "#/components/schemas/SSEToolUseParameterDeltaEvent"
-          "tool_use_parameter_streaming_complete": "#/components/schemas/SSEToolUseParameterStreamingCompleteEvent"
-          "tool_use_start": "#/components/schemas/SSEToolUseStartEvent"
-          "user_message_created": "#/components/schemas/SSEUserMessageCreatedEvent"
+          complete: "#/components/schemas/SSECompleteEvent"
+          connected: "#/components/schemas/SSEConnectedEvent"
+          content: "#/components/schemas/SSEContentEvent"
+          error: "#/components/schemas/SSEErrorEvent"
+          heartbeat: "#/components/schemas/SSEHeartbeatEvent"
+          notification: "#/components/schemas/SSENotificationEvent"
+          permission: "#/components/schemas/SSEPermissionEvent"
+          session_created: "#/components/schemas/SSESessionCreatedEvent"
+          session_deleted: "#/components/schemas/SSESessionDeletedEvent"
+          thinking: "#/components/schemas/SSEThinkingEvent"
+          tool_execution_complete: "#/components/schemas/SSEToolExecutionCompleteEvent"
+          tool_execution_start: "#/components/schemas/SSEToolExecutionStartEvent"
+          tool_use_parameter_delta: "#/components/schemas/SSEToolUseParameterDeltaEvent"
+          tool_use_parameter_streaming_complete: "#/components/schemas/SSEToolUseParameterStreamingCompleteEvent"
+          tool_use_start: "#/components/schemas/SSEToolUseStartEvent"
+          user_message_created: "#/components/schemas/SSEUserMessageCreatedEvent"
         propertyName: "event"
       oneOf:
-        - {"$ref": "#/components/schemas/SSEConnectedEvent"}
-        - {"$ref": "#/components/schemas/SSEHeartbeatEvent"}
-        - {"$ref": "#/components/schemas/SSEErrorEvent"}
-        - {"$ref": "#/components/schemas/SSECompleteEvent"}
-        - {"$ref": "#/components/schemas/SSEThinkingEvent"}
-        - {"$ref": "#/components/schemas/SSEContentEvent"}
-        - {"$ref": "#/components/schemas/SSEToolUseStartEvent"}
-        - {"$ref": "#/components/schemas/SSEToolUseParameterStreamingCompleteEvent"}
-        - {"$ref": "#/components/schemas/SSEToolUseParameterDeltaEvent"}
-        - {"$ref": "#/components/schemas/SSEToolExecutionStartEvent"}
-        - {"$ref": "#/components/schemas/SSEToolExecutionCompleteEvent"}
-        - {"$ref": "#/components/schemas/SSEPermissionEvent"}
-        - {"$ref": "#/components/schemas/SSEUserMessageCreatedEvent"}
-        - {"$ref": "#/components/schemas/SSESessionCreatedEvent"}
-        - {"$ref": "#/components/schemas/SSESessionDeletedEvent"}
+        - $ref: "#/components/schemas/SSEConnectedEvent"
+        - $ref: "#/components/schemas/SSEHeartbeatEvent"
+        - $ref: "#/components/schemas/SSEErrorEvent"
+        - $ref: "#/components/schemas/SSECompleteEvent"
+        - $ref: "#/components/schemas/SSEThinkingEvent"
+        - $ref: "#/components/schemas/SSEContentEvent"
+        - $ref: "#/components/schemas/SSEToolUseStartEvent"
+        - $ref: "#/components/schemas/SSEToolUseParameterStreamingCompleteEvent"
+        - $ref: "#/components/schemas/SSEToolUseParameterDeltaEvent"
+        - $ref: "#/components/schemas/SSEToolExecutionStartEvent"
+        - $ref: "#/components/schemas/SSEToolExecutionCompleteEvent"
+        - $ref: "#/components/schemas/SSEPermissionEvent"
+        - $ref: "#/components/schemas/SSENotificationEvent"
+        - $ref: "#/components/schemas/SSEUserMessageCreatedEvent"
+        - $ref: "#/components/schemas/SSESessionCreatedEvent"
+        - $ref: "#/components/schemas/SSESessionDeletedEvent"
       type: "object"
-    "SSEHeartbeatEvent":
+    SSEHeartbeatEvent:
       allOf:
-        - {"$ref": "#/components/schemas/SSEBaseEvent"}
+        - $ref: "#/components/schemas/SSEBaseEvent"
         - properties:
-            "data":
+            data:
               properties:
-                "type":
+                type:
                   description: "Heartbeat type"
                   example: "ping"
                   type: "string"
@@ -2225,35 +2389,101 @@ components:
           required:
             - "data"
           type: "object"
-    "SSEPermissionEvent":
+    SSENotificationEvent:
       allOf:
-        - {"$ref": "#/components/schemas/SSEBaseEvent"}
+        - $ref: "#/components/schemas/SSEBaseEvent"
         - properties:
-            "data":
+            data:
               properties:
-                "action":
-                  description: "Requested action description"
+                choices:
+                  description: "Available choices (required when responseType is 'choice')"
+                  items:
+                    type: "string"
+                  type: "array"
+                createdAt:
+                  description: "Unix timestamp when notification was created"
+                  type: "integer"
+                id:
+                  description: "Notification identifier"
                   type: "string"
-                "description":
-                  description: "Human-readable permission description"
+                message:
+                  description: "Notification message content"
                   type: "string"
-                "id":
-                  description: "Permission request identifier"
+                notificationType:
+                  description: "Type of notification"
+                  enum:
+                    - "info"
+                    - "warning"
+                    - "error"
+                    - "question"
                   type: "string"
-                "params":
-                  description: "Additional parameters for the permission request"
-                  type: "object"
-                "parentToolCallId":
+                parentToolCallId:
                   description: "ID of the parent tool call that spawned this subagent (for nested events)"
                   type: "string"
-                "path":
+                responseType:
+                  description: "Expected response type from user"
+                  enum:
+                    - "acknowledge"
+                    - "text"
+                    - "choice"
+                  type: "string"
+                sessionId:
+                  description: "Session identifier for the notification"
+                  type: "string"
+                timeout:
+                  description: "Timeout in seconds for user response"
+                  type: "integer"
+                title:
+                  description: "Notification title"
+                  type: "string"
+                type:
+                  description: "Notification event type"
+                  type: "string"
+              required:
+                - "type"
+                - "id"
+                - "sessionId"
+                - "notificationType"
+                - "title"
+                - "message"
+                - "responseType"
+                - "timeout"
+                - "createdAt"
+              type: "object"
+          required:
+            - "data"
+          type: "object"
+    SSEPermissionEvent:
+      allOf:
+        - $ref: "#/components/schemas/SSEBaseEvent"
+        - properties:
+            data:
+              properties:
+                action:
+                  description: "Requested action description"
+                  type: "string"
+                description:
+                  description: "Human-readable permission description"
+                  type: "string"
+                id:
+                  description: "Permission request identifier"
+                  type: "string"
+                params:
+                  description: "Additional parameters for the permission request"
+                  type: "object"
+                parentToolCallId:
+                  description: "ID of the parent tool call that spawned this subagent (for nested events)"
+                  type: "string"
+                path:
                   description: "File path for permission request"
                   type: "string"
-                "sessionId":
+                sessionId:
                   description: "Session identifier for the permission request"
                   type: "string"
-                "toolName": {"$ref": "#/components/schemas/ToolName", "description": "Tool requiring permission"}
-                "type":
+                toolName:
+                  $ref: "#/components/schemas/ToolName"
+                  description: "Tool requiring permission"
+                type:
                   description: "Permission event type"
                   type: "string"
               required:
@@ -2267,23 +2497,23 @@ components:
           required:
             - "data"
           type: "object"
-    "SSESessionCreatedEvent":
+    SSESessionCreatedEvent:
       allOf:
-        - {"$ref": "#/components/schemas/SSEBaseEvent"}
+        - $ref: "#/components/schemas/SSEBaseEvent"
         - properties:
-            "data":
+            data:
               properties:
-                "createdAt":
+                createdAt:
                   description: "Unix timestamp when the session was created"
                   format: "int64"
                   type: "integer"
-                "sessionId":
+                sessionId:
                   description: "ID of the newly created session"
                   type: "string"
-                "title":
+                title:
                   description: "Title of the newly created session"
                   type: "string"
-                "type":
+                type:
                   description: "Event type"
                   example: "session_created"
                   type: "string"
@@ -2296,16 +2526,16 @@ components:
           required:
             - "data"
           type: "object"
-    "SSESessionDeletedEvent":
+    SSESessionDeletedEvent:
       allOf:
-        - {"$ref": "#/components/schemas/SSEBaseEvent"}
+        - $ref: "#/components/schemas/SSEBaseEvent"
         - properties:
-            "data":
+            data:
               properties:
-                "sessionId":
+                sessionId:
                   description: "ID of the deleted session"
                   type: "string"
-                "type":
+                type:
                   description: "Event type"
                   example: "session_deleted"
                   type: "string"
@@ -2316,22 +2546,22 @@ components:
           required:
             - "data"
           type: "object"
-    "SSEThinkingEvent":
+    SSEThinkingEvent:
       allOf:
-        - {"$ref": "#/components/schemas/SSEBaseEvent"}
+        - $ref: "#/components/schemas/SSEBaseEvent"
         - properties:
-            "data":
+            data:
               properties:
-                "assistantMessageId":
+                assistantMessageId:
                   description: "ID of the assistant message this thinking belongs to"
                   type: "string"
-                "content":
+                content:
                   description: "Thinking or reasoning content"
                   type: "string"
-                "parentToolCallId":
+                parentToolCallId:
                   description: "ID of the parent tool call that spawned this subagent (for nested events)"
                   type: "string"
-                "type":
+                type:
                   description: "Thinking event type"
                   type: "string"
               required:
@@ -2341,26 +2571,28 @@ components:
           required:
             - "data"
           type: "object"
-    "SSEToolExecutionCompleteEvent":
+    SSEToolExecutionCompleteEvent:
       allOf:
-        - {"$ref": "#/components/schemas/SSEBaseEvent"}
+        - $ref: "#/components/schemas/SSEBaseEvent"
         - properties:
-            "data":
+            data:
               properties:
-                "parentToolCallId":
+                parentToolCallId:
                   description: "ID of the parent tool call that spawned this subagent (for nested events)"
                   type: "string"
-                "progress":
+                progress:
                   description: "Final execution progress description"
                   type: "string"
-                "success":
+                success:
                   description: "Indicates if tool execution succeeded"
                   type: "boolean"
-                "toolCallId":
+                toolCallId:
                   description: "Tool call identifier"
                   type: "string"
-                "toolName": {"$ref": "#/components/schemas/ToolName", "description": "Name of the completed tool"}
-                "type":
+                toolName:
+                  $ref: "#/components/schemas/ToolName"
+                  description: "Name of the completed tool"
+                type:
                   description: "Tool execution complete event type"
                   type: "string"
               required:
@@ -2373,23 +2605,25 @@ components:
           required:
             - "data"
           type: "object"
-    "SSEToolExecutionStartEvent":
+    SSEToolExecutionStartEvent:
       allOf:
-        - {"$ref": "#/components/schemas/SSEBaseEvent"}
+        - $ref: "#/components/schemas/SSEBaseEvent"
         - properties:
-            "data":
+            data:
               properties:
-                "parentToolCallId":
+                parentToolCallId:
                   description: "ID of the parent tool call that spawned this subagent (for nested events)"
                   type: "string"
-                "progress":
+                progress:
                   description: "Execution progress description"
                   type: "string"
-                "toolCallId":
+                toolCallId:
                   description: "Tool call identifier"
                   type: "string"
-                "toolName": {"$ref": "#/components/schemas/ToolName", "description": "Name of the tool being executed"}
-                "type":
+                toolName:
+                  $ref: "#/components/schemas/ToolName"
+                  description: "Name of the tool being executed"
+                type:
                   description: "Tool execution start event type"
                   type: "string"
               required:
@@ -2401,25 +2635,25 @@ components:
           required:
             - "data"
           type: "object"
-    "SSEToolUseParameterDeltaEvent":
+    SSEToolUseParameterDeltaEvent:
       allOf:
-        - {"$ref": "#/components/schemas/SSEBaseEvent"}
+        - $ref: "#/components/schemas/SSEBaseEvent"
         - properties:
-            "data":
+            data:
               properties:
-                "assistantMessageId":
+                assistantMessageId:
                   description: "ID of the assistant message this tool parameter delta belongs to"
                   type: "string"
-                "input":
+                input:
                   description: "Partial JSON parameter delta - may not be parseable until complete"
                   type: "string"
-                "parentToolCallId":
+                parentToolCallId:
                   description: "ID of the parent tool call that spawned this subagent (for nested events)"
                   type: "string"
-                "toolCallId":
+                toolCallId:
                   description: "Tool call identifier for correlation"
                   type: "string"
-                "type":
+                type:
                   description: "Tool use parameter delta event type"
                   type: "string"
               required:
@@ -2430,26 +2664,28 @@ components:
           required:
             - "data"
           type: "object"
-    "SSEToolUseParameterStreamingCompleteEvent":
+    SSEToolUseParameterStreamingCompleteEvent:
       allOf:
-        - {"$ref": "#/components/schemas/SSEBaseEvent"}
+        - $ref: "#/components/schemas/SSEBaseEvent"
         - properties:
-            "data":
+            data:
               properties:
-                "assistantMessageId":
+                assistantMessageId:
                   description: "ID of the assistant message this tool belongs to"
                   type: "string"
-                "id":
+                id:
                   description: "Tool call identifier"
                   type: "string"
-                "input":
+                input:
                   description: "Complete JSON-encoded tool input parameters"
                   type: "string"
-                "name": {"$ref": "#/components/schemas/ToolName", "description": "Tool name being executed"}
-                "parentToolCallId":
+                name:
+                  $ref: "#/components/schemas/ToolName"
+                  description: "Tool name being executed"
+                parentToolCallId:
                   description: "ID of the parent tool call that spawned this subagent (for nested events)"
                   type: "string"
-                "type":
+                type:
                   description: "Tool use parameter streaming complete event type"
                   type: "string"
               required:
@@ -2461,23 +2697,25 @@ components:
           required:
             - "data"
           type: "object"
-    "SSEToolUseStartEvent":
+    SSEToolUseStartEvent:
       allOf:
-        - {"$ref": "#/components/schemas/SSEBaseEvent"}
+        - $ref: "#/components/schemas/SSEBaseEvent"
         - properties:
-            "data":
+            data:
               properties:
-                "assistantMessageId":
+                assistantMessageId:
                   description: "ID of the assistant message this tool belongs to"
                   type: "string"
-                "id":
+                id:
                   description: "Tool call identifier"
                   type: "string"
-                "name": {"$ref": "#/components/schemas/ToolName", "description": "Tool name declared for execution"}
-                "parentToolCallId":
+                name:
+                  $ref: "#/components/schemas/ToolName"
+                  description: "Tool name declared for execution"
+                parentToolCallId:
                   description: "ID of the parent tool call that spawned this subagent (for nested events)"
                   type: "string"
-                "type":
+                type:
                   description: "Tool use start event type"
                   type: "string"
               required:
@@ -2488,22 +2726,22 @@ components:
           required:
             - "data"
           type: "object"
-    "SSEUserMessageCreatedEvent":
+    SSEUserMessageCreatedEvent:
       allOf:
-        - {"$ref": "#/components/schemas/SSEBaseEvent"}
+        - $ref: "#/components/schemas/SSEBaseEvent"
         - properties:
-            "data":
+            data:
               properties:
-                "content":
+                content:
                   description: "Content of the user message"
                   type: "string"
-                "messageId":
+                messageId:
                   description: "ID of the created user message"
                   type: "string"
-                "parentToolCallId":
+                parentToolCallId:
                   description: "ID of the parent tool call that spawned this subagent (for nested events)"
                   type: "string"
-                "type":
+                type:
                   description: "User message created event type"
                   example: "user_message_created"
                   type: "string"
@@ -2515,59 +2753,60 @@ components:
           required:
             - "data"
           type: "object"
-    "SessionData":
+    SessionData:
       properties:
-        "assistantMessageCount":
+        assistantMessageCount:
           description: "Number of assistant messages in session"
           type: "integer"
-        "callbacks":
+        callbacks:
           description: "Session-level callback configurations (optional)"
-          items: {"$ref": "#/components/schemas/Callback"}
+          items:
+            $ref: "#/components/schemas/Callback"
           type: "array"
-        "completionTokens":
+        completionTokens:
           description: "Total completion tokens used"
           type: "integer"
-        "cost":
+        cost:
           description: "Total cost of session (for subagent sessions, costs are also accumulated in parent session)"
           format: "double"
           type: "number"
-        "createdAt":
+        createdAt:
           description: "Session creation timestamp"
           format: "date-time"
           type: "string"
-        "firstUserMessage":
+        firstUserMessage:
           description: "First user message (optional)"
           type: "string"
-        "id":
+        id:
           description: "Unique session identifier"
           type: "string"
-        "parentSessionId":
+        parentSessionId:
           description: "Parent session ID for subagent sessions (null for main sessions)"
           type: "string"
-        "parentToolCallId":
+        parentToolCallId:
           description: "ID of the tool call that spawned this subagent session (null for non-subagent sessions)"
           type: "string"
-        "promptTokens":
+        promptTokens:
           description: "Total prompt tokens used"
           type: "integer"
-        "sessionType":
+        sessionType:
           description: "Session type:\n- 'main': Root-level user interactions\n- 'subagent': Delegated task workers"
           enum:
             - "main"
             - "subagent"
           type: "string"
-        "subagentType":
+        subagentType:
           description: "Subagent specialization type (only present for subagent sessions)"
           enum:
             - "general-purpose"
           type: "string"
-        "title":
+        title:
           description: "Session title"
           type: "string"
-        "toolCallCount":
+        toolCallCount:
           description: "Number of tool calls made in session"
           type: "integer"
-        "userMessageCount":
+        userMessageCount:
           description: "Number of user messages in session"
           type: "integer"
       required:
@@ -2582,25 +2821,27 @@ components:
         - "cost"
         - "createdAt"
       type: "object"
-    "ToolCallData":
+    ToolCallData:
       properties:
-        "finished":
+        finished:
           description: "Whether tool call has finished"
           type: "boolean"
-        "id":
+        id:
           description: "Unique tool call identifier"
           type: "string"
-        "input":
+        input:
           description: "Tool input parameters"
           type: "string"
-        "isError":
+        isError:
           description: "Whether tool call resulted in error (optional)"
           type: "boolean"
-        "name": {"$ref": "#/components/schemas/ToolName", "description": "Tool name"}
-        "result":
+        name:
+          $ref: "#/components/schemas/ToolName"
+          description: "Tool name"
+        result:
           description: "Tool execution result (optional)"
           type: "string"
-        "type":
+        type:
           description: "Tool type"
           type: "string"
       required:
@@ -2610,9 +2851,9 @@ components:
         - "type"
         - "finished"
       type: "object"
-    "ToolName":
+    ToolName:
       anyOf:
-        - {"$ref": "#/components/schemas/CoreToolName"}
+        - $ref: "#/components/schemas/CoreToolName"
         - description: "MCP tool names following pattern: {serverName}_{toolName}"
           example: "brave_search"
           pattern: "^[a-zA-Z0-9_]+_[a-zA-Z0-9_]+$"

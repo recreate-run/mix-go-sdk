@@ -102,7 +102,7 @@ func (s SessionData) MarshalJSON() ([]byte, error) {
 }
 
 func (s *SessionData) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"assistantMessageCount", "completionTokens", "cost", "createdAt", "id", "promptTokens", "sessionType", "title", "toolCallCount", "userMessageCount"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
 		return err
 	}
 	return nil

@@ -89,7 +89,7 @@ func (c CreateSessionRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CreateSessionRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"title"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
 		return err
 	}
 	return nil

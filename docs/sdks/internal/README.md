@@ -1,5 +1,4 @@
 # Internal
-(*Internal*)
 
 ## Overview
 

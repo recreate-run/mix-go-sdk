@@ -489,6 +489,298 @@ func (s *SSEUserMessageCreatedEvent) GetData() SSEUserMessageCreatedEventData {
 	return s.Data
 }
 
+// SSENotificationEventEvent - Event type identifier
+type SSENotificationEventEvent string
+
+const (
+	SSENotificationEventEventConnected                         SSENotificationEventEvent = "connected"
+	SSENotificationEventEventHeartbeat                         SSENotificationEventEvent = "heartbeat"
+	SSENotificationEventEventError                             SSENotificationEventEvent = "error"
+	SSENotificationEventEventComplete                          SSENotificationEventEvent = "complete"
+	SSENotificationEventEventThinking                          SSENotificationEventEvent = "thinking"
+	SSENotificationEventEventContent                           SSENotificationEventEvent = "content"
+	SSENotificationEventEventToolUseStart                      SSENotificationEventEvent = "tool_use_start"
+	SSENotificationEventEventToolUseParameterStreamingComplete SSENotificationEventEvent = "tool_use_parameter_streaming_complete"
+	SSENotificationEventEventToolUseParameterDelta             SSENotificationEventEvent = "tool_use_parameter_delta"
+	SSENotificationEventEventToolExecutionStart                SSENotificationEventEvent = "tool_execution_start"
+	SSENotificationEventEventToolExecutionComplete             SSENotificationEventEvent = "tool_execution_complete"
+	SSENotificationEventEventPermission                        SSENotificationEventEvent = "permission"
+	SSENotificationEventEventUserMessageCreated                SSENotificationEventEvent = "user_message_created"
+	SSENotificationEventEventSessionCreated                    SSENotificationEventEvent = "session_created"
+	SSENotificationEventEventSessionDeleted                    SSENotificationEventEvent = "session_deleted"
+)
+
+func (e SSENotificationEventEvent) ToPointer() *SSENotificationEventEvent {
+	return &e
+}
+func (e *SSENotificationEventEvent) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "connected":
+		fallthrough
+	case "heartbeat":
+		fallthrough
+	case "error":
+		fallthrough
+	case "complete":
+		fallthrough
+	case "thinking":
+		fallthrough
+	case "content":
+		fallthrough
+	case "tool_use_start":
+		fallthrough
+	case "tool_use_parameter_streaming_complete":
+		fallthrough
+	case "tool_use_parameter_delta":
+		fallthrough
+	case "tool_execution_start":
+		fallthrough
+	case "tool_execution_complete":
+		fallthrough
+	case "permission":
+		fallthrough
+	case "user_message_created":
+		fallthrough
+	case "session_created":
+		fallthrough
+	case "session_deleted":
+		*e = SSENotificationEventEvent(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for SSENotificationEventEvent: %v", v)
+	}
+}
+
+// NotificationType - Type of notification
+type NotificationType string
+
+const (
+	NotificationTypeInfo     NotificationType = "info"
+	NotificationTypeWarning  NotificationType = "warning"
+	NotificationTypeError    NotificationType = "error"
+	NotificationTypeQuestion NotificationType = "question"
+)
+
+func (e NotificationType) ToPointer() *NotificationType {
+	return &e
+}
+func (e *NotificationType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "info":
+		fallthrough
+	case "warning":
+		fallthrough
+	case "error":
+		fallthrough
+	case "question":
+		*e = NotificationType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for NotificationType: %v", v)
+	}
+}
+
+// ResponseType - Expected response type from user
+type ResponseType string
+
+const (
+	ResponseTypeAcknowledge ResponseType = "acknowledge"
+	ResponseTypeText        ResponseType = "text"
+	ResponseTypeChoice      ResponseType = "choice"
+)
+
+func (e ResponseType) ToPointer() *ResponseType {
+	return &e
+}
+func (e *ResponseType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "acknowledge":
+		fallthrough
+	case "text":
+		fallthrough
+	case "choice":
+		*e = ResponseType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ResponseType: %v", v)
+	}
+}
+
+type SSENotificationEventData struct {
+	// Available choices (required when responseType is 'choice')
+	Choices []string `json:"choices,omitempty"`
+	// Unix timestamp when notification was created
+	CreatedAt int64 `json:"createdAt"`
+	// Notification identifier
+	ID string `json:"id"`
+	// Notification message content
+	Message string `json:"message"`
+	// Type of notification
+	NotificationType NotificationType `json:"notificationType"`
+	// ID of the parent tool call that spawned this subagent (for nested events)
+	ParentToolCallID *string `json:"parentToolCallId,omitempty"`
+	// Expected response type from user
+	ResponseType ResponseType `json:"responseType"`
+	// Session identifier for the notification
+	SessionID string `json:"sessionId"`
+	// Timeout in seconds for user response
+	Timeout int64 `json:"timeout"`
+	// Notification title
+	Title string `json:"title"`
+	// Notification event type
+	Type string `json:"type"`
+}
+
+func (s SSENotificationEventData) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SSENotificationEventData) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"createdAt", "id", "message", "notificationType", "responseType", "sessionId", "timeout", "title", "type"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *SSENotificationEventData) GetChoices() []string {
+	if s == nil {
+		return nil
+	}
+	return s.Choices
+}
+
+func (s *SSENotificationEventData) GetCreatedAt() int64 {
+	if s == nil {
+		return 0
+	}
+	return s.CreatedAt
+}
+
+func (s *SSENotificationEventData) GetID() string {
+	if s == nil {
+		return ""
+	}
+	return s.ID
+}
+
+func (s *SSENotificationEventData) GetMessage() string {
+	if s == nil {
+		return ""
+	}
+	return s.Message
+}
+
+func (s *SSENotificationEventData) GetNotificationType() NotificationType {
+	if s == nil {
+		return NotificationType("")
+	}
+	return s.NotificationType
+}
+
+func (s *SSENotificationEventData) GetParentToolCallID() *string {
+	if s == nil {
+		return nil
+	}
+	return s.ParentToolCallID
+}
+
+func (s *SSENotificationEventData) GetResponseType() ResponseType {
+	if s == nil {
+		return ResponseType("")
+	}
+	return s.ResponseType
+}
+
+func (s *SSENotificationEventData) GetSessionID() string {
+	if s == nil {
+		return ""
+	}
+	return s.SessionID
+}
+
+func (s *SSENotificationEventData) GetTimeout() int64 {
+	if s == nil {
+		return 0
+	}
+	return s.Timeout
+}
+
+func (s *SSENotificationEventData) GetTitle() string {
+	if s == nil {
+		return ""
+	}
+	return s.Title
+}
+
+func (s *SSENotificationEventData) GetType() string {
+	if s == nil {
+		return ""
+	}
+	return s.Type
+}
+
+// SSENotificationEvent - Base SSE event with standard fields
+type SSENotificationEvent struct {
+	// Event type identifier
+	Event SSENotificationEventEvent `json:"event"`
+	// Unique sequential event identifier for ordering and reconnection
+	ID string `json:"id"`
+	// Client retry interval in milliseconds
+	Retry *int64                   `json:"retry,omitempty"`
+	Data  SSENotificationEventData `json:"data"`
+}
+
+func (s SSENotificationEvent) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SSENotificationEvent) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"event", "id", "data"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *SSENotificationEvent) GetEvent() SSENotificationEventEvent {
+	if s == nil {
+		return SSENotificationEventEvent("")
+	}
+	return s.Event
+}
+
+func (s *SSENotificationEvent) GetID() string {
+	if s == nil {
+		return ""
+	}
+	return s.ID
+}
+
+func (s *SSENotificationEvent) GetRetry() *int64 {
+	if s == nil {
+		return nil
+	}
+	return s.Retry
+}
+
+func (s *SSENotificationEvent) GetData() SSENotificationEventData {
+	if s == nil {
+		return SSENotificationEventData{}
+	}
+	return s.Data
+}
+
 // SSEPermissionEventEvent - Event type identifier
 type SSEPermissionEventEvent string
 
@@ -2598,370 +2890,301 @@ func (s *SSEConnectedEvent) GetData() SSEConnectedEventData {
 type SSEEventStreamType string
 
 const (
-	SSEEventStreamTypeComplete                          SSEEventStreamType = "complete"
-	SSEEventStreamTypeConnected                         SSEEventStreamType = "connected"
-	SSEEventStreamTypeContent                           SSEEventStreamType = "content"
-	SSEEventStreamTypeError                             SSEEventStreamType = "error"
-	SSEEventStreamTypeHeartbeat                         SSEEventStreamType = "heartbeat"
-	SSEEventStreamTypePermission                        SSEEventStreamType = "permission"
-	SSEEventStreamTypeSessionCreated                    SSEEventStreamType = "session_created"
-	SSEEventStreamTypeSessionDeleted                    SSEEventStreamType = "session_deleted"
-	SSEEventStreamTypeThinking                          SSEEventStreamType = "thinking"
-	SSEEventStreamTypeToolExecutionComplete             SSEEventStreamType = "tool_execution_complete"
-	SSEEventStreamTypeToolExecutionStart                SSEEventStreamType = "tool_execution_start"
-	SSEEventStreamTypeToolUseParameterDelta             SSEEventStreamType = "tool_use_parameter_delta"
-	SSEEventStreamTypeToolUseParameterStreamingComplete SSEEventStreamType = "tool_use_parameter_streaming_complete"
-	SSEEventStreamTypeToolUseStart                      SSEEventStreamType = "tool_use_start"
-	SSEEventStreamTypeUserMessageCreated                SSEEventStreamType = "user_message_created"
+	SSEEventStreamTypeSSEConnectedEvent                         SSEEventStreamType = "SSEConnectedEvent"
+	SSEEventStreamTypeSSEHeartbeatEvent                         SSEEventStreamType = "SSEHeartbeatEvent"
+	SSEEventStreamTypeSSEErrorEvent                             SSEEventStreamType = "SSEErrorEvent"
+	SSEEventStreamTypeSSECompleteEvent                          SSEEventStreamType = "SSECompleteEvent"
+	SSEEventStreamTypeSSEThinkingEvent                          SSEEventStreamType = "SSEThinkingEvent"
+	SSEEventStreamTypeSSEContentEvent                           SSEEventStreamType = "SSEContentEvent"
+	SSEEventStreamTypeSSEToolUseStartEvent                      SSEEventStreamType = "SSEToolUseStartEvent"
+	SSEEventStreamTypeSSEToolUseParameterStreamingCompleteEvent SSEEventStreamType = "SSEToolUseParameterStreamingCompleteEvent"
+	SSEEventStreamTypeSSEToolUseParameterDeltaEvent             SSEEventStreamType = "SSEToolUseParameterDeltaEvent"
+	SSEEventStreamTypeSSEToolExecutionStartEvent                SSEEventStreamType = "SSEToolExecutionStartEvent"
+	SSEEventStreamTypeSSEToolExecutionCompleteEvent             SSEEventStreamType = "SSEToolExecutionCompleteEvent"
+	SSEEventStreamTypeSSEPermissionEvent                        SSEEventStreamType = "SSEPermissionEvent"
+	SSEEventStreamTypeSSENotificationEvent                      SSEEventStreamType = "SSENotificationEvent"
+	SSEEventStreamTypeSSEUserMessageCreatedEvent                SSEEventStreamType = "SSEUserMessageCreatedEvent"
+	SSEEventStreamTypeSSESessionCreatedEvent                    SSEEventStreamType = "SSESessionCreatedEvent"
+	SSEEventStreamTypeSSESessionDeletedEvent                    SSEEventStreamType = "SSESessionDeletedEvent"
 )
 
 // SSEEventStream - Server-Sent Event stream with discriminated event types
 type SSEEventStream struct {
-	SSEConnectedEvent                         *SSEConnectedEvent                         `queryParam:"inline,name=SSEEventStream"`
-	SSEHeartbeatEvent                         *SSEHeartbeatEvent                         `queryParam:"inline,name=SSEEventStream"`
-	SSEErrorEvent                             *SSEErrorEvent                             `queryParam:"inline,name=SSEEventStream"`
-	SSECompleteEvent                          *SSECompleteEvent                          `queryParam:"inline,name=SSEEventStream"`
-	SSEThinkingEvent                          *SSEThinkingEvent                          `queryParam:"inline,name=SSEEventStream"`
-	SSEContentEvent                           *SSEContentEvent                           `queryParam:"inline,name=SSEEventStream"`
-	SSEToolUseStartEvent                      *SSEToolUseStartEvent                      `queryParam:"inline,name=SSEEventStream"`
-	SSEToolUseParameterStreamingCompleteEvent *SSEToolUseParameterStreamingCompleteEvent `queryParam:"inline,name=SSEEventStream"`
-	SSEToolUseParameterDeltaEvent             *SSEToolUseParameterDeltaEvent             `queryParam:"inline,name=SSEEventStream"`
-	SSEToolExecutionStartEvent                *SSEToolExecutionStartEvent                `queryParam:"inline,name=SSEEventStream"`
-	SSEToolExecutionCompleteEvent             *SSEToolExecutionCompleteEvent             `queryParam:"inline,name=SSEEventStream"`
-	SSEPermissionEvent                        *SSEPermissionEvent                        `queryParam:"inline,name=SSEEventStream"`
-	SSEUserMessageCreatedEvent                *SSEUserMessageCreatedEvent                `queryParam:"inline,name=SSEEventStream"`
-	SSESessionCreatedEvent                    *SSESessionCreatedEvent                    `queryParam:"inline,name=SSEEventStream"`
-	SSESessionDeletedEvent                    *SSESessionDeletedEvent                    `queryParam:"inline,name=SSEEventStream"`
+	SSEConnectedEvent                         *SSEConnectedEvent                         `queryParam:"inline" union:"member"`
+	SSEHeartbeatEvent                         *SSEHeartbeatEvent                         `queryParam:"inline" union:"member"`
+	SSEErrorEvent                             *SSEErrorEvent                             `queryParam:"inline" union:"member"`
+	SSECompleteEvent                          *SSECompleteEvent                          `queryParam:"inline" union:"member"`
+	SSEThinkingEvent                          *SSEThinkingEvent                          `queryParam:"inline" union:"member"`
+	SSEContentEvent                           *SSEContentEvent                           `queryParam:"inline" union:"member"`
+	SSEToolUseStartEvent                      *SSEToolUseStartEvent                      `queryParam:"inline" union:"member"`
+	SSEToolUseParameterStreamingCompleteEvent *SSEToolUseParameterStreamingCompleteEvent `queryParam:"inline" union:"member"`
+	SSEToolUseParameterDeltaEvent             *SSEToolUseParameterDeltaEvent             `queryParam:"inline" union:"member"`
+	SSEToolExecutionStartEvent                *SSEToolExecutionStartEvent                `queryParam:"inline" union:"member"`
+	SSEToolExecutionCompleteEvent             *SSEToolExecutionCompleteEvent             `queryParam:"inline" union:"member"`
+	SSEPermissionEvent                        *SSEPermissionEvent                        `queryParam:"inline" union:"member"`
+	SSENotificationEvent                      *SSENotificationEvent                      `queryParam:"inline" union:"member"`
+	SSEUserMessageCreatedEvent                *SSEUserMessageCreatedEvent                `queryParam:"inline" union:"member"`
+	SSESessionCreatedEvent                    *SSESessionCreatedEvent                    `queryParam:"inline" union:"member"`
+	SSESessionDeletedEvent                    *SSESessionDeletedEvent                    `queryParam:"inline" union:"member"`
 
 	Type SSEEventStreamType
 }
 
-func CreateSSEEventStreamComplete(complete SSECompleteEvent) SSEEventStream {
-	typ := SSEEventStreamTypeComplete
-
-	typStr := SSECompleteEventEvent(typ)
-	complete.Event = typStr
+func CreateSSEEventStreamSSEConnectedEvent(sseConnectedEvent SSEConnectedEvent) SSEEventStream {
+	typ := SSEEventStreamTypeSSEConnectedEvent
 
 	return SSEEventStream{
-		SSECompleteEvent: &complete,
-		Type:             typ,
-	}
-}
-
-func CreateSSEEventStreamConnected(connected SSEConnectedEvent) SSEEventStream {
-	typ := SSEEventStreamTypeConnected
-
-	typStr := SSEConnectedEventEvent(typ)
-	connected.Event = typStr
-
-	return SSEEventStream{
-		SSEConnectedEvent: &connected,
+		SSEConnectedEvent: &sseConnectedEvent,
 		Type:              typ,
 	}
 }
 
-func CreateSSEEventStreamContent(content SSEContentEvent) SSEEventStream {
-	typ := SSEEventStreamTypeContent
-
-	typStr := SSEContentEventEvent(typ)
-	content.Event = typStr
+func CreateSSEEventStreamSSEHeartbeatEvent(sseHeartbeatEvent SSEHeartbeatEvent) SSEEventStream {
+	typ := SSEEventStreamTypeSSEHeartbeatEvent
 
 	return SSEEventStream{
-		SSEContentEvent: &content,
-		Type:            typ,
+		SSEHeartbeatEvent: &sseHeartbeatEvent,
+		Type:              typ,
 	}
 }
 
-func CreateSSEEventStreamError(errorT SSEErrorEvent) SSEEventStream {
-	typ := SSEEventStreamTypeError
-
-	typStr := SSEErrorEventEvent(typ)
-	errorT.Event = typStr
+func CreateSSEEventStreamSSEErrorEvent(sseErrorEvent SSEErrorEvent) SSEEventStream {
+	typ := SSEEventStreamTypeSSEErrorEvent
 
 	return SSEEventStream{
-		SSEErrorEvent: &errorT,
+		SSEErrorEvent: &sseErrorEvent,
 		Type:          typ,
 	}
 }
 
-func CreateSSEEventStreamHeartbeat(heartbeat SSEHeartbeatEvent) SSEEventStream {
-	typ := SSEEventStreamTypeHeartbeat
-
-	typStr := SSEHeartbeatEventEvent(typ)
-	heartbeat.Event = typStr
+func CreateSSEEventStreamSSECompleteEvent(sseCompleteEvent SSECompleteEvent) SSEEventStream {
+	typ := SSEEventStreamTypeSSECompleteEvent
 
 	return SSEEventStream{
-		SSEHeartbeatEvent: &heartbeat,
-		Type:              typ,
-	}
-}
-
-func CreateSSEEventStreamPermission(permission SSEPermissionEvent) SSEEventStream {
-	typ := SSEEventStreamTypePermission
-
-	typStr := SSEPermissionEventEvent(typ)
-	permission.Event = typStr
-
-	return SSEEventStream{
-		SSEPermissionEvent: &permission,
-		Type:               typ,
-	}
-}
-
-func CreateSSEEventStreamSessionCreated(sessionCreated SSESessionCreatedEvent) SSEEventStream {
-	typ := SSEEventStreamTypeSessionCreated
-
-	typStr := SSESessionCreatedEventEvent(typ)
-	sessionCreated.Event = typStr
-
-	return SSEEventStream{
-		SSESessionCreatedEvent: &sessionCreated,
-		Type:                   typ,
-	}
-}
-
-func CreateSSEEventStreamSessionDeleted(sessionDeleted SSESessionDeletedEvent) SSEEventStream {
-	typ := SSEEventStreamTypeSessionDeleted
-
-	typStr := SSESessionDeletedEventEvent(typ)
-	sessionDeleted.Event = typStr
-
-	return SSEEventStream{
-		SSESessionDeletedEvent: &sessionDeleted,
-		Type:                   typ,
-	}
-}
-
-func CreateSSEEventStreamThinking(thinking SSEThinkingEvent) SSEEventStream {
-	typ := SSEEventStreamTypeThinking
-
-	typStr := SSEThinkingEventEvent(typ)
-	thinking.Event = typStr
-
-	return SSEEventStream{
-		SSEThinkingEvent: &thinking,
+		SSECompleteEvent: &sseCompleteEvent,
 		Type:             typ,
 	}
 }
 
-func CreateSSEEventStreamToolExecutionComplete(toolExecutionComplete SSEToolExecutionCompleteEvent) SSEEventStream {
-	typ := SSEEventStreamTypeToolExecutionComplete
-
-	typStr := SSEToolExecutionCompleteEventEvent(typ)
-	toolExecutionComplete.Event = typStr
+func CreateSSEEventStreamSSEThinkingEvent(sseThinkingEvent SSEThinkingEvent) SSEEventStream {
+	typ := SSEEventStreamTypeSSEThinkingEvent
 
 	return SSEEventStream{
-		SSEToolExecutionCompleteEvent: &toolExecutionComplete,
-		Type:                          typ,
+		SSEThinkingEvent: &sseThinkingEvent,
+		Type:             typ,
 	}
 }
 
-func CreateSSEEventStreamToolExecutionStart(toolExecutionStart SSEToolExecutionStartEvent) SSEEventStream {
-	typ := SSEEventStreamTypeToolExecutionStart
-
-	typStr := SSEToolExecutionStartEventEvent(typ)
-	toolExecutionStart.Event = typStr
+func CreateSSEEventStreamSSEContentEvent(sseContentEvent SSEContentEvent) SSEEventStream {
+	typ := SSEEventStreamTypeSSEContentEvent
 
 	return SSEEventStream{
-		SSEToolExecutionStartEvent: &toolExecutionStart,
-		Type:                       typ,
+		SSEContentEvent: &sseContentEvent,
+		Type:            typ,
 	}
 }
 
-func CreateSSEEventStreamToolUseParameterDelta(toolUseParameterDelta SSEToolUseParameterDeltaEvent) SSEEventStream {
-	typ := SSEEventStreamTypeToolUseParameterDelta
-
-	typStr := SSEToolUseParameterDeltaEventEvent(typ)
-	toolUseParameterDelta.Event = typStr
+func CreateSSEEventStreamSSEToolUseStartEvent(sseToolUseStartEvent SSEToolUseStartEvent) SSEEventStream {
+	typ := SSEEventStreamTypeSSEToolUseStartEvent
 
 	return SSEEventStream{
-		SSEToolUseParameterDeltaEvent: &toolUseParameterDelta,
-		Type:                          typ,
-	}
-}
-
-func CreateSSEEventStreamToolUseParameterStreamingComplete(toolUseParameterStreamingComplete SSEToolUseParameterStreamingCompleteEvent) SSEEventStream {
-	typ := SSEEventStreamTypeToolUseParameterStreamingComplete
-
-	typStr := SSEToolUseParameterStreamingCompleteEventEvent(typ)
-	toolUseParameterStreamingComplete.Event = typStr
-
-	return SSEEventStream{
-		SSEToolUseParameterStreamingCompleteEvent: &toolUseParameterStreamingComplete,
-		Type: typ,
-	}
-}
-
-func CreateSSEEventStreamToolUseStart(toolUseStart SSEToolUseStartEvent) SSEEventStream {
-	typ := SSEEventStreamTypeToolUseStart
-
-	typStr := SSEToolUseStartEventEvent(typ)
-	toolUseStart.Event = typStr
-
-	return SSEEventStream{
-		SSEToolUseStartEvent: &toolUseStart,
+		SSEToolUseStartEvent: &sseToolUseStartEvent,
 		Type:                 typ,
 	}
 }
 
-func CreateSSEEventStreamUserMessageCreated(userMessageCreated SSEUserMessageCreatedEvent) SSEEventStream {
-	typ := SSEEventStreamTypeUserMessageCreated
-
-	typStr := SSEUserMessageCreatedEventEvent(typ)
-	userMessageCreated.Event = typStr
+func CreateSSEEventStreamSSEToolUseParameterStreamingCompleteEvent(sseToolUseParameterStreamingCompleteEvent SSEToolUseParameterStreamingCompleteEvent) SSEEventStream {
+	typ := SSEEventStreamTypeSSEToolUseParameterStreamingCompleteEvent
 
 	return SSEEventStream{
-		SSEUserMessageCreatedEvent: &userMessageCreated,
+		SSEToolUseParameterStreamingCompleteEvent: &sseToolUseParameterStreamingCompleteEvent,
+		Type: typ,
+	}
+}
+
+func CreateSSEEventStreamSSEToolUseParameterDeltaEvent(sseToolUseParameterDeltaEvent SSEToolUseParameterDeltaEvent) SSEEventStream {
+	typ := SSEEventStreamTypeSSEToolUseParameterDeltaEvent
+
+	return SSEEventStream{
+		SSEToolUseParameterDeltaEvent: &sseToolUseParameterDeltaEvent,
+		Type:                          typ,
+	}
+}
+
+func CreateSSEEventStreamSSEToolExecutionStartEvent(sseToolExecutionStartEvent SSEToolExecutionStartEvent) SSEEventStream {
+	typ := SSEEventStreamTypeSSEToolExecutionStartEvent
+
+	return SSEEventStream{
+		SSEToolExecutionStartEvent: &sseToolExecutionStartEvent,
 		Type:                       typ,
+	}
+}
+
+func CreateSSEEventStreamSSEToolExecutionCompleteEvent(sseToolExecutionCompleteEvent SSEToolExecutionCompleteEvent) SSEEventStream {
+	typ := SSEEventStreamTypeSSEToolExecutionCompleteEvent
+
+	return SSEEventStream{
+		SSEToolExecutionCompleteEvent: &sseToolExecutionCompleteEvent,
+		Type:                          typ,
+	}
+}
+
+func CreateSSEEventStreamSSEPermissionEvent(ssePermissionEvent SSEPermissionEvent) SSEEventStream {
+	typ := SSEEventStreamTypeSSEPermissionEvent
+
+	return SSEEventStream{
+		SSEPermissionEvent: &ssePermissionEvent,
+		Type:               typ,
+	}
+}
+
+func CreateSSEEventStreamSSENotificationEvent(sseNotificationEvent SSENotificationEvent) SSEEventStream {
+	typ := SSEEventStreamTypeSSENotificationEvent
+
+	return SSEEventStream{
+		SSENotificationEvent: &sseNotificationEvent,
+		Type:                 typ,
+	}
+}
+
+func CreateSSEEventStreamSSEUserMessageCreatedEvent(sseUserMessageCreatedEvent SSEUserMessageCreatedEvent) SSEEventStream {
+	typ := SSEEventStreamTypeSSEUserMessageCreatedEvent
+
+	return SSEEventStream{
+		SSEUserMessageCreatedEvent: &sseUserMessageCreatedEvent,
+		Type:                       typ,
+	}
+}
+
+func CreateSSEEventStreamSSESessionCreatedEvent(sseSessionCreatedEvent SSESessionCreatedEvent) SSEEventStream {
+	typ := SSEEventStreamTypeSSESessionCreatedEvent
+
+	return SSEEventStream{
+		SSESessionCreatedEvent: &sseSessionCreatedEvent,
+		Type:                   typ,
+	}
+}
+
+func CreateSSEEventStreamSSESessionDeletedEvent(sseSessionDeletedEvent SSESessionDeletedEvent) SSEEventStream {
+	typ := SSEEventStreamTypeSSESessionDeletedEvent
+
+	return SSEEventStream{
+		SSESessionDeletedEvent: &sseSessionDeletedEvent,
+		Type:                   typ,
 	}
 }
 
 func (u *SSEEventStream) UnmarshalJSON(data []byte) error {
 
-	type discriminator struct {
-		Event string `json:"event"`
+	var sseConnectedEvent SSEConnectedEvent = SSEConnectedEvent{}
+	if err := utils.UnmarshalJSON(data, &sseConnectedEvent, "", true, nil); err == nil {
+		u.SSEConnectedEvent = &sseConnectedEvent
+		u.Type = SSEEventStreamTypeSSEConnectedEvent
+		return nil
 	}
 
-	dis := new(discriminator)
-	if err := json.Unmarshal(data, &dis); err != nil {
-		return fmt.Errorf("could not unmarshal discriminator: %w", err)
+	var sseHeartbeatEvent SSEHeartbeatEvent = SSEHeartbeatEvent{}
+	if err := utils.UnmarshalJSON(data, &sseHeartbeatEvent, "", true, nil); err == nil {
+		u.SSEHeartbeatEvent = &sseHeartbeatEvent
+		u.Type = SSEEventStreamTypeSSEHeartbeatEvent
+		return nil
 	}
 
-	switch dis.Event {
-	case "complete":
-		sseCompleteEvent := new(SSECompleteEvent)
-		if err := utils.UnmarshalJSON(data, &sseCompleteEvent, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Event == complete) type SSECompleteEvent within SSEEventStream: %w", string(data), err)
-		}
-
-		u.SSECompleteEvent = sseCompleteEvent
-		u.Type = SSEEventStreamTypeComplete
+	var sseErrorEvent SSEErrorEvent = SSEErrorEvent{}
+	if err := utils.UnmarshalJSON(data, &sseErrorEvent, "", true, nil); err == nil {
+		u.SSEErrorEvent = &sseErrorEvent
+		u.Type = SSEEventStreamTypeSSEErrorEvent
 		return nil
-	case "connected":
-		sseConnectedEvent := new(SSEConnectedEvent)
-		if err := utils.UnmarshalJSON(data, &sseConnectedEvent, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Event == connected) type SSEConnectedEvent within SSEEventStream: %w", string(data), err)
-		}
+	}
 
-		u.SSEConnectedEvent = sseConnectedEvent
-		u.Type = SSEEventStreamTypeConnected
+	var sseCompleteEvent SSECompleteEvent = SSECompleteEvent{}
+	if err := utils.UnmarshalJSON(data, &sseCompleteEvent, "", true, nil); err == nil {
+		u.SSECompleteEvent = &sseCompleteEvent
+		u.Type = SSEEventStreamTypeSSECompleteEvent
 		return nil
-	case "content":
-		sseContentEvent := new(SSEContentEvent)
-		if err := utils.UnmarshalJSON(data, &sseContentEvent, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Event == content) type SSEContentEvent within SSEEventStream: %w", string(data), err)
-		}
+	}
 
-		u.SSEContentEvent = sseContentEvent
-		u.Type = SSEEventStreamTypeContent
+	var sseThinkingEvent SSEThinkingEvent = SSEThinkingEvent{}
+	if err := utils.UnmarshalJSON(data, &sseThinkingEvent, "", true, nil); err == nil {
+		u.SSEThinkingEvent = &sseThinkingEvent
+		u.Type = SSEEventStreamTypeSSEThinkingEvent
 		return nil
-	case "error":
-		sseErrorEvent := new(SSEErrorEvent)
-		if err := utils.UnmarshalJSON(data, &sseErrorEvent, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Event == error) type SSEErrorEvent within SSEEventStream: %w", string(data), err)
-		}
+	}
 
-		u.SSEErrorEvent = sseErrorEvent
-		u.Type = SSEEventStreamTypeError
+	var sseContentEvent SSEContentEvent = SSEContentEvent{}
+	if err := utils.UnmarshalJSON(data, &sseContentEvent, "", true, nil); err == nil {
+		u.SSEContentEvent = &sseContentEvent
+		u.Type = SSEEventStreamTypeSSEContentEvent
 		return nil
-	case "heartbeat":
-		sseHeartbeatEvent := new(SSEHeartbeatEvent)
-		if err := utils.UnmarshalJSON(data, &sseHeartbeatEvent, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Event == heartbeat) type SSEHeartbeatEvent within SSEEventStream: %w", string(data), err)
-		}
+	}
 
-		u.SSEHeartbeatEvent = sseHeartbeatEvent
-		u.Type = SSEEventStreamTypeHeartbeat
+	var sseToolUseStartEvent SSEToolUseStartEvent = SSEToolUseStartEvent{}
+	if err := utils.UnmarshalJSON(data, &sseToolUseStartEvent, "", true, nil); err == nil {
+		u.SSEToolUseStartEvent = &sseToolUseStartEvent
+		u.Type = SSEEventStreamTypeSSEToolUseStartEvent
 		return nil
-	case "permission":
-		ssePermissionEvent := new(SSEPermissionEvent)
-		if err := utils.UnmarshalJSON(data, &ssePermissionEvent, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Event == permission) type SSEPermissionEvent within SSEEventStream: %w", string(data), err)
-		}
+	}
 
-		u.SSEPermissionEvent = ssePermissionEvent
-		u.Type = SSEEventStreamTypePermission
+	var sseToolUseParameterStreamingCompleteEvent SSEToolUseParameterStreamingCompleteEvent = SSEToolUseParameterStreamingCompleteEvent{}
+	if err := utils.UnmarshalJSON(data, &sseToolUseParameterStreamingCompleteEvent, "", true, nil); err == nil {
+		u.SSEToolUseParameterStreamingCompleteEvent = &sseToolUseParameterStreamingCompleteEvent
+		u.Type = SSEEventStreamTypeSSEToolUseParameterStreamingCompleteEvent
 		return nil
-	case "session_created":
-		sseSessionCreatedEvent := new(SSESessionCreatedEvent)
-		if err := utils.UnmarshalJSON(data, &sseSessionCreatedEvent, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Event == session_created) type SSESessionCreatedEvent within SSEEventStream: %w", string(data), err)
-		}
+	}
 
-		u.SSESessionCreatedEvent = sseSessionCreatedEvent
-		u.Type = SSEEventStreamTypeSessionCreated
+	var sseToolUseParameterDeltaEvent SSEToolUseParameterDeltaEvent = SSEToolUseParameterDeltaEvent{}
+	if err := utils.UnmarshalJSON(data, &sseToolUseParameterDeltaEvent, "", true, nil); err == nil {
+		u.SSEToolUseParameterDeltaEvent = &sseToolUseParameterDeltaEvent
+		u.Type = SSEEventStreamTypeSSEToolUseParameterDeltaEvent
 		return nil
-	case "session_deleted":
-		sseSessionDeletedEvent := new(SSESessionDeletedEvent)
-		if err := utils.UnmarshalJSON(data, &sseSessionDeletedEvent, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Event == session_deleted) type SSESessionDeletedEvent within SSEEventStream: %w", string(data), err)
-		}
+	}
 
-		u.SSESessionDeletedEvent = sseSessionDeletedEvent
-		u.Type = SSEEventStreamTypeSessionDeleted
+	var sseToolExecutionStartEvent SSEToolExecutionStartEvent = SSEToolExecutionStartEvent{}
+	if err := utils.UnmarshalJSON(data, &sseToolExecutionStartEvent, "", true, nil); err == nil {
+		u.SSEToolExecutionStartEvent = &sseToolExecutionStartEvent
+		u.Type = SSEEventStreamTypeSSEToolExecutionStartEvent
 		return nil
-	case "thinking":
-		sseThinkingEvent := new(SSEThinkingEvent)
-		if err := utils.UnmarshalJSON(data, &sseThinkingEvent, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Event == thinking) type SSEThinkingEvent within SSEEventStream: %w", string(data), err)
-		}
+	}
 
-		u.SSEThinkingEvent = sseThinkingEvent
-		u.Type = SSEEventStreamTypeThinking
+	var sseToolExecutionCompleteEvent SSEToolExecutionCompleteEvent = SSEToolExecutionCompleteEvent{}
+	if err := utils.UnmarshalJSON(data, &sseToolExecutionCompleteEvent, "", true, nil); err == nil {
+		u.SSEToolExecutionCompleteEvent = &sseToolExecutionCompleteEvent
+		u.Type = SSEEventStreamTypeSSEToolExecutionCompleteEvent
 		return nil
-	case "tool_execution_complete":
-		sseToolExecutionCompleteEvent := new(SSEToolExecutionCompleteEvent)
-		if err := utils.UnmarshalJSON(data, &sseToolExecutionCompleteEvent, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Event == tool_execution_complete) type SSEToolExecutionCompleteEvent within SSEEventStream: %w", string(data), err)
-		}
+	}
 
-		u.SSEToolExecutionCompleteEvent = sseToolExecutionCompleteEvent
-		u.Type = SSEEventStreamTypeToolExecutionComplete
+	var ssePermissionEvent SSEPermissionEvent = SSEPermissionEvent{}
+	if err := utils.UnmarshalJSON(data, &ssePermissionEvent, "", true, nil); err == nil {
+		u.SSEPermissionEvent = &ssePermissionEvent
+		u.Type = SSEEventStreamTypeSSEPermissionEvent
 		return nil
-	case "tool_execution_start":
-		sseToolExecutionStartEvent := new(SSEToolExecutionStartEvent)
-		if err := utils.UnmarshalJSON(data, &sseToolExecutionStartEvent, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Event == tool_execution_start) type SSEToolExecutionStartEvent within SSEEventStream: %w", string(data), err)
-		}
+	}
 
-		u.SSEToolExecutionStartEvent = sseToolExecutionStartEvent
-		u.Type = SSEEventStreamTypeToolExecutionStart
+	var sseNotificationEvent SSENotificationEvent = SSENotificationEvent{}
+	if err := utils.UnmarshalJSON(data, &sseNotificationEvent, "", true, nil); err == nil {
+		u.SSENotificationEvent = &sseNotificationEvent
+		u.Type = SSEEventStreamTypeSSENotificationEvent
 		return nil
-	case "tool_use_parameter_delta":
-		sseToolUseParameterDeltaEvent := new(SSEToolUseParameterDeltaEvent)
-		if err := utils.UnmarshalJSON(data, &sseToolUseParameterDeltaEvent, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Event == tool_use_parameter_delta) type SSEToolUseParameterDeltaEvent within SSEEventStream: %w", string(data), err)
-		}
+	}
 
-		u.SSEToolUseParameterDeltaEvent = sseToolUseParameterDeltaEvent
-		u.Type = SSEEventStreamTypeToolUseParameterDelta
+	var sseUserMessageCreatedEvent SSEUserMessageCreatedEvent = SSEUserMessageCreatedEvent{}
+	if err := utils.UnmarshalJSON(data, &sseUserMessageCreatedEvent, "", true, nil); err == nil {
+		u.SSEUserMessageCreatedEvent = &sseUserMessageCreatedEvent
+		u.Type = SSEEventStreamTypeSSEUserMessageCreatedEvent
 		return nil
-	case "tool_use_parameter_streaming_complete":
-		sseToolUseParameterStreamingCompleteEvent := new(SSEToolUseParameterStreamingCompleteEvent)
-		if err := utils.UnmarshalJSON(data, &sseToolUseParameterStreamingCompleteEvent, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Event == tool_use_parameter_streaming_complete) type SSEToolUseParameterStreamingCompleteEvent within SSEEventStream: %w", string(data), err)
-		}
+	}
 
-		u.SSEToolUseParameterStreamingCompleteEvent = sseToolUseParameterStreamingCompleteEvent
-		u.Type = SSEEventStreamTypeToolUseParameterStreamingComplete
+	var sseSessionCreatedEvent SSESessionCreatedEvent = SSESessionCreatedEvent{}
+	if err := utils.UnmarshalJSON(data, &sseSessionCreatedEvent, "", true, nil); err == nil {
+		u.SSESessionCreatedEvent = &sseSessionCreatedEvent
+		u.Type = SSEEventStreamTypeSSESessionCreatedEvent
 		return nil
-	case "tool_use_start":
-		sseToolUseStartEvent := new(SSEToolUseStartEvent)
-		if err := utils.UnmarshalJSON(data, &sseToolUseStartEvent, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Event == tool_use_start) type SSEToolUseStartEvent within SSEEventStream: %w", string(data), err)
-		}
+	}
 
-		u.SSEToolUseStartEvent = sseToolUseStartEvent
-		u.Type = SSEEventStreamTypeToolUseStart
-		return nil
-	case "user_message_created":
-		sseUserMessageCreatedEvent := new(SSEUserMessageCreatedEvent)
-		if err := utils.UnmarshalJSON(data, &sseUserMessageCreatedEvent, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Event == user_message_created) type SSEUserMessageCreatedEvent within SSEEventStream: %w", string(data), err)
-		}
-
-		u.SSEUserMessageCreatedEvent = sseUserMessageCreatedEvent
-		u.Type = SSEEventStreamTypeUserMessageCreated
+	var sseSessionDeletedEvent SSESessionDeletedEvent = SSESessionDeletedEvent{}
+	if err := utils.UnmarshalJSON(data, &sseSessionDeletedEvent, "", true, nil); err == nil {
+		u.SSESessionDeletedEvent = &sseSessionDeletedEvent
+		u.Type = SSEEventStreamTypeSSESessionDeletedEvent
 		return nil
 	}
 
@@ -3017,6 +3240,10 @@ func (u SSEEventStream) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.SSEPermissionEvent, "", true)
 	}
 
+	if u.SSENotificationEvent != nil {
+		return utils.MarshalJSON(u.SSENotificationEvent, "", true)
+	}
+
 	if u.SSEUserMessageCreatedEvent != nil {
 		return utils.MarshalJSON(u.SSEUserMessageCreatedEvent, "", true)
 	}
@@ -3030,40 +3257,4 @@ func (u SSEEventStream) MarshalJSON() ([]byte, error) {
 	}
 
 	return nil, errors.New("could not marshal union type SSEEventStream: all fields are null")
-}
-
-func (o SSEEventStream) GetEventEncoding(event string) (string, error) {
-	switch event {
-	case "complete":
-		return "application/json", nil
-	case "connected":
-		return "application/json", nil
-	case "content":
-		return "application/json", nil
-	case "error":
-		return "application/json", nil
-	case "heartbeat":
-		return "application/json", nil
-	case "permission":
-		return "application/json", nil
-	case "session_created":
-		return "application/json", nil
-	case "session_deleted":
-		return "application/json", nil
-	case "thinking":
-		return "application/json", nil
-	case "tool_execution_complete":
-		return "application/json", nil
-	case "tool_execution_start":
-		return "application/json", nil
-	case "tool_use_parameter_delta":
-		return "application/json", nil
-	case "tool_use_parameter_streaming_complete":
-		return "application/json", nil
-	case "tool_use_start":
-		return "application/json", nil
-	case "user_message_created":
-		return "application/json", nil
-	}
-	return "", errors.New("could not find encoding for event: " + event)
 }

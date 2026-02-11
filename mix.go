@@ -2,7 +2,7 @@
 
 package mix
 
-// Generated from OpenAPI doc version 1.0.0 and generator version 2.755.6
+// Generated from OpenAPI doc version 1.0.0 and generator version 2.816.0
 
 import (
 	"github.com/recreate-run/mix-go-sdk/internal/config"
@@ -44,6 +44,7 @@ type Mix struct {
 	Authentication *Authentication
 	System         *System
 	Messages       *Messages
+	Notifications  *Notifications
 	Permissions    *Permissions
 	Preferences    *Preferences
 	Sessions       *Sessions
@@ -82,9 +83,9 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided serverURL and options
 func New(serverURL string, opts ...SDKOption) *Mix {
 	sdk := &Mix{
-		SDKVersion: "0.1.2",
+		SDKVersion: "0.2.0",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent: "speakeasy-sdk/go 0.1.2 2.755.6 1.0.0 github.com/recreate-run/mix-go-sdk",
+			UserAgent: "speakeasy-sdk/go 0.2.0 2.816.0 1.0.0 github.com/recreate-run/mix-go-sdk",
 		},
 		hooks: hooks.New(),
 	}
@@ -104,6 +105,7 @@ func New(serverURL string, opts ...SDKOption) *Mix {
 	sdk.Authentication = newAuthentication(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.System = newSystem(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Messages = newMessages(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Notifications = newNotifications(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Permissions = newPermissions(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Preferences = newPreferences(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Sessions = newSessions(sdk, sdk.sdkConfiguration, sdk.hooks)

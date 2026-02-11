@@ -5,8 +5,8 @@ package stream
 import (
 	"bufio"
 	"bytes"
+	"context"
 	"encoding/json"
-	"fmt"
 	"io"
 	"regexp"
 	"strconv"
@@ -21,8 +21,9 @@ type ServerEvent struct {
 }
 
 var (
-	boundary   = regexp.MustCompile(`\r\n\r\n|\r\r|\n\n`)
-	lineEnding = regexp.MustCompile(`\r?\n|\r`)
+	boundary   = regexp.MustCompile(`\r\n\r\n|\r\n\r|\r\n\n|\r\r\n|\n\r\n|\r\r|\n\r|\n\n`)
+	lineEnding = regexp.MustCompile(`\r\n|\r|\n`)
+	bom        = "\uFEFF"
 )
 
 func scanServerEvents(data []byte, atEOF bool) (advance int, token []byte, err error) {
@@ -51,13 +52,17 @@ type EventStream[T any] struct {
 	scanner      *bufio.Scanner
 	unmarshaller func(se []byte) (T, error)
 	sentinel     string
+	ctx          context.Context
 
 	finished bool
+	first    bool
 	err      error
 	val      *T
+	eventID  *string
 }
 
 func NewEventStream[T any](
+	ctx context.Context,
 	source io.Reader,
 	unmarshaller func(se []byte) (T, error),
 	sentinel string,
@@ -72,11 +77,17 @@ func NewEventStream[T any](
 		src = io.NopCloser(source)
 	}
 
+	if ctx == nil {
+		ctx = context.Background()
+	}
+
 	return &EventStream[T]{
 		r:            src,
 		scanner:      scanner,
 		unmarshaller: unmarshaller,
 		sentinel:     sentinel,
+		ctx:          ctx,
+		first:        true,
 	}
 }
 
@@ -89,6 +100,14 @@ func (es *EventStream[T]) Next() bool {
 		return false
 	}
 
+	// Check if context is canceled
+	select {
+	case <-es.ctx.Done():
+		es.err = es.ctx.Err()
+		return false
+	default:
+	}
+
 	if !es.scanner.Scan() {
 		return false
 	}
@@ -99,9 +118,14 @@ func (es *EventStream[T]) Next() bool {
 	}
 
 	b := es.scanner.Bytes()
+	content := string(b)
+	if es.first {
+		es.first = false
+		content = strings.TrimPrefix(content, bom)
+	}
 
 	var event ServerEvent
-	lines := lineEnding.Split(string(b), -1)
+	lines := lineEnding.Split(content, -1)
 	publish := false
 	data := ""
 	for _, line := range lines {
@@ -114,20 +138,22 @@ func (es *EventStream[T]) Next() bool {
 			continue
 		}
 
-		field := ""
-		value := ""
+		var field, value string
 		if delim > 0 {
 			field = line[:delim]
-		}
-		if delim > 0 && delim < len(line)-1 {
 			value = line[delim+1:]
+			value = strings.TrimPrefix(value, " ")
+		} else {
+			field = line
+			value = ""
 		}
-		value = strings.TrimPrefix(value, " ")
 
 		switch field {
 		case "id":
 			publish = true
-			event.ID = &value
+			if !strings.Contains(value, "\x00") {
+				es.eventID = &value
+			}
 		case "event":
 			publish = true
 			event.Event = &value
@@ -142,6 +168,8 @@ func (es *EventStream[T]) Next() bool {
 			data += value + "\n"
 		}
 	}
+
+	event.ID = es.eventID
 
 	if es.sentinel != "" && data == es.sentinel+"\n" {
 		es.finished = true
@@ -160,7 +188,6 @@ func (es *EventStream[T]) Next() bool {
 		if event.Event != nil {
 			ev = *event.Event
 		}
-
 		var err error
 		encoding, err = et.GetEventEncoding(ev)
 		if err != nil {
@@ -175,10 +202,15 @@ func (es *EventStream[T]) Next() bool {
 	}
 
 	if encoding == "string" {
-		data = fmt.Sprintf("%q", data)
+		jsonData, err := json.Marshal(data)
+		if err != nil {
+			es.err = err
+			return false
+		}
+		event.Data = jsonData
+	} else {
+		event.Data = []byte(data)
 	}
-
-	event.Data = []byte(data)
 
 	e, err := json.Marshal(event)
 	if err != nil {
@@ -214,5 +246,6 @@ func (es *EventStream[T]) Err() error {
 // Close will release underlying resources held by an event stream. It must
 // always be called.
 func (es *EventStream[T]) Close() error {
+	es.finished = true
 	return es.r.Close()
 }

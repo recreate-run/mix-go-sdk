@@ -11,19 +11,18 @@ import (
 type CoreToolName string
 
 const (
-	CoreToolNameBash            CoreToolName = "Bash"
-	CoreToolNameReadText        CoreToolName = "ReadText"
-	CoreToolNameGlob            CoreToolName = "Glob"
-	CoreToolNameReadMedia       CoreToolName = "ReadMedia"
-	CoreToolNameGrep            CoreToolName = "Grep"
-	CoreToolNameWrite           CoreToolName = "Write"
-	CoreToolNameEdit            CoreToolName = "Edit"
-	CoreToolNamePythonExecution CoreToolName = "python_execution"
-	CoreToolNameSearch          CoreToolName = "Search"
-	CoreToolNameTodoWrite       CoreToolName = "TodoWrite"
-	CoreToolNameExitPlanMode    CoreToolName = "ExitPlanMode"
-	CoreToolNameShow            CoreToolName = "Show"
-	CoreToolNameTask            CoreToolName = "Task"
+	CoreToolNameBash         CoreToolName = "Bash"
+	CoreToolNameReadText     CoreToolName = "ReadText"
+	CoreToolNameGlob         CoreToolName = "Glob"
+	CoreToolNameReadMedia    CoreToolName = "ReadMedia"
+	CoreToolNameGrep         CoreToolName = "Grep"
+	CoreToolNameWrite        CoreToolName = "Write"
+	CoreToolNameEdit         CoreToolName = "Edit"
+	CoreToolNameSearch       CoreToolName = "Search"
+	CoreToolNameTodoWrite    CoreToolName = "TodoWrite"
+	CoreToolNameExitPlanMode CoreToolName = "ExitPlanMode"
+	CoreToolNameShow         CoreToolName = "Show"
+	CoreToolNameTask         CoreToolName = "Task"
 )
 
 func (e CoreToolName) ToPointer() *CoreToolName {
@@ -48,8 +47,6 @@ func (e *CoreToolName) UnmarshalJSON(data []byte) error {
 	case "Write":
 		fallthrough
 	case "Edit":
-		fallthrough
-	case "python_execution":
 		fallthrough
 	case "Search":
 		fallthrough

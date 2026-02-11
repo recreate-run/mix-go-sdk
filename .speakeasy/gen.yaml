@@ -16,6 +16,7 @@ generation:
     requestResponseComponentNamesFeb2024: true
     securityFeb2025: true
     sharedErrorComponentsApr2025: true
+    sharedNestedComponentsJan2026: false
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: true
@@ -25,18 +26,21 @@ generation:
   schemas:
     allOfMergeStrategy: shallowMerge
   requestBodyFieldName: ""
+  versioningStrategy: automatic
+  persistentEdits: {}
   tests:
     generateTests: false
     generateNewTests: true
     skipResponseBodyAssertions: false
 go:
-  version: 0.1.2
+  version: 0.2.0
   additionalDependencies: {}
   baseErrorName: MixError
   clientServerStatusCodesAsErrors: true
   defaultErrorName: APIError
   envVarPrefix: MIX
   flattenGlobalSecurity: true
+  forwardCompatibleEnumsByDefault: false
   imports:
     option: openapi
     paths:
@@ -46,13 +50,16 @@ go:
       shared: models/components
       webhooks: models/webhooks
   includeEmptyObjects: false
+  inferUnionDiscriminators: false
   inputModelSuffix: input
   maxMethodParams: 4
   methodArguments: require-security-and-request
   modulePath: github.com/recreate-run/mix-go-sdk
+  multipartArrayFormat: legacy
   nullableOptionalWrapper: true
   outputModelSuffix: output
   respectRequiredFields: false
+  respectTitlesForPrimitiveUnionMembers: false
   responseFormat: envelope-http
   sdkPackageName: Mix
-  unionDeserializationStrategy: populated-fields
+  unionStrategy: left-to-right

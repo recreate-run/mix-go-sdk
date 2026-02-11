@@ -126,6 +126,10 @@ func main() {
 * [GetSessionMessages](docs/sdks/messages/README.md#getsessionmessages) - List session messages
 * [SendMessage](docs/sdks/messages/README.md#sendmessage) - Send a message to session (async)
 
+### [Notifications](docs/sdks/notifications/README.md)
+
+* [RespondToNotification](docs/sdks/notifications/README.md#respondtonotification) - Respond to notification
+
 ### [Permissions](docs/sdks/permissions/README.md)
 
 * [DenyPermission](docs/sdks/permissions/README.md#denypermission) - Deny permission

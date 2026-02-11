@@ -66,7 +66,7 @@ func (g GetOAuthHealthProviders) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetOAuthHealthProviders) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"provider", "status"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -159,7 +159,7 @@ func (g GetOAuthHealthResponseBody) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetOAuthHealthResponseBody) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"providers", "status", "timestamp"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
 		return err
 	}
 	return nil

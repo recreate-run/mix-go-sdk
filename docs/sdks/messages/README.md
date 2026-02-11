@@ -1,5 +1,4 @@
 # Messages
-(*Messages*)
 
 ## Overview
 
@@ -195,7 +194,7 @@ func main() {
 
     res, err := s.Messages.SendMessage(ctx, "<id>", operations.SendMessageRequestBody{
         Text: "<value>",
-        ThinkingLevel: optionalnullable.From(mix.Pointer(operations.ThinkingLevelMedium.ToPointer())),
+        ThinkingLevel: optionalnullable.From(mix.Pointer(operations.ThinkingLevelMedium)),
     })
     if err != nil {
         log.Fatal(err)

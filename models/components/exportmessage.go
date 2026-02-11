@@ -36,7 +36,7 @@ func (e ExportMessage) MarshalJSON() ([]byte, error) {
 }
 
 func (e *ExportMessage) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"content", "createdAt", "id", "role", "updatedAt"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil

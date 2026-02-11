@@ -13,31 +13,29 @@ import (
 	"github.com/recreate-run/mix-go-sdk/models/components"
 	"github.com/recreate-run/mix-go-sdk/models/operations"
 	"github.com/recreate-run/mix-go-sdk/retry"
-	"github.com/recreate-run/mix-go-sdk/types/stream"
 	"net/http"
-	"net/url"
 )
 
-type Streaming struct {
+type Notifications struct {
 	rootSDK          *Mix
 	sdkConfiguration config.SDKConfiguration
 	hooks            *hooks.Hooks
 }
 
-func newStreaming(rootSDK *Mix, sdkConfig config.SDKConfiguration, hooks *hooks.Hooks) *Streaming {
-	return &Streaming{
+func newNotifications(rootSDK *Mix, sdkConfig config.SDKConfiguration, hooks *hooks.Hooks) *Notifications {
+	return &Notifications{
 		rootSDK:          rootSDK,
 		sdkConfiguration: sdkConfig,
 		hooks:            hooks,
 	}
 }
 
-// StreamEvents - Server-Sent Events stream for real-time updates
-// Establishes a persistent SSE connection for receiving real-time updates during message processing. Connection remains open for multiple messages and includes proper reconnection support with Last-Event-ID header.
-func (s *Streaming) StreamEvents(ctx context.Context, sessionID string, lastEventID *string, opts ...operations.Option) (*operations.StreamEventsResponse, error) {
-	request := operations.StreamEventsRequest{
-		SessionID:   sessionID,
-		LastEventID: lastEventID,
+// RespondToNotification - Respond to notification
+// Send user's response to a notification request
+func (s *Notifications) RespondToNotification(ctx context.Context, id string, requestBody operations.RespondToNotificationRequestBody, opts ...operations.Option) (*operations.RespondToNotificationResponse, error) {
+	request := operations.RespondToNotificationRequest{
+		ID:          id,
+		RequestBody: requestBody,
 	}
 
 	o := operations.Options{}
@@ -58,7 +56,7 @@ func (s *Streaming) StreamEvents(ctx context.Context, sessionID string, lastEven
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/stream")
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/api/notifications/{id}/respond", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -68,9 +66,13 @@ func (s *Streaming) StreamEvents(ctx context.Context, sessionID string, lastEven
 		SDKConfiguration: s.sdkConfiguration,
 		BaseURL:          baseURL,
 		Context:          ctx,
-		OperationID:      "streamEvents",
+		OperationID:      "respondToNotification",
 		OAuth2Scopes:     nil,
 		SecuritySource:   nil,
+	}
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "RequestBody", "json", `request:"mediaType=application/json"`)
+	if err != nil {
+		return nil, err
 	}
 
 	timeout := o.Timeout
@@ -84,17 +86,14 @@ func (s *Streaming) StreamEvents(ctx context.Context, sessionID string, lastEven
 		defer cancel()
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "GET", opURL, nil)
+	req, err := http.NewRequestWithContext(ctx, "POST", opURL, bodyReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "text/event-stream")
+	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-
-	utils.PopulateHeaders(ctx, req, request, nil)
-
-	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
 	}
 
 	for k, v := range o.SetHeaders {
@@ -185,7 +184,7 @@ func (s *Streaming) StreamEvents(ctx context.Context, sessionID string, lastEven
 
 			_, err = s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 			return nil, err
-		} else if utils.MatchStatusCodes([]string{"404", "4XX", "500", "5XX"}, httpRes.StatusCode) {
+		} else if utils.MatchStatusCodes([]string{"401", "404", "4XX", "500", "5XX"}, httpRes.StatusCode) {
 			_httpRes, err := s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 			if err != nil {
 				return nil, err
@@ -200,7 +199,7 @@ func (s *Streaming) StreamEvents(ctx context.Context, sessionID string, lastEven
 		}
 	}
 
-	res := &operations.StreamEventsResponse{
+	res := &operations.RespondToNotificationResponse{
 		HTTPMeta: components.HTTPMetadata{
 			Request:  req,
 			Response: httpRes,
@@ -208,26 +207,9 @@ func (s *Streaming) StreamEvents(ctx context.Context, sessionID string, lastEven
 	}
 
 	switch {
-	case httpRes.StatusCode == 200:
-		res.Headers = httpRes.Header
-
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `text/event-stream`):
-			out := stream.NewEventStream(ctx, httpRes.Body, func(se []byte) (components.SSEEventStream, error) {
-				var e components.SSEEventStream
-				if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(se), &e, ""); err != nil {
-					return components.SSEEventStream{}, err
-				}
-				return e, nil
-			}, "")
-			res.SSEEventStream = out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
+	case httpRes.StatusCode == 204:
+	case httpRes.StatusCode == 401:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):

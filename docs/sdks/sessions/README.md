@@ -1,5 +1,4 @@
 # Sessions
-(*Sessions*)
 
 ## Overview
 
@@ -70,9 +69,224 @@ func main() {
 
 Create a new session with required title and optional custom system prompt. Session automatically gets isolated storage directory. Supports session-level callbacks for automated actions after tool execution.
 
-### Example Usage
+### Example Usage: invalid_prompt_mode
 
-<!-- UsageSnippet language="go" operationID="createSession" method="post" path="/api/sessions" -->
+<!-- UsageSnippet language="go" operationID="createSession" method="post" path="/api/sessions" example="invalid_prompt_mode" -->
+```go
+package main
+
+import(
+	"context"
+	mix "github.com/recreate-run/mix-go-sdk"
+	"github.com/recreate-run/mix-go-sdk/models/components"
+	"github.com/recreate-run/mix-go-sdk/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := mix.New(
+        "https://api.example.com",
+    )
+
+    res, err := s.Sessions.CreateSession(ctx, operations.CreateSessionRequest{
+        Callbacks: []components.Callback{
+            components.Callback{
+                MessageContent: mix.Pointer("Please review the changes and run tests"),
+                Name: mix.Pointer("Log Output"),
+                ToolName: "*",
+                Type: components.CallbackTypeSendMessage,
+            },
+        },
+        CustomSystemPrompt: mix.Pointer("You are a helpful assistant specialized in $<domain>. Always be concise and accurate."),
+        PromptMode: operations.PromptModeAppend.ToPointer(),
+        SubagentType: mix.Pointer(""),
+        Title: "<value>",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.SessionData != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: invalid_session_type
+
+<!-- UsageSnippet language="go" operationID="createSession" method="post" path="/api/sessions" example="invalid_session_type" -->
+```go
+package main
+
+import(
+	"context"
+	mix "github.com/recreate-run/mix-go-sdk"
+	"github.com/recreate-run/mix-go-sdk/models/components"
+	"github.com/recreate-run/mix-go-sdk/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := mix.New(
+        "https://api.example.com",
+    )
+
+    res, err := s.Sessions.CreateSession(ctx, operations.CreateSessionRequest{
+        Callbacks: []components.Callback{
+            components.Callback{
+                MessageContent: mix.Pointer("Please review the changes and run tests"),
+                Name: mix.Pointer("Log Output"),
+                ToolName: "*",
+                Type: components.CallbackTypeSendMessage,
+            },
+        },
+        CustomSystemPrompt: mix.Pointer("You are a helpful assistant specialized in $<domain>. Always be concise and accurate."),
+        PromptMode: operations.PromptModeAppend.ToPointer(),
+        SubagentType: mix.Pointer(""),
+        Title: "<value>",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.SessionData != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: missing_title
+
+<!-- UsageSnippet language="go" operationID="createSession" method="post" path="/api/sessions" example="missing_title" -->
+```go
+package main
+
+import(
+	"context"
+	mix "github.com/recreate-run/mix-go-sdk"
+	"github.com/recreate-run/mix-go-sdk/models/components"
+	"github.com/recreate-run/mix-go-sdk/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := mix.New(
+        "https://api.example.com",
+    )
+
+    res, err := s.Sessions.CreateSession(ctx, operations.CreateSessionRequest{
+        Callbacks: []components.Callback{
+            components.Callback{
+                MessageContent: mix.Pointer("Please review the changes and run tests"),
+                Name: mix.Pointer("Log Output"),
+                ToolName: "*",
+                Type: components.CallbackTypeSendMessage,
+            },
+        },
+        CustomSystemPrompt: mix.Pointer("You are a helpful assistant specialized in $<domain>. Always be concise and accurate."),
+        PromptMode: operations.PromptModeAppend.ToPointer(),
+        SubagentType: mix.Pointer(""),
+        Title: "<value>",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.SessionData != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: prompt_size_exceeded_append
+
+<!-- UsageSnippet language="go" operationID="createSession" method="post" path="/api/sessions" example="prompt_size_exceeded_append" -->
+```go
+package main
+
+import(
+	"context"
+	mix "github.com/recreate-run/mix-go-sdk"
+	"github.com/recreate-run/mix-go-sdk/models/components"
+	"github.com/recreate-run/mix-go-sdk/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := mix.New(
+        "https://api.example.com",
+    )
+
+    res, err := s.Sessions.CreateSession(ctx, operations.CreateSessionRequest{
+        Callbacks: []components.Callback{
+            components.Callback{
+                MessageContent: mix.Pointer("Please review the changes and run tests"),
+                Name: mix.Pointer("Log Output"),
+                ToolName: "*",
+                Type: components.CallbackTypeSendMessage,
+            },
+        },
+        CustomSystemPrompt: mix.Pointer("You are a helpful assistant specialized in $<domain>. Always be concise and accurate."),
+        PromptMode: operations.PromptModeAppend.ToPointer(),
+        SubagentType: mix.Pointer(""),
+        Title: "<value>",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.SessionData != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: prompt_size_exceeded_replace
+
+<!-- UsageSnippet language="go" operationID="createSession" method="post" path="/api/sessions" example="prompt_size_exceeded_replace" -->
+```go
+package main
+
+import(
+	"context"
+	mix "github.com/recreate-run/mix-go-sdk"
+	"github.com/recreate-run/mix-go-sdk/models/components"
+	"github.com/recreate-run/mix-go-sdk/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := mix.New(
+        "https://api.example.com",
+    )
+
+    res, err := s.Sessions.CreateSession(ctx, operations.CreateSessionRequest{
+        Callbacks: []components.Callback{
+            components.Callback{
+                MessageContent: mix.Pointer("Please review the changes and run tests"),
+                Name: mix.Pointer("Log Output"),
+                ToolName: "*",
+                Type: components.CallbackTypeSendMessage,
+            },
+        },
+        CustomSystemPrompt: mix.Pointer("You are a helpful assistant specialized in $<domain>. Always be concise and accurate."),
+        PromptMode: operations.PromptModeAppend.ToPointer(),
+        SubagentType: mix.Pointer(""),
+        Title: "<value>",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.SessionData != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: subagent_type_not_allowed
+
+<!-- UsageSnippet language="go" operationID="createSession" method="post" path="/api/sessions" example="subagent_type_not_allowed" -->
 ```go
 package main
 

@@ -1,17 +1,21 @@
 lockVersion: 2.0.0
 id: 83c3ea8a-9961-49ac-90eb-b920cf864159
 management:
-  docChecksum: 26c3a6c12a36a9249470881f6d05ca25
+  docChecksum: dc4859c5a78853fdeed395888b4bd439
   docVersion: 1.0.0
-  speakeasyVersion: 1.658.1
-  generationVersion: 2.755.6
-  releaseVersion: 0.1.2
-  configChecksum: 5afaa48881d55b59d6d3c4d1bf792536
+  speakeasyVersion: 1.709.4
+  generationVersion: 2.816.0
+  releaseVersion: 0.2.0
+  configChecksum: 13b580c26f60963f5f589ddf91d162f3
+persistentEdits:
+  generation_id: c67124e1-f59a-45db-a54d-5aa1bca560ce
+  pristine_commit_hash: a07c7de45d3ccdcb39c81fbbe88e2b5011f16e53
+  pristine_tree_hash: 4e30714a1652bfbb91fd438f9e5c8d890dd9384f
 features:
   go:
     additionalDependencies: 0.1.0
-    constsAndDefaults: 0.1.12
-    core: 3.13.2
+    constsAndDefaults: 0.1.13
+    core: 3.13.12
     defaultEnabledRetries: 0.2.0
     devContainers: 2.90.0
     downloadStreams: 0.1.2
@@ -23,10 +27,1626 @@ features:
     nullables: 0.2.1
     responseFormat: 0.1.2
     retries: 2.84.2
-    sdkHooks: 0.2.0
-    serverEvents: 0.1.2
-    unions: 2.87.1
+    sdkHooks: 0.3.0
+    serverEvents: 0.1.4
+    unions: 2.87.3
     uploadStreams: 0.1.0
+trackedFiles:
+  .devcontainer/README.md:
+    id: b170c0f184ac
+    last_write_checksum: sha1:be2627d96bcc7a331cdb1b53ab5136930ae7febc
+    pristine_git_object: 4e23f7c445b045c4ea707e94e73fbd906f0c2b62
+  .devcontainer/devcontainer.json:
+    id: b34062a34eb1
+    last_write_checksum: sha1:a518b2fc2f92e998593a1dcb935db4ca1eb2e2f1
+    pristine_git_object: 92f5ba5b54156225322fb4b09d2acf4abde9abc9
+  .devcontainer/setup.sh:
+    id: 5f1dfbfeb8eb
+    last_write_checksum: sha1:0443cc8beac352499afd25be90adf28d3736dbe0
+    pristine_git_object: 9003242ad92f98da28b1e4dad2129b5b1dabab59
+  .gitattributes:
+    id: 24139dae6567
+    last_write_checksum: sha1:84b0115789fc3ea52e31df701d8a27f76077e29f
+    pristine_git_object: e6a994416d0f527912d2d272e2583458f4fc9bcb
+  USAGE.md:
+    id: 3aed33ce6e6f
+    last_write_checksum: sha1:be459432fdf3c6de5f318e22d2b0caadadfe4a29
+    pristine_git_object: d4e5e6055b77dd386e12aba52931f4bf88ccd350
+  authentication.go:
+    id: e5f463a66465
+    last_write_checksum: sha1:1826f030e685a15f69db27e27c7182b901e7eee3
+    pristine_git_object: f645cda7a23564489e0284c6f8e0b075004e06b5
+  docs/models/apierrors/errorresponse.md:
+    id: 385118d32265
+    last_write_checksum: sha1:177e00fc50398a0faabd1d6c44331f87806f9807
+    pristine_git_object: 4f2b247a1830ea8f033e59c8f04159003f1006ca
+  docs/models/components/backendmessage.md:
+    id: 6d85d9f26f0b
+    last_write_checksum: sha1:eefa3d482718785b60ae1c21554e30cd82f867df
+    pristine_git_object: c39a7e67ace1cf58c932b9f52e3a50aed4ced3db
+  docs/models/components/callback.md:
+    id: 8138ef55aeeb
+    last_write_checksum: sha1:68f5114102c35306fe03f43a95fda52f12bf6979
+    pristine_git_object: 81dc87d24e01cfe0015ca7b9fd92f7e24eb94b98
+  docs/models/components/callbackresultdata.md:
+    id: 4d8dbbb4dcf5
+    last_write_checksum: sha1:5c5323205ef02f78990c145bf7758d0005065758
+    pristine_git_object: 458a4fa29ed540de779e8f93b9ac42797c66c87f
+  docs/models/components/callbackresultdatacallbacktype.md:
+    id: b66865fb698f
+    last_write_checksum: sha1:56c7977ad9058a5411d40badf109ccecc1958ed0
+    pristine_git_object: 608f4d1cc747d82777a02ea2996973ff7e938f11
+  docs/models/components/callbacktype.md:
+    id: "841064637091"
+    last_write_checksum: sha1:1178e5b8c4bb8a6fc765a0ce02c89cb7078647da
+    pristine_git_object: 57918dfb571542d71c7274eb77828244ba660a60
+  docs/models/components/coretoolname.md:
+    id: 7e10373a156e
+    last_write_checksum: sha1:43d8377f71a72253266dba64b2c69abca5e26f45
+    pristine_git_object: 1a89c3c1e8081de18295faa28d9a64836a1106c5
+  docs/models/components/exportmessage.md:
+    id: 15bfadaf8ade
+    last_write_checksum: sha1:ebc38e8db3ed838b38a0e30d3de1e31f18d4a55f
+    pristine_git_object: 7add1b027bff2f0a51077a4ae1810a96865e896a
+  docs/models/components/exportsession.md:
+    id: ce3d9712a5c6
+    last_write_checksum: sha1:de14cc19e306e95b5a49258e4ec74e2a64a0b9f1
+    pristine_git_object: 0f5f33c571ac93608f7b5030a2f969b7399b7322
+  docs/models/components/exporttoolcall.md:
+    id: a672b5531fdb
+    last_write_checksum: sha1:66de602dbf87fe296870e623dcd09c938ac8b113
+    pristine_git_object: 2a027245778f90747daebfb8d3cd56210abdcbfa
+  docs/models/components/fileinfo.md:
+    id: 46f1f298b14a
+    last_write_checksum: sha1:9f74f5b6fb8251023b4cff7acfa2cb85dbab0c5f
+    pristine_git_object: 7b8617d2e925851e4d873c7bed613f25dfd68bee
+  docs/models/components/httpmetadata.md:
+    id: 728948c70168
+    last_write_checksum: sha1:7c40945dac218ce5e5e11e7c907d27a3ea14c417
+    pristine_git_object: df1fdd59f3c85e4ba70573ff7954b12ac1d33d08
+  docs/models/components/inputjson.md:
+    id: 052b49c78e04
+    last_write_checksum: sha1:94a0fe0810782e3b91e61de7b16efaecfb4bf439
+    pristine_git_object: 8c8d389369f911e52105509d4b24f382f62d2910
+  docs/models/components/notificationtype.md:
+    id: 6897ab6f4ba3
+    last_write_checksum: sha1:84885948858534e575aff053925c3d94b962712e
+    pristine_git_object: c9793191524b2273b2c9a39c19cae1c72f65740c
+  docs/models/components/params.md:
+    id: f0dda4295165
+    last_write_checksum: sha1:5032fc3f5e95e576693a7a97faae3d1f47de128c
+    pristine_git_object: 3e0daa8595099aad95bcd57a9d5f64d3a8e67384
+  docs/models/components/responsetype.md:
+    id: 5ab7252811c9
+    last_write_checksum: sha1:f094baca018bfcd0afc066fdafd2e6d74f501003
+    pristine_git_object: 92f1b5a81cca1cae4eae99737e427d1211bcf2ca
+  docs/models/components/resterror.md:
+    id: 1d9ea54ae0e0
+    last_write_checksum: sha1:4c5fd99b941c617c14ba98b6eb4a18cc10230bbb
+    pristine_git_object: ee53f6db0df9ff6a03b10524c0b9ae848b1e6ff8
+  docs/models/components/resterrortype.md:
+    id: 41cdda8a5367
+    last_write_checksum: sha1:40dace26a404c5cd47fe3b715cb76deb3d7d2111
+    pristine_git_object: 372e89a9d5c0ea4bcff37ff1279e316c434af499
+  docs/models/components/sessiondata.md:
+    id: 99ea4957788a
+    last_write_checksum: sha1:df2812253712a633f6acf9b0db55e512be622691
+    pristine_git_object: 2ef49fc7cab1376e4ff6efb4dd7b0d6d7b25cf17
+  docs/models/components/sessiontype.md:
+    id: 54dfdf8e3f05
+    last_write_checksum: sha1:8d752391501ad99d6d5db087b637b214ee4736af
+    pristine_git_object: c79b7499791ee6748e01f9b418726ecf88ca9dd6
+  docs/models/components/ssecompleteevent.md:
+    id: 8045bb10dfe3
+    last_write_checksum: sha1:e45053270ed26f3dddc7a5022fb582620f00162e
+    pristine_git_object: 939253d12f39d750d5839a14c3ff0209f701347b
+  docs/models/components/ssecompleteeventdata.md:
+    id: 745ed50df4ea
+    last_write_checksum: sha1:9d9820bf020ef727a44394804f905cb8ee156349
+    pristine_git_object: c726a266cb96b8b1c587c818aa0e1b6441379f5b
+  docs/models/components/ssecompleteeventevent.md:
+    id: 102305dbdd67
+    last_write_checksum: sha1:1ce8e63a46620fc721da5ac7a5cca7a5f09e17fe
+    pristine_git_object: 656afa0551b862ffdb94bce02caf8f7645b9e6ab
+  docs/models/components/sseconnectedevent.md:
+    id: 4220f289a4e1
+    last_write_checksum: sha1:2671a10acf8fd0cce91f1faaf7ebb7013b654959
+    pristine_git_object: 4de5c045e4b5451836f90f19429f99c790e9264c
+  docs/models/components/sseconnectedeventdata.md:
+    id: 7219491e7315
+    last_write_checksum: sha1:67f14bcc9522dbbfb319588eb609353ecc33e640
+    pristine_git_object: 51ce90efee454c9eb7a37a7edad2e505569abd59
+  docs/models/components/sseconnectedeventevent.md:
+    id: 3fe88a8f6574
+    last_write_checksum: sha1:fbc3e85043368eb0c4f639996adaf99ac4537436
+    pristine_git_object: 79b18279a4dac197c310a22519231dce5deb7635
+  docs/models/components/ssecontentevent.md:
+    id: febd7146ed6b
+    last_write_checksum: sha1:df4de2c47afc7054c32957bda6baa3d18b4c61da
+    pristine_git_object: a49c8a1fef5a145c75ab6ff9d1924d73e0f6e7cb
+  docs/models/components/ssecontenteventdata.md:
+    id: 1be4275c8011
+    last_write_checksum: sha1:bfef084b0c3f8ed61bf803fc8c000559ff25bf72
+    pristine_git_object: c44f4c948a44d0ca4de764a4b854642a9bf59fcc
+  docs/models/components/ssecontenteventevent.md:
+    id: 7e397f62a5d0
+    last_write_checksum: sha1:ab655f90f60565dbcfadde581e2d912e805834fa
+    pristine_git_object: 4b8a1389d7ec260f56813d2d3c1893c2dc13fefd
+  docs/models/components/sseerrorevent.md:
+    id: 0511a66a73e8
+    last_write_checksum: sha1:fd228a49588f5ab868a83f5a045ecc0f30b5399e
+    pristine_git_object: 28df07d39c70ae9236f66cd9724f9de02eb2f182
+  docs/models/components/sseerroreventdata.md:
+    id: 23464692c081
+    last_write_checksum: sha1:8bf56199e164e99a1128ef28105a2ae8bc27d51f
+    pristine_git_object: 36b71c9d912256965dc6d536d861da1805af3f00
+  docs/models/components/sseerroreventevent.md:
+    id: 1b62677a38d8
+    last_write_checksum: sha1:af11f017ba6c16a2d4ec4b15d16470620d9c4caf
+    pristine_git_object: 1bb265cbdaf6a8649b097e3fa1f2c792c454e5f6
+  docs/models/components/sseeventstream.md:
+    id: ab21c1359ff9
+    last_write_checksum: sha1:2a74bd4c16484cbe3956946a995db610e50a9f9c
+    pristine_git_object: b8bb1afc7ccedb8e562078d3dd629e97b77d13e7
+  docs/models/components/sseheartbeatevent.md:
+    id: 43d617f203c1
+    last_write_checksum: sha1:dd7b7d95eb16a6bafe00ac4157bc4cf1ecfe847e
+    pristine_git_object: 49215bf14db7f9bb67065945926d2965039bb11a
+  docs/models/components/sseheartbeateventdata.md:
+    id: e4a8041f312b
+    last_write_checksum: sha1:7924f4246eb09a3f3ff303665203c7d22978b525
+    pristine_git_object: fbcf929fefa23c7a95601668a54b61f0586d2efc
+  docs/models/components/sseheartbeateventevent.md:
+    id: 2e63224a5af1
+    last_write_checksum: sha1:e103bd857f3f7e6a945c9efde6a9d31d65c3f0b5
+    pristine_git_object: 66fa514fa24e35a7a862f93f9de0107ad9a20081
+  docs/models/components/ssenotificationevent.md:
+    id: dccbc1eb6eca
+    last_write_checksum: sha1:2eb03fb725dbceb132456a29879708db085d12f0
+    pristine_git_object: 80657388f85137e940891d7e9b37f93a5d502f8e
+  docs/models/components/ssenotificationeventdata.md:
+    id: 7efd8b751ab6
+    last_write_checksum: sha1:a14f972b3021bedcb066431d57b3a30d26db831a
+    pristine_git_object: 813117ece7a80c1f8ac90e87b6fcf6e99d195309
+  docs/models/components/ssenotificationeventevent.md:
+    id: fae9436d36f7
+    last_write_checksum: sha1:45e0dd259a905aae5e5537aba84275a0840d461d
+    pristine_git_object: 049cb5fe87cc2432dc41f9192cf965d96974a092
+  docs/models/components/ssepermissionevent.md:
+    id: 26c6d692432e
+    last_write_checksum: sha1:23d276e1f6a78cf51ecc77193673ff3d9566753c
+    pristine_git_object: 3f1e5096c182fd68e9006ec9763b5908332a6ef9
+  docs/models/components/ssepermissioneventdata.md:
+    id: be285ba4d206
+    last_write_checksum: sha1:e250a7b571f8667dbbc74732f6c5e4179d6785ba
+    pristine_git_object: bf02c3a2b95d72d84ed85302d81786240764ac54
+  docs/models/components/ssepermissioneventevent.md:
+    id: 91bdeeb3a746
+    last_write_checksum: sha1:8ab37772616d24c93ea70a15f0609e1a805d645a
+    pristine_git_object: ca40dbf790474cfc98455073ece5835f3bd57384
+  docs/models/components/ssesessioncreatedevent.md:
+    id: 86757b348de4
+    last_write_checksum: sha1:6119829f7f2d830ce9c02c138d911961218d633d
+    pristine_git_object: 76182a2cce4b0fae7ddba065b7822d29e6c6836b
+  docs/models/components/ssesessioncreatedeventdata.md:
+    id: 164dcb75935a
+    last_write_checksum: sha1:2b03c3dc752c61c968bd9fdce618f29113ffefab
+    pristine_git_object: 7ff412db0b24aebcdb54114df4e6b950d647d05e
+  docs/models/components/ssesessioncreatedeventevent.md:
+    id: ffc6967c1679
+    last_write_checksum: sha1:1c917cdf7736e31f0f8bcf6c2106cc33ae886e9d
+    pristine_git_object: 7bca4176fe27224ed812c4a4691875310a14e0f8
+  docs/models/components/ssesessiondeletedevent.md:
+    id: 75bba9585873
+    last_write_checksum: sha1:66284741b55a67cc42120f02cb1247338ae14acc
+    pristine_git_object: 8de2962b32ff87d6b17ae9e3feb873daf7bc357a
+  docs/models/components/ssesessiondeletedeventdata.md:
+    id: 7805fdd2ee63
+    last_write_checksum: sha1:14408d2bd8581e01883f648ceffd87a0c16f9828
+    pristine_git_object: 403d30832bc98bbd91133031d6c88d328698215e
+  docs/models/components/ssesessiondeletedeventevent.md:
+    id: 2d59c5b25081
+    last_write_checksum: sha1:5c2490d984f990beb218a05e78e1e124ef6741dd
+    pristine_git_object: 4cef96a1ce7aedb428f8df6b30c64c40d021fc88
+  docs/models/components/ssethinkingevent.md:
+    id: 8a9544968827
+    last_write_checksum: sha1:da80b057b6181fd4ac3d914ed95d74d66a0e4a9c
+    pristine_git_object: 89620a32cf978285720ae3b2f609f646238ac6df
+  docs/models/components/ssethinkingeventdata.md:
+    id: 1435be6a9c49
+    last_write_checksum: sha1:734b816915185bb964a88c4cf1a5381535754f2e
+    pristine_git_object: f3a037b911b31812575af35b0c460e56fc5a5281
+  docs/models/components/ssethinkingeventevent.md:
+    id: a53974d97316
+    last_write_checksum: sha1:2cbf206112ee0bbbfa8ddd798d02449621909fa3
+    pristine_git_object: d5721cc35b2623987adf02aa1f5b777114da1a6b
+  docs/models/components/ssetoolexecutioncompleteevent.md:
+    id: ef0d041ba596
+    last_write_checksum: sha1:d9349ee5dbe982a6374b668e83d17e90048b2bb7
+    pristine_git_object: 7f7a12f678b0c6031760b6b1c242f62211ada1a7
+  docs/models/components/ssetoolexecutioncompleteeventdata.md:
+    id: 8e38a6e5c2dc
+    last_write_checksum: sha1:61a77a5f5280dd55ca02262786d87434e790d9b4
+    pristine_git_object: 0719bd67f10712bfe566e45b343d5f1c94aa89f5
+  docs/models/components/ssetoolexecutioncompleteeventevent.md:
+    id: e327c271d73c
+    last_write_checksum: sha1:10a9bfe449b7f18bdf9cb9d3ee9665e5648ea7f2
+    pristine_git_object: e4eb5d0044a32e685bcd810e3bb3ae672a56fcf0
+  docs/models/components/ssetoolexecutionstartevent.md:
+    id: ddb08aa2df89
+    last_write_checksum: sha1:f262568e8ef92ea7ced2e852c00f99cd5e83dfbd
+    pristine_git_object: 540fc1005f3ecde1e7c4484d31ef4a1eb324db20
+  docs/models/components/ssetoolexecutionstarteventdata.md:
+    id: 30919a145d0d
+    last_write_checksum: sha1:e95ac2790723aa61841a29ffbbfeeb7305dad011
+    pristine_git_object: 5c3d83d49e7c2b35fd5b452fb08d70f319dec439
+  docs/models/components/ssetoolexecutionstarteventevent.md:
+    id: 971fe5eb44d3
+    last_write_checksum: sha1:1314cf586e2cb08cba3f1bf0374ef0bb168757e7
+    pristine_git_object: 0a0377bffd86c64305ae79e1b0276e91821b5d81
+  docs/models/components/ssetooluseparameterdeltaevent.md:
+    id: ab5e94560574
+    last_write_checksum: sha1:50a3eb427b08a52d246ba3e0ec23566bd7044c64
+    pristine_git_object: de5906ec5a0f2c118de45ce83f90f3445f9493bd
+  docs/models/components/ssetooluseparameterdeltaeventdata.md:
+    id: 39bc7d3ac5c2
+    last_write_checksum: sha1:c1aaa573e6f3891b5fa479ca5caba773b55a7516
+    pristine_git_object: 946e2c8875e6fa5e7989a1dad4a4b1a24048225f
+  docs/models/components/ssetooluseparameterdeltaeventevent.md:
+    id: 66ceb61e7b1d
+    last_write_checksum: sha1:be5e2d7c97b2231d7e1a567bc93e549513a472b6
+    pristine_git_object: 37e8eb53be4ddaa959f9cacc3e769724567f2b55
+  docs/models/components/ssetooluseparameterstreamingcompleteevent.md:
+    id: 836ed32ec546
+    last_write_checksum: sha1:db5970ef14e724eadbc581ec4a08b56aa2075f10
+    pristine_git_object: 51d6ba7865d8a78a9f243968e198e49d177ed4c8
+  docs/models/components/ssetooluseparameterstreamingcompleteeventdata.md:
+    id: 36370364a26e
+    last_write_checksum: sha1:38e62af7fe27ab3321aa64b0d02fa4d932609c13
+    pristine_git_object: 71cdaade5778ed71b829387b21fbdfd098e89df8
+  docs/models/components/ssetooluseparameterstreamingcompleteeventevent.md:
+    id: f43969d4094d
+    last_write_checksum: sha1:0068e3b71fdb1b5b836263978b71dc1bed287a09
+    pristine_git_object: bd772a0d9f266f5b484999c47a4ce9ee86856427
+  docs/models/components/ssetoolusestartevent.md:
+    id: dcd45528bbd8
+    last_write_checksum: sha1:ba7643f3f95e2a689d9621bed8b7a7742e713bdf
+    pristine_git_object: f562c7a00954b3e471a06632ee8b942454831bdf
+  docs/models/components/ssetoolusestarteventdata.md:
+    id: 1f2abcde4d4e
+    last_write_checksum: sha1:20be77dd88c498e7de0fdc312960344015882776
+    pristine_git_object: 75dd34f1c65cf8b830aecec50f37223c38721758
+  docs/models/components/ssetoolusestarteventevent.md:
+    id: 1773040b10ad
+    last_write_checksum: sha1:26a3903a0bfb1860cab1696ee16d106601efc4ba
+    pristine_git_object: ce3ae2b0eb64ff5504bc8bfaa4c38b65fe6c550f
+  docs/models/components/sseusermessagecreatedevent.md:
+    id: 21191a996958
+    last_write_checksum: sha1:c01921726653d93ff5953fcf8e25c16f549cdc72
+    pristine_git_object: 8296050bfb08afd9edef0a4c15a863eb2d16fc3f
+  docs/models/components/sseusermessagecreatedeventdata.md:
+    id: 2ae45d0e608e
+    last_write_checksum: sha1:c3e7a061591ff42a952b3e037dfbb5186c230878
+    pristine_git_object: 08524ee1d462c3825e49f158b32593cc017158e3
+  docs/models/components/sseusermessagecreatedeventevent.md:
+    id: 4423b59f3a02
+    last_write_checksum: sha1:66ea94740828f4ff0cd96ecd5e723a60adf840fd
+    pristine_git_object: 15b88c04541bf973b2c02c0f0936e16e9166abea
+  docs/models/components/subagenttype.md:
+    id: 8092fcb339bb
+    last_write_checksum: sha1:3bc82042836ca13dcf19e9c1a9421204a3ecb656
+    pristine_git_object: d08c1dea4bc76c526ad9e0d5eb0a5bb489705cea
+  docs/models/components/toolcalldata.md:
+    id: b72189970009
+    last_write_checksum: sha1:2e9fe578fac3904b778deb9c41d9c6012d4dd59e
+    pristine_git_object: 8f9171639f602213f6a89730f99d558cd6ae6ae4
+  docs/models/components/toolname.md:
+    id: de86334d53a9
+    last_write_checksum: sha1:649522c7e40e9b8df4789a9caa6bee514692ff35
+    pristine_git_object: 9574887166d9e76b9c668c32c53ac971d6d58925
+  docs/models/operations/availableproviders.md:
+    id: 9fc9a1a95d48
+    last_write_checksum: sha1:303d9e4725eacd5c784069994d3828ffe1988a55
+    pristine_git_object: 7df28bf38ce8b3f686ed82b87cd954f1d4e7ff3f
+  docs/models/operations/cancelsessionprocessingrequest.md:
+    id: a077c0bca943
+    last_write_checksum: sha1:2f4f803b60bdf69abc75a2a38c79c5c64a7c1dd3
+    pristine_git_object: c0fbe3cbb12c35d8245e65d41539f34d97432723
+  docs/models/operations/cancelsessionprocessingresponse.md:
+    id: 113338f84d73
+    last_write_checksum: sha1:caf6458259e3a248bf819ca8a302cb7b2eaf47f0
+    pristine_git_object: a0e070c50664964ff2f52c68cb7b63be429ba944
+  docs/models/operations/cancelsessionprocessingresponsebody.md:
+    id: 2bd5b7075e66
+    last_write_checksum: sha1:735847670915acca616e083d3a84ace36ab925f2
+    pristine_git_object: b3e83db2f2b2b35b7903a4099c14faa50a7ec028
+  docs/models/operations/createsessionrequest.md:
+    id: d181ed65111e
+    last_write_checksum: sha1:6394f7098dc5731abbe51f74d93664a6d8417173
+    pristine_git_object: ccfa9b134a8f4f5838aa0ed309791246e8d5b0a2
+  docs/models/operations/createsessionresponse.md:
+    id: 95acaf2225aa
+    last_write_checksum: sha1:6991885ba5ff01d696f38c18d4f4d5ff20f40735
+    pristine_git_object: 78073e1c4b2144966b5aa0c9c9ee38c9d5688579
+  docs/models/operations/deletecredentialsrequest.md:
+    id: 5c987f828345
+    last_write_checksum: sha1:dd3d9d3ef16f7b7af63326e49746bcec279522aa
+    pristine_git_object: f4e5e086054f60b8b09b6e52bd8c8c39285898ca
+  docs/models/operations/deletecredentialsresponse.md:
+    id: 2343dd1479a2
+    last_write_checksum: sha1:ce804a9c64a94326efa0c2cbd8c61d42f82debb8
+    pristine_git_object: 2b865a9517cc392a0c70ecf865a3c185c6098264
+  docs/models/operations/deletecredentialsresponsebody.md:
+    id: efb86d7b8d03
+    last_write_checksum: sha1:5a371784f72dd94555051c37bfd0bd5559ce4b34
+    pristine_git_object: 1cda8c4668b4a63a92260e6cb43f463df78f419b
+  docs/models/operations/deletesessionfilerequest.md:
+    id: 03834e2200b2
+    last_write_checksum: sha1:55ea19c2bae8bc078ec06e4e24647880f6f536e4
+    pristine_git_object: 805368c5b2b8b5738c2b74e84d4b99dd7047b251
+  docs/models/operations/deletesessionfileresponse.md:
+    id: 9c7d238e249a
+    last_write_checksum: sha1:f2aebb2149bfd2a701aa893b6c22a4ec19ecb7fc
+    pristine_git_object: 6d2bb4dc6e74f18087492d68a4d8f945fa678481
+  docs/models/operations/deletesessionrequest.md:
+    id: 0ae87a6fc8d5
+    last_write_checksum: sha1:de8a18a977e0c7219ee1036fb004aba4d777e88f
+    pristine_git_object: f7346a4efc4429e4e56ee7fbac2f50da7999b292
+  docs/models/operations/deletesessionresponse.md:
+    id: 4298b9065a88
+    last_write_checksum: sha1:6e8b75fadcc55fea68d2b98e1e0732990388ed49
+    pristine_git_object: 726a855c6cf584a60ddf67da23920e2d6a8331a0
+  docs/models/operations/denypermissionrequest.md:
+    id: 039648b15538
+    last_write_checksum: sha1:d22979b3b8f9f0488a170a10cedf16b4421a57ee
+    pristine_git_object: 135ade2636a47596747c703eb13a2a362ba0ba7a
+  docs/models/operations/denypermissionresponse.md:
+    id: f27bbecb243e
+    last_write_checksum: sha1:3be2fa3166372290472b0c07b37de302bfcff6ca
+    pristine_git_object: 3c9353bd3a2bfaef58a785996254588107cbba91
+  docs/models/operations/denypermissionresponsebody.md:
+    id: f1dae5f5e69e
+    last_write_checksum: sha1:60c9af572a1c0484a64f2a6dc81fa51cfc9dd3e8
+    pristine_git_object: 4c753390ec0dca55241e82d85702e1a978c62654
+  docs/models/operations/exportsessionrequest.md:
+    id: d37e1ad287fe
+    last_write_checksum: sha1:0a3bf2fc274a1a0a0935a3b07d8d8e681da19f44
+    pristine_git_object: 3a3f3da5b15bdc1245aa71580e0b21762dd68a9a
+  docs/models/operations/exportsessionresponse.md:
+    id: c44b823487b7
+    last_write_checksum: sha1:b86add6c2e99b208071cdbfad008ce0d89813275
+    pristine_git_object: 5a5cfa2ca8d8979a28c8189fcbf99219a5ab9dd7
+  docs/models/operations/file.md:
+    id: d791b792f60f
+    last_write_checksum: sha1:70281f8306bea1aa098cd28fd72c3d2bc32db2cd
+    pristine_git_object: 7c3d5edcf1ccdd608ca291986e5b2f72ca670f77
+  docs/models/operations/getauthstatusauthmethod.md:
+    id: aa65205bda2b
+    last_write_checksum: sha1:269c8c6c368931254812b2316656bbca54626454
+    pristine_git_object: 653f5b019abdfec264b66c92e99e1ff82cf55eee
+  docs/models/operations/getauthstatusproviders.md:
+    id: b7c01082e51f
+    last_write_checksum: sha1:09f8b3dec78a386971a975adf5b6211079fd9012
+    pristine_git_object: e3c74feaa83094d90f3a08c9fec4e510246bb1bc
+  docs/models/operations/getauthstatusresponse.md:
+    id: 72d824f62dcb
+    last_write_checksum: sha1:dbd020536484a57e3ea8d5df3de41597e277eb7d
+    pristine_git_object: 85efa9fa999fed31b242b684b6592317d5631a44
+  docs/models/operations/getauthstatusresponsebody.md:
+    id: ab5798fc6895
+    last_write_checksum: sha1:f3c91ac5f9c23c87aef09e8f2469d5d961af6890
+    pristine_git_object: a267bee694ad9a84bddcaffed418db257fe68803
+  docs/models/operations/getavailableprovidersresponse.md:
+    id: 31dbbe8c65d4
+    last_write_checksum: sha1:32337777913cd7d3506e8854f2791bf23280a904
+    pristine_git_object: 628e943e82dc0145ecd8ce93e15a17d5e8be4d53
+  docs/models/operations/getavailableprovidersresponsebody.md:
+    id: e9927f9dc7ba
+    last_write_checksum: sha1:cdc7a2a5c325f358ff8a78489f6f45f305df2880
+    pristine_git_object: e81b4317a2473eec3d85611563f4dea9a2fe9853
+  docs/models/operations/getcommandrequest.md:
+    id: 737d2716e0d9
+    last_write_checksum: sha1:8144ef95f2ccf44aa75cdee4d045080e1bcdbcf3
+    pristine_git_object: adbe27358b9255647185410a62635a9ed6f48baf
+  docs/models/operations/getcommandresponse.md:
+    id: 2c7499301a67
+    last_write_checksum: sha1:2231405c0469d75a1335289fc8e76a59b5f89c1e
+    pristine_git_object: 2ac678bd4f44c8864b97d843aa0edffd8f4b657e
+  docs/models/operations/getcommandresponsebody.md:
+    id: dd3e4b8f956e
+    last_write_checksum: sha1:9a1477b83cfa7da6ab87f77afad38a72c194d741
+    pristine_git_object: 822aaa8e13acedd49c83476e786c3da23a8979d4
+  docs/models/operations/getmessagehistoryrequest.md:
+    id: 6f37f879b4e1
+    last_write_checksum: sha1:b5aec3b8e0deaf840fc4882034721473be63378b
+    pristine_git_object: a5ef82387df7b804a123737a34271fa436685bb0
+  docs/models/operations/getmessagehistoryresponse.md:
+    id: e49dd5f67b7b
+    last_write_checksum: sha1:4c998f3149f1e708680188895666104da7769d2b
+    pristine_git_object: f2c3560cfdc3a5d817ee2874ec480d1b5aa1e2c5
+  docs/models/operations/getoauthhealthproviders.md:
+    id: 1be428b48732
+    last_write_checksum: sha1:44bd32e310f3ff69acce50aaaf4d75dea5c8c86d
+    pristine_git_object: 43482f11cb4bb9de252e7b2c7220b9495d29f312
+  docs/models/operations/getoauthhealthresponse.md:
+    id: cbf1c45d3a83
+    last_write_checksum: sha1:3bd3e252c69236926c79d06bd0b884eef50ce4df
+    pristine_git_object: 0e14c91b36ff0172052837701c38434a765b3058
+  docs/models/operations/getoauthhealthresponsebody.md:
+    id: 69f7163ac22a
+    last_write_checksum: sha1:5fdda68e4918a15c6a528ab0cb7a619f57245ea7
+    pristine_git_object: 0f2baa436fe971cd510cddf3de9ea53aeb204796
+  docs/models/operations/getpreferencesresponse.md:
+    id: ed43a5314ad7
+    last_write_checksum: sha1:37653801bafdbba56d49fb8935ba333d3ff626a5
+    pristine_git_object: fdf9ca0a3e2f30f0d1c5034c4e48d577b337da62
+  docs/models/operations/getpreferencesresponsebody.md:
+    id: a2c901562b48
+    last_write_checksum: sha1:fc53801f594a9e19e2545b41087f63e51cc5d3cf
+    pristine_git_object: f3543c283605a236b0206b854426c6ce63ee8e5c
+  docs/models/operations/getsessionfilerequest.md:
+    id: 4446cf8c791c
+    last_write_checksum: sha1:af2cd7e5e466e78e299cecf672eeeadd9c6a52b6
+    pristine_git_object: 072b8bbdfd8f09405910d70c03b3f0b210f89591
+  docs/models/operations/getsessionfileresponse.md:
+    id: 8c26a440f8b7
+    last_write_checksum: sha1:fad585b8d312204ead1a579c062b33b4cdd64f82
+    pristine_git_object: 9f482a61d0e1f42229d3f3607715d12b1877d9a9
+  docs/models/operations/getsessionmessagesrequest.md:
+    id: 9125d0ee9337
+    last_write_checksum: sha1:6b80634840ebf7da19462acc345dfb34615cba28
+    pristine_git_object: 2e3a00ad8b30b1188a69ae2775500f01f846b781
+  docs/models/operations/getsessionmessagesresponse.md:
+    id: d7b018f1dba2
+    last_write_checksum: sha1:a624833518fc4fed92a1d9f5157453b81e0bec89
+    pristine_git_object: 57c184d3efdff4df27678d8a76c5e50e140643ab
+  docs/models/operations/getsessionrequest.md:
+    id: 86ae7adb9b0b
+    last_write_checksum: sha1:5fb86cbf8d306f7fa4d9a52c0e678d05ab62eded
+    pristine_git_object: 75af30f4e880624da2beeff7d15107cc1b61b062
+  docs/models/operations/getsessionresponse.md:
+    id: 2485d8d30237
+    last_write_checksum: sha1:07de9c67a9c6a1d807fb0e31beacdcf27f4ad0f3
+    pristine_git_object: e8d390c2056727ea6386ab6278448397b764c18f
+  docs/models/operations/getsysteminforesponse.md:
+    id: 83fbacbdb288
+    last_write_checksum: sha1:fe1cb1a707bd779b6ee69bc9fecec6de587519df
+    pristine_git_object: 260a349083675ccdd86a7f88f866c48f25db0f6a
+  docs/models/operations/getsysteminforesponsebody.md:
+    id: c3f8e23d88c3
+    last_write_checksum: sha1:e761f40501cb08db36c8f2ec52e0dad79d4dccd4
+    pristine_git_object: 7cc0a4e251ff2e7e8a5faf51e6ccd122dc1eeed6
+  docs/models/operations/gettoolcredentialsstatuscategories.md:
+    id: 1eea1b2081fd
+    last_write_checksum: sha1:ac727d17d20b75d78f535c4ca2c779cff08d596d
+    pristine_git_object: f571795bf0a5d3eb3cfebeb4b45570f8268680c9
+  docs/models/operations/gettoolcredentialsstatusresponse.md:
+    id: 51372ca9ada5
+    last_write_checksum: sha1:1fb6dfb61111d19bc8f5f78cb1ff1edca3933a46
+    pristine_git_object: 12dcfd33fb0132ccb5c881cf85509f537cc18774
+  docs/models/operations/gettoolcredentialsstatusresponsebody.md:
+    id: 7f576f8b57bb
+    last_write_checksum: sha1:82c52bc57cd5b03fe1384e29c9ca40d26e4b6234
+    pristine_git_object: e781eb95d022f24e2848e1ec0eb43659d60ad276
+  docs/models/operations/gettoolcredentialsstatustool.md:
+    id: 85619af1b05e
+    last_write_checksum: sha1:c7d1485c14c46fe70a2453ad7aec4ed34ec82e08
+    pristine_git_object: 382d4619a487d723a6b4db33bee4f99894e05b6b
+  docs/models/operations/gettoolsstatuscategories.md:
+    id: 8635bdc412fe
+    last_write_checksum: sha1:48fe6f6573f06fd09d75770bb45a2ab254f89ddf
+    pristine_git_object: 71c3555d65afd98f9f9930de1949da0a9a565bab
+  docs/models/operations/gettoolsstatusresponse.md:
+    id: 28adb89563ee
+    last_write_checksum: sha1:1d00e2aa146a61ed63499e680a3a01436ab268cc
+    pristine_git_object: c490a1f70773ad16427b707c05be064cb7881386
+  docs/models/operations/gettoolsstatusresponsebody.md:
+    id: bb437f5f70a0
+    last_write_checksum: sha1:21e01eb9126c3e0b9c10893549b4ac40bb085ab4
+    pristine_git_object: 5c18aab188112914cd00b502456be7c2175302bb
+  docs/models/operations/gettoolsstatustool.md:
+    id: 9e0f69baa558
+    last_write_checksum: sha1:e462edc84c9f0ca0c14e796df471c66a182a3f7c
+    pristine_git_object: 9d60039268901728cbbd0ecb7f3cad191d114de4
+  docs/models/operations/grantpermissionrequest.md:
+    id: a44b10be3b9c
+    last_write_checksum: sha1:5fb8a71c917e13e09daaefd68ef1fc49d91eab6f
+    pristine_git_object: 1d49e53713b52a7cda326d5741b68ee799112934
+  docs/models/operations/grantpermissionresponse.md:
+    id: 686fa30bd622
+    last_write_checksum: sha1:1f38418d4a49288de18942ce9da57a97164336cb
+    pristine_git_object: 2c28284644b0e77bf2448ff7cbe18d5f20e79822
+  docs/models/operations/grantpermissionresponsebody.md:
+    id: 2b56da3eb96e
+    last_write_checksum: sha1:28a743be55e2692c3ced92f7c20ec606887dd2d2
+    pristine_git_object: 41967c605d71cb0ecbba8157b5b68f6aa233146a
+  docs/models/operations/handleoauthcallbackrequest.md:
+    id: 8b0cf0cb6b64
+    last_write_checksum: sha1:d73a05cb6afb378643d90409225167eeb481532f
+    pristine_git_object: 82507cc5e09db2569cfa4c7aa0bcd32d2f509307
+  docs/models/operations/handleoauthcallbackresponse.md:
+    id: d089abe257ee
+    last_write_checksum: sha1:50080ca52481b34e1d2c395d7a266702ab2d1664
+    pristine_git_object: 2865e26c989fb9de1bef4d13bd7e76c390c797a7
+  docs/models/operations/handleoauthcallbackresponsebody.md:
+    id: fcc3118f48b7
+    last_write_checksum: sha1:372f75d4041de181c22e4949ce96e96f9504f1c9
+    pristine_git_object: 0aa994416bfeee48f8f2d58b2a6206f107e52382
+  docs/models/operations/healthcheckresponse.md:
+    id: 28b498fd7474
+    last_write_checksum: sha1:5952ae62ebf6aaa153c1c65d21d15ce6cbd38692
+    pristine_git_object: f3834daa5727d1a5b8e6b99e58d3eb344d3660d1
+  docs/models/operations/healthcheckresponsebody.md:
+    id: 1b7e154a7595
+    last_write_checksum: sha1:b793829e6c943b4692786a1df74edf9dff443e75
+    pristine_git_object: 93c848fca8a451ee35034e35fd2e68b717814cb3
+  docs/models/operations/listcommandsresponse.md:
+    id: 0f1c06183015
+    last_write_checksum: sha1:59b256ae548b7fe59415275b89453a13f4523202
+    pristine_git_object: cd674e0a8cd8b6cdba3199ac0e12f2228fe956ac
+  docs/models/operations/listcommandsresponsebody.md:
+    id: 352765f80314
+    last_write_checksum: sha1:51bd544b127f0e0647b824a184c321454d3c63b6
+    pristine_git_object: f3b88804e759472e4ff000e08d6f478a5c8d8f99
+  docs/models/operations/listllmtoolsresponse.md:
+    id: a1be77293371
+    last_write_checksum: sha1:77b82645ff2758ea9239e7efb85cd021fc91b96c
+    pristine_git_object: 96f90623f459e264f2b066aadc5c29ef5721ee69
+  docs/models/operations/listllmtoolsresponsebody.md:
+    id: 6aa2907cbe10
+    last_write_checksum: sha1:a0c33eaeda8882108431418a3f2a63f7ed49526c
+    pristine_git_object: 59efc43b2fe6c67c38c79aee1991cc9314fe3ef2
+  docs/models/operations/listllmtoolstool.md:
+    id: 10392d0283c1
+    last_write_checksum: sha1:089b7fd55e432a422eec0bc045c741a8e0737eb1
+    pristine_git_object: 5a09bfc61c8bb5d49a39f8c7d32f7301fc3e12ce
+  docs/models/operations/listmcpserversresponse.md:
+    id: 1c8b5d68a86d
+    last_write_checksum: sha1:cd3d5b4ac307ecde1de194f3f5a9aee8d2c66b5a
+    pristine_git_object: 8519012810e8f9f5a470eb0d34bd5c400139b8eb
+  docs/models/operations/listmcpserversresponsebody.md:
+    id: a34bf5b05412
+    last_write_checksum: sha1:b8f070d890b9877a9028f77cae81f69e4d289621
+    pristine_git_object: e392ab89b7dafd770e377634edd881cfc2a7f6ec
+  docs/models/operations/listmcpserverstool.md:
+    id: 0b80d0074aed
+    last_write_checksum: sha1:4fac0d6f3efe44f95f8e14d1e607df55db959910
+    pristine_git_object: 2a266eeda066a59035dd875130e96f2e91b03d39
+  docs/models/operations/listsessionfilesrequest.md:
+    id: 260df74ddf35
+    last_write_checksum: sha1:828c9750f85f3ad904d15a01ab9843915f2a7748
+    pristine_git_object: 6cf91cd54a7f1f584169c436e5eb3fdfdcf8f43c
+  docs/models/operations/listsessionfilesresponse.md:
+    id: 0896004649ba
+    last_write_checksum: sha1:3213c30c315f18955d6c13a3d542f821d900ef9d
+    pristine_git_object: 5315da62a3aa6f87a55132f4eb43b4292752e597
+  docs/models/operations/listsessionsrequest.md:
+    id: cd7555b44e15
+    last_write_checksum: sha1:07c81d2deeaed86cad51cd8500de3f2803b7b579
+    pristine_git_object: c89b81401aa20985de9dfecc7af269f85154f3b3
+  docs/models/operations/listsessionsresponse.md:
+    id: 86f810e6e5a0
+    last_write_checksum: sha1:96f6d6e2272d0cffa250adfa335566b00165564e
+    pristine_git_object: f2296fd18df8f511c5404033ace930724b66437c
+  docs/models/operations/option.md:
+    id: 2ac1bd52a5fb
+    last_write_checksum: sha1:08cfee5d266c9d82987e448f6c98a143aa42c5f8
+    pristine_git_object: 35d8a1e2ad48a64702c6a654ac8880dabec053b0
+  docs/models/operations/parameters.md:
+    id: 36c169af1504
+    last_write_checksum: sha1:663289c02a7bd3c189bf5e29855c2d0e853a92f4
+    pristine_git_object: be272de8c73d99102f289c64fd3f72ada830bf38
+  docs/models/operations/preferences.md:
+    id: dad36bd52b9e
+    last_write_checksum: sha1:f8fb2a15c710311c2ca1b9667c1e3de6eb91ae1d
+    pristine_git_object: 7353c7576b27b3afbc6e130a66d80dc9f38bb2f6
+  docs/models/operations/promptmode.md:
+    id: 8181eacb31e3
+    last_write_checksum: sha1:551f428adfbbd15ee74d3be188e512c4e5b98e08
+    pristine_git_object: 773b13c958dcb92c0a6a8eec86f9698932dc4dcb
+  docs/models/operations/provider.md:
+    id: c28b3c085f4e
+    last_write_checksum: sha1:db49058f0bd128328ba340ecb19015a3bf5ec36b
+    pristine_git_object: 92f32aaf5096a9a37b4027938946253f224fc91d
+  docs/models/operations/providersstatus.md:
+    id: df4a6e8a036f
+    last_write_checksum: sha1:a02b88e6d512fc344ecc74eb4bc578167ae93a40
+    pristine_git_object: b6612d2855a8709ef0dd3ef1156770e5fbb4078a
+  docs/models/operations/refreshoauthtokensresponse.md:
+    id: b0ba45295253
+    last_write_checksum: sha1:88d46bbac90a00dba6ea4c15d6bbd36c3ecbcbc8
+    pristine_git_object: 57c7c702a30c698f3f4dee76441347cd8269aeae
+  docs/models/operations/refreshoauthtokensresponsebody.md:
+    id: 8cb5fbc1a375
+    last_write_checksum: sha1:b2de1a0858b579e1573ce0a733d9ca50f579eb12
+    pristine_git_object: 3053944f4e0ecc89ebf078c99f6ecc82000de8d7
+  docs/models/operations/resetpreferencesresponse.md:
+    id: aa8ee21a4219
+    last_write_checksum: sha1:ba0d5bb7dc94720e2174411d6977e22bc1992d21
+    pristine_git_object: f0a221ed723ac4b58fff083fdc890b6b11bbc2de
+  docs/models/operations/resetpreferencesresponsebody.md:
+    id: 3740f45afa06
+    last_write_checksum: sha1:3d283b5e0c939615663af9d8903c0fb683f45745
+    pristine_git_object: 334519172d3dc944b94fc7d262fe30404a7f6a8f
+  docs/models/operations/respondtonotificationrequest.md:
+    id: 5f2ef64617a1
+    last_write_checksum: sha1:6ed8c64beb2d4b6bab571eee992977fb89377808
+    pristine_git_object: 5ae35b54025780925e578f84fccbaef9aea0a202
+  docs/models/operations/respondtonotificationrequestbody.md:
+    id: 1ce649285786
+    last_write_checksum: sha1:21d92fe8f7e00e8cc994d016a1dcf150f1a1a517
+    pristine_git_object: 0298d22c47ea7aa9c7d39740e72b2198e0b1877b
+  docs/models/operations/respondtonotificationresponse.md:
+    id: 5bb7b996b12e
+    last_write_checksum: sha1:71da025e71fd98e20cf834979dd9490f480021ec
+    pristine_git_object: e64ea418d68bb72ee1415425321b4954a3638cb1
+  docs/models/operations/rewindsessionrequest.md:
+    id: 0ac9df6cac3e
+    last_write_checksum: sha1:5f74272edbbb70a5e090f8cff987a609fb9ee8f5
+    pristine_git_object: 4a97d036ec0a5791374b13a03c59993694d39688
+  docs/models/operations/rewindsessionrequestbody.md:
+    id: 7f861a0bd5f2
+    last_write_checksum: sha1:8e6ed4aa1215f4d9b3e864108b8069b2d4e4b52b
+    pristine_git_object: 01f2221aee11395aca22e584920b8bf32ffaf585
+  docs/models/operations/rewindsessionresponse.md:
+    id: 8b43294775f4
+    last_write_checksum: sha1:6c6331b01b177cc8f9cf7c307b6f4fcba7e1fe84
+    pristine_git_object: c0ee74c9c1318886a6912481bddb33df50982455
+  docs/models/operations/sendmessagerequest.md:
+    id: 354b8c11ee26
+    last_write_checksum: sha1:8b29260908f3206b5ff55b9b58c2c79cca27e3ac
+    pristine_git_object: 87b39e219e8b04369f69287def796376b672c372
+  docs/models/operations/sendmessagerequestbody.md:
+    id: 0f809e8ecb4b
+    last_write_checksum: sha1:6cebac92d4e5cef65afa6c5f91da0a7e99ccf860
+    pristine_git_object: e24a17ba1ca184e62659abff5146e69ae554ab8d
+  docs/models/operations/sendmessageresponse.md:
+    id: 9e6375f812fe
+    last_write_checksum: sha1:99b645fcf77e6a5a25e4ebb37d98e2bc2e3a592b
+    pristine_git_object: 116a3389d0149137d0cd2d9588c8faf80b17c96a
+  docs/models/operations/sendmessageresponsebody.md:
+    id: 5e26567283b0
+    last_write_checksum: sha1:8f645fdce0c3a21ce2b58afa8341807062e4de75
+    pristine_git_object: 988612accb0f7d6c3286dcce4f2bd710c9599212
+  docs/models/operations/sessiontype.md:
+    id: e1220af00f72
+    last_write_checksum: sha1:b773cf4600010b35d83f451b3370c4549000cc70
+    pristine_git_object: 3ac1960a2ea3c02ce7eda5e232513f37c2c7660b
+  docs/models/operations/startoauthflowrequest.md:
+    id: 6f43826618ff
+    last_write_checksum: sha1:ce157f05fa1d920652ea835da886789f93a5ee85
+    pristine_git_object: 46b6d32db6f6140f9aafcd9ed56eeeda11147a75
+  docs/models/operations/startoauthflowresponse.md:
+    id: 7ef459c43b63
+    last_write_checksum: sha1:70dcb22aebc893a9cb33304cc7a23e6467eff1e9
+    pristine_git_object: ddb94412dfbfdda376a4d6da924a769190e92abe
+  docs/models/operations/startoauthflowresponsebody.md:
+    id: 0257f9fd4911
+    last_write_checksum: sha1:5166c9093dd0fc084e45c069d84fabb3ee79f1f2
+    pristine_git_object: 1282f4a02f1a175cf88f43565fcb3385fa059b3b
+  docs/models/operations/status.md:
+    id: a42267b6f2cb
+    last_write_checksum: sha1:0b1fa509fe139a73b30c36721542666f604d54be
+    pristine_git_object: f67c9ce2a84b89e21138f4852681bcbd4bb8be68
+  docs/models/operations/storeapikeyrequest.md:
+    id: 6612d4667948
+    last_write_checksum: sha1:a78ede282f6e0894d4b283f056400e3f2bc2bb9d
+    pristine_git_object: c6197d69443488db84bc54098f9894927e7e0632
+  docs/models/operations/storeapikeyresponse.md:
+    id: f3b8ae9473a0
+    last_write_checksum: sha1:3793ff88a5f94271eccbcb19c69a34de7c8e9411
+    pristine_git_object: e8faed321586609ce52f7075f126f6ae95ee02d9
+  docs/models/operations/storeapikeyresponsebody.md:
+    id: 2b98f5f38d01
+    last_write_checksum: sha1:a45262d3eefeaf56450a8c99a5d50f7172c801b1
+    pristine_git_object: ece9e933ab5fdc59a6942791f8ee10112ff59bf2
+  docs/models/operations/streameventsrequest.md:
+    id: d3d3f9e88a2d
+    last_write_checksum: sha1:e58f9189128febdcf6e9f2d486650872278e1955
+    pristine_git_object: 0958cb34125ba784685fda82d5e2af2e617bb37b
+  docs/models/operations/streameventsresponse.md:
+    id: 07cb2e95edbe
+    last_write_checksum: sha1:8c1548ad0670f7a8e1bf79b59f2f9c1760c42811
+    pristine_git_object: 8fe80f547b522db0394a5d22f96495b3ab56f9ec
+  docs/models/operations/thinkinglevel.md:
+    id: 464c0642fc36
+    last_write_checksum: sha1:b53dfc4e16b4902b490a2a85ebc042118a1eaa7e
+    pristine_git_object: dcd90143ddbc6f3acc48f41cf2d337fa21192d46
+  docs/models/operations/type.md:
+    id: 8e39682ca85e
+    last_write_checksum: sha1:ccbd48a5abda3810690356c5d33e1a2beee04a4e
+    pristine_git_object: 54a58b56c40275fe6be46c2a3fb6a35e14ba3563
+  docs/models/operations/updatepreferencesrequest.md:
+    id: d53f68e0d293
+    last_write_checksum: sha1:7298c428dc1cc1dc3d63354d663e88c77566a47e
+    pristine_git_object: dcb698cf694fee016d5182ba2a138a85e5d3c7f8
+  docs/models/operations/updatepreferencesresponse.md:
+    id: "207214921422"
+    last_write_checksum: sha1:9ec54f0fe8e69162cb5a7d787f6b315cd009b5d7
+    pristine_git_object: 2386c9aaa140afc6c1e10f8ebeed0fcc0bf3abe7
+  docs/models/operations/updatepreferencesresponsebody.md:
+    id: 3758ebc9d1bd
+    last_write_checksum: sha1:bddc6288aaa21bf7660abd9e13f7f89edeb35d49
+    pristine_git_object: 9ec4c9be34f228c2582a484c35631d54d35ee037
+  docs/models/operations/updatesessioncallbacksrequest.md:
+    id: 1effc14209e8
+    last_write_checksum: sha1:d3db784862122679e5c6149e9f2f1779ad25aebf
+    pristine_git_object: 3321321218069f37bddc53e80cb975fb7540f373
+  docs/models/operations/updatesessioncallbacksrequestbody.md:
+    id: f09061fb6fbb
+    last_write_checksum: sha1:895b200e9ee44afa01a0a49b4de564e68dd0273f
+    pristine_git_object: 36c6701ca6f37b138897d90377fe10e3f03e5517
+  docs/models/operations/updatesessioncallbacksresponse.md:
+    id: 0aa59203b9be
+    last_write_checksum: sha1:c7f476cef411c7bb806f14ad7232ee9a0ad15904
+    pristine_git_object: fa9e84e892b6fa0acca1252e5e47e06c0b75c495
+  docs/models/operations/uploadsessionfilerequest.md:
+    id: 4ae81d6b8ace
+    last_write_checksum: sha1:382247251c06f448bf22a5a54e21410a88b70852
+    pristine_git_object: 9859052f55ed6519a829f90bd7a637be5261711c
+  docs/models/operations/uploadsessionfilerequestbody.md:
+    id: 75830aeffc14
+    last_write_checksum: sha1:a4e157cf8cfa1699b841f213b7fd21750c027a16
+    pristine_git_object: 87721e2cd0ac8f7028b72835431a98083cdda7d1
+  docs/models/operations/uploadsessionfileresponse.md:
+    id: 99eb57e1c556
+    last_write_checksum: sha1:a92b818a473a0f9cb57b480065c333d051110bec
+    pristine_git_object: 5824ed7ee24829822486a8ab28adfa80bdc6ea8c
+  docs/models/operations/validatepreferredproviderauthmethod.md:
+    id: a1c78c5b9034
+    last_write_checksum: sha1:bd76ce1582be59fef4f0854ae9d2a3b2bd93c182
+    pristine_git_object: 565cf12a150cd2bbbeca73bd23e6c875c6326d02
+  docs/models/operations/validatepreferredproviderresponse.md:
+    id: b8ddd67f494d
+    last_write_checksum: sha1:a303abc48daf339a1b21464f6d0104247f066669
+    pristine_git_object: d2ad7afbeb47978ce07f5fbb9d3334ac9c83fed4
+  docs/models/operations/validatepreferredproviderresponsebody.md:
+    id: 4796b86cefba
+    last_write_checksum: sha1:06ba10881c5c538a572faa8065d4a55fd3af6177
+    pristine_git_object: 840f226fd53a2c18b11ebd4be832d709af7ef7ba
+  docs/sdks/authentication/README.md:
+    id: 45be241adfc3
+    last_write_checksum: sha1:f078b98d83ce9c8d4e07644a4799a94acee88c50
+    pristine_git_object: b1301f498c246257653e61485407c251a440164d
+  docs/sdks/files/README.md:
+    id: e576d7a117f0
+    last_write_checksum: sha1:3b7077da3e0c9a2ea7c353bdd44b32dbba14001b
+    pristine_git_object: f3ede3c47237903e962dff8a02c625fee993a034
+  docs/sdks/health/README.md:
+    id: 5082c50d5e82
+    last_write_checksum: sha1:8fb14174cb406d903d500c7f450f0f037063a934
+    pristine_git_object: 16bc348844e413f576a186114c76fa873001a809
+  docs/sdks/internal/README.md:
+    id: 11cb26f5abcb
+    last_write_checksum: sha1:fb93650b4b44e010cc16c6777faaa5705358578f
+    pristine_git_object: 80bd541b4bce312ca48c06a174ce3999d6164206
+  docs/sdks/messages/README.md:
+    id: 3f1f6d38fc33
+    last_write_checksum: sha1:e09d71766644cd153ee30f660478b59d6befdf0d
+    pristine_git_object: 3c4fca37b0d41c0c17e0b8a487c3a12b6b139b5a
+  docs/sdks/notifications/README.md:
+    id: 271bac956045
+    last_write_checksum: sha1:8d29c0dd3971850abf6ff2a495b94d759cf839f2
+    pristine_git_object: 181ddca0a39d84d241784828d87c2098997cff8b
+  docs/sdks/permissions/README.md:
+    id: 2e4061ce50d4
+    last_write_checksum: sha1:b7eaf36d79eb461bb49241d8a219c78275a78986
+    pristine_git_object: 754d7faf088e2daefcfde105546ac5263fecfab7
+  docs/sdks/preferences/README.md:
+    id: 6a64506aa707
+    last_write_checksum: sha1:3c39b84d8c57dd3ce74c2132645ca4376b8ab008
+    pristine_git_object: 41b7f3238eb6bee94acbc498fdedbbbc166cb9ba
+  docs/sdks/sessions/README.md:
+    id: 57ad62844f79
+    last_write_checksum: sha1:6da83bba72af36747d74033ab6b020b43027d243
+    pristine_git_object: 12fddf7a4be40adc45dbbd9f6652643dc737f7da
+  docs/sdks/streaming/README.md:
+    id: de52a04909eb
+    last_write_checksum: sha1:fa0d5fb76827cb9ab785c4b31d97f63a3776b908
+    pristine_git_object: 3c4de145bc3123e728aed94ae71673334b5cd67f
+  docs/sdks/system/README.md:
+    id: 91103586b308
+    last_write_checksum: sha1:7e34eadcdd3ef049073be314af891d57f50ee558
+    pristine_git_object: b85fdd04b5376561fdd4e3eaffd7d642b02fa07a
+  docs/sdks/tools/README.md:
+    id: 044286549bac
+    last_write_checksum: sha1:1b59a1fbbb12e1d5338766326aec2a9d862d57ba
+    pristine_git_object: 476cdb3c90e6f28cf92718cb6ce69448149fdbff
+  files.go:
+    id: 2321d71bc458
+    last_write_checksum: sha1:ea2ea6b77610e4b957da273461ce48392b0147c2
+    pristine_git_object: f29251fdc364001cc325591e79bb7169710b957e
+  go.mod:
+    id: c47645c391ad
+    last_write_checksum: sha1:89f4f1383f2af253abc3ee4332a618526338018d
+    pristine_git_object: 53016b973930d70d3ed6dd135be22bb642cccaaa
+  health.go:
+    id: ca291aa88e47
+    last_write_checksum: sha1:d33b06e5d90e233e2cb6f1e9ff1a26c5602ebf6e
+    pristine_git_object: 9bfe2d6df75ace016b640b8285bb7addf1fc7eec
+  internal.go:
+    id: 61379923606a
+    last_write_checksum: sha1:893081522b2a3ccd101a23e2779cf5e4f4c17eb5
+    pristine_git_object: d81401b9f4ae5ae7e63d744245880c2cb497d381
+  internal/config/sdkconfiguration.go:
+    id: 33b8bfac5265
+    last_write_checksum: sha1:2a8ba53bf580d1c356392b6b01d2da889f55a311
+    pristine_git_object: e14a773ccc478a8d72368451a6aa0c3b4caf66b9
+  internal/hooks/hooks.go:
+    id: 336be70ed5c0
+    last_write_checksum: sha1:b3e6d2eaa48cc3338bbcfbbb8bf2a450ec42535a
+    pristine_git_object: 07d291a12d773f12720b9fddf601b4fd5bf4a3ac
+  internal/utils/contenttype.go:
+    id: 928a56fe6755
+    last_write_checksum: sha1:ab5cfd860d02c6e6a37f89e2b5649a9859947fb1
+    pristine_git_object: f6487e01eb987c0aa49e7aa50b5ff24830314c63
+  internal/utils/env.go:
+    id: ac8bab30c73d
+    last_write_checksum: sha1:1e0bcb2d2caed9f3657f1dbc99b55811bed0298c
+    pristine_git_object: 110d464eacf2387b347bad1cb903666354a339e9
+  internal/utils/form.go:
+    id: 8ea133d76535
+    last_write_checksum: sha1:254d117a9cf3c85d625e38caa7cc175136039ae0
+    pristine_git_object: 5c9650a5a06156c0c8f88be4ec97f00a1d154ea7
+  internal/utils/headers.go:
+    id: 90d4f18d4adf
+    last_write_checksum: sha1:c72a0093ceb08fbc05693d8e4d5550e1d3fc36a5
+    pristine_git_object: 8a71926a7aee09d3f7539a824df49acb0aa9c3cb
+  internal/utils/json.go:
+    id: ad03e3c502d8
+    last_write_checksum: sha1:16c1bfa5b52b9900f386090ce654c3b53909f988
+    pristine_git_object: ee60577eb89f1acdae09f56f210c97539ae4c634
+  internal/utils/pathparams.go:
+    id: 1f3e0c30fd90
+    last_write_checksum: sha1:8f0ffc3ae1424f5cb83d9ec642cb5fca14c7432e
+    pristine_git_object: f18f4a303fe523282f83d6e692eec684a81ec8d8
+  internal/utils/queryparams.go:
+    id: e7f604e65a58
+    last_write_checksum: sha1:de7bce8a0ebcb8cda1b72c97ac797356cf483f8f
+    pristine_git_object: f5e37e2e94cba7141147430a1e62487cb385818b
+  internal/utils/requestbody.go:
+    id: 22445ec1c044
+    last_write_checksum: sha1:635d7b9236965ec4f5f2748ddd35263c40031cfe
+    pristine_git_object: 558616b9e0d423412db6acecf09e2601b76011cf
+  internal/utils/retries.go:
+    id: b5e011d15c2d
+    last_write_checksum: sha1:1ed319e7e73bfe454ec7fd3a5fb14bfdf5dc0bfe
+    pristine_git_object: fd705f6d325af6d529b66e0984bec5ed8850fca5
+  internal/utils/security.go:
+    id: eeb54c55241b
+    last_write_checksum: sha1:52cefded5223c60fcac5bd56574370e27a4bc3d5
+    pristine_git_object: ce2e1c0cffe3bbd3f111eace502f895175daad22
+  internal/utils/union.go:
+    id: db86c85746b6
+    last_write_checksum: sha1:2fe316999599a0162594d6837c9b08ee99fd9747
+    pristine_git_object: ef77263cf46346d23a8774a7c870bf122a49b87e
+  internal/utils/union_test.go:
+    id: 4b56247171bd
+    last_write_checksum: sha1:83ac73c1901de4c6db90f65cf5879163f3d47a00
+    pristine_git_object: f66814c73ace94d8e71d785fd6161fb405745754
+  internal/utils/utils.go:
+    id: 1133b2a27019
+    last_write_checksum: sha1:66b0ef3c302e2edad3496775a6e5b452caceefd6
+    pristine_git_object: ee4300f7b7469c4e66572ada7b95f7ff7f2e506a
+  messages.go:
+    id: 141893e2db0f
+    last_write_checksum: sha1:6d3b21eb86dc0cd8fe53e7d84358c32362ab43c7
+    pristine_git_object: d5c5859493a528647ee952dd2cd891aa10ea0b78
+  mix.go:
+    id: 4f6be3790652
+    last_write_checksum: sha1:6e1fabbf5fa4a27033f2f0488fcb721fbe9b41a2
+    pristine_git_object: 25767c50a871c8d54ac52a850ce5c8b86433d1fd
+  models/apierrors/apierror.go:
+    id: 4cecf27a5a54
+    last_write_checksum: sha1:e699d3325ea82ea2b0d29656396210f0513c3391
+    pristine_git_object: 61a9628a6533548245be5af929f1d4f96dd780b5
+  models/apierrors/errorresponse.go:
+    id: 182eb0b81d4c
+    last_write_checksum: sha1:2239ba0d6c00a7ee6cc15116288cbba417431b7d
+    pristine_git_object: 799636ff2d29835c6f3a4aa3746e7d8c46f89126
+  models/components/backendmessage.go:
+    id: 638b569767df
+    last_write_checksum: sha1:f88af4fa6e26a2d656c8c1c421100d5bfba2e753
+    pristine_git_object: c5d25ddf3ca5c36bb25770e62a2080a7a237a1bb
+  models/components/callback.go:
+    id: 8f49c7508e1f
+    last_write_checksum: sha1:fb634b5c997c3ee22c03dc89f77e1e91a51b4061
+    pristine_git_object: fbfe8a4bef47d39b124644662c3e9431d4196e41
+  models/components/callbackresultdata.go:
+    id: 1c7381c40215
+    last_write_checksum: sha1:456ee8b33d3a2f2d2bb6118011b76807ca885874
+    pristine_git_object: 8fb9f5ca269111063f984302cc54e84c64b2194f
+  models/components/coretoolname.go:
+    id: 500046cebf9a
+    last_write_checksum: sha1:08c9d67a08c8d4269e7e784a29d60221ac0224f7
+    pristine_git_object: 2e4c25e411f732abbc833a084ed20bf8ec12d347
+  models/components/exportmessage.go:
+    id: cf636226ef04
+    last_write_checksum: sha1:b79d56a0a69cb5782faa8f501d81e607742295e2
+    pristine_git_object: 17ebb1ff04f5242444985c7f319894371240e9fa
+  models/components/exportsession.go:
+    id: 458a64ee7bbf
+    last_write_checksum: sha1:3f7ada9a0cb254d4f9f8f840dae44eaa69179102
+    pristine_git_object: 2d1a05b9776565ed61e98686ab6ad673bb35df3f
+  models/components/exporttoolcall.go:
+    id: f28e1dd690e7
+    last_write_checksum: sha1:23753cc2ddb51c5fa8cbe5c4f274e12ad07ccf0b
+    pristine_git_object: e9dfe88abb236b9bb8a81d00c1f507521f371822
+  models/components/fileinfo.go:
+    id: 274104fe2596
+    last_write_checksum: sha1:9e813036908777bed655f71997002654b30a50b5
+    pristine_git_object: b640c20baadd9afdda17f0389b41b0bf8f8f865d
+  models/components/httpmetadata.go:
+    id: 790bad4a7abb
+    last_write_checksum: sha1:01a20fcff33179809ff9920ee431c7adabbd98f1
+    pristine_git_object: 148ec47fb2dea6c188ec68eb3532d93169608168
+  models/components/resterror.go:
+    id: 47882f207899
+    last_write_checksum: sha1:60c6275f32f0aa28e7fba901e73b21d54316e289
+    pristine_git_object: 3ea2c67484b0a3877a315813bd45b2212ae1c5ba
+  models/components/sessiondata.go:
+    id: 3bd5c25990bf
+    last_write_checksum: sha1:5046d084cc01f8630bd2268a3f95b98729ad8abc
+    pristine_git_object: 5bb34d5398cbfd52a1c01f77023f7fd20107740d
+  models/components/sseeventstream.go:
+    id: 578f9b20226d
+    last_write_checksum: sha1:cbcdea73a4d1ddc01a8ecefb20a2866f4438d751
+    pristine_git_object: 49de952b4c1f05fca811f96ac4b47a4501d278b4
+  models/components/toolcalldata.go:
+    id: 2db406a59f46
+    last_write_checksum: sha1:b6cdda04f7c43731a81bf30e6d093ea7873ca54c
+    pristine_git_object: 2d71c8d9b9e7622c89d5bd4effb2916e24a926ac
+  models/components/toolname.go:
+    id: 6cd3ed3aab7d
+    last_write_checksum: sha1:621c7b08a43bca66fd7af924339d43e14db6b4d6
+    pristine_git_object: 3280c82734afef11a2a0a6a1ecd1d42120d6a560
+  models/operations/cancelsessionprocessing.go:
+    id: 9579fedbeb24
+    last_write_checksum: sha1:f7285917ced100fa125251536cfd1b80296af3af
+    pristine_git_object: 404885f49747a47748c4a2aec3fbe29b2e2d9e8c
+  models/operations/createsession.go:
+    id: 7eb53a474a96
+    last_write_checksum: sha1:96d8a8f475066b0b454c742f68d97da4a19860eb
+    pristine_git_object: ba65cdd9489851d77edb059b0d5e9880007f9124
+  models/operations/deletecredentials.go:
+    id: afd66209aaf8
+    last_write_checksum: sha1:20c41f5b3d6978c1a616d61b4fb19775912c030b
+    pristine_git_object: b08b3e84ea46e8e89820fe47bb5e86b2e3793aec
+  models/operations/deletesession.go:
+    id: 459e3670c2c1
+    last_write_checksum: sha1:6c9175bdd0ff1757d623898f408aab0439cd3cda
+    pristine_git_object: 8d2d77dd4259174c47ec8a670c358594412c5895
+  models/operations/deletesessionfile.go:
+    id: 4ac462700cde
+    last_write_checksum: sha1:a17d238e69c5b14a884eb75de34390f69c18f392
+    pristine_git_object: e5b8ce6c73338a10c8fd260592882dbc524caf2e
+  models/operations/denypermission.go:
+    id: 742c825f90ce
+    last_write_checksum: sha1:dbdc1a620bf51be687a22e2c65ce77b305ffb9f8
+    pristine_git_object: 6d3fa6eb5f9c339d20e4823d3f01ae7f1c33699d
+  models/operations/exportsession.go:
+    id: d05a07c4352b
+    last_write_checksum: sha1:5a57d743cf52c360c601e7c369205a0a951bfc53
+    pristine_git_object: 733e7658bd0185bf3edf5c6da0d0450c241be266
+  models/operations/getauthstatus.go:
+    id: 9083a810481c
+    last_write_checksum: sha1:ca6c91196ee159f73866b6eda8e1f17ead74e231
+    pristine_git_object: 9e85d9822ed1913659500edcfdb08c9913ac7b22
+  models/operations/getavailableproviders.go:
+    id: bf2704f0873a
+    last_write_checksum: sha1:935e9e36e1332140bf41a0ffb392e88ddf33faeb
+    pristine_git_object: a3071006e68adad9d19e5dad495a056186123d3f
+  models/operations/getcommand.go:
+    id: bfe7d6307406
+    last_write_checksum: sha1:d0c37fe8e634638cc536c0861f0124e8556c869b
+    pristine_git_object: 6c95a19cd22d6348bb49b6f0d952aab77ac8ee40
+  models/operations/getmessagehistory.go:
+    id: cf6726b0395d
+    last_write_checksum: sha1:76ca4e0a933c97c395a1b59c4b3e9e149f8a2362
+    pristine_git_object: 6ae6b45a1cada290a501f3c65d78bf9722f850e0
+  models/operations/getoauthhealth.go:
+    id: 873caf0f712c
+    last_write_checksum: sha1:664acbeb499b9824dea1fae72ecfd73c19c52643
+    pristine_git_object: b54b6df9bdf485ca535f541ba7437ec85daab3f3
+  models/operations/getpreferences.go:
+    id: be8679761944
+    last_write_checksum: sha1:de2094172a2b3e3b466ec73f2fa869df09a0f018
+    pristine_git_object: 0e5a63d6e6bd1ac65404d71eef86280e4881dcdc
+  models/operations/getsession.go:
+    id: 56c364a35dfb
+    last_write_checksum: sha1:23d3e5c0080e9224d385cfedbb633c6681475ad7
+    pristine_git_object: a89a5a6d9e9e93f17aea840bf51597718533d551
+  models/operations/getsessionfile.go:
+    id: dc2b5539cba2
+    last_write_checksum: sha1:200921fd6a7d2d3007fa22fc101dacc8557886cf
+    pristine_git_object: b4fab274690a20b2feb16b018b7ec3ca77a74074
+  models/operations/getsessionmessages.go:
+    id: 89a818f7e15f
+    last_write_checksum: sha1:3af8081f778e06fa26175117412771f6b2c2b870
+    pristine_git_object: 7bd58655920c050a5a1a1029919a203604938246
+  models/operations/getsysteminfo.go:
+    id: b4489d28adf0
+    last_write_checksum: sha1:018b0270e006a134d0011cb99638e7cfb16e17ab
+    pristine_git_object: 7347858a68ea26686eaa1cf92f304933db4dbe7f
+  models/operations/gettoolcredentialsstatus.go:
+    id: 9c44b59966fe
+    last_write_checksum: sha1:d5263fb3c0d24612058327b0595882c4130cf7cf
+    pristine_git_object: 890aba8585faa5fd8ff0a199380cf5380ee8bdd8
+  models/operations/gettoolsstatus.go:
+    id: 3fbf0934f0f9
+    last_write_checksum: sha1:9cf8f9b6c5f9438d57372f7c61ed6ee74771697a
+    pristine_git_object: 23ff2db3dc9562d2f25a9e33baca881168fbc3fc
+  models/operations/grantpermission.go:
+    id: 3b768cdec9c3
+    last_write_checksum: sha1:cdbb68f91df0f1cb2814f223faa8aa2f4da89436
+    pristine_git_object: 94421c29129362b3d4654a5090bdc3926cfb9dd1
+  models/operations/handleoauthcallback.go:
+    id: 8fc745de5468
+    last_write_checksum: sha1:23d91e3c73c5afb6946e20c35a21b51195b1f84e
+    pristine_git_object: 1fdb0a9ca96c51410a251f23dd3cf4c0ba79e26f
+  models/operations/healthcheck.go:
+    id: 74c0c8ec32af
+    last_write_checksum: sha1:4fbb9787347276cd21088352d8fae9656c4367a1
+    pristine_git_object: 59b4189ce8f8638f496edaafa2e123043152770c
+  models/operations/listcommands.go:
+    id: f788677fb3f0
+    last_write_checksum: sha1:396597e104ce3373ea221e435156fd96b958ea2f
+    pristine_git_object: 04c8475a4bb46621b6fc57413c51c281432ab198
+  models/operations/listllmtools.go:
+    id: 84123ecee235
+    last_write_checksum: sha1:32e618d2f28ebed381f33ee6921ed7d8e80ba7e5
+    pristine_git_object: 4ef8b4b8bdffbcf945578dd232297aa9620cf092
+  models/operations/listmcpservers.go:
+    id: 300f1740c3e2
+    last_write_checksum: sha1:6af5539c5d6fb225766a2431d447c89dcef5a503
+    pristine_git_object: 18a29bb6fa53abc8640f389d3c59803bb90a565d
+  models/operations/listsessionfiles.go:
+    id: 85695e69fe17
+    last_write_checksum: sha1:8e5c21891659cf9b5e500b0f505a5608a9319cb3
+    pristine_git_object: 90cdd6cba231d7b73b95c0903cbbdaf81c469ad3
+  models/operations/listsessions.go:
+    id: ddef02fe1441
+    last_write_checksum: sha1:c8aba35737197bd6c2594cc96ceec53272e0dc65
+    pristine_git_object: 76510ab27f28092ee0486c67de7906a2d662e2c0
+  models/operations/options.go:
+    id: d20dd4db9865
+    last_write_checksum: sha1:2aa7dae1b0877d2b0edd7ebcd7041b19aceba366
+    pristine_git_object: 0114226d675491593215802594d31724ee3f636e
+  models/operations/refreshoauthtokens.go:
+    id: fb839c8a7eee
+    last_write_checksum: sha1:44bb3bb9bc86d567e30db9187cde3d4f5f424516
+    pristine_git_object: e411204ef357d157f613c2b901e14c6e88c348f2
+  models/operations/resetpreferences.go:
+    id: d59059d60d95
+    last_write_checksum: sha1:1a50175fddbcab1f561477078863567e71208195
+    pristine_git_object: 20f0d0393e4cbcbd5303e7eb246fb01e3cee0a88
+  models/operations/respondtonotification.go:
+    id: a2d5686ff7b3
+    last_write_checksum: sha1:7a6d9122276922926e7ed7e513f19ced63195d19
+    pristine_git_object: 69aa64fb7997647a1bb6a03b9a673e07c3e03fc3
+  models/operations/rewindsession.go:
+    id: 64052dc2e2cb
+    last_write_checksum: sha1:44fb71e24363dddd3172e9fcede205535ce9a14d
+    pristine_git_object: d044719511b62b65ae9db9a2ab327c178ccbf51e
+  models/operations/sendmessage.go:
+    id: b84f3a87d453
+    last_write_checksum: sha1:bb88d96fc4de768342b1cd364901d325f24421aa
+    pristine_git_object: 7665812a2b08242d73d678e5d5b73a2267ae421e
+  models/operations/startoauthflow.go:
+    id: fccfa9b3bd86
+    last_write_checksum: sha1:9da793430d7f5db7f0716f6393a870bbd00dbf17
+    pristine_git_object: 820c3bb05b5e8bbb44adaded00fc841359974d17
+  models/operations/storeapikey.go:
+    id: bcdccb7c6014
+    last_write_checksum: sha1:786339f0bee33c3cc646c0ed49a9f4ed4e0b5d60
+    pristine_git_object: bed21cd08e7a091e6c49db55cf522955258bf9b0
+  models/operations/streamevents.go:
+    id: 302c30b8a3e4
+    last_write_checksum: sha1:5d5100b72c930678f5560a44515d362a835af54f
+    pristine_git_object: 5ec514c4082984efd0c14913fde5a613ef496bcd
+  models/operations/updatepreferences.go:
+    id: ebdea6bf78d5
+    last_write_checksum: sha1:80ca2faca3771e6efac227389397ac308ef7f0ce
+    pristine_git_object: 80df407d87e52bcefd621eed212f58725df70a37
+  models/operations/updatesessioncallbacks.go:
+    id: 9e4da6915f51
+    last_write_checksum: sha1:16075a618f4b0c314ce20127134025cc6ce3d4b5
+    pristine_git_object: 459308923ee4003ff6c06976b7820b6bc294c913
+  models/operations/uploadsessionfile.go:
+    id: f97647c5d5d5
+    last_write_checksum: sha1:066b9b1d28eb0b9b1e40db0fbafdf1e92d80afeb
+    pristine_git_object: 52de19831554a395616f47f4849e478f497f5299
+  models/operations/validatepreferredprovider.go:
+    id: dd11585dd097
+    last_write_checksum: sha1:6d3e9e1531c70c86536652bed9d5c4a128c25db1
+    pristine_git_object: 373bb96d0b5beb104ec3c11a3fff1b2f5aac2c99
+  notifications.go:
+    id: e2e3f06f1b93
+    last_write_checksum: sha1:c0cc1ba8f1a1800f9be18394ed71b29c9c3f6539
+    pristine_git_object: 53495ca3a4100387b2d4d9361356554ae5287bdc
+  optionalnullable/optionalnullable.go:
+    id: ce60f259ead3
+    last_write_checksum: sha1:d6aff1a420c31e025ea21d46cf056e305ae76fe8
+    pristine_git_object: c6739be0619b6726565e0f11855ffe44b0e5607e
+  optionalnullable/optionalnullable_test.go:
+    id: ad67101ebca3
+    last_write_checksum: sha1:2e9433eff1651ac77d6678ea76880d9a4980cbc2
+    pristine_git_object: e6e5a01c6e721e879e24a38a1f97e3e27d4686d4
+  permissions.go:
+    id: 24d6fe5c456e
+    last_write_checksum: sha1:55d6c061923fec1b4c208d73a239b0c262e840e5
+    pristine_git_object: 343a44dddadd0fb5c939dffb0c62d07fa0a1e48d
+  preferences.go:
+    id: fcfda30d344e
+    last_write_checksum: sha1:cad1f7349670440ec92a69a50ac990af66edb341
+    pristine_git_object: 89999c8d80a3563a6ded5b064dae2dbf2da8789f
+  retry/config.go:
+    id: 82d673cb0389
+    last_write_checksum: sha1:f565273be789ffe0e3c160de1ac72a63cfe67fbe
+    pristine_git_object: aa809fccb3445b1e2530a979dad620512f50e70f
+  sessions.go:
+    id: 8c9f6fb78f3e
+    last_write_checksum: sha1:3a4f362977f5285c72b80728c35a77b8babc622c
+    pristine_git_object: 0bcd728a81d2a3589ebee84e66896cc7d686bf61
+  streaming.go:
+    id: 44f697847042
+    last_write_checksum: sha1:d0aecbf8badbbcf846ee82d0699659fdea1fdda8
+    pristine_git_object: 4082a213bbd6d7991833ebb606f652a919a03b43
+  system.go:
+    id: 9bbd1b17a622
+    last_write_checksum: sha1:05b2397e940b9325f0ef2d666c33d4ce49c8c8a7
+    pristine_git_object: 9bbdbbdbc2e982e464f1556612874c893ea28c37
+  tools.go:
+    id: 3387d70491f4
+    last_write_checksum: sha1:6287b060cc79b1fa9ee264b9f40518f725711023
+    pristine_git_object: 0c7e4ce2d2f67b8c509db2ff0e5262bd6fda8686
+  types/bigint.go:
+    id: 6f911e1a03c3
+    last_write_checksum: sha1:49b004005d0461fb04b846eca062b070b0360b31
+    pristine_git_object: 9c6a086d51595888a6ff787ebcb8693559afee95
+  types/date.go:
+    id: 231a623ce1b7
+    last_write_checksum: sha1:3036a2e1ed15a1d484c093367eba000c38f384d0
+    pristine_git_object: 5b2782f219efe6bfbce46fc2dec68998eb759438
+  types/datetime.go:
+    id: 5023aac30a47
+    last_write_checksum: sha1:196d050af6450669214e9ae4fd28e56263ae2b5d
+    pristine_git_object: 3eff332daa04e34cec5ffb10add670bafd8ac454
+  types/pointers.go:
+    id: 6d0d0a6cb6f3
+    last_write_checksum: sha1:fc2275ea006257ba9ba4ff6f2a2cdb6205371eef
+    pristine_git_object: 35c439d2661e08fcb6a854096fd7b9a8561b3938
+  types/stream/stream.go:
+    id: acfb7ceec2c9
+    last_write_checksum: sha1:045fa02d195ce1dec2fd82f5c0a279ef8474ddc4
+    pristine_git_object: a0356306d4bc03b753667f835c47e4383f17b1a5
+examples:
+  storeApiKey:
+    speakeasy-default-store-api-key:
+      requestBody:
+        application/json: {"api_key": "<value>", "provider": "brave"}
+      responses:
+        "200":
+          application/json: {}
+        "400":
+          application/json: {"error": {"code": 266487, "message": "<value>", "type": "not_found"}}
+        "500":
+          application/json: {"error": {"code": 266487, "message": "<value>", "type": "not_found"}}
+  handleOAuthCallback:
+    speakeasy-default-handle-O-auth-callback:
+      requestBody:
+        application/json: {"code": "<value>", "provider": "<value>", "state": "Arizona"}
+      responses:
+        "200":
+          application/json: {}
+        "400":
+          application/json: {"error": {"code": 930404, "message": "<value>", "type": "internal_error"}}
+        "500":
+          application/json: {"error": {"code": 930404, "message": "<value>", "type": "internal_error"}}
+  startOAuthFlow:
+    speakeasy-default-start-O-auth-flow:
+      parameters:
+        path:
+          provider: "<value>"
+      responses:
+        "200":
+          application/json: {}
+        "400":
+          application/json: {"error": {"code": 879433, "message": "<value>", "type": "validation_error"}}
+        "500":
+          application/json: {"error": {"code": 879433, "message": "<value>", "type": "validation_error"}}
+  getAuthStatus:
+    speakeasy-default-get-auth-status:
+      responses:
+        "200":
+          application/json: {}
+        "500":
+          application/json: {"error": {"code": 430191, "message": "<value>", "type": "validation_error"}}
+  validatePreferredProvider:
+    speakeasy-default-validate-preferred-provider:
+      responses:
+        "200":
+          application/json: {}
+        "500":
+          application/json: {"error": {"code": 605554, "message": "<value>", "type": "internal_error"}}
+  deleteCredentials:
+    speakeasy-default-delete-credentials:
+      parameters:
+        path:
+          provider: "<value>"
+      responses:
+        "200":
+          application/json: {}
+        "400":
+          application/json: {"error": {"code": 839078, "message": "<value>", "type": "bad_request"}}
+        "500":
+          application/json: {"error": {"code": 839078, "message": "<value>", "type": "bad_request"}}
+  getOAuthHealth:
+    speakeasy-default-get-O-auth-health:
+      responses:
+        "200":
+          application/json: {"providers": {"key": {"expires_in": "2h30m15s", "provider": "<value>", "status": "expired"}}, "status": "healthy", "timestamp": "2024-10-11T14:02:57.011Z"}
+        "500":
+          application/json: {"error": {"code": 52281, "message": "<value>", "type": "internal_error"}}
+  refreshOAuthTokens:
+    speakeasy-default-refresh-O-auth-tokens:
+      responses:
+        "200":
+          application/json: {"message": "Token refresh triggered successfully", "status": "success"}
+        "500":
+          application/json: {"error": {"code": 726372, "message": "<value>", "type": "bad_request"}}
+  listCommands:
+    speakeasy-default-list-commands:
+      responses:
+        "200":
+          application/json: [{}]
+        "401":
+          application/json: {"error": {"code": 838798, "message": "<value>", "type": "unauthorized"}}
+        "500":
+          application/json: {"error": {"code": 838798, "message": "<value>", "type": "unauthorized"}}
+  getCommand:
+    speakeasy-default-get-command:
+      parameters:
+        path:
+          name: "<value>"
+      responses:
+        "200":
+          application/json: {}
+        "404":
+          application/json: {"error": {"code": 467416, "message": "<value>", "type": "bad_request"}}
+  listMcpServers:
+    speakeasy-default-list-mcp-servers:
+      responses:
+        "200":
+          application/json: [{"connected": true, "name": "<value>", "status": "<value>"}]
+        "401":
+          application/json: {"error": {"code": 291310, "message": "<value>", "type": "internal_error"}}
+        "500":
+          application/json: {"error": {"code": 291310, "message": "<value>", "type": "internal_error"}}
+  getSystemInfo:
+    speakeasy-default-get-system-info:
+      responses:
+        "200":
+          application/json: {"storageBasePath": "<value>"}
+        "500":
+          application/json: {"error": {"code": 39436, "message": "<value>", "type": "internal_error"}}
+  healthCheck:
+    speakeasy-default-health-check:
+      responses:
+        "200":
+          application/json: {}
+        "500":
+          application/json: {"error": {"code": 981446, "message": "<value>", "type": "not_found"}}
+  getMessageHistory:
+    speakeasy-default-get-message-history:
+      parameters:
+        query:
+          limit: 50
+          offset: 0
+      responses:
+        "200":
+          application/json: [{"id": "<id>", "role": "<value>", "sessionId": "<id>", "toolCalls": [{"finished": true, "id": "<id>", "input": "<value>", "name": "brave_search", "type": "<value>"}], "userInput": "<value>"}]
+        "401":
+          application/json: {"error": {"code": 37164, "message": "<value>", "type": "validation_error"}}
+        "500":
+          application/json: {"error": {"code": 37164, "message": "<value>", "type": "validation_error"}}
+  cancelSessionProcessing:
+    speakeasy-default-cancel-session-processing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {}
+        "404":
+          application/json: {"error": {"code": 83449, "message": "<value>", "type": "internal_error"}}
+  getSessionMessages:
+    speakeasy-default-get-session-messages:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: [{"id": "<id>", "role": "<value>", "sessionId": "<id>", "toolCalls": [{"finished": true, "id": "<id>", "input": "<value>", "name": "brave_search", "type": "<value>"}], "userInput": "<value>"}]
+        "404":
+          application/json: {"error": {"code": 355518, "message": "<value>", "type": "bad_request"}}
+  sendMessage:
+    speakeasy-default-send-message:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {"plan_mode": false, "text": "<value>", "thinking_level": "medium"}
+      responses:
+        "202":
+          application/json: {"sessionId": "<id>", "status": "processing"}
+        "400":
+          application/json: {"error": {"code": 271065, "message": "<value>", "type": "unauthorized"}}
+  denyPermission:
+    speakeasy-default-deny-permission:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {}
+        "401":
+          application/json: {"error": {"code": 185141, "message": "<value>", "type": "unauthorized"}}
+        "500":
+          application/json: {"error": {"code": 185141, "message": "<value>", "type": "unauthorized"}}
+  grantPermission:
+    speakeasy-default-grant-permission:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {}
+        "401":
+          application/json: {"error": {"code": 96400, "message": "<value>", "type": "internal_error"}}
+        "500":
+          application/json: {"error": {"code": 96400, "message": "<value>", "type": "internal_error"}}
+  getPreferences:
+    speakeasy-default-get-preferences:
+      responses:
+        "200":
+          application/json: {"available_providers": {"key": {}}}
+        "500":
+          application/json: {"error": {"code": 25779, "message": "<value>", "type": "not_found"}}
+  updatePreferences:
+    speakeasy-default-update-preferences:
+      requestBody:
+        application/json: {}
+      responses:
+        "200":
+          application/json: {}
+        "400":
+          application/json: {"error": {"code": 990914, "message": "<value>", "type": "validation_error"}}
+        "500":
+          application/json: {"error": {"code": 990914, "message": "<value>", "type": "validation_error"}}
+  getAvailableProviders:
+    speakeasy-default-get-available-providers:
+      responses:
+        "200":
+          application/json: {"key": {}}
+        "500":
+          application/json: {"error": {"code": 769766, "message": "<value>", "type": "internal_error"}}
+  resetPreferences:
+    speakeasy-default-reset-preferences:
+      responses:
+        "200":
+          application/json: {}
+        "500":
+          application/json: {"error": {"code": 941390, "message": "<value>", "type": "unauthorized"}}
+  listSessions:
+    speakeasy-default-list-sessions:
+      parameters:
+        query:
+          includeSubagents: false
+      responses:
+        "200":
+          application/json: [{"assistantMessageCount": 103950, "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "sub_agent"}], "completionTokens": 734682, "cost": 6985.62, "createdAt": "2023-09-25T21:22:18.303Z", "id": "<id>", "promptTokens": 717181, "sessionType": "main", "title": "<value>", "toolCallCount": 306652, "userMessageCount": 14450}]
+        "401":
+          application/json: {"error": {"code": 417693, "message": "<value>", "type": "unauthorized"}}
+        "500":
+          application/json: {"error": {"code": 417693, "message": "<value>", "type": "unauthorized"}}
+  createSession:
+    invalid_prompt_mode:
+      requestBody:
+        application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
+      responses:
+        "400":
+          application/json: {"error": {"code": 400, "message": "promptMode must be 'default', 'append', or 'replace'", "type": "validation_error"}}
+    invalid_session_type:
+      requestBody:
+        application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
+      responses:
+        "400":
+          application/json: {"error": {"code": 400, "message": "API can only create main sessions. Subagent sessions are created automatically.", "type": "validation_error"}}
+    missing_title:
+      requestBody:
+        application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
+      responses:
+        "400":
+          application/json: {"error": {"code": 400, "message": "title is required", "type": "validation_error"}}
+    prompt_size_exceeded_append:
+      requestBody:
+        application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
+      responses:
+        "400":
+          application/json: {"error": {"code": 400, "message": "Custom prompt size (75KB) exceeds append mode limit of 50KB", "type": "validation_error"}}
+    prompt_size_exceeded_replace:
+      requestBody:
+        application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
+      responses:
+        "400":
+          application/json: {"error": {"code": 400, "message": "Custom prompt size (150KB) exceeds replace mode limit of 100KB", "type": "validation_error"}}
+    subagent_type_not_allowed:
+      requestBody:
+        application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
+      responses:
+        "400":
+          application/json: {"error": {"code": 400, "message": "subagentType cannot be set for API-created sessions. Subagent sessions are created programmatically by the task delegation system.", "type": "validation_error"}}
+    speakeasy-default-create-session:
+      requestBody:
+        application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
+      responses:
+        "201":
+          application/json: {"assistantMessageCount": 880027, "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "sub_agent"}], "completionTokens": 871041, "cost": 4039.26, "createdAt": "2025-05-29T10:33:59.281Z", "id": "<id>", "promptTokens": 70138, "sessionType": "subagent", "title": "<value>", "toolCallCount": 481369, "userMessageCount": 925418}
+        "400":
+          application/json: {"error": {"code": 404850, "message": "<value>", "type": "not_found"}}
+  deleteSession:
+    speakeasy-default-delete-session:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "404":
+          application/json: {"error": {"code": 56778, "message": "<value>", "type": "validation_error"}}
+  getSession:
+    speakeasy-default-get-session:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {"assistantMessageCount": 387834, "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "sub_agent"}], "completionTokens": 58853, "cost": 6747.54, "createdAt": "2023-12-03T01:35:57.270Z", "id": "<id>", "promptTokens": 945765, "sessionType": "subagent", "title": "<value>", "toolCallCount": 125836, "userMessageCount": 941442}
+        "404":
+          application/json: {"error": {"code": 281492, "message": "<value>", "type": "internal_error"}}
+  updateSessionCallbacks:
+    speakeasy-default-update-session-callbacks:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {"callbacks": []}
+      responses:
+        "200":
+          application/json: {"assistantMessageCount": 331297, "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "bash_script"}], "completionTokens": 732683, "cost": 8068.84, "createdAt": "2023-06-04T19:02:08.923Z", "id": "<id>", "promptTokens": 460281, "sessionType": "main", "title": "<value>", "toolCallCount": 805406, "userMessageCount": 971135}
+        "400":
+          application/json: {"error": {"code": 585695, "message": "<value>", "type": "bad_request"}}
+  exportSession:
+    speakeasy-default-export-session:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "<id>", "messages": [], "title": "<value>"}
+        "404":
+          application/json: {"error": {"code": 657092, "message": "<value>", "type": "validation_error"}}
+        "500":
+          application/json: {"error": {"code": 657092, "message": "<value>", "type": "validation_error"}}
+  forkSession:
+    speakeasy-default-fork-session:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {"messageIndex": 385832}
+      responses:
+        "201":
+          application/json: {"assistantMessageCount": 551389, "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "sub_agent"}], "completionTokens": 883347, "cost": 7701.17, "createdAt": "2025-09-19T04:06:39.531Z", "id": "<id>", "promptTokens": 239157, "sessionType": "forked", "title": "<value>", "toolCallCount": 860599, "userMessageCount": 637774}
+        "400":
+          application/json: {"error": {"code": 951681, "message": "<value>", "type": "internal_error"}}
+  rewindSession:
+    speakeasy-default-rewind-session:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {"cleanupMedia": true, "messageId": "<id>"}
+      responses:
+        "200":
+          application/json: {"assistantMessageCount": 676019, "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "bash_script"}], "completionTokens": 190372, "cost": 5568.73, "createdAt": "2024-07-07T16:52:12.280Z", "id": "<id>", "promptTokens": 938253, "sessionType": "subagent", "title": "<value>", "toolCallCount": 877894, "userMessageCount": 158292}
+        "400":
+          application/json: {"error": {"code": 235968, "message": "<value>", "type": "unauthorized"}}
+  listSessionFiles:
+    speakeasy-default-list-session-files:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: [{"isDir": false, "modified": 765133, "name": "<value>", "size": 287523, "url": "https://glorious-euphonium.info"}]
+        "404":
+          application/json: {"error": {"code": 650370, "message": "<value>", "type": "bad_request"}}
+  uploadSessionFile:
+    speakeasy-default-upload-session-file:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        multipart/form-data: {"file": "x-file: example.file"}
+      responses:
+        "201":
+          application/json: {"isDir": false, "modified": 467218, "name": "<value>", "size": 793494, "url": "https://hospitable-crocodile.name"}
+        "400":
+          application/json: {"error": {"code": 959051, "message": "<value>", "type": "validation_error"}}
+  deleteSessionFile:
+    speakeasy-default-delete-session-file:
+      parameters:
+        path:
+          id: "<id>"
+          filename: "example.file"
+      responses:
+        "400":
+          application/json: {"error": {"code": 565254, "message": "<value>", "type": "internal_error"}}
+  getSessionFile:
+    speakeasy-default-get-session-file:
+      parameters:
+        path:
+          id: "<id>"
+          filename: "example.file"
+      responses:
+        "200":
+          '*/*': "x-file: example.file"
+        "400":
+          application/json: {"error": {"code": 958191, "message": "<value>", "type": "internal_error"}}
+  listLLMTools:
+    speakeasy-default-list-LLM-tools:
+      responses:
+        "200":
+          application/json: {"tools": [{"description": "Execute bash commands in a persistent shell session", "name": "Bash"}]}
+        "500":
+          application/json: {"error": {"code": 57152, "message": "<value>", "type": "unauthorized"}}
+  getToolCredentialsStatus:
+    speakeasy-default-get-tool-credentials-status:
+      responses:
+        "200":
+          application/json: {"categories": {"key": {"description": "Search the web for real-time information", "display_name": "Web Search", "icon": "\U0001F50D", "tools": [{"api_key_format": "BSA...", "api_key_required": true, "authenticated": true, "description": "Privacy-focused web search with real-time results", "display_name": "Brave Search", "provider": "brave"}]}}}
+        "500":
+          application/json: {"error": {"code": 725163, "message": "<value>", "type": "validation_error"}}
+  getToolsStatus:
+    speakeasy-default-get-tools-status:
+      responses:
+        "200":
+          application/json: {}
+        "500":
+          application/json: {"error": {"code": 561833, "message": "<value>", "type": "validation_error"}}
+  streamEvents:
+    speakeasy-default-stream-events:
+      parameters:
+        query:
+          sessionId: "<id>"
+      responses:
+        "404":
+          application/json: {"error": {"code": 67605, "message": "<value>", "type": "validation_error"}}
+        "500":
+          application/json: {"error": {"code": 67605, "message": "<value>", "type": "validation_error"}}
+  respondToNotification:
+    speakeasy-default-respond-to-notification:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {"type": "acknowledge"}
+      responses:
+        "401":
+          application/json: {"error": {"code": 852178, "message": "<value>", "type": "validation_error"}}
+        "500":
+          application/json: {"error": {"code": 852178, "message": "<value>", "type": "validation_error"}}
+examplesVersion: 1.0.2
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
@@ -311,410 +1931,3 @@ generatedFiles:
   - types/datetime.go
   - types/pointers.go
   - types/stream/stream.go
-examples:
-  storeApiKey:
-    speakeasy-default-store-api-key:
-      requestBody:
-        application/json: {"api_key": "<value>", "provider": "brave"}
-      responses:
-        "200":
-          application/json: {}
-        "400":
-          application/json: {"error": {"code": 266487, "message": "<value>", "type": "not_found"}}
-        "500":
-          application/json: {"error": {"code": 266487, "message": "<value>", "type": "not_found"}}
-  handleOAuthCallback:
-    speakeasy-default-handle-O-auth-callback:
-      requestBody:
-        application/json: {"code": "<value>", "provider": "<value>", "state": "Arizona"}
-      responses:
-        "200":
-          application/json: {}
-        "400":
-          application/json: {"error": {"code": 930404, "message": "<value>", "type": "internal_error"}}
-        "500":
-          application/json: {"error": {"code": 930404, "message": "<value>", "type": "internal_error"}}
-  startOAuthFlow:
-    speakeasy-default-start-O-auth-flow:
-      parameters:
-        path:
-          provider: "<value>"
-      responses:
-        "200":
-          application/json: {}
-        "400":
-          application/json: {"error": {"code": 879433, "message": "<value>", "type": "validation_error"}}
-        "500":
-          application/json: {"error": {"code": 879433, "message": "<value>", "type": "validation_error"}}
-  getAuthStatus:
-    speakeasy-default-get-auth-status:
-      responses:
-        "200":
-          application/json: {}
-        "500":
-          application/json: {"error": {"code": 430191, "message": "<value>", "type": "validation_error"}}
-  validatePreferredProvider:
-    speakeasy-default-validate-preferred-provider:
-      responses:
-        "200":
-          application/json: {}
-        "500":
-          application/json: {"error": {"code": 605554, "message": "<value>", "type": "internal_error"}}
-  deleteCredentials:
-    speakeasy-default-delete-credentials:
-      parameters:
-        path:
-          provider: "<value>"
-      responses:
-        "200":
-          application/json: {}
-        "400":
-          application/json: {"error": {"code": 839078, "message": "<value>", "type": "bad_request"}}
-        "500":
-          application/json: {"error": {"code": 839078, "message": "<value>", "type": "bad_request"}}
-  getOAuthHealth:
-    speakeasy-default-get-O-auth-health:
-      responses:
-        "200":
-          application/json: {"providers": {"key": {"expires_in": "2h30m15s", "provider": "<value>", "status": "expired"}}, "status": "healthy", "timestamp": "2024-10-11T14:02:57.011Z"}
-        "500":
-          application/json: {"error": {"code": 52281, "message": "<value>", "type": "internal_error"}}
-  refreshOAuthTokens:
-    speakeasy-default-refresh-O-auth-tokens:
-      responses:
-        "200":
-          application/json: {"message": "Token refresh triggered successfully", "status": "success"}
-        "500":
-          application/json: {"error": {"code": 726372, "message": "<value>", "type": "bad_request"}}
-  listCommands:
-    speakeasy-default-list-commands:
-      responses:
-        "200":
-          application/json: [{}]
-        "401":
-          application/json: {"error": {"code": 838798, "message": "<value>", "type": "unauthorized"}}
-        "500":
-          application/json: {"error": {"code": 838798, "message": "<value>", "type": "unauthorized"}}
-  getCommand:
-    speakeasy-default-get-command:
-      parameters:
-        path:
-          name: "<value>"
-      responses:
-        "200":
-          application/json: {}
-        "404":
-          application/json: {"error": {"code": 467416, "message": "<value>", "type": "bad_request"}}
-  listMcpServers:
-    speakeasy-default-list-mcp-servers:
-      responses:
-        "200":
-          application/json: [{"connected": true, "name": "<value>", "status": "<value>"}]
-        "401":
-          application/json: {"error": {"code": 291310, "message": "<value>", "type": "internal_error"}}
-        "500":
-          application/json: {"error": {"code": 291310, "message": "<value>", "type": "internal_error"}}
-  getSystemInfo:
-    speakeasy-default-get-system-info:
-      responses:
-        "200":
-          application/json: {"storageBasePath": "<value>"}
-        "500":
-          application/json: {"error": {"code": 39436, "message": "<value>", "type": "internal_error"}}
-  healthCheck:
-    speakeasy-default-health-check:
-      responses:
-        "200":
-          application/json: {}
-        "500":
-          application/json: {"error": {"code": 981446, "message": "<value>", "type": "not_found"}}
-  getMessageHistory:
-    speakeasy-default-get-message-history:
-      parameters:
-        query:
-          limit: 50
-          offset: 0
-      responses:
-        "200":
-          application/json: [{"id": "<id>", "role": "<value>", "sessionId": "<id>", "toolCalls": [{"finished": true, "id": "<id>", "input": "<value>", "name": "brave_search", "type": "<value>"}], "userInput": "<value>"}]
-        "401":
-          application/json: {"error": {"code": 37164, "message": "<value>", "type": "validation_error"}}
-        "500":
-          application/json: {"error": {"code": 37164, "message": "<value>", "type": "validation_error"}}
-  cancelSessionProcessing:
-    speakeasy-default-cancel-session-processing:
-      parameters:
-        path:
-          id: "<id>"
-      responses:
-        "200":
-          application/json: {}
-        "404":
-          application/json: {"error": {"code": 83449, "message": "<value>", "type": "internal_error"}}
-  getSessionMessages:
-    speakeasy-default-get-session-messages:
-      parameters:
-        path:
-          id: "<id>"
-      responses:
-        "200":
-          application/json: [{"id": "<id>", "role": "<value>", "sessionId": "<id>", "toolCalls": [{"finished": true, "id": "<id>", "input": "<value>", "name": "brave_search", "type": "<value>"}], "userInput": "<value>"}]
-        "404":
-          application/json: {"error": {"code": 355518, "message": "<value>", "type": "bad_request"}}
-  sendMessage:
-    speakeasy-default-send-message:
-      parameters:
-        path:
-          id: "<id>"
-      requestBody:
-        application/json: {"plan_mode": false, "text": "<value>", "thinking_level": "medium"}
-      responses:
-        "202":
-          application/json: {"sessionId": "<id>", "status": "processing"}
-        "400":
-          application/json: {"error": {"code": 271065, "message": "<value>", "type": "unauthorized"}}
-  denyPermission:
-    speakeasy-default-deny-permission:
-      parameters:
-        path:
-          id: "<id>"
-      responses:
-        "200":
-          application/json: {}
-        "401":
-          application/json: {"error": {"code": 185141, "message": "<value>", "type": "unauthorized"}}
-        "500":
-          application/json: {"error": {"code": 185141, "message": "<value>", "type": "unauthorized"}}
-  grantPermission:
-    speakeasy-default-grant-permission:
-      parameters:
-        path:
-          id: "<id>"
-      responses:
-        "200":
-          application/json: {}
-        "401":
-          application/json: {"error": {"code": 96400, "message": "<value>", "type": "internal_error"}}
-        "500":
-          application/json: {"error": {"code": 96400, "message": "<value>", "type": "internal_error"}}
-  getPreferences:
-    speakeasy-default-get-preferences:
-      responses:
-        "200":
-          application/json: {"available_providers": {"key": {}}}
-        "500":
-          application/json: {"error": {"code": 25779, "message": "<value>", "type": "not_found"}}
-  updatePreferences:
-    speakeasy-default-update-preferences:
-      requestBody:
-        application/json: {}
-      responses:
-        "200":
-          application/json: {}
-        "400":
-          application/json: {"error": {"code": 990914, "message": "<value>", "type": "validation_error"}}
-        "500":
-          application/json: {"error": {"code": 990914, "message": "<value>", "type": "validation_error"}}
-  getAvailableProviders:
-    speakeasy-default-get-available-providers:
-      responses:
-        "200":
-          application/json: {"key": {}}
-        "500":
-          application/json: {"error": {"code": 769766, "message": "<value>", "type": "internal_error"}}
-  resetPreferences:
-    speakeasy-default-reset-preferences:
-      responses:
-        "200":
-          application/json: {}
-        "500":
-          application/json: {"error": {"code": 941390, "message": "<value>", "type": "unauthorized"}}
-  listSessions:
-    speakeasy-default-list-sessions:
-      parameters:
-        query:
-          includeSubagents: false
-      responses:
-        "200":
-          application/json: [{"assistantMessageCount": 103950, "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "sub_agent"}], "completionTokens": 734682, "cost": 6985.62, "createdAt": "2023-09-25T21:22:18.303Z", "id": "<id>", "promptTokens": 717181, "sessionType": "main", "title": "<value>", "toolCallCount": 306652, "userMessageCount": 14450}]
-        "401":
-          application/json: {"error": {"code": 417693, "message": "<value>", "type": "unauthorized"}}
-        "500":
-          application/json: {"error": {"code": 417693, "message": "<value>", "type": "unauthorized"}}
-  createSession:
-    invalid_prompt_mode:
-      requestBody:
-        application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
-      responses:
-        "400":
-          application/json: {"error": {"code": 400, "message": "promptMode must be 'default', 'append', or 'replace'", "type": "validation_error"}}
-    invalid_session_type:
-      requestBody:
-        application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
-      responses:
-        "400":
-          application/json: {"error": {"code": 400, "message": "API can only create main sessions. Subagent sessions are created automatically.", "type": "validation_error"}}
-    missing_title:
-      requestBody:
-        application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
-      responses:
-        "400":
-          application/json: {"error": {"code": 400, "message": "title is required", "type": "validation_error"}}
-    prompt_size_exceeded_append:
-      requestBody:
-        application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
-      responses:
-        "400":
-          application/json: {"error": {"code": 400, "message": "Custom prompt size (75KB) exceeds append mode limit of 50KB", "type": "validation_error"}}
-    prompt_size_exceeded_replace:
-      requestBody:
-        application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
-      responses:
-        "400":
-          application/json: {"error": {"code": 400, "message": "Custom prompt size (150KB) exceeds replace mode limit of 100KB", "type": "validation_error"}}
-    subagent_type_not_allowed:
-      requestBody:
-        application/json: {"callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "send_message"}], "customSystemPrompt": "You are a helpful assistant specialized in $<domain>. Always be concise and accurate.", "promptMode": "append", "sessionType": "main", "subagentType": "", "title": "<value>"}
-      responses:
-        "400":
-          application/json: {"error": {"code": 400, "message": "subagentType cannot be set for API-created sessions. Subagent sessions are created programmatically by the task delegation system.", "type": "validation_error"}}
-  deleteSession:
-    speakeasy-default-delete-session:
-      parameters:
-        path:
-          id: "<id>"
-      responses:
-        "404":
-          application/json: {"error": {"code": 56778, "message": "<value>", "type": "validation_error"}}
-  getSession:
-    speakeasy-default-get-session:
-      parameters:
-        path:
-          id: "<id>"
-      responses:
-        "200":
-          application/json: {"assistantMessageCount": 387834, "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "sub_agent"}], "completionTokens": 58853, "cost": 6747.54, "createdAt": "2023-12-03T01:35:57.270Z", "id": "<id>", "promptTokens": 945765, "sessionType": "subagent", "title": "<value>", "toolCallCount": 125836, "userMessageCount": 941442}
-        "404":
-          application/json: {"error": {"code": 281492, "message": "<value>", "type": "internal_error"}}
-  updateSessionCallbacks:
-    speakeasy-default-update-session-callbacks:
-      parameters:
-        path:
-          id: "<id>"
-      requestBody:
-        application/json: {"callbacks": []}
-      responses:
-        "200":
-          application/json: {"assistantMessageCount": 331297, "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "bash_script"}], "completionTokens": 732683, "cost": 8068.84, "createdAt": "2023-06-04T19:02:08.923Z", "id": "<id>", "promptTokens": 460281, "sessionType": "main", "title": "<value>", "toolCallCount": 805406, "userMessageCount": 971135}
-        "400":
-          application/json: {"error": {"code": 585695, "message": "<value>", "type": "bad_request"}}
-  exportSession:
-    speakeasy-default-export-session:
-      parameters:
-        path:
-          id: "<id>"
-      responses:
-        "200":
-          application/json: {"id": "<id>", "messages": [], "title": "<value>"}
-        "404":
-          application/json: {"error": {"code": 657092, "message": "<value>", "type": "validation_error"}}
-        "500":
-          application/json: {"error": {"code": 657092, "message": "<value>", "type": "validation_error"}}
-  forkSession:
-    speakeasy-default-fork-session:
-      parameters:
-        path:
-          id: "<id>"
-      requestBody:
-        application/json: {"messageIndex": 385832}
-      responses:
-        "201":
-          application/json: {"assistantMessageCount": 551389, "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "sub_agent"}], "completionTokens": 883347, "cost": 7701.17, "createdAt": "2025-09-19T04:06:39.531Z", "id": "<id>", "promptTokens": 239157, "sessionType": "forked", "title": "<value>", "toolCallCount": 860599, "userMessageCount": 637774}
-        "400":
-          application/json: {"error": {"code": 951681, "message": "<value>", "type": "internal_error"}}
-  rewindSession:
-    speakeasy-default-rewind-session:
-      parameters:
-        path:
-          id: "<id>"
-      requestBody:
-        application/json: {"cleanupMedia": true, "messageId": "<id>"}
-      responses:
-        "200":
-          application/json: {"assistantMessageCount": 676019, "callbacks": [{"bashTimeout": 120000, "excludeFromContext": false, "includeFullHistory": false, "messageContent": "Please review the changes and run tests", "name": "Log Output", "subAgentType": "general-purpose", "toolName": "*", "type": "bash_script"}], "completionTokens": 190372, "cost": 5568.73, "createdAt": "2024-07-07T16:52:12.280Z", "id": "<id>", "promptTokens": 938253, "sessionType": "subagent", "title": "<value>", "toolCallCount": 877894, "userMessageCount": 158292}
-        "400":
-          application/json: {"error": {"code": 235968, "message": "<value>", "type": "unauthorized"}}
-  listSessionFiles:
-    speakeasy-default-list-session-files:
-      parameters:
-        path:
-          id: "<id>"
-      responses:
-        "200":
-          application/json: [{"isDir": false, "modified": 765133, "name": "<value>", "size": 287523, "url": "https://glorious-euphonium.info"}]
-        "404":
-          application/json: {"error": {"code": 650370, "message": "<value>", "type": "bad_request"}}
-  uploadSessionFile:
-    speakeasy-default-upload-session-file:
-      parameters:
-        path:
-          id: "<id>"
-      requestBody:
-        multipart/form-data: {"file": "x-file: example.file"}
-      responses:
-        "201":
-          application/json: {"isDir": false, "modified": 467218, "name": "<value>", "size": 793494, "url": "https://hospitable-crocodile.name"}
-        "400":
-          application/json: {"error": {"code": 959051, "message": "<value>", "type": "validation_error"}}
-  deleteSessionFile:
-    speakeasy-default-delete-session-file:
-      parameters:
-        path:
-          id: "<id>"
-          filename: "example.file"
-      responses:
-        "400":
-          application/json: {"error": {"code": 565254, "message": "<value>", "type": "internal_error"}}
-  getSessionFile:
-    speakeasy-default-get-session-file:
-      parameters:
-        path:
-          id: "<id>"
-          filename: "example.file"
-      responses:
-        "200":
-          '*/*': "x-file: example.file"
-        "400":
-          application/json: {"error": {"code": 958191, "message": "<value>", "type": "internal_error"}}
-  listLLMTools:
-    speakeasy-default-list-LLM-tools:
-      responses:
-        "200":
-          application/json: {"tools": [{"description": "Execute bash commands in a persistent shell session", "name": "Bash"}]}
-        "500":
-          application/json: {"error": {"code": 57152, "message": "<value>", "type": "unauthorized"}}
-  getToolCredentialsStatus:
-    speakeasy-default-get-tool-credentials-status:
-      responses:
-        "200":
-          application/json: {"categories": {"key": {"description": "Search the web for real-time information", "display_name": "Web Search", "icon": "\U0001F50D", "tools": [{"api_key_format": "BSA...", "api_key_required": true, "authenticated": true, "description": "Privacy-focused web search with real-time results", "display_name": "Brave Search", "provider": "brave"}]}}}
-        "500":
-          application/json: {"error": {"code": 725163, "message": "<value>", "type": "validation_error"}}
-  getToolsStatus:
-    speakeasy-default-get-tools-status:
-      responses:
-        "200":
-          application/json: {}
-        "500":
-          application/json: {"error": {"code": 561833, "message": "<value>", "type": "validation_error"}}
-  streamEvents:
-    speakeasy-default-stream-events:
-      parameters:
-        query:
-          sessionId: "<id>"
-      responses:
-        "404":
-          application/json: {"error": {"code": 67605, "message": "<value>", "type": "validation_error"}}
-        "500":
-          application/json: {"error": {"code": 67605, "message": "<value>", "type": "validation_error"}}
-examplesVersion: 1.0.2

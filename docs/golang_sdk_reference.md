@@ -22,9 +22,7 @@ import (
 
 func main() {
     // Initialize the SDK client
-    client := mix.New(
-        mix.WithServerURL("http://localhost:8088"),
-    )
+    client := mix.New("http://localhost:8088")
 
     ctx := context.Background()
 
@@ -108,6 +106,8 @@ Most production applications use both:
 * **Streaming API** for real-time message processing
 
 ```go
+client := mix.New("http://localhost:8088")
+
 // Create session (REST)
 session, _ := client.Sessions.CreateSession(ctx, request)
 
@@ -128,12 +128,15 @@ export, _ := client.Sessions.ExportSession(ctx, session.SessionData.ID)
 Creates a new Mix SDK client instance.
 
 ```go
-func New(opts ...SDKOption) *Mix
+func New(serverURL string, opts ...SDKOption) *Mix
 ```
 
 #### Parameters
 
-Accepts variadic `SDKOption` functions for configuration.
+| Parameter   | Type        | Description                              |
+| :---------- | :---------- | :--------------------------------------- |
+| `serverURL` | `string`    | Required server URL                      |
+| `opts`      | `SDKOption` | Optional configuration functions         |
 
 #### Returns
 
@@ -143,7 +146,7 @@ Returns a pointer to a `Mix` client instance.
 
 ```go
 client := mix.New(
-    mix.WithServerURL("http://localhost:8088"),
+    "http://localhost:8088",
     mix.WithTimeout(30 * time.Second),
 )
 ```
@@ -152,7 +155,7 @@ client := mix.New(
 
 ### `WithServerURL()`
 
-Override the default server URL.
+Override the server URL after initialization.
 
 ```go
 func WithServerURL(serverURL string) SDKOption
@@ -160,31 +163,18 @@ func WithServerURL(serverURL string) SDKOption
 
 #### Parameters
 
-| Parameter   | Type     | Description            |
-| :---------- | :------- | :--------------------- |
-| `serverURL` | `string` | The server URL to use  |
+| Parameter   | Type     | Description                  |
+| :---------- | :------- | :--------------------------- |
+| `serverURL` | `string` | Override the initial URL     |
 
 #### Example
 
 ```go
 client := mix.New(
-    mix.WithServerURL("http://localhost:8088"),
+    "http://localhost:8088",
+    mix.WithServerURL("https://production.example.com"),
 )
 ```
-
-### `WithServerIndex()`
-
-Override the default server by index.
-
-```go
-func WithServerIndex(serverIndex int) SDKOption
-```
-
-#### Parameters
-
-| Parameter     | Type  | Description                 |
-| :------------ | :---- | :-------------------------- |
-| `serverIndex` | `int` | Index in the ServerList     |
 
 ### `WithClient()`
 
@@ -208,6 +198,7 @@ customClient := &http.Client{
 }
 
 client := mix.New(
+    "http://localhost:8088",
     mix.WithClient(customClient),
 )
 ```
@@ -230,6 +221,7 @@ func WithRetryConfig(retryConfig retry.Config) SDKOption
 
 ```go
 client := mix.New(
+    "http://localhost:8088",
     mix.WithRetryConfig(retry.Config{
         Strategy: "backoff",
         Backoff: &retry.BackoffStrategy{
@@ -261,6 +253,7 @@ func WithTimeout(timeout time.Duration) SDKOption
 
 ```go
 client := mix.New(
+    "http://localhost:8088",
     mix.WithTimeout(30 * time.Second),
 )
 ```
@@ -269,26 +262,30 @@ client := mix.New(
 
 The SDK is organized into resource-based modules accessed through the main `Mix` client:
 
-| Resource       | Description                              |
-| :------------- | :--------------------------------------- |
-| `Sessions`     | Session lifecycle management             |
-| `Messages`     | Message sending and history retrieval    |
-| `Streaming`    | Server-Sent Events for real-time updates |
-| `Files`        | File upload, download, and management    |
-| `Authentication` | API key and OAuth management           |
-| `Preferences`  | Model and provider configuration         |
-| `Permissions`  | Permission granting and denial           |
-| `Tools`        | Tool discovery and status                |
-| `System`       | Health checks and system information     |
+| Resource         | Description                              |
+| :--------------- | :--------------------------------------- |
+| `Sessions`       | Session lifecycle management             |
+| `Messages`       | Message sending and history retrieval    |
+| `Streaming`      | Server-Sent Events for real-time updates |
+| `Files`          | File upload, download, and management    |
+| `Authentication` | API key and OAuth management             |
+| `Preferences`    | Model and provider configuration         |
+| `Permissions`    | Permission granting and denial           |
+| `Tools`          | Tool discovery and status                |
+| `System`         | Health checks and system information     |
+| `Notifications`  | Notification response handling           |
+| `Health`         | OAuth and service health checks          |
+| `Internal`       | Internal operations and token refresh    |
 
 ```go
-client := mix.New(mix.WithServerURL("http://localhost:8088"))
+client := mix.New("http://localhost:8088")
 
 // Access resources through the client
 client.Sessions.CreateSession(...)
 client.Messages.SendMessage(...)
 client.Streaming.StreamEvents(...)
 client.Files.UploadSessionFile(...)
+client.Notifications.RespondToNotification(...)
 ```
 
 ## Types
@@ -303,7 +300,7 @@ Function type for configuring SDK client initialization.
 type SDKOption func(*Mix)
 ```
 
-Available options: `WithServerURL()`, `WithServerIndex()`, `WithClient()`, `WithRetryConfig()`, `WithTimeout()`
+Available options: `WithServerURL()`, `WithClient()`, `WithRetryConfig()`, `WithTimeout()`
 
 #### `retry.Config`
 
@@ -332,11 +329,21 @@ Represents session metadata.
 
 ```go
 type SessionData struct {
-    ID          string
-    Title       string
-    SessionType string
-    CreatedAt   time.Time
-    UpdatedAt   *time.Time
+    ID                    string
+    Title                 string
+    SessionType           string          // "main" or "subagent"
+    CreatedAt             time.Time
+    AssistantMessageCount int64
+    Callbacks             []Callback
+    CompletionTokens      int64
+    Cost                  float64
+    FirstUserMessage      *string
+    ParentSessionID       *string         // For subagent sessions
+    ParentToolCallID      *string         // For subagent sessions
+    PromptTokens          int64
+    SubagentType          *SubagentType   // e.g., "general-purpose"
+    ToolCallCount         int64
+    UserMessageCount      int64
 }
 ```
 
@@ -347,13 +354,14 @@ Represents a message in the conversation.
 ```go
 type BackendMessage struct {
     ID                string
+    SessionID         string
     Role              string
     UserInput         string
     AssistantResponse *string
     Reasoning         *string
     ReasoningDuration *int64
     ToolCalls         []ToolCallData
-    CreatedAt         time.Time
+    CallbackResults   []CallbackResultData
 }
 ```
 
@@ -385,6 +393,10 @@ type ExportMessage struct {
     ReasoningDuration *int64
     ToolCalls         []ExportToolCall
     Timestamp         time.Time
+    CreatedAt         time.Time
+    UpdatedAt         time.Time
+    FinishReason      *string
+    Model             *string
 }
 ```
 
@@ -394,10 +406,13 @@ Tool call information.
 
 ```go
 type ToolCallData struct {
-    ID     string
-    Name   string
-    Input  map[string]interface{}
-    Output *string
+    ID       string
+    Name     string
+    Type     string
+    Input    string    // JSON string
+    Result   *string   // Execution result
+    Finished bool
+    IsError  *bool
 }
 ```
 
@@ -407,21 +422,67 @@ File metadata.
 
 ```go
 type FileInfo struct {
-    Filename   string
-    Size       int64
-    MimeType   string
-    UploadedAt time.Time
+    IsDir    bool   // Whether this is a directory
+    Modified int64  // Last modified timestamp (Unix time)
+    Name     string // File name
+    Size     int64  // File size in bytes
+    URL      string // Static URL to access the file
 }
 ```
 
 #### `Callback`
 
-Session callback configuration.
+Session callback configuration for automated actions.
 
 ```go
 type Callback struct {
-    Type   CallbackType
-    Config map[string]interface{}
+    Type                 string   // "bash_script", "sub_agent", "send_message"
+    ToolName             *string
+    BashCommand          *string
+    SubAgentPrompt       *string
+    MessageContent       *string
+    BashTimeout          *int64
+    ExcludeFromContext   *bool
+    IncludeFullHistory   *bool
+    SubAgentType         *string
+    Name                 *string
+}
+```
+
+#### `CallbackResultData`
+
+Result data from callback execution.
+
+```go
+type CallbackResultData struct {
+    CallbackName       string
+    CallbackType       string
+    Success            bool
+    Error              *string
+    ToolCallID         *string
+    ToolName           *string
+    ExitCode           *int
+    Stdout             *string
+    Stderr             *string
+    SubagentID         *string
+    SubagentResult     *string
+    ExcludeFromContext *bool
+}
+```
+
+#### `ExportToolCall`
+
+Extended tool call data used in session exports.
+
+```go
+type ExportToolCall struct {
+    ID        string
+    Name      string
+    Input     string      // JSON string
+    InputJSON *InputJSON  // Optional parsed input
+    Result    *string
+    Finished  bool
+    Metadata  *string
 }
 ```
 
@@ -452,14 +513,15 @@ The primary message type used for conversation history and message retrieval.
 
 ```go
 type BackendMessage struct {
-    ID                string          // Unique message identifier
-    Role              string          // "user" or "assistant"
-    UserInput         string          // User's message text
-    AssistantResponse *string         // AI response text
-    Reasoning         *string         // AI reasoning/thinking content
-    ReasoningDuration *int64          // Time spent reasoning (milliseconds)
-    ToolCalls         []ToolCallData  // Tools invoked during processing
-    CreatedAt         time.Time       // Message creation timestamp
+    ID                string                 // Unique message identifier
+    SessionID         string                 // Session identifier
+    Role              string                 // "user" or "assistant"
+    UserInput         string                 // User's message text
+    AssistantResponse *string                // AI response text
+    Reasoning         *string                // AI reasoning/thinking content
+    ReasoningDuration *int64                 // Time spent reasoning (milliseconds)
+    ToolCalls         []ToolCallData         // Tools invoked during processing
+    CallbackResults   []CallbackResultData   // Callback execution results
 }
 ```
 
@@ -491,6 +553,10 @@ type ExportMessage struct {
     ReasoningDuration *int64           // Time spent reasoning (milliseconds)
     ToolCalls         []ExportToolCall // Complete tool call data with results
     Timestamp         time.Time        // Message timestamp
+    CreatedAt         time.Time        // Creation time
+    UpdatedAt         time.Time        // Last update time
+    FinishReason      *string          // Completion finish reason
+    Model             *string          // Model used for message
 }
 ```
 
@@ -659,7 +725,7 @@ Future public API may look like:
 ```go
 // Proposed public hook registration API
 client := mix.New(
-    mix.WithServerURL("http://localhost:8088"),
+    "http://localhost:8088",
     mix.WithHooks(hooks.Hooks{
         BeforeRequest: []hooks.BeforeRequestHook{
             logRequestHook,
@@ -744,6 +810,7 @@ The streaming API emits various Server-Sent Events during message processing. Ea
 | `SSEEventStreamTypeHeartbeat` | Keep-alive signal | Periodic during stream | Maintain connection |
 | `SSEEventStreamTypeSessionCreated` | Session created | New session initialized | Notify of new session |
 | `SSEEventStreamTypeSessionDeleted` | Session deleted | Session removed | Notify of deletion |
+| `SSEEventStreamTypeSSENotificationEvent` | Notification request | User action required | Prompt user for response |
 
 ### Event Processing Pattern
 
@@ -1185,6 +1252,38 @@ Documentation of input/output schemas for all built-in Mix tools. These tools ar
 * Location: `{data_directory}/todos/todos.json`
 * Format: JSON array of todo objects
 
+### Task
+
+**Tool name:** `Task`
+
+**Input:**
+
+```go
+{
+    "description": string,          // Short task description (3-5 words)
+    "prompt": string,               // Detailed task instructions
+    "subagent_type": string,        // Agent type (e.g., "general-purpose", "Explore", "Plan")
+    "model": string | nil,          // Optional model override ("sonnet", "opus", "haiku")
+    "max_turns": int | nil,         // Maximum agentic turns before stopping
+    "run_in_background": bool | nil, // Run task in background
+}
+```
+
+**Output:**
+
+```go
+{
+    "result": string,               // Task execution result or agent response
+    "agent_id": string,             // Agent ID for resuming
+}
+```
+
+**Special Behaviors:**
+
+* Spawns specialized sub-agents for complex multi-step tasks
+* Different subagent types have specific capabilities and tools
+* Can run autonomously in background with `run_in_background: true`
+
 ### ExitPlanMode
 
 **Tool name:** `ExitPlanMode`
@@ -1237,7 +1336,7 @@ import (
 func main() {
     // Initialize client
     client := mix.New(
-        mix.WithServerURL("http://localhost:8088"),
+        "http://localhost:8088",
         mix.WithTimeout(30 * time.Second),
     )
 
@@ -1298,9 +1397,7 @@ import (
 )
 
 func main() {
-    client := mix.New(
-        mix.WithServerURL("http://localhost:8088"),
-    )
+    client := mix.New("http://localhost:8088")
 
     ctx := context.Background()
 
@@ -1374,6 +1471,7 @@ package main
 import (
     "context"
     "fmt"
+    "io"
     "io/ioutil"
     "log"
 
@@ -1382,9 +1480,7 @@ import (
 )
 
 func main() {
-    client := mix.New(
-        mix.WithServerURL("http://localhost:8088"),
-    )
+    client := mix.New("http://localhost:8088")
 
     ctx := context.Background()
 
@@ -1402,14 +1498,16 @@ func main() {
     }
 
     // Upload file
-    uploadResp, err := client.Files.UploadSessionFile(ctx, sessionID, operations.UploadSessionFileRequest{
-        Filename: "example.txt",
-        Content:  fileData,
+    uploadResp, err := client.Files.UploadSessionFile(ctx, sessionID, operations.UploadSessionFileRequestBody{
+        File: operations.File{
+            FileName: "example.txt",
+            Content:  fileData,
+        },
     })
     if err != nil {
         log.Fatalf("Failed to upload file: %v", err)
     }
-    fmt.Printf("Uploaded: %s\n", uploadResp.FileInfo.Filename)
+    fmt.Printf("Uploaded: %s (URL: %s)\n", uploadResp.FileInfo.Name, uploadResp.FileInfo.URL)
 
     // List files
     listResp, err := client.Files.ListSessionFiles(ctx, sessionID)
@@ -1417,8 +1515,8 @@ func main() {
         log.Fatalf("Failed to list files: %v", err)
     }
 
-    for _, file := range listResp.Files {
-        fmt.Printf("- %s (%d bytes)\n", file.Filename, file.Size)
+    for _, file := range listResp.FileInfos {
+        fmt.Printf("- %s (%d bytes, %s)\n", file.Name, file.Size, file.URL)
     }
 
     // Download file
@@ -1426,13 +1524,13 @@ func main() {
     if err != nil {
         log.Fatalf("Failed to download file: %v", err)
     }
+    defer downloadResp.ResponseStream.Close()
 
-    // Save downloaded file
-    err = ioutil.WriteFile("downloaded.txt", downloadResp.Content, 0644)
+    data, err := io.ReadAll(downloadResp.ResponseStream)
     if err != nil {
-        log.Fatalf("Failed to save file: %v", err)
+        log.Fatalf("Failed to read stream: %v", err)
     }
-    fmt.Println("File downloaded successfully")
+    ioutil.WriteFile("downloaded.txt", data, 0644)
 }
 ```
 
@@ -1445,7 +1543,7 @@ func main() {
 
 ---
 
-**Version:** 0.1.0
+**Version:** 0.2.0
 **Last Updated:** 2025
 
 **Note:** This SDK is a REST API client for the Mix application. Event schemas and hook implementations are subject to change as the API evolves.

@@ -17,8 +17,8 @@ const (
 
 // ToolName - Tool name - either a core tool or MCP tool following {serverName}_{toolName} pattern
 type ToolName struct {
-	CoreToolName *CoreToolName `queryParam:"inline,name=ToolName"`
-	Str          *string       `queryParam:"inline,name=ToolName"`
+	CoreToolName *CoreToolName `queryParam:"inline" union:"member"`
+	Str          *string       `queryParam:"inline" union:"member"`
 
 	Type ToolNameType
 }
@@ -43,43 +43,17 @@ func CreateToolNameStr(str string) ToolName {
 
 func (u *ToolName) UnmarshalJSON(data []byte) error {
 
-	var candidates []utils.UnionCandidate
-
-	// Collect all valid candidates
 	var coreToolName CoreToolName = CoreToolName("")
 	if err := utils.UnmarshalJSON(data, &coreToolName, "", true, nil); err == nil {
-		candidates = append(candidates, utils.UnionCandidate{
-			Type:  ToolNameTypeCoreToolName,
-			Value: &coreToolName,
-		})
+		u.CoreToolName = &coreToolName
+		u.Type = ToolNameTypeCoreToolName
+		return nil
 	}
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
-		candidates = append(candidates, utils.UnionCandidate{
-			Type:  ToolNameTypeStr,
-			Value: &str,
-		})
-	}
-
-	if len(candidates) == 0 {
-		return fmt.Errorf("could not unmarshal `%s` into any supported union types for ToolName", string(data))
-	}
-
-	// Pick the best candidate using multi-stage filtering
-	best := utils.PickBestCandidate(candidates)
-	if best == nil {
-		return fmt.Errorf("could not unmarshal `%s` into any supported union types for ToolName", string(data))
-	}
-
-	// Set the union type and value based on the best candidate
-	u.Type = best.Type.(ToolNameType)
-	switch best.Type {
-	case ToolNameTypeCoreToolName:
-		u.CoreToolName = best.Value.(*CoreToolName)
-		return nil
-	case ToolNameTypeStr:
-		u.Str = best.Value.(*string)
+		u.Str = &str
+		u.Type = ToolNameTypeStr
 		return nil
 	}
 
