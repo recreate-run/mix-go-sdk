@@ -193,6 +193,7 @@ func main() {
     )
 
     res, err := s.Messages.SendMessage(ctx, "<id>", operations.SendMessageRequestBody{
+        MaxSteps: mix.Pointer[int64](25),
         Text: "<value>",
         ThinkingLevel: optionalnullable.From(mix.Pointer(operations.ThinkingLevelMedium)),
     })

@@ -19,6 +19,7 @@ Event type identifier
 | `SSESessionDeletedEventEventToolExecutionStart`                | tool_execution_start                                           |
 | `SSESessionDeletedEventEventToolExecutionComplete`             | tool_execution_complete                                        |
 | `SSESessionDeletedEventEventPermission`                        | permission                                                     |
+| `SSESessionDeletedEventEventNotification`                      | notification                                                   |
 | `SSESessionDeletedEventEventUserMessageCreated`                | user_message_created                                           |
 | `SSESessionDeletedEventEventSessionCreated`                    | session_created                                                |
 | `SSESessionDeletedEventEventSessionDeleted`                    | session_deleted                                                |

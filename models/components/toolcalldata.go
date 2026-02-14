@@ -15,6 +15,8 @@ type ToolCallData struct {
 	Name ToolName `json:"name"`
 	// Tool execution result (optional)
 	Result *string `json:"result,omitempty"`
+	// Screenshot URLs captured during tool execution (optional)
+	ScreenshotUrls []string `json:"screenshotUrls,omitempty"`
 	// Tool type
 	Type string `json:"type"`
 }
@@ -59,6 +61,13 @@ func (t *ToolCallData) GetResult() *string {
 		return nil
 	}
 	return t.Result
+}
+
+func (t *ToolCallData) GetScreenshotUrls() []string {
+	if t == nil {
+		return nil
+	}
+	return t.ScreenshotUrls
 }
 
 func (t *ToolCallData) GetType() string {

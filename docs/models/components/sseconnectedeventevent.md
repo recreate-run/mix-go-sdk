@@ -19,6 +19,7 @@ Event type identifier
 | `SSEConnectedEventEventToolExecutionStart`                | tool_execution_start                                      |
 | `SSEConnectedEventEventToolExecutionComplete`             | tool_execution_complete                                   |
 | `SSEConnectedEventEventPermission`                        | permission                                                |
+| `SSEConnectedEventEventNotification`                      | notification                                              |
 | `SSEConnectedEventEventUserMessageCreated`                | user_message_created                                      |
 | `SSEConnectedEventEventSessionCreated`                    | session_created                                           |
 | `SSEConnectedEventEventSessionDeleted`                    | session_deleted                                           |

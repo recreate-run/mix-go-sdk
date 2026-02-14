@@ -4,7 +4,6 @@ package operations
 
 import (
 	"github.com/recreate-run/mix-go-sdk/models/components"
-	"github.com/recreate-run/mix-go-sdk/optionalnullable"
 )
 
 type AvailableProviders struct {
@@ -28,97 +27,12 @@ func (a *AvailableProviders) GetModels() []string {
 	return a.Models
 }
 
-// Preferences - User preferences (null if no preferences exist)
-type Preferences struct {
-	// Unix timestamp when preferences were created
-	CreatedAt *int64 `json:"created_at,omitempty"`
-	// Maximum tokens for main agent responses
-	MainAgentMaxTokens *int64 `json:"main_agent_max_tokens,omitempty"`
-	// Main agent model ID
-	MainAgentModel *string `json:"main_agent_model,omitempty"`
-	// Reasoning effort setting for main agent
-	MainAgentReasoningEffort *string `json:"main_agent_reasoning_effort,omitempty"`
-	// Preferred AI provider (anthropic, openai, openrouter)
-	PreferredProvider *string `json:"preferred_provider,omitempty"`
-	// Maximum tokens for sub agent responses
-	SubAgentMaxTokens *int64 `json:"sub_agent_max_tokens,omitempty"`
-	// Sub agent model ID
-	SubAgentModel *string `json:"sub_agent_model,omitempty"`
-	// Reasoning effort setting for sub agent
-	SubAgentReasoningEffort *string `json:"sub_agent_reasoning_effort,omitempty"`
-	// Unix timestamp of last update
-	UpdatedAt *int64 `json:"updated_at,omitempty"`
-}
-
-func (p *Preferences) GetCreatedAt() *int64 {
-	if p == nil {
-		return nil
-	}
-	return p.CreatedAt
-}
-
-func (p *Preferences) GetMainAgentMaxTokens() *int64 {
-	if p == nil {
-		return nil
-	}
-	return p.MainAgentMaxTokens
-}
-
-func (p *Preferences) GetMainAgentModel() *string {
-	if p == nil {
-		return nil
-	}
-	return p.MainAgentModel
-}
-
-func (p *Preferences) GetMainAgentReasoningEffort() *string {
-	if p == nil {
-		return nil
-	}
-	return p.MainAgentReasoningEffort
-}
-
-func (p *Preferences) GetPreferredProvider() *string {
-	if p == nil {
-		return nil
-	}
-	return p.PreferredProvider
-}
-
-func (p *Preferences) GetSubAgentMaxTokens() *int64 {
-	if p == nil {
-		return nil
-	}
-	return p.SubAgentMaxTokens
-}
-
-func (p *Preferences) GetSubAgentModel() *string {
-	if p == nil {
-		return nil
-	}
-	return p.SubAgentModel
-}
-
-func (p *Preferences) GetSubAgentReasoningEffort() *string {
-	if p == nil {
-		return nil
-	}
-	return p.SubAgentReasoningEffort
-}
-
-func (p *Preferences) GetUpdatedAt() *int64 {
-	if p == nil {
-		return nil
-	}
-	return p.UpdatedAt
-}
-
 // GetPreferencesResponseBody - User preferences and available providers
 type GetPreferencesResponseBody struct {
 	// Map of available AI providers and their models
 	AvailableProviders map[string]AvailableProviders `json:"available_providers"`
-	// User preferences (null if no preferences exist)
-	Preferences optionalnullable.OptionalNullable[Preferences] `json:"preferences,omitempty"`
+	// User preferences configuration
+	Preferences *components.UserPreferencesResponse `json:"preferences,omitempty"`
 }
 
 func (g *GetPreferencesResponseBody) GetAvailableProviders() map[string]AvailableProviders {
@@ -128,7 +42,7 @@ func (g *GetPreferencesResponseBody) GetAvailableProviders() map[string]Availabl
 	return g.AvailableProviders
 }
 
-func (g *GetPreferencesResponseBody) GetPreferences() optionalnullable.OptionalNullable[Preferences] {
+func (g *GetPreferencesResponseBody) GetPreferences() *components.UserPreferencesResponse {
 	if g == nil {
 		return nil
 	}

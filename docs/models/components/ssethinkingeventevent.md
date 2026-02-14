@@ -19,6 +19,7 @@ Event type identifier
 | `SSEThinkingEventEventToolExecutionStart`                | tool_execution_start                                     |
 | `SSEThinkingEventEventToolExecutionComplete`             | tool_execution_complete                                  |
 | `SSEThinkingEventEventPermission`                        | permission                                               |
+| `SSEThinkingEventEventNotification`                      | notification                                             |
 | `SSEThinkingEventEventUserMessageCreated`                | user_message_created                                     |
 | `SSEThinkingEventEventSessionCreated`                    | session_created                                          |
 | `SSEThinkingEventEventSessionDeleted`                    | session_deleted                                          |

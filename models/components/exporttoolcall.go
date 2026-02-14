@@ -16,14 +16,12 @@ type ExportToolCall struct {
 	Input string `json:"input"`
 	// Parsed tool input (optional)
 	InputJSON *InputJSON `json:"inputJson,omitempty"`
-	// Whether execution resulted in error (optional)
-	IsError *bool `json:"isError,omitempty"`
-	// Additional tool metadata (optional)
-	Metadata *string `json:"metadata,omitempty"`
 	// Tool name
 	Name string `json:"name"`
 	// Tool execution result (optional)
 	Result *string `json:"result,omitempty"`
+	// Screenshot URLs captured during tool execution (optional)
+	ScreenshotUrls []string `json:"screenshotUrls,omitempty"`
 	// Tool type
 	Type string `json:"type"`
 }
@@ -56,20 +54,6 @@ func (e *ExportToolCall) GetInputJSON() *InputJSON {
 	return e.InputJSON
 }
 
-func (e *ExportToolCall) GetIsError() *bool {
-	if e == nil {
-		return nil
-	}
-	return e.IsError
-}
-
-func (e *ExportToolCall) GetMetadata() *string {
-	if e == nil {
-		return nil
-	}
-	return e.Metadata
-}
-
 func (e *ExportToolCall) GetName() string {
 	if e == nil {
 		return ""
@@ -82,6 +66,13 @@ func (e *ExportToolCall) GetResult() *string {
 		return nil
 	}
 	return e.Result
+}
+
+func (e *ExportToolCall) GetScreenshotUrls() []string {
+	if e == nil {
+		return nil
+	}
+	return e.ScreenshotUrls
 }
 
 func (e *ExportToolCall) GetType() string {

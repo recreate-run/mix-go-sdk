@@ -19,6 +19,7 @@ Event type identifier
 | `SSEToolUseParameterDeltaEventEventToolExecutionStart`                | tool_execution_start                                                  |
 | `SSEToolUseParameterDeltaEventEventToolExecutionComplete`             | tool_execution_complete                                               |
 | `SSEToolUseParameterDeltaEventEventPermission`                        | permission                                                            |
+| `SSEToolUseParameterDeltaEventEventNotification`                      | notification                                                          |
 | `SSEToolUseParameterDeltaEventEventUserMessageCreated`                | user_message_created                                                  |
 | `SSEToolUseParameterDeltaEventEventSessionCreated`                    | session_created                                                       |
 | `SSEToolUseParameterDeltaEventEventSessionDeleted`                    | session_deleted                                                       |

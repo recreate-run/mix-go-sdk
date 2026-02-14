@@ -19,6 +19,7 @@ Event type identifier
 | `SSEUserMessageCreatedEventEventToolExecutionStart`                | tool_execution_start                                               |
 | `SSEUserMessageCreatedEventEventToolExecutionComplete`             | tool_execution_complete                                            |
 | `SSEUserMessageCreatedEventEventPermission`                        | permission                                                         |
+| `SSEUserMessageCreatedEventEventNotification`                      | notification                                                       |
 | `SSEUserMessageCreatedEventEventUserMessageCreated`                | user_message_created                                               |
 | `SSEUserMessageCreatedEventEventSessionCreated`                    | session_created                                                    |
 | `SSEUserMessageCreatedEventEventSessionDeleted`                    | session_deleted                                                    |

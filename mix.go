@@ -2,7 +2,7 @@
 
 package mix
 
-// Generated from OpenAPI doc version 1.0.0 and generator version 2.816.0
+// Generated from OpenAPI doc version 1.0.0 and generator version 2.823.1
 
 import (
 	"github.com/recreate-run/mix-go-sdk/internal/config"
@@ -83,9 +83,9 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided serverURL and options
 func New(serverURL string, opts ...SDKOption) *Mix {
 	sdk := &Mix{
-		SDKVersion: "0.2.1",
+		SDKVersion: "0.2.2",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent: "speakeasy-sdk/go 0.2.1 2.816.0 1.0.0 github.com/recreate-run/mix-go-sdk",
+			UserAgent: "speakeasy-sdk/go 0.2.2 2.823.1 1.0.0 github.com/recreate-run/mix-go-sdk",
 		},
 		hooks: hooks.New(),
 	}

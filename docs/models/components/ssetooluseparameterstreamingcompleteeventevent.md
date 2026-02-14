@@ -19,6 +19,7 @@ Event type identifier
 | `SSEToolUseParameterStreamingCompleteEventEventToolExecutionStart`                | tool_execution_start                                                              |
 | `SSEToolUseParameterStreamingCompleteEventEventToolExecutionComplete`             | tool_execution_complete                                                           |
 | `SSEToolUseParameterStreamingCompleteEventEventPermission`                        | permission                                                                        |
+| `SSEToolUseParameterStreamingCompleteEventEventNotification`                      | notification                                                                      |
 | `SSEToolUseParameterStreamingCompleteEventEventUserMessageCreated`                | user_message_created                                                              |
 | `SSEToolUseParameterStreamingCompleteEventEventSessionCreated`                    | session_created                                                                   |
 | `SSEToolUseParameterStreamingCompleteEventEventSessionDeleted`                    | session_deleted                                                                   |

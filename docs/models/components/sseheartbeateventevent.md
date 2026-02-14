@@ -19,6 +19,7 @@ Event type identifier
 | `SSEHeartbeatEventEventToolExecutionStart`                | tool_execution_start                                      |
 | `SSEHeartbeatEventEventToolExecutionComplete`             | tool_execution_complete                                   |
 | `SSEHeartbeatEventEventPermission`                        | permission                                                |
+| `SSEHeartbeatEventEventNotification`                      | notification                                              |
 | `SSEHeartbeatEventEventUserMessageCreated`                | user_message_created                                      |
 | `SSEHeartbeatEventEventSessionCreated`                    | session_created                                           |
 | `SSEHeartbeatEventEventSessionDeleted`                    | session_deleted                                           |

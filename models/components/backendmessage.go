@@ -6,10 +6,22 @@ package components
 type BackendMessage struct {
 	// Assistant's response message (optional)
 	AssistantResponse *string `json:"assistantResponse,omitempty"`
+	// Tokens used for prompt cache creation (optional)
+	CacheCreationTokens *int64 `json:"cacheCreationTokens,omitempty"`
+	// Tokens read from prompt cache (optional)
+	CacheReadTokens *int64 `json:"cacheReadTokens,omitempty"`
 	// Callback execution results (optional)
 	CallbackResults []CallbackResultData `json:"callbackResults,omitempty"`
+	// Cost for this specific message in USD
+	Cost *float64 `json:"cost,omitempty"`
 	// Unique message identifier
 	ID string `json:"id"`
+	// Input tokens used for this message (includes cache creation)
+	InputTokens *int64 `json:"inputTokens,omitempty"`
+	// Model used for this message (e.g., 'claude-sonnet-4')
+	Model *string `json:"model,omitempty"`
+	// Output tokens generated for this message (includes cache reads)
+	OutputTokens *int64 `json:"outputTokens,omitempty"`
 	// Reasoning process (optional)
 	Reasoning *string `json:"reasoning,omitempty"`
 	// Reasoning duration in milliseconds (optional)
@@ -31,6 +43,20 @@ func (b *BackendMessage) GetAssistantResponse() *string {
 	return b.AssistantResponse
 }
 
+func (b *BackendMessage) GetCacheCreationTokens() *int64 {
+	if b == nil {
+		return nil
+	}
+	return b.CacheCreationTokens
+}
+
+func (b *BackendMessage) GetCacheReadTokens() *int64 {
+	if b == nil {
+		return nil
+	}
+	return b.CacheReadTokens
+}
+
 func (b *BackendMessage) GetCallbackResults() []CallbackResultData {
 	if b == nil {
 		return nil
@@ -38,11 +64,39 @@ func (b *BackendMessage) GetCallbackResults() []CallbackResultData {
 	return b.CallbackResults
 }
 
+func (b *BackendMessage) GetCost() *float64 {
+	if b == nil {
+		return nil
+	}
+	return b.Cost
+}
+
 func (b *BackendMessage) GetID() string {
 	if b == nil {
 		return ""
 	}
 	return b.ID
+}
+
+func (b *BackendMessage) GetInputTokens() *int64 {
+	if b == nil {
+		return nil
+	}
+	return b.InputTokens
+}
+
+func (b *BackendMessage) GetModel() *string {
+	if b == nil {
+		return nil
+	}
+	return b.Model
+}
+
+func (b *BackendMessage) GetOutputTokens() *int64 {
+	if b == nil {
+		return nil
+	}
+	return b.OutputTokens
 }
 
 func (b *BackendMessage) GetReasoning() *string {

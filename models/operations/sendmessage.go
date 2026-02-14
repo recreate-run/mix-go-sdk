@@ -44,6 +44,8 @@ func (e *ThinkingLevel) UnmarshalJSON(data []byte) error {
 }
 
 type SendMessageRequestBody struct {
+	// Maximum tool call iterations for this message. If not provided, unlimited iterations allowed.
+	MaxSteps *int64 `json:"max_steps,omitempty"`
 	// Whether the message is in planning mode
 	PlanMode *bool `default:"false" json:"plan_mode"`
 	// The text content of the message
@@ -61,6 +63,13 @@ func (s *SendMessageRequestBody) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (s *SendMessageRequestBody) GetMaxSteps() *int64 {
+	if s == nil {
+		return nil
+	}
+	return s.MaxSteps
 }
 
 func (s *SendMessageRequestBody) GetPlanMode() *bool {
