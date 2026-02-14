@@ -356,15 +356,21 @@ Represents a message in the conversation.
 
 ```go
 type BackendMessage struct {
-    ID                string
-    SessionID         string
-    Role              string
-    UserInput         string
-    AssistantResponse *string
-    Reasoning         *string
-    ReasoningDuration *int64
-    ToolCalls         []ToolCallData
-    CallbackResults   []CallbackResultData
+    ID                  string
+    SessionID           string
+    Role                string
+    UserInput           string
+    AssistantResponse   *string
+    Reasoning           *string
+    ReasoningDuration   *int64
+    ToolCalls           []ToolCallData
+    CallbackResults     []CallbackResultData
+    CacheCreationTokens *int64   // Tokens used for prompt cache creation
+    CacheReadTokens     *int64   // Tokens read from prompt cache
+    InputTokens         *int64   // Input tokens (includes cache creation)
+    OutputTokens        *int64   // Output tokens (includes cache reads)
+    Cost                *float64 // Cost in USD
+    Model               *string  // Model used (e.g., 'claude-sonnet-4')
 }
 ```
 
@@ -487,6 +493,24 @@ type CallbackResultData struct {
 }
 ```
 
+#### `UserPreferencesResponse`
+
+User preferences configuration.
+
+```go
+type UserPreferencesResponse struct {
+    CreatedAt                *int64  // Unix timestamp when created
+    UpdatedAt                *int64  // Unix timestamp of last update
+    PreferredProvider        *string // AI provider: "anthropic", "openai", "openrouter"
+    MainAgentModel           *string // Main agent model ID
+    MainAgentMaxTokens       *int64  // Max tokens for main agent
+    MainAgentReasoningEffort *string // Reasoning effort setting
+    SubAgentModel            *string // Sub agent model ID
+    SubAgentMaxTokens        *int64  // Max tokens for sub agent
+    SubAgentReasoningEffort  *string // Reasoning effort setting
+}
+```
+
 #### `ExportToolCall`
 
 Extended tool call data used in session exports.
@@ -530,15 +554,21 @@ The primary message type used for conversation history and message retrieval.
 
 ```go
 type BackendMessage struct {
-    ID                string                 // Unique message identifier
-    SessionID         string                 // Session identifier
-    Role              string                 // "user" or "assistant"
-    UserInput         string                 // User's message text
-    AssistantResponse *string                // AI response text
-    Reasoning         *string                // AI reasoning/thinking content
-    ReasoningDuration *int64                 // Time spent reasoning (milliseconds)
-    ToolCalls         []ToolCallData         // Tools invoked during processing
-    CallbackResults   []CallbackResultData   // Callback execution results
+    ID                  string                 // Unique message identifier
+    SessionID           string                 // Session identifier
+    Role                string                 // "user" or "assistant"
+    UserInput           string                 // User's message text
+    AssistantResponse   *string                // AI response text
+    Reasoning           *string                // AI reasoning/thinking content
+    ReasoningDuration   *int64                 // Time spent reasoning (milliseconds)
+    ToolCalls           []ToolCallData         // Tools invoked during processing
+    CallbackResults     []CallbackResultData   // Callback execution results
+    CacheCreationTokens *int64                 // Tokens for prompt cache creation
+    CacheReadTokens     *int64                 // Tokens read from prompt cache
+    InputTokens         *int64                 // Input tokens (includes cache creation)
+    OutputTokens        *int64                 // Output tokens (includes cache reads)
+    Cost                *float64               // Cost in USD
+    Model               *string                // Model used (e.g., 'claude-sonnet-4')
 }
 ```
 
@@ -1563,7 +1593,7 @@ func main() {
 
 ---
 
-**Version:** 0.2.1
+**Version:** 0.2.2
 **Last Updated:** 2025
 
 **Note:** This SDK is a REST API client for the Mix application. Event schemas and hook implementations are subject to change as the API evolves.
