@@ -33,7 +33,7 @@ generation:
     generateNewTests: true
     skipResponseBodyAssertions: false
 go:
-  version: 0.2.2
+  version: 0.2.3
   additionalDependencies: {}
   baseErrorName: MixError
   clientServerStatusCodesAsErrors: true
@@ -41,6 +41,7 @@ go:
   envVarPrefix: MIX
   flattenGlobalSecurity: true
   forwardCompatibleEnumsByDefault: false
+  forwardCompatibleUnionsByDefault: "false"
   imports:
     option: openapi
     paths:

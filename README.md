@@ -135,13 +135,6 @@ func main() {
 * [DenyPermission](docs/sdks/permissions/README.md#denypermission) - Deny permission
 * [GrantPermission](docs/sdks/permissions/README.md#grantpermission) - Grant permission
 
-### [Preferences](docs/sdks/preferences/README.md)
-
-* [GetPreferences](docs/sdks/preferences/README.md#getpreferences) - Get user preferences
-* [UpdatePreferences](docs/sdks/preferences/README.md#updatepreferences) - Update user preferences
-* [GetAvailableProviders](docs/sdks/preferences/README.md#getavailableproviders) - Get available providers
-* [ResetPreferences](docs/sdks/preferences/README.md#resetpreferences) - Reset preferences
-
 ### [Sessions](docs/sdks/sessions/README.md)
 
 * [ListSessions](docs/sdks/sessions/README.md#listsessions) - List all sessions

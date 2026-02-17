@@ -108,129 +108,132 @@ func (es *EventStream[T]) Next() bool {
 	default:
 	}
 
-	if !es.scanner.Scan() {
-		return false
-	}
-
-	es.err = es.scanner.Err()
-	if es.err != nil {
-		return false
-	}
-
-	b := es.scanner.Bytes()
-	content := string(b)
-	if es.first {
-		es.first = false
-		content = strings.TrimPrefix(content, bom)
-	}
-
-	var event ServerEvent
-	lines := lineEnding.Split(content, -1)
-	publish := false
-	data := ""
-	for _, line := range lines {
-		if line == "" {
-			continue
+	for {
+		if !es.scanner.Scan() {
+			return false
 		}
 
-		delim := strings.Index(line, ":")
-		if delim == 0 {
-			continue
+		es.err = es.scanner.Err()
+		if es.err != nil {
+			return false
 		}
 
-		var field, value string
-		if delim > 0 {
-			field = line[:delim]
-			value = line[delim+1:]
-			value = strings.TrimPrefix(value, " ")
-		} else {
-			field = line
-			value = ""
+		b := es.scanner.Bytes()
+		content := string(b)
+		if es.first {
+			es.first = false
+			content = strings.TrimPrefix(content, bom)
 		}
 
-		switch field {
-		case "id":
-			publish = true
-			if !strings.Contains(value, "\x00") {
-				es.eventID = &value
+		var event ServerEvent
+		lines := lineEnding.Split(content, -1)
+		publish := false
+		data := ""
+		for _, line := range lines {
+			if line == "" {
+				continue
 			}
-		case "event":
-			publish = true
-			event.Event = &value
-		case "retry":
-			retry, err := strconv.ParseInt(value, 10, 64)
-			if err == nil {
+
+			delim := strings.Index(line, ":")
+			if delim == 0 {
+				continue
+			}
+
+			var field, value string
+			if delim > 0 {
+				field = line[:delim]
+				value = line[delim+1:]
+				value = strings.TrimPrefix(value, " ")
+			} else {
+				field = line
+				value = ""
+			}
+
+			switch field {
+			case "id":
 				publish = true
-				event.Retry = &retry
+				if !strings.Contains(value, "\x00") {
+					es.eventID = &value
+				}
+			case "event":
+				publish = true
+				event.Event = &value
+			case "retry":
+				retry, err := strconv.ParseInt(value, 10, 64)
+				if err == nil {
+					publish = true
+					event.Retry = &retry
+				}
+			case "data":
+				publish = true
+				data += value + "\n"
 			}
-		case "data":
-			publish = true
-			data += value + "\n"
 		}
-	}
 
-	event.ID = es.eventID
-
-	if es.sentinel != "" && data == es.sentinel+"\n" {
-		es.finished = true
-		return false
-	}
-
-	if len(data) > 0 {
-		data = data[:len(data)-1]
-	}
-
-	encoding := "application/json"
-
-	var t T
-	if et, ok := any(t).(EventType); ok {
-		ev := ""
-		if event.Event != nil {
-			ev = *event.Event
+		// Skip comment-only or empty blocks (e.g. SSE keepalive heartbeats)
+		if !publish {
+			continue
 		}
-		var err error
-		encoding, err = et.GetEventEncoding(ev)
+
+		event.ID = es.eventID
+
+		if es.sentinel != "" && data == es.sentinel+"\n" {
+			es.finished = true
+			return false
+		}
+
+		if len(data) > 0 {
+			data = data[:len(data)-1]
+		}
+
+		encoding := "application/json"
+
+		var t T
+		if et, ok := any(t).(EventType); ok {
+			ev := ""
+			if event.Event != nil {
+				ev = *event.Event
+			}
+			var err error
+			encoding, err = et.GetEventEncoding(ev)
+			if err != nil {
+				es.err = err
+				return false
+			}
+		} else {
+			var a interface{}
+			if err := json.Unmarshal([]byte(data), &a); err != nil {
+				encoding = "string"
+			}
+		}
+
+		if encoding == "string" {
+			jsonData, err := json.Marshal(data)
+			if err != nil {
+				es.err = err
+				return false
+			}
+			event.Data = jsonData
+		} else {
+			event.Data = []byte(data)
+		}
+
+		e, err := json.Marshal(event)
 		if err != nil {
 			es.err = err
 			return false
 		}
-	} else {
-		var a interface{}
-		if err := json.Unmarshal([]byte(data), &a); err != nil {
-			encoding = "string"
-		}
-	}
 
-	if encoding == "string" {
-		jsonData, err := json.Marshal(data)
+		parsedEvent, err := es.unmarshaller(e)
 		if err != nil {
 			es.err = err
 			return false
 		}
-		event.Data = jsonData
-	} else {
-		event.Data = []byte(data)
-	}
 
-	e, err := json.Marshal(event)
-	if err != nil {
-		es.err = err
-		return false
-	}
-
-	parsedEvent, err := es.unmarshaller(e)
-	if err != nil {
-		es.err = err
-		return false
-	}
-
-	if publish {
 		es.val = &parsedEvent
-	} else {
-		es.val = nil
-	}
 
-	return true
+		return true
+	}
 }
 
 // Value returns the most recent event that was generated from a call to Next
