@@ -270,7 +270,6 @@ The SDK is organized into resource-based modules accessed through the main `Mix`
 | `Streaming`      | Server-Sent Events for real-time updates |
 | `Files`          | File upload, download, and management    |
 | `Authentication` | API key and OAuth management             |
-| `Preferences`    | Model and provider configuration         |
 | `Permissions`    | Permission granting and denial           |
 | `Tools`          | Tool discovery and status                |
 | `System`         | Health checks and system information     |
@@ -490,24 +489,6 @@ type CallbackResultData struct {
     SubagentID         *string
     SubagentResult     *string
     ExcludeFromContext *bool
-}
-```
-
-#### `UserPreferencesResponse`
-
-User preferences configuration.
-
-```go
-type UserPreferencesResponse struct {
-    CreatedAt                *int64  // Unix timestamp when created
-    UpdatedAt                *int64  // Unix timestamp of last update
-    PreferredProvider        *string // AI provider: "anthropic", "openai", "openrouter"
-    MainAgentModel           *string // Main agent model ID
-    MainAgentMaxTokens       *int64  // Max tokens for main agent
-    MainAgentReasoningEffort *string // Reasoning effort setting
-    SubAgentModel            *string // Sub agent model ID
-    SubAgentMaxTokens        *int64  // Max tokens for sub agent
-    SubAgentReasoningEffort  *string // Reasoning effort setting
 }
 ```
 
@@ -1593,7 +1574,7 @@ func main() {
 
 ---
 
-**Version:** 0.2.2
+**Version:** 0.2.3
 **Last Updated:** 2025
 
 **Note:** This SDK is a REST API client for the Mix application. Event schemas and hook implementations are subject to change as the API evolves.
